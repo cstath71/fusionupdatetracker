@@ -1,0 +1,24 @@
+
+:root{--ink:#14202b;--mut:#5b6875;--bg:#f6f7f9;--card:#fff;--acc:#c74634;--line:#e3e6ea}
+*{box-sizing:border-box}body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:#1f5fa8}header{background:#14202b;color:#fff}header .w{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+header a{color:#fff;text-decoration:none;opacity:.9}header a.brand{font-weight:700;font-size:20px;opacity:1}header a.brand span{color:#ff8a70}
+.w{max-width:1150px;margin:0 auto;padding:16px 20px}nav{display:flex;gap:18px;flex-wrap:wrap}
+.hero{padding:40px 0 10px}.hero h1{font-size:34px;margin:0 0 8px}.lead{color:var(--mut);font-size:18px;max-width:760px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:20px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px}
+.card h3{margin:0 0 6px}.muted{color:var(--mut)}.small{font-size:13px}
+.draft{display:inline-block;background:#fff4d6;border:1px solid #f0d27a;color:#7a5a00;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:600}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0;position:sticky;top:0;background:var(--bg);padding:10px 0;z-index:2}
+select,input{padding:8px 10px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff}
+.item{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:10px 0}
+.item h4{margin:0 0 4px;font-size:16px}.meta{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+.pill{font-size:12px;border-radius:999px;padding:2px 10px;background:#eef1f4;color:#33414e}
+.i-high{background:#fde2dd;color:#a32b17;font-weight:700}.i-medium{background:#fff0cf;color:#865d00;font-weight:700}.i-low{background:#e3f3e6;color:#1f6b33;font-weight:700}
+.e-auto{background:#dfeafe;color:#1e4f9a}.e-exp{background:#fde2dd;color:#a32b17}
+.box{background:#fff;border:1px solid var(--line);border-radius:10px;padding:20px;margin:18px 0}
+form.nl{display:flex;gap:8px;flex-wrap:wrap}form.nl input[type=email]{flex:1;min-width:240px}
+button{background:var(--acc);color:#fff;border:0;border-radius:8px;padding:9px 16px;font:inherit;font-weight:600;cursor:pointer}
+footer{color:var(--mut);font-size:13px;border-top:1px solid var(--line);margin-top:40px}
+table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top;font-size:14px}
+ul.check li{margin:6px 0}

@@ -25,14 +25,19 @@ button{background:var(--acc);color:#fff;border:0;border-radius:8px;padding:9px 1
 footer{color:var(--mut);font-size:13px;border-top:1px solid var(--line);margin-top:40px}
 table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top;font-size:14px}
 ul.check li{margin:6px 0}
+.current{background:linear-gradient(135deg,#14202b,#2a3d50);color:#fff;border-radius:14px;padding:28px;margin:22px 0}.current h2{font-size:30px;margin:8px 0}.current .lead{color:#d6dee6}
+.current .tag{background:#ff8a70;color:#14202b;font-weight:700;border-radius:999px;padding:3px 12px;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:18px 0}.stats div{background:rgba(255,255,255,.08);border-radius:10px;padding:14px}.stats b{display:block;font-size:30px;color:#ff8a70}.stats span{color:#d6dee6;font-size:14px}
+.btn{display:inline-block;background:var(--acc);color:#fff;text-decoration:none;font-weight:600;padding:10px 16px;border-radius:8px;margin:4px 6px 4px 0}.btn.alt{background:#fff;color:#14202b}
 """
+NAV=''
 def page(title, body, depth=0, desc=''):
     p='../'*depth
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{E(title)} | {SITE}</title><meta name="description" content="{E(desc or 'Plain-English tracker of Oracle Fusion Cloud quarterly updates: what changed, what turns on automatically, what to test.')}">
 <link rel="stylesheet" href="{p}style.css"></head><body>
 <header><div class="w"><a class="brand" href="{p}index.html">Fusion<span>Update</span>Tracker</a><nav>
-<a href="{p}updates/26b/index.html">26B</a><a href="{p}updates/26c/index.html">26C</a><a href="{p}newsletter.html">Newsletter</a><a href="{p}sponsor.html">Sponsor</a><a href="{p}about.html">About</a></nav></div></header>
+{NAV.replace("@",p)}<a href="{p}newsletter.html">Newsletter</a><a href="{p}sponsor.html">Sponsor</a><a href="{p}about.html">About</a></nav></div></header>
 <main class="w">{body}</main>
 <footer><div class="w">Independent site, not affiliated with or endorsed by Oracle. Oracle and Oracle Fusion are trademarks of Oracle and/or its affiliates.
 Summaries are condensed from Oracle's public readiness documentation; always confirm details on the linked Oracle page. Impact ratings are editorial drafts.</div></footer></body></html>"""
@@ -84,17 +89,28 @@ def checklist_page(u):
 <div class="box"><h2>4. Read Oracle's "IMPORTANT Actions and Considerations" per product</h2><ul>{imp}</ul></div>{nl_form()}"""
     return page(f"{u['release']} what-to-test checklist", body, 2)
 def render(updates, dist):
+    global NAV
+    NAV=''.join(f'<a href="@updates/{k.lower()}/index.html">{k}{" (current)" if n==0 else ""}</a>' for n,k in enumerate(sorted(updates,reverse=True)))
     if os.path.exists(dist): shutil.rmtree(dist)
     os.makedirs(dist); open(os.path.join(dist,'style.css'),'w').write(CSS)
     for k,u in updates.items():
         d=os.path.join(dist,'updates',k.lower()); os.makedirs(d)
         open(os.path.join(d,'index.html'),'w').write(update_page(u)); open(os.path.join(d,'checklist.html'),'w').write(checklist_page(u))
-    cards=''.join(f"""<div class="card"><h3>Update {k}</h3><p class="muted">{len(u['items'])} key changes tracked · {u['total_features']} features in Oracle docs · {len(u['expiring'])} opt-ins expiring</p>
-<p><a href="updates/{k.lower()}/index.html">Browse changes →</a><br><a href="updates/{k.lower()}/checklist.html">What to test →</a></p></div>""" for k,u in sorted(updates.items(),reverse=True))
+    order=sorted(updates, reverse=True)  # newest first, e.g. 26D > 26C > 26B; 27A > 26D
+    cur=updates[order[0]]; ck=order[0].lower()
+    hi=sum(1 for i in cur['items'] if i['impact']=='high'); auto=sum(1 for i in cur['items'] if i['enablement'].startswith('Automatically'))
+    hero=f"""<section class="current"><span class="tag">Current update</span><h2>Oracle Fusion Cloud {cur['release']}</h2>
+<p class="lead">The update now rolling out. Start here: what changed, what switches on automatically, and which opt-ins are becoming mandatory.</p>
+<div class="stats"><div><b>{len(cur['items'])}</b><span>key changes tracked</span></div><div><b>{len(cur['expiring'])}</b><span>opt-ins becoming mandatory</span></div><div><b>{hi}</b><span>high-impact changes (draft)</span></div><div><b>{auto}</b><span>automatically on</span></div></div>
+<p class="small">Out of {cur['total_features']} features in Oracle's {cur['release']} readiness documents.</p>
+<p><a class="btn" href="updates/{ck}/index.html">Browse {cur['release']} changes →</a> <a class="btn alt" href="updates/{ck}/checklist.html">{cur['release']} what-to-test checklist →</a></p></section>"""
+    prev=''.join(f"""<div class="card"><h3>Update {k}</h3><p class="muted">{len(updates[k]['items'])} key changes tracked · {updates[k]['total_features']} features in Oracle docs · {len(updates[k]['expiring'])} opt-ins expiring</p>
+<p><a href="updates/{k.lower()}/index.html">Browse changes →</a><br><a href="updates/{k.lower()}/checklist.html">What to test →</a></p></div>""" for k in order[1:])
+    prevsec=f'<h2>Previous updates</h2><div class="cards">{prev}</div>' if prev else ''
     fams=sorted(set(i['family'] for u in updates.values() for i in u['items']))
     home=f"""<div class="hero"><h1>Every Oracle Fusion quarterly update, in plain English.</h1>
 <p class="lead">What changed in Financials, Procurement, Supply Chain, Logistics, Project Management and HCM, what switches on automatically, which opt-ins are about to become mandatory, and what to test before it hits production.</p></div>
-<div class="cards">{cards}</div><div class="box"><h3 style="margin-top:0">Covered module families</h3><p>{' · '.join(E(f) for f in fams)}</p></div>{nl_form()}"""
+{hero}{prevsec}<div class="box"><h3 style="margin-top:0">Covered module families</h3><p>{' · '.join(E(f) for f in fams)}</p></div>{nl_form()}"""
     open(os.path.join(dist,'index.html'),'w').write(page('Oracle Fusion Cloud quarterly update tracker',home))
     open(os.path.join(dist,'newsletter.html'),'w').write(page('Newsletter','<div class="hero"><h1>The quarterly briefing</h1><p class="lead">Before each Oracle Fusion update reaches your test environment: the changes that matter, by module, the opt-ins about to expire, and a ready-to-use test checklist. Free.</p></div>'+nl_form()))
     open(os.path.join(dist,'sponsor.html'),'w').write(page('Sponsor',"""<div class="hero"><h1>Sponsor FusionUpdateTracker</h1><p class="lead">Reach the people who plan, test and run Oracle Fusion Cloud updates: application owners, functional leads, testers and consultants across Financials, Procurement, SCM, Projects and HCM.</p></div>

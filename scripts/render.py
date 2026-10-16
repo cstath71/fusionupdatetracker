@@ -43,9 +43,13 @@ def page(title, body, depth=0, desc=''):
 Summaries are condensed from Oracle's public readiness documentation; always confirm details on the linked Oracle page. Impact ratings are editorial drafts.</div></footer></body></html>"""
 def nl_form(p=''):
     return f"""<div class="box"><h3 style="margin-top:0">Get the quarterly briefing</h3><p class="muted">One email per update (plus short alerts before opt-in expirations): the changes that matter, by module, and what to test.</p>
-<form class="nl" action="#" method="post" onsubmit="alert('Newsletter signup is not connected yet (placeholder).');return false;"><input type="email" name="email" placeholder="you@company.com" required>
+<form class="nl" action="https://uufmlmwgvoqhhtqgrclu.supabase.co/functions/v1/fut-subscribe" method="post" onsubmit="return futSub(this)"><input type="email" name="email" placeholder="you@company.com" required maxlength="254">
+<input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
 <select name="area"><option>All modules</option><option>Financials</option><option>Procurement</option><option>Supply Chain &amp; Manufacturing</option><option>Logistics</option><option>Project Management</option><option>HCM</option></select><button type="submit">Subscribe</button></form>
-<p class="small muted">Placeholder form: not connected to any email service yet.</p></div>"""
+<p class="small muted nl-msg" aria-live="polite">Free. One email per update. Unsubscribe any time.</p>
+<script>if(!window.futSub){{window.futSub=function(f){{const m=f.parentNode.querySelector('.nl-msg'),b=f.querySelector('button');b.disabled=true;m.textContent='Subscribing…';
+fetch(f.action,{{method:'POST',headers:{{'Content-Type':'application/json'}},body:JSON.stringify(Object.fromEntries(new FormData(f)))}}).then(r=>r.json().then(j=>[r.status,j])).then(([s,j])=>{{
+m.textContent=j.ok?"Thanks! You're on the list.":(j.error==='invalid_email'?'Please enter a valid email address.':(s===429?'Too many attempts. Please try again later.':'Something went wrong. Please try again.'));if(j.ok)f.reset();}}).catch(()=>{{m.textContent='Network error. Please try again.'}}).finally(()=>{{b.disabled=false}});return false;}}}}</script></div>"""
 def enc(e): return 'e-exp' if 'expires' in e else ('e-auto' if e.startswith('Automatically') else '')
 def update_page(u):
     items=u['items']; fams=sorted(set(i['family'] for i in items)); prods=sorted(set(i['product'] for i in items))

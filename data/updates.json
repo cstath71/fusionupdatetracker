@@ -1949,6 +1949,196 @@
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/sop26b/26B-sales-ops-wn-t73410.htm"
     }
    ],
+   "family_totals": {
+    "Financials": 48,
+    "Project Management": 9,
+    "HCM": 308,
+    "Logistics (OTM/GTM/WMS)": 86,
+    "Supply Chain & Manufacturing": 320,
+    "Procurement": 76
+   },
+   "books": [
+    {
+     "product": "Financials",
+     "family": "Financials",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/erp/26b/fins26b/index.html",
+     "features": 43
+    },
+    {
+     "product": "Project Management",
+     "family": "Project Management",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/erp/26b/ppm26b/index.html",
+     "features": 9
+    },
+    {
+     "product": "Risk Management",
+     "family": "Financials",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/erp/26b/risk26b/index.html",
+     "features": 2
+    },
+    {
+     "product": "Self Service Financials",
+     "family": "Financials",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/erp/26b/ssfin26b/index.html",
+     "features": 3
+    },
+    {
+     "product": "Absence Management",
+     "family": "HCM",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/amg-26b/index.html",
+     "features": 11
+    },
+    {
+     "product": "Benefits",
+     "family": "HCM",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/benf-26b/index.html",
+     "features": 6
+    },
+    {
+     "product": "Compensation",
+     "family": "HCM",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/comp-26b/index.html",
+     "features": 11
+    },
+    {
+     "product": "HCM Common",
+     "family": "HCM",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/hcom-26b/index.html",
+     "features": 8
+    },
+    {
+     "product": "Human Resources",
+     "family": "HCM",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/hure-26b/index.html",
+     "features": 70
+    },
+    {
+     "product": "Learning and Development",
+     "family": "HCM",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/lear-26b/index.html",
+     "features": 31
+    },
+    {
+     "product": "Payroll",
+     "family": "HCM",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/payr-26b/index.html",
+     "features": 59
+    },
+    {
+     "product": "Recruiting",
+     "family": "HCM",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/recr-26b/index.html",
+     "features": 49
+    },
+    {
+     "product": "Talent Management",
+     "family": "HCM",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/tama-26b/index.html",
+     "features": 40
+    },
+    {
+     "product": "Time and Labor",
+     "family": "HCM",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/tila-26b/index.html",
+     "features": 9
+    },
+    {
+     "product": "Workforce Health and Safety",
+     "family": "HCM",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/wohs-26b/index.html",
+     "features": 1
+    },
+    {
+     "product": "wosc-26b",
+     "family": "HCM",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/wosc-26b/index.html",
+     "features": 13
+    },
+    {
+     "product": "Global Trade Management",
+     "family": "Logistics (OTM/GTM/WMS)",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26b/gtm26b/index.html",
+     "features": 16
+    },
+    {
+     "product": "Transportation Management",
+     "family": "Logistics (OTM/GTM/WMS)",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26b/otm26b/index.html",
+     "features": 31
+    },
+    {
+     "product": "Warehouse Management",
+     "family": "Logistics (OTM/GTM/WMS)",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26b/wms26b/index.html",
+     "features": 39
+    },
+    {
+     "product": "demand26b",
+     "family": "Supply Chain & Manufacturing",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/demand26b/index.html",
+     "features": 51
+    },
+    {
+     "product": "Inventory Management",
+     "family": "Supply Chain & Manufacturing",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/inv26b/index.html",
+     "features": 62
+    },
+    {
+     "product": "Maintenance",
+     "family": "Supply Chain & Manufacturing",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/maint26b/index.html",
+     "features": 10
+    },
+    {
+     "product": "Manufacturing",
+     "family": "Supply Chain & Manufacturing",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/mfg26b/index.html",
+     "features": 39
+    },
+    {
+     "product": "Order Management",
+     "family": "Supply Chain & Manufacturing",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/order26b/index.html",
+     "features": 51
+    },
+    {
+     "product": "Product Lifecycle Management",
+     "family": "Supply Chain & Manufacturing",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/plm26b/index.html",
+     "features": 22
+    },
+    {
+     "product": "Procurement",
+     "family": "Procurement",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/proc26b/index.html",
+     "features": 55
+    },
+    {
+     "product": "Supply Chain Collaboration",
+     "family": "Supply Chain & Manufacturing",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/sccv26b/index.html",
+     "features": 12
+    },
+    {
+     "product": "Supply Planning",
+     "family": "Supply Chain & Manufacturing",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/scp26b/index.html",
+     "features": 53
+    },
+    {
+     "product": "Sales and Operations Planning",
+     "family": "Supply Chain & Manufacturing",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/sop26b/index.html",
+     "features": 20
+    },
+    {
+     "product": "Self Service Procurement",
+     "family": "Procurement",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/ssproc26b/index.html",
+     "features": 21
+    }
+   ],
    "expiring": [
     {
      "expires": "26B",
@@ -4233,6 +4423,190 @@
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/sop26c/26C-sales-ops-wn-t75696.htm"
     }
    ],
+   "family_totals": {
+    "Financials": 55,
+    "Project Management": 23,
+    "HCM": 292,
+    "Logistics (OTM/GTM/WMS)": 106,
+    "Supply Chain & Manufacturing": 239,
+    "Procurement": 71
+   },
+   "books": [
+    {
+     "product": "Financials",
+     "family": "Financials",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/fins26c/index.html",
+     "features": 48
+    },
+    {
+     "product": "Project Management",
+     "family": "Project Management",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/ppm26c/index.html",
+     "features": 23
+    },
+    {
+     "product": "Risk Management (Classic)",
+     "family": "Financials",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/risk26c/index.html",
+     "features": 4
+    },
+    {
+     "product": "Self Service Financials",
+     "family": "Financials",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/ssfin26c/index.html",
+     "features": 3
+    },
+    {
+     "product": "Absence Management",
+     "family": "HCM",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/amg-26c/index.html",
+     "features": 9
+    },
+    {
+     "product": "Benefits",
+     "family": "HCM",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/benf-26c/index.html",
+     "features": 13
+    },
+    {
+     "product": "Compensation",
+     "family": "HCM",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/comp-26c/index.html",
+     "features": 15
+    },
+    {
+     "product": "Human Resources",
+     "family": "HCM",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/hure-26c/index.html",
+     "features": 74
+    },
+    {
+     "product": "Learning and Development",
+     "family": "HCM",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/lear-26c/index.html",
+     "features": 27
+    },
+    {
+     "product": "Payroll",
+     "family": "HCM",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/payr-26c/index.html",
+     "features": 42
+    },
+    {
+     "product": "Recruiting",
+     "family": "HCM",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/recr-26c/index.html",
+     "features": 51
+    },
+    {
+     "product": "Talent Management",
+     "family": "HCM",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/tama-26c/index.html",
+     "features": 39
+    },
+    {
+     "product": "Time and Labor",
+     "family": "HCM",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/tila-26c/index.html",
+     "features": 9
+    },
+    {
+     "product": "Work Life",
+     "family": "HCM",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/woli-26c/index.html",
+     "features": 1
+    },
+    {
+     "product": "Workforce Scheduling",
+     "family": "HCM",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/wosc-26c/index.html",
+     "features": 12
+    },
+    {
+     "product": "Global Trade Management",
+     "family": "Logistics (OTM/GTM/WMS)",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26c/gtm26c/index.html",
+     "features": 30
+    },
+    {
+     "product": "Transportation Management",
+     "family": "Logistics (OTM/GTM/WMS)",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26c/otm26c/index.html",
+     "features": 43
+    },
+    {
+     "product": "Warehouse Management",
+     "family": "Logistics (OTM/GTM/WMS)",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26c/wms26c/index.html",
+     "features": 33
+    },
+    {
+     "product": "Demand Management",
+     "family": "Supply Chain & Manufacturing",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/demand26c/index.html",
+     "features": 18
+    },
+    {
+     "product": "Inventory Management",
+     "family": "Supply Chain & Manufacturing",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/inv26c/index.html",
+     "features": 44
+    },
+    {
+     "product": "Maintenance",
+     "family": "Supply Chain & Manufacturing",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/maint26c/index.html",
+     "features": 21
+    },
+    {
+     "product": "Manufacturing",
+     "family": "Supply Chain & Manufacturing",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/mfg26c/index.html",
+     "features": 42
+    },
+    {
+     "product": "Order Management",
+     "family": "Supply Chain & Manufacturing",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/order26c/index.html",
+     "features": 46
+    },
+    {
+     "product": "Product Lifecycle Management",
+     "family": "Supply Chain & Manufacturing",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/plm26c/index.html",
+     "features": 20
+    },
+    {
+     "product": "Procurement",
+     "family": "Procurement",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/proc26c/index.html",
+     "features": 49
+    },
+    {
+     "product": "Supply Chain Collaboration",
+     "family": "Supply Chain & Manufacturing",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/sccv26c/index.html",
+     "features": 8
+    },
+    {
+     "product": "Supply Planning",
+     "family": "Supply Chain & Manufacturing",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/scp26c/index.html",
+     "features": 23
+    },
+    {
+     "product": "Sales and Operations Planning",
+     "family": "Supply Chain & Manufacturing",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/sop26c/index.html",
+     "features": 17
+    },
+    {
+     "product": "Self Service Procurement",
+     "family": "Procurement",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/ssproc26c/index.html",
+     "features": 22
+    }
+   ],
    "expiring": [
     {
      "expires": "26C",
@@ -4668,5 +5042,418 @@
     }
    ]
   }
+ },
+ "upcoming": {
+  "release": "26D",
+  "books": [
+   {
+    "product": "Financials",
+    "family": "Financials",
+    "url": "https://docs.oracle.com/en/cloud/saas/readiness/erp/26d/fins26d/index.html"
+   },
+   {
+    "product": "Project Management",
+    "family": "Project Management",
+    "url": "https://docs.oracle.com/en/cloud/saas/readiness/erp/26d/ppm26d/index.html"
+   },
+   {
+    "product": "Risk Management (Classic)",
+    "family": "Financials",
+    "url": "https://docs.oracle.com/en/cloud/saas/readiness/erp/26d/risk26d/index.html"
+   },
+   {
+    "product": "Self Service Financials",
+    "family": "Financials",
+    "url": "https://docs.oracle.com/en/cloud/saas/readiness/erp/26d/ssfin26d/index.html"
+   },
+   {
+    "product": "Absence Management",
+    "family": "HCM",
+    "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/amg-26d/index.html"
+   },
+   {
+    "product": "Benefits",
+    "family": "HCM",
+    "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/benf-26d/index.html"
+   },
+   {
+    "product": "Compensation",
+    "family": "HCM",
+    "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/comp-26d/index.html"
+   },
+   {
+    "product": "Human Resources",
+    "family": "HCM",
+    "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/hure-26d/index.html"
+   },
+   {
+    "product": "Learning and Development",
+    "family": "HCM",
+    "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/lear-26d/index.html"
+   },
+   {
+    "product": "Payroll",
+    "family": "HCM",
+    "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/payr-26d/index.html"
+   },
+   {
+    "product": "Recruiting",
+    "family": "HCM",
+    "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/recr-26d/index.html"
+   },
+   {
+    "product": "Talent Management",
+    "family": "HCM",
+    "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/tama-26d/index.html"
+   },
+   {
+    "product": "Time and Labor",
+    "family": "HCM",
+    "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/tila-26d/index.html"
+   },
+   {
+    "product": "Workforce Scheduling",
+    "family": "HCM",
+    "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/wosc-26d/index.html"
+   },
+   {
+    "product": "Warehouse Management",
+    "family": "Logistics (OTM/GTM/WMS)",
+    "url": "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26d/wms26d/index.html"
+   },
+   {
+    "product": "Demand Management",
+    "family": "Supply Chain & Manufacturing",
+    "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/demand26d/index.html"
+   },
+   {
+    "product": "Inventory Management",
+    "family": "Supply Chain & Manufacturing",
+    "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/inv26d/index.html"
+   },
+   {
+    "product": "Maintenance",
+    "family": "Supply Chain & Manufacturing",
+    "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/maint26d/index.html"
+   },
+   {
+    "product": "Manufacturing",
+    "family": "Supply Chain & Manufacturing",
+    "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/mfg26d/index.html"
+   },
+   {
+    "product": "Order Management",
+    "family": "Supply Chain & Manufacturing",
+    "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/order26d/index.html"
+   },
+   {
+    "product": "Product Lifecycle Management",
+    "family": "Supply Chain & Manufacturing",
+    "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/plm26d/index.html"
+   },
+   {
+    "product": "Procurement",
+    "family": "Procurement",
+    "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/proc26d/index.html"
+   },
+   {
+    "product": "Supply Chain Collaboration",
+    "family": "Supply Chain & Manufacturing",
+    "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/sccv26d/index.html"
+   },
+   {
+    "product": "Supply Planning",
+    "family": "Supply Chain & Manufacturing",
+    "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/scp26d/index.html"
+   },
+   {
+    "product": "Sales and Operations Planning",
+    "family": "Supply Chain & Manufacturing",
+    "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/sop26d/index.html"
+   },
+   {
+    "product": "Self Service Procurement",
+    "family": "Procurement",
+    "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/ssproc26d/index.html"
+   }
+  ],
+  "expiring": [
+   {
+    "expires": "26D",
+    "pillar": "Enterprise Resource Planning (ERP)",
+    "product": "Financials: Procure to Pay",
+    "module": "Asset Acquisition, Maintenance, and Lease",
+    "title": "Revenue Equipment Leases",
+    "now_enabled": "No",
+    "impact": "None",
+    "action": "Setup",
+    "introduced": "26B",
+    "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=fins26b-f43424"
+   },
+   {
+    "expires": "26D",
+    "pillar": "Enterprise Resource Planning (ERP)",
+    "product": "Project Management",
+    "module": "Planning, Scheduling, and Forecasting",
+    "title": "Project Change Requests and Consolidation into Change Orders",
+    "now_enabled": "No",
+    "impact": "None",
+    "action": "Setup",
+    "introduced": "25D",
+    "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=ppm25d-f39995"
+   },
+   {
+    "expires": "26D",
+    "pillar": "Enterprise Resource Planning (ERP)",
+    "product": "Project Management",
+    "module": "Resource Management",
+    "title": "Assignment Date and Role Updates when Replacing Resources",
+    "now_enabled": "Yes",
+    "impact": "Small Scale",
+    "action": "None",
+    "introduced": "26A",
+    "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=ppm26a-f41906"
+   },
+   {
+    "expires": "26D",
+    "pillar": "Enterprise Resource Planning (ERP)",
+    "product": "Project Management",
+    "module": "Resource Management",
+    "title": "Replacement Nomination Approval Workflow",
+    "now_enabled": "Yes",
+    "impact": "Small Scale",
+    "action": "None",
+    "introduced": "26B",
+    "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=ppm26b-f43234"
+   },
+   {
+    "expires": "26D",
+    "pillar": "Industry",
+    "product": "Permitting and Licensing",
+    "module": "Permitting and Licensing Common",
+    "title": "Redwood Experience for Explore Your City",
+    "now_enabled": "No",
+    "impact": "None",
+    "action": "Setup",
+    "introduced": "26C",
+    "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd26c-f49450"
+   },
+   {
+    "expires": "26D",
+    "pillar": "Industry",
+    "product": "Permitting and Licensing",
+    "module": "Permitting and Licensing Common",
+    "title": "Redwood Experience for Worklists",
+    "now_enabled": "No",
+    "impact": "None",
+    "action": "Setup",
+    "introduced": "26C",
+    "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd26c-f49426"
+   },
+   {
+    "expires": "26D",
+    "pillar": "Sales",
+    "product": "Sales Force Automation",
+    "module": "Redwood User Experience",
+    "title": "Migrating Generative AI features to AI Agents",
+    "now_enabled": "Yes",
+    "impact": "Small Scale",
+    "action": "None",
+    "introduced": "26C",
+    "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=sfau-26c-f47284"
+   },
+   {
+    "expires": "26D",
+    "pillar": "Sales",
+    "product": "Sales Force Automation",
+    "module": "Sales for Outlook",
+    "title": "Migrate Prompt-Based Generative AI Capabilities to Execution-Ready AI Agent",
+    "now_enabled": "Yes",
+    "impact": "Small Scale",
+    "action": "None",
+    "introduced": "26C",
+    "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=sfau-26c-f47283"
+   },
+   {
+    "expires": "26D",
+    "pillar": "Supply Chain & Manufacturing (SCM)",
+    "product": "Advanced Inventory Management",
+    "module": "Advanced Inventory Management",
+    "title": "Redwood: View License Plate Number in Electronic Records",
+    "now_enabled": "No",
+    "impact": "None",
+    "action": "Setup",
+    "introduced": "26A",
+    "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=adv-iim26a-f41418"
+   },
+   {
+    "expires": "26D",
+    "pillar": "Supply Chain & Manufacturing (SCM)",
+    "product": "Procurement Common",
+    "module": "Common Procurement",
+    "title": "Redwood: Set up Supplier Registration and Profile Change Request",
+    "now_enabled": "No",
+    "impact": "None",
+    "action": "Setup",
+    "introduced": "26A",
+    "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=proc26a-f41604"
+   },
+   {
+    "expires": "26D",
+    "pillar": "Supply Chain & Manufacturing (SCM)",
+    "product": "Inventory Management",
+    "module": "E-Signatures and E-Records",
+    "title": "Redwood: Configure E-Signature Preferences",
+    "now_enabled": "No",
+    "impact": "None",
+    "action": "Setup",
+    "introduced": "25C",
+    "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=inv25c-f38710"
+   },
+   {
+    "expires": "26D",
+    "pillar": "Supply Chain & Manufacturing (SCM)",
+    "product": "Inventory Management",
+    "module": "Inventory Management",
+    "title": "Redwood: Use Redwood Template for ERES Approval Notifications and Approve Using Deferred Mode",
+    "now_enabled": "No",
+    "impact": "None",
+    "action": "Setup",
+    "introduced": "25C",
+    "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=inv25c-f38387"
+   },
+   {
+    "expires": "26D",
+    "pillar": "Supply Chain & Manufacturing (SCM)",
+    "product": "Maintenance",
+    "module": "Maintenance",
+    "title": "Manage Global Maintenance Work Definitions",
+    "now_enabled": "Yes",
+    "impact": "Large Scale",
+    "action": "None",
+    "introduced": "26B",
+    "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=maint26b-f43651"
+   },
+   {
+    "expires": "26D",
+    "pillar": "Supply Chain & Manufacturing (SCM)",
+    "product": "Maintenance",
+    "module": "Maintenance",
+    "title": "Manage Organizations for Global Work Definitions Using File-Based Data Import",
+    "now_enabled": "No",
+    "impact": "None",
+    "action": "Setup",
+    "introduced": "26C",
+    "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=maint26c-f46394"
+   },
+   {
+    "expires": "26D",
+    "pillar": "Supply Chain & Manufacturing (SCM)",
+    "product": "Manufacturing",
+    "module": "Manufacturing",
+    "title": "Move Materials from Staging Locations in the Factory Floor to Workstations",
+    "now_enabled": "No",
+    "impact": "None",
+    "action": "Setup",
+    "introduced": "26B",
+    "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26b-f43087"
+   },
+   {
+    "expires": "26D",
+    "pillar": "Supply Chain & Manufacturing (SCM)",
+    "product": "Manufacturing",
+    "module": "Manufacturing",
+    "title": "Redwood: Complete an Item Multiple Times in a Discrete Manufacturing Work Order",
+    "now_enabled": "No",
+    "impact": "None",
+    "action": "Setup",
+    "introduced": "26B",
+    "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26b-f43078"
+   },
+   {
+    "expires": "26D",
+    "pillar": "Supply Chain & Manufacturing (SCM)",
+    "product": "Manufacturing",
+    "module": "Manufacturing",
+    "title": "Redwood: Manage Global Work Definitions in an Item Master Organization",
+    "now_enabled": "Yes",
+    "impact": "Large Scale",
+    "action": "None",
+    "introduced": "26B",
+    "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26b-f43102"
+   },
+   {
+    "expires": "26D",
+    "pillar": "Supply Chain & Manufacturing (SCM)",
+    "product": "Manufacturing",
+    "module": "Manufacturing",
+    "title": "Redwood: Plan, Schedule, and Execute Parallel Operations in a Manufacturing Work Order",
+    "now_enabled": "No",
+    "impact": "None",
+    "action": "Setup",
+    "introduced": "26B",
+    "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26b-f43089"
+   },
+   {
+    "expires": "26D",
+    "pillar": "Supply Chain & Manufacturing (SCM)",
+    "product": "Manufacturing",
+    "module": "Manufacturing",
+    "title": "Redwood: Report Material Scrap in a Discrete Manufacturing Work Order",
+    "now_enabled": "Yes",
+    "impact": "Small Scale",
+    "action": "None",
+    "introduced": "26B",
+    "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26b-f43097"
+   },
+   {
+    "expires": "26D",
+    "pillar": "Supply Chain & Manufacturing (SCM)",
+    "product": "Manufacturing",
+    "module": "Manufacturing",
+    "title": "Redwood: Track Work in Process Between Operations During Production Execution",
+    "now_enabled": "No",
+    "impact": "None",
+    "action": "Setup",
+    "introduced": "26B",
+    "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26b-f43105"
+   },
+   {
+    "expires": "26D",
+    "pillar": "Supply Chain & Manufacturing (SCM)",
+    "product": "Manufacturing",
+    "module": "Manufacturing",
+    "title": "Stop an Operation and Correct Resource Usage During Production Supervision",
+    "now_enabled": "No",
+    "impact": "None",
+    "action": "Setup",
+    "introduced": "26B",
+    "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26b-f43106"
+   },
+   {
+    "expires": "26D",
+    "pillar": "Supply Chain & Manufacturing (SCM)",
+    "product": "Order Management",
+    "module": "Pricing",
+    "title": "Redwood: Set Up Customer Pricing",
+    "now_enabled": "Yes",
+    "impact": "Large Scale",
+    "action": "None",
+    "introduced": "26B",
+    "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=order26b-f43291"
+   },
+   {
+    "expires": "26D",
+    "pillar": "Supply Chain & Manufacturing (SCM)",
+    "product": "Inventory Management",
+    "module": "Supply Chain Financial Orchestration",
+    "title": "Use Source Document as Transfer Price Basis for Orders in Back-to-Back Intercompany Transfers",
+    "now_enabled": "Yes",
+    "impact": "Small Scale",
+    "action": "None",
+    "introduced": "26B",
+    "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=inv26b-f43600"
+   }
+  ]
  }
 }

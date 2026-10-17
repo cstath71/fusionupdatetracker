@@ -1,7 +1,7 @@
 """Build Fusion Updates (fusionupdates.com) static site from Oracle readiness data.
 Usage: python3 scripts/build.py   -> writes ./dist
 Data: scripts/crawl.py writes /workspace/fut-raw/summaries.json (Oracle Feature Summary tables)."""
-import json, re, html, os, sys, shutil, datetime
+import json, re, html, os, sys, shutil, datetime, collections
 # Public contact address (used on privacy, sponsor and footer). Override with env FUT_CONTACT if ever needed.
 CONTACT_DEFAULT='hello@fusionupdates.com'
 os.environ['FUT_CONTACT']=os.environ.get('FUT_CONTACT') or CONTACT_DEFAULT
@@ -58,14 +58,17 @@ def summary(url):
     out=sents[0]
     if len(out)<160 and len(sents)>1: out+=' '+sents[1]
     return out[:420].rstrip()+('…' if len(out)>420 else '')
+def prodname(title,path):
+    prod=product(title)
+    if '$' in prod or not prod: prod={'risk':'Risk Management','ssfin':'Financials (Shared)','hcom':'HCM Common','wohs':'Workforce Health and Safety','woli':'Work Life'}.get(re.sub(r'-?2\d[a-d]$','',path.split('/')[-1]),path.split('/')[-1])
+    return prod
 raw=json.load(open(os.path.join(RAW,'summaries.json')))
 nextrel={'26b':'26C','26c':'26D'}
 updates={}
 for rel,books in raw.items():
     items=[]; important=[]
     for b in books:
-        fam=family(b['path']); prod=product(b['title'])
-        if '$' in prod: prod={'risk':'Risk Management','ssfin':'Financials (Shared)','hcom':'HCM Common','wohs':'Workforce Health and Safety','woli':'Work Life'}.get(re.sub(r'-?26[a-d]$','',b['path'].split('/')[-1]),b['path'].split('/')[-1])
+        fam=family(b['path']); prod=prodname(b['title'],b['path'])
         if b.get('important'): important.append(dict(product=prod,family=fam,url=b['important']))
         for r in b['rows']:
             r=dict(r); r['family']=fam; r['product']=prod; r['_rel']=rel.upper(); r['_relnext']=nextrel[rel]
@@ -79,10 +82,26 @@ for rel,books in raw.items():
     with cf.ThreadPoolExecutor(8) as ex:
         for r,s in zip(sel,ex.map(lambda r:summary(r['url']),sel)): r['summary']=s
     for r in sel: r.pop('_relnext',None)
+    books=[dict(product=prodname(b['title'],b['path']),family=family(b['path']),url=f"https://docs.oracle.com/en/cloud/saas/readiness/{b['path']}/index.html",features=len(b['rows'])) for b in books if b['rows']]
     updates[rel.upper()]=dict(release=rel.upper(),items=sel,total_features=len(items),important=important,
+        family_totals=dict(collections.Counter(i['family'] for i in items)),books=books,
         expiring=[e for e in EXP if e['expires']==rel.upper()])
+# Next release: only listed if Oracle has published its What's New documents (checked via each book's toc.htm)
+from crawl import BOOKS
+_last=sorted(raw)[-1]; _nxt=nextrel[_last] if _last in nextrel else None
+upcoming=None
+if _nxt:
+    nb=[]
+    for path in BOOKS[_last].split():
+        np_=path.replace(_last,_nxt.lower())
+        toc=get(f'https://docs.oracle.com/en/cloud/saas/readiness/{np_}/toc.htm')
+        if '<title>' in toc:
+            t=txt(re.search(r'<title>(.*?)</title>',toc,re.S).group(1))
+            if t.startswith('Cloud Applications Readiness'): continue  # generic landing page, book not published
+            nb.append(dict(product=prodname(t,np_),family=family(np_),url=f'https://docs.oracle.com/en/cloud/saas/readiness/{np_}/index.html'))
+    if nb: upcoming=dict(release=_nxt,books=nb,expiring=[e for e in EXP if e['expires']==_nxt])
 os.makedirs(DATA,exist_ok=True)
-json.dump(dict(generated=datetime.date.today().isoformat(),updates=updates),open(os.path.join(DATA,'updates.json'),'w'),indent=1)
-import render; render.render(updates, DIST)
+json.dump(dict(generated=datetime.date.today().isoformat(),updates=updates,upcoming=upcoming),open(os.path.join(DATA,'updates.json'),'w'),indent=1)
+import render; render.render(updates, DIST, upcoming=upcoming, generated=datetime.date.today().isoformat())
 for k,u in updates.items():
     import collections; print(k,'total in Oracle docs:',u['total_features'],'selected:',dict(collections.Counter(i['family'] for i in u['items'])),'expiring:',len(u['expiring']))

@@ -32,6 +32,7 @@ ul.check li{margin:6px 0}
 .btn{display:inline-block;background:var(--acc);color:#fff;text-decoration:none;font-weight:600;padding:10px 16px;border-radius:8px;margin:4px 6px 4px 0}.btn.alt{background:#fff;color:#14202b}
 """
 NAV=''
+P_CUR='/'
 def page(title, body, depth=0, desc='', path=''):
     p='../'*depth
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -41,13 +42,14 @@ def page(title, body, depth=0, desc='', path=''):
 {NAV.replace("@",p)}<a href="{p}newsletter.html">Newsletter</a><a href="{p}sponsor.html">Sponsor</a><a href="{p}about.html">About</a></nav></div></header>
 <main class="w">{body}</main>
 <footer><div class="w">Independent site, not affiliated with or endorsed by Oracle. Oracle and Oracle Fusion are trademarks of Oracle and/or its affiliates.
-Summaries are condensed from Oracle's public readiness documentation; always confirm details on the linked Oracle page. Impact ratings are editorial drafts.</div></footer></body></html>"""
+Summaries are condensed from Oracle's public readiness documentation; always confirm details on the linked Oracle page. Impact ratings are editorial drafts. · <a href="{p}privacy.html">Privacy</a> · <a href="{p}about.html">About</a></div></footer></body></html>"""
 def nl_form(p=''):
+    p=P_CUR
     return f"""<div class="box"><h3 style="margin-top:0">Get the quarterly briefing</h3><p class="muted">One email per update (plus short alerts before opt-in expirations): the changes that matter, by module, and what to test.</p>
 <form class="nl" action="https://uufmlmwgvoqhhtqgrclu.supabase.co/functions/v1/fut-subscribe" method="post" onsubmit="return futSub(this)"><input type="email" name="email" placeholder="you@company.com" required maxlength="254">
 <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
 <select name="area"><option>All modules</option><option>Financials</option><option>Procurement</option><option>Supply Chain &amp; Manufacturing</option><option>Logistics</option><option>Project Management</option><option>HCM</option></select><button type="submit">Subscribe</button></form>
-<p class="small muted nl-msg" aria-live="polite">Free. One email per update. Unsubscribe any time.</p>
+<p class="small muted nl-msg" aria-live="polite">Free. One email per update. Unsubscribe any time. <a href="{p}privacy.html">Privacy</a></p>
 <script>if(!window.futSub){{window.futSub=function(f){{const m=f.parentNode.querySelector('.nl-msg'),b=f.querySelector('button');b.disabled=true;m.textContent='Subscribing…';
 fetch(f.action,{{method:'POST',headers:{{'Content-Type':'application/json'}},body:JSON.stringify(Object.fromEntries(new FormData(f)))}}).then(r=>r.json().then(j=>[r.status,j])).then(([s,j])=>{{
 m.textContent=j.ok?"Thanks! You're on the list.":(j.error==='invalid_email'?'Please enter a valid email address.':(s===429?'Too many attempts. Please try again later.':'Something went wrong. Please try again.'));if(j.ok)f.reset();}}).catch(()=>{{m.textContent='Network error. Please try again.'}}).finally(()=>{{b.disabled=false}});return false;}}}}</script></div>"""
@@ -86,10 +88,10 @@ def checklist_page(u):
     fams=''.join(f"<h3>{E(f)}</h3><ul class='check'>"+''.join(f"<li><label><input type=checkbox> <a href='{E(i['url'])}' target=_blank>{E(i['title'])}</a> <span class='small muted'>({E(i['product'])} · {E(i['module'])}, {i['impact']})</span></label></li>" for i in v)+"</ul>" for f,v in sorted(byfam.items()))
     imp=''.join(f"<li><a href='{E(x['url'])}' target=_blank>{E(x['product'])}</a> <span class='small muted'>{E(x['family'])}</span></li>" for x in sorted(u['important'],key=lambda x:(x['family'],x['product'])))
     body=f"""<div class="hero"><h1>{u['release']} what-to-test checklist</h1><p class="lead">A starting point for regression testing the {u['release']} quarterly update in your test environment. Tick items as you go (ticks are not saved).</p><p><span class="draft">DRAFT, pending editorial review</span></p></div>
-<div class="box"><h2>1. Baseline regression (every update)</h2><p class="small muted">Based on Oracle's published guidance: <a href="https://docs.oracle.com/en/cloud/saas/transportation/26b/otmpt/what-should-i-test-after-a-quarterly-update.html" target=_blank>What Should I Test After a Quarterly Update?</a></p><ul class="check">
+<div class="box" id="baseline"><h2>1. Baseline regression (every update)</h2><p class="small muted">Based on Oracle's published guidance: <a href="https://docs.oracle.com/en/cloud/saas/transportation/26b/otmpt/what-should-i-test-after-a-quarterly-update.html" target=_blank>What Should I Test After a Quarterly Update?</a></p><ul class="check">
 {''.join(f'<li><label><input type=checkbox> {x}</label></li>' for x in ["Validate your <b>current</b> configuration first; don't enable new features yet","Key end-to-end business flows for each role (e.g. procure-to-pay, order-to-cash, plan-to-produce, hire-to-retire)","Integrations: REST/SOAP APIs, FBDI/HDL imports, and third-party systems","Critical custom reports and analytics (BI Publisher, OTBI)","Custom workflows, approvals, extensions, and personalizations","Security: roles and privileges for new or changed pages","Features delivered automatically on (section 2) and opt-ins expiring this update (section 3)","Performance of key flows with production-like volumes"])}</ul></div>
-<div class="box"><h2>2. Changes that switch on automatically (medium/high draft impact)</h2>{fams or '<p class=muted>None in this selection.</p>'}</div>
-<div class="box"><h2>3. Opt-ins that expire in {u['release']} (become mandatory)</h2><p class="small muted">From Oracle's <a href="https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features/optincurrent.html" target=_blank>Current Opt-In Expirations</a> list (all pillars, including non-ERP).</p>
+<div class="box" id="auto"><h2>2. Changes that switch on automatically (medium/high draft impact)</h2>{fams or '<p class=muted>None in this selection.</p>'}</div>
+<div class="box" id="expiring"><h2>3. Opt-ins that expire in {u['release']} (become mandatory)</h2><p class="small muted">From Oracle's <a href="https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features/optincurrent.html" target=_blank>Current Opt-In Expirations</a> list (all pillars, including non-ERP).</p>
 <table><tr><th>Product</th><th>Module</th><th>Feature</th><th>Impact</th><th>Action</th><th>Introduced</th></tr>{exp or '<tr><td colspan=6>None listed.</td></tr>'}</table></div>
 <div class="box"><h2>4. Read Oracle's "IMPORTANT Actions and Considerations" per product</h2><ul>{imp}</ul></div>{nl_form()}"""
     return page(f"{u['release']} what-to-test checklist", body, 2, path=f"updates/{u['release'].lower()}/checklist.html")
@@ -117,9 +119,16 @@ def render(updates, dist):
 <p class="lead">What changed in Financials, Procurement, Supply Chain, Logistics, Project Management and HCM, what switches on automatically, which opt-ins are about to become mandatory, and what to test before it hits production.</p></div>
 {hero}{prevsec}<div class="box"><h3 style="margin-top:0">Covered module families</h3><p>{' · '.join(E(f) for f in fams)}</p></div>{nl_form()}"""
     open(os.path.join(dist,'index.html'),'w').write(page('Oracle Fusion Cloud quarterly update tracker',home))
+    open(os.path.join(dist,'privacy.html'),'w').write(page('Privacy',path='privacy.html',body='''<div class="hero"><h1>Privacy</h1><p class="lead">Short version: we only store what's needed to send you the newsletter.</p></div>
+<div class="box"><h3 style="margin-top:0">What we store when you subscribe</h3><ul><li>Your email address</li><li>The module area you picked (e.g. Supply Chain or HCM)</li><li>When you signed up</li><li>A one-way hash of your IP address, kept only to limit spam signups (we never store the IP address itself)</li></ul>
+<h3>How we use it</h3><p>Only to send the Fusion Updates newsletter (about one email per Oracle quarterly update, plus occasional short alerts about opt-in expirations). We don't sell or share your data, and we don't add you to other lists.</p>
+<h3>Where it's kept</h3><p>Subscriber data is stored with Supabase (EU region, Frankfurt), and newsletters are sent with Resend (EU region). Both act as processors for us.</p>
+<h3>Unsubscribe and deletion</h3><p>Every email has a one-click unsubscribe link. To have your data deleted, or for any question, write to <b>[contact address to be added]</b>.</p>
+<h3>Analytics</h3><p>This site uses no tracking cookies, and newsletter open and click tracking is turned off.</p>
+<p class="small muted">Fusion Updates is run by PrimeLogic Advisory, Switzerland. Last updated: October 2026.</p></div>'''))
     open(os.path.join(dist,'CNAME'),'w').write('fusionupdates.com\n')
     open(os.path.join(dist,'robots.txt'),'w').write(f'User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n')
-    urls=['','newsletter.html','sponsor.html','about.html']+[f'updates/{k.lower()}/' for k in updates]+[f'updates/{k.lower()}/checklist.html' for k in updates]
+    urls=['','newsletter.html','sponsor.html','about.html','privacy.html']+[f'updates/{k.lower()}/' for k in updates]+[f'updates/{k.lower()}/checklist.html' for k in updates]
     open(os.path.join(dist,'sitemap.xml'),'w').write('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join(f'<url><loc>{BASE}/{u}</loc></url>' for u in urls)+'</urlset>')
     open(os.path.join(dist,'newsletter.html'),'w').write(page('Newsletter',path='newsletter.html',body='<div class="hero"><h1>The quarterly briefing</h1><p class="lead">Before each Oracle Fusion update reaches your test environment: the changes that matter, by module, the opt-ins about to expire, and a ready-to-use test checklist. Free.</p></div>'+nl_form()))
     open(os.path.join(dist,'sponsor.html'),'w').write(page('Sponsor',path='sponsor.html',body="""<div class="hero"><h1>Sponsor Fusion Updates</h1><p class="lead">Reach the people who plan, test and run Oracle Fusion Cloud updates: application owners, functional leads, testers and consultants across Financials, Procurement, SCM, Projects and HCM.</p></div>

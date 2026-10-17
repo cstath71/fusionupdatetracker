@@ -14,9 +14,9 @@
 <form class="nl" action="https://uufmlmwgvoqhhtqgrclu.supabase.co/functions/v1/fut-subscribe" method="post" onsubmit="return futSub(this)"><input type="email" name="email" placeholder="you@company.com" required maxlength="254">
 <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
 <select name="area"><option>All modules</option><option>Financials</option><option>Procurement</option><option>Supply Chain &amp; Manufacturing</option><option>Logistics</option><option>Project Management</option><option>HCM</option></select><button type="submit">Subscribe</button></form>
-<p class="small muted nl-msg" aria-live="polite">Free. One email per update. Unsubscribe any time.</p>
+<p class="small muted nl-msg" aria-live="polite">Free. One email per update. Unsubscribe any time. <a href="/privacy.html">Privacy</a></p>
 <script>if(!window.futSub){window.futSub=function(f){const m=f.parentNode.querySelector('.nl-msg'),b=f.querySelector('button');b.disabled=true;m.textContent='Subscribing…';
 fetch(f.action,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.fromEntries(new FormData(f)))}).then(r=>r.json().then(j=>[r.status,j])).then(([s,j])=>{
 m.textContent=j.ok?"Thanks! You're on the list.":(j.error==='invalid_email'?'Please enter a valid email address.':(s===429?'Too many attempts. Please try again later.':'Something went wrong. Please try again.'));if(j.ok)f.reset();}).catch(()=>{m.textContent='Network error. Please try again.'}).finally(()=>{b.disabled=false});return false;}}</script></div></main>
 <footer><div class="w">Independent site, not affiliated with or endorsed by Oracle. Oracle and Oracle Fusion are trademarks of Oracle and/or its affiliates.
-Summaries are condensed from Oracle's public readiness documentation; always confirm details on the linked Oracle page. Impact ratings are editorial drafts.</div></footer></body></html>
+Summaries are condensed from Oracle's public readiness documentation; always confirm details on the linked Oracle page. Impact ratings are editorial drafts. · <a href="privacy.html">Privacy</a> · <a href="about.html">About</a></div></footer></body></html>

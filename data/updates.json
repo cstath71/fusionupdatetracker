@@ -1960,7 +1960,7 @@
      "impact": "Small Scale",
      "action": "None",
      "introduced": "25D",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=fins25d-f40146"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=fins25d-f40146"
     },
     {
      "expires": "26B",
@@ -1972,7 +1972,7 @@
      "impact": "Small Scale",
      "action": "None",
      "introduced": "25D",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=fins25d-f40147"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=fins25d-f40147"
     },
     {
      "expires": "26B",
@@ -1984,7 +1984,7 @@
      "impact": "Small Scale",
      "action": "None",
      "introduced": "25A",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=ppm25a-f35782"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=ppm25a-f35782"
     },
     {
      "expires": "26B",
@@ -1996,7 +1996,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "25D",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=fins25d-f40524"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=fins25d-f40524"
     },
     {
      "expires": "26B",
@@ -2008,7 +2008,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "25B",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=ppm25b-f37021"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=ppm25b-f37021"
     },
     {
      "expires": "26B",
@@ -2020,7 +2020,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "25C",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=ppm25c-f38567"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=ppm25c-f38567"
     },
     {
      "expires": "26B",
@@ -2032,7 +2032,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "26A",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=maint26a-f39999"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=maint26a-f39999"
     },
     {
      "expires": "26B",
@@ -2044,7 +2044,7 @@
      "impact": "Small Scale",
      "action": "None",
      "introduced": "25D",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=mfg25d-f39719"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg25d-f39719"
     },
     {
      "expires": "26B",
@@ -2056,7 +2056,7 @@
      "impact": "Large Scale",
      "action": "None",
      "introduced": "25D",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=mfg25d-f39715"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg25d-f39715"
     },
     {
      "expires": "26B",
@@ -2068,7 +2068,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "26A",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=mfg26a-f41687"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26a-f41687"
     },
     {
      "expires": "26B",
@@ -4244,7 +4244,7 @@
      "impact": "Small Scale",
      "action": "None",
      "introduced": "25D",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=ah25d-f40016"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=ah25d-f40016"
     },
     {
      "expires": "26C",
@@ -4256,7 +4256,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "26A",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=fins26a-f41927"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=fins26a-f41927"
     },
     {
      "expires": "26C",
@@ -4268,7 +4268,7 @@
      "impact": "Small Scale",
      "action": "None",
      "introduced": "26A",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=fins26a-f41926"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=fins26a-f41926"
     },
     {
      "expires": "26C",
@@ -4280,7 +4280,7 @@
      "impact": "Small Scale",
      "action": "None",
      "introduced": "26A",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=ppm26a-f41900"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=ppm26a-f41900"
     },
     {
      "expires": "26C",
@@ -4292,7 +4292,7 @@
      "impact": "Large Scale",
      "action": "None",
      "introduced": "25B",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=fins25b-f37094"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=fins25b-f37094"
     },
     {
      "expires": "26C",
@@ -4304,7 +4304,7 @@
      "impact": "Small Scale",
      "action": "None",
      "introduced": "26A",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=fins26a-f41830"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=fins26a-f41830"
     },
     {
      "expires": "26C",
@@ -4316,7 +4316,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "26A",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=pscd26a-f42337"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd26a-f42337"
     },
     {
      "expires": "26C",
@@ -4328,7 +4328,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "26A",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=pscd26a-f42356"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd26a-f42356"
     },
     {
      "expires": "26C",
@@ -4340,7 +4340,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "24C",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=pscd24c-f33639"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd24c-f33639"
     },
     {
      "expires": "26C",
@@ -4352,7 +4352,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "25D",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=pscd25d-f40730"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd25d-f40730"
     },
     {
      "expires": "26C",
@@ -4364,7 +4364,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "25D",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=pscd25d-f40600"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd25d-f40600"
     },
     {
      "expires": "26C",
@@ -4376,7 +4376,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "24B",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=pscd24b-f33083"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd24b-f33083"
     },
     {
      "expires": "26C",
@@ -4388,7 +4388,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "25A",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=pscd25a-f36009"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd25a-f36009"
     },
     {
      "expires": "26C",
@@ -4400,7 +4400,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "24D",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=pscd24d-f33632"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd24d-f33632"
     },
     {
      "expires": "26C",
@@ -4412,7 +4412,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "25A",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=pscd25a-f36004"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd25a-f36004"
     },
     {
      "expires": "26C",
@@ -4424,7 +4424,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "25B",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=pscd25b-f37590"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd25b-f37590"
     },
     {
      "expires": "26C",
@@ -4436,7 +4436,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "25B",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=pscd25b-f37421"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd25b-f37421"
     },
     {
      "expires": "26C",
@@ -4448,7 +4448,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "25B",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=pscd25b-f37427"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd25b-f37427"
     },
     {
      "expires": "26C",
@@ -4460,7 +4460,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "25C",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=pscd25c-f38922"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd25c-f38922"
     },
     {
      "expires": "26C",
@@ -4472,7 +4472,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "25C",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=pscd25c-f38919"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd25c-f38919"
     },
     {
      "expires": "26C",
@@ -4484,7 +4484,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "26A",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=pscd26a-f42344"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd26a-f42344"
     },
     {
      "expires": "26C",
@@ -4496,7 +4496,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "26B",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=pscd26b-f43558"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd26b-f43558"
     },
     {
      "expires": "26C",
@@ -4508,7 +4508,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "25C",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=pscd25c-f38925"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd25c-f38925"
     },
     {
      "expires": "26C",
@@ -4520,7 +4520,7 @@
      "impact": "Small Scale",
      "action": "None",
      "introduced": "25D",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=inv25d-f40557"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=inv25d-f40557"
     },
     {
      "expires": "26C",
@@ -4532,7 +4532,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "25D",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=mfg25d-f39711"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg25d-f39711"
     },
     {
      "expires": "26C",
@@ -4544,7 +4544,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "26A",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=mfg26a-f41684"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26a-f41684"
     },
     {
      "expires": "26C",
@@ -4556,7 +4556,7 @@
      "impact": "Large Scale",
      "action": "None",
      "introduced": "26A",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=mfg26a-f41735"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26a-f41735"
     },
     {
      "expires": "26C",
@@ -4568,7 +4568,7 @@
      "impact": "Small Scale",
      "action": "None",
      "introduced": "26A",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=mfg26a-f41734"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26a-f41734"
     },
     {
      "expires": "26C",
@@ -4580,7 +4580,7 @@
      "impact": "Small Scale",
      "action": "None",
      "introduced": "26A",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=mfg26a-f41727"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26a-f41727"
     },
     {
      "expires": "26C",
@@ -4592,7 +4592,7 @@
      "impact": "Small Scale",
      "action": "None",
      "introduced": "26A",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=mfg26a-f41718"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26a-f41718"
     },
     {
      "expires": "26C",
@@ -4604,7 +4604,7 @@
      "impact": "Small Scale",
      "action": "None",
      "introduced": "26A",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=mfg26a-f41722"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26a-f41722"
     },
     {
      "expires": "26C",
@@ -4616,7 +4616,7 @@
      "impact": "Large Scale",
      "action": "None",
      "introduced": "26A",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=mfg26a-f41683"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26a-f41683"
     },
     {
      "expires": "26C",
@@ -4628,7 +4628,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "26B",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=mfg26b-f43079"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26b-f43079"
     },
     {
      "expires": "26C",
@@ -4640,7 +4640,7 @@
      "impact": "None",
      "action": "Setup",
      "introduced": "26B",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features//pls/topic/lookup?ctx=saas-readiness&amp;id=mfg26b-f43095"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26b-f43095"
     },
     {
      "expires": "26C",

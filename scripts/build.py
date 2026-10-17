@@ -20,8 +20,9 @@ EXP=[]; EXPMAP={}
 for tr in re.findall(r'<tr>(.*?)</tr>',oh,re.S):
     td=re.findall(r'<td[^>]*>(.*?)</td>',tr,re.S)
     if len(td)<9: continue
-    m=re.search(r'href="([^"]+)"',td[4]); link=m.group(1) if m else ''
-    if link and not link.startswith('http'): link='https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features/'+link
+    m=re.search(r'href="([^"]+)"',td[4]); link=html.unescape(m.group(1)) if m else ''
+    if link.startswith('/'): link='https://docs.oracle.com'+link
+    elif link and not link.startswith('http'): link='https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features/'+link
     r=dict(expires=txt(td[0]),pillar=txt(td[1]),product=txt(td[2]),module=txt(td[3]),title=txt(td[4]),now_enabled=txt(td[5]),impact=txt(td[6]),action=txt(td[7]),introduced=txt(td[8]),url=link)
     EXP.append(r); EXPMAP[r['title'].lower()]=r['expires']
 def norm(s): return re.sub(r'\s+',' ',s).strip().lower()

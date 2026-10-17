@@ -186,7 +186,6 @@ def exp_scope(es,rel):
     have={CORE_SHORT.get(exp_family(e),exp_family(e)) for e in core}
     areas=[a for a in CORE_SHORT.values() if a in have]
     cl=_and(areas) if areas else ''
-    if core and 'HCM' not in have: cl+=f' (no HCM opt-ins end in {rel})'
     oth=collections.OrderedDict()
     for e in es:
         if not exp_family(e): oth.setdefault(exp_other_label(e),[]).append(e)

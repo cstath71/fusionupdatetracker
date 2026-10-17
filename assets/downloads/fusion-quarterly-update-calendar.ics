@@ -1,0 +1,210 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Fusion Updates//Quarterly update calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Oracle Fusion quarterly updates (typical dates)
+X-WR-CALDESC:Typical Oracle Fusion Cloud test and production update dates f
+ or 26D and 27A\, from Oracle's published cohort rule. Delete the cohorts y
+ ou are not in. From fusionupdates.com (independent\, not affiliated with O
+ racle).
+BEGIN:VEVENT
+UID:fut-26d-a-test@fusionupdates.com
+DTSTAMP:20261017T104124Z
+DTSTART;VALUE=DATE:20261106
+DTEND;VALUE=DATE:20261107
+SUMMARY:Oracle Fusion 26D: test environments update\, Cohort A (typical dat
+ e)
+DESCRIPTION:Typical date\, not an Oracle-published date for your environmen
+ t. Oracle's published rule: test environments update on the first Friday o
+ f the update month and production on the third Friday (Middle East regions
+ : the Thursday before). Confirm your own dates in the Oracle Cloud Console
+ . Source: https://blogs.oracle.com/fusioninsider/quarterly-updates-made-ea
+ sy\n\nTwo-week test window until the production update.\n\nPlain-English b
+ riefing: https://fusionupdates.com/26d/
+URL:https://fusionupdates.com/26d/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fut-26d-a-prod@fusionupdates.com
+DTSTAMP:20261017T104124Z
+DTSTART;VALUE=DATE:20261120
+DTEND;VALUE=DATE:20261121
+SUMMARY:Oracle Fusion 26D: production update\, Cohort A (typical date)
+DESCRIPTION:Typical date\, not an Oracle-published date for your environmen
+ t. Oracle's published rule: test environments update on the first Friday o
+ f the update month and production on the third Friday (Middle East regions
+ : the Thursday before). Confirm your own dates in the Oracle Cloud Console
+ . Source: https://blogs.oracle.com/fusioninsider/quarterly-updates-made-ea
+ sy\n\nWith 26D\, the 23 opt-ins Oracle lists as ending with 26D become sta
+ ndard. Checklist: https://fusionupdates.com/downloads/fusion-26d-readiness
+ -checklist.pdf\n\nPlain-English briefing: https://fusionupdates.com/26d/
+URL:https://fusionupdates.com/26d/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fut-26d-b-test@fusionupdates.com
+DTSTAMP:20261017T104124Z
+DTSTART;VALUE=DATE:20261204
+DTEND;VALUE=DATE:20261205
+SUMMARY:Oracle Fusion 26D: test environments update\, Cohort B (typical dat
+ e)
+DESCRIPTION:Typical date\, not an Oracle-published date for your environmen
+ t. Oracle's published rule: test environments update on the first Friday o
+ f the update month and production on the third Friday (Middle East regions
+ : the Thursday before). Confirm your own dates in the Oracle Cloud Console
+ . Source: https://blogs.oracle.com/fusioninsider/quarterly-updates-made-ea
+ sy\n\nTwo-week test window until the production update.\n\nPlain-English b
+ riefing: https://fusionupdates.com/26d/
+URL:https://fusionupdates.com/26d/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fut-26d-b-prod@fusionupdates.com
+DTSTAMP:20261017T104124Z
+DTSTART;VALUE=DATE:20261218
+DTEND;VALUE=DATE:20261219
+SUMMARY:Oracle Fusion 26D: production update\, Cohort B (typical date)
+DESCRIPTION:Typical date\, not an Oracle-published date for your environmen
+ t. Oracle's published rule: test environments update on the first Friday o
+ f the update month and production on the third Friday (Middle East regions
+ : the Thursday before). Confirm your own dates in the Oracle Cloud Console
+ . Source: https://blogs.oracle.com/fusioninsider/quarterly-updates-made-ea
+ sy\n\nWith 26D\, the 23 opt-ins Oracle lists as ending with 26D become sta
+ ndard. Checklist: https://fusionupdates.com/downloads/fusion-26d-readiness
+ -checklist.pdf\n\nPlain-English briefing: https://fusionupdates.com/26d/
+URL:https://fusionupdates.com/26d/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fut-26d-c-test@fusionupdates.com
+DTSTAMP:20261017T104124Z
+DTSTART;VALUE=DATE:20270101
+DTEND;VALUE=DATE:20270102
+SUMMARY:Oracle Fusion 26D: test environments update\, Cohort C (typical dat
+ e)
+DESCRIPTION:Typical date\, not an Oracle-published date for your environmen
+ t. Oracle's published rule: test environments update on the first Friday o
+ f the update month and production on the third Friday (Middle East regions
+ : the Thursday before). Confirm your own dates in the Oracle Cloud Console
+ . Source: https://blogs.oracle.com/fusioninsider/quarterly-updates-made-ea
+ sy\n\nTwo-week test window until the production update.\n\nThis date is Ne
+ w Year's Day. Oracle may schedule this cohort differently\, so check your 
+ own date.\n\nPlain-English briefing: https://fusionupdates.com/26d/
+URL:https://fusionupdates.com/26d/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fut-26d-c-prod@fusionupdates.com
+DTSTAMP:20261017T104124Z
+DTSTART;VALUE=DATE:20270115
+DTEND;VALUE=DATE:20270116
+SUMMARY:Oracle Fusion 26D: production update\, Cohort C (typical date)
+DESCRIPTION:Typical date\, not an Oracle-published date for your environmen
+ t. Oracle's published rule: test environments update on the first Friday o
+ f the update month and production on the third Friday (Middle East regions
+ : the Thursday before). Confirm your own dates in the Oracle Cloud Console
+ . Source: https://blogs.oracle.com/fusioninsider/quarterly-updates-made-ea
+ sy\n\nWith 26D\, the 23 opt-ins Oracle lists as ending with 26D become sta
+ ndard. Checklist: https://fusionupdates.com/downloads/fusion-26d-readiness
+ -checklist.pdf\n\nPlain-English briefing: https://fusionupdates.com/26d/
+URL:https://fusionupdates.com/26d/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fut-27a-a-test@fusionupdates.com
+DTSTAMP:20261017T104124Z
+DTSTART;VALUE=DATE:20270205
+DTEND;VALUE=DATE:20270206
+SUMMARY:Oracle Fusion 27A: test environments update\, Cohort A (typical dat
+ e)
+DESCRIPTION:Typical date\, not an Oracle-published date for your environmen
+ t. Oracle's published rule: test environments update on the first Friday o
+ f the update month and production on the third Friday (Middle East regions
+ : the Thursday before). Confirm your own dates in the Oracle Cloud Console
+ . Source: https://blogs.oracle.com/fusioninsider/quarterly-updates-made-ea
+ sy\n\nTwo-week test window until the production update.\n\nPlain-English b
+ riefing: https://fusionupdates.com/
+URL:https://fusionupdates.com/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fut-27a-a-prod@fusionupdates.com
+DTSTAMP:20261017T104124Z
+DTSTART;VALUE=DATE:20270219
+DTEND;VALUE=DATE:20270220
+SUMMARY:Oracle Fusion 27A: production update\, Cohort A (typical date)
+DESCRIPTION:Typical date\, not an Oracle-published date for your environmen
+ t. Oracle's published rule: test environments update on the first Friday o
+ f the update month and production on the third Friday (Middle East regions
+ : the Thursday before). Confirm your own dates in the Oracle Cloud Console
+ . Source: https://blogs.oracle.com/fusioninsider/quarterly-updates-made-ea
+ sy\n\nPlain-English briefing: https://fusionupdates.com/
+URL:https://fusionupdates.com/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fut-27a-b-test@fusionupdates.com
+DTSTAMP:20261017T104124Z
+DTSTART;VALUE=DATE:20270305
+DTEND;VALUE=DATE:20270306
+SUMMARY:Oracle Fusion 27A: test environments update\, Cohort B (typical dat
+ e)
+DESCRIPTION:Typical date\, not an Oracle-published date for your environmen
+ t. Oracle's published rule: test environments update on the first Friday o
+ f the update month and production on the third Friday (Middle East regions
+ : the Thursday before). Confirm your own dates in the Oracle Cloud Console
+ . Source: https://blogs.oracle.com/fusioninsider/quarterly-updates-made-ea
+ sy\n\nTwo-week test window until the production update.\n\nPlain-English b
+ riefing: https://fusionupdates.com/
+URL:https://fusionupdates.com/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fut-27a-b-prod@fusionupdates.com
+DTSTAMP:20261017T104124Z
+DTSTART;VALUE=DATE:20270319
+DTEND;VALUE=DATE:20270320
+SUMMARY:Oracle Fusion 27A: production update\, Cohort B (typical date)
+DESCRIPTION:Typical date\, not an Oracle-published date for your environmen
+ t. Oracle's published rule: test environments update on the first Friday o
+ f the update month and production on the third Friday (Middle East regions
+ : the Thursday before). Confirm your own dates in the Oracle Cloud Console
+ . Source: https://blogs.oracle.com/fusioninsider/quarterly-updates-made-ea
+ sy\n\nPlain-English briefing: https://fusionupdates.com/
+URL:https://fusionupdates.com/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fut-27a-c-test@fusionupdates.com
+DTSTAMP:20261017T104124Z
+DTSTART;VALUE=DATE:20270402
+DTEND;VALUE=DATE:20270403
+SUMMARY:Oracle Fusion 27A: test environments update\, Cohort C (typical dat
+ e)
+DESCRIPTION:Typical date\, not an Oracle-published date for your environmen
+ t. Oracle's published rule: test environments update on the first Friday o
+ f the update month and production on the third Friday (Middle East regions
+ : the Thursday before). Confirm your own dates in the Oracle Cloud Console
+ . Source: https://blogs.oracle.com/fusioninsider/quarterly-updates-made-ea
+ sy\n\nTwo-week test window until the production update.\n\nPlain-English b
+ riefing: https://fusionupdates.com/
+URL:https://fusionupdates.com/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fut-27a-c-prod@fusionupdates.com
+DTSTAMP:20261017T104124Z
+DTSTART;VALUE=DATE:20270416
+DTEND;VALUE=DATE:20270417
+SUMMARY:Oracle Fusion 27A: production update\, Cohort C (typical date)
+DESCRIPTION:Typical date\, not an Oracle-published date for your environmen
+ t. Oracle's published rule: test environments update on the first Friday o
+ f the update month and production on the third Friday (Middle East regions
+ : the Thursday before). Confirm your own dates in the Oracle Cloud Console
+ . Source: https://blogs.oracle.com/fusioninsider/quarterly-updates-made-ea
+ sy\n\nPlain-English briefing: https://fusionupdates.com/
+URL:https://fusionupdates.com/
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

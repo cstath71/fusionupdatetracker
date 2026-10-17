@@ -9,3 +9,8 @@ A static site that tracks Oracle Fusion Cloud quarterly updates (26B, 26C) acros
 Rebuild: `python3 scripts/crawl.py && python3 scripts/build.py`
 Preview: `cd dist && python3 -m http.server 4321`, then open http://localhost:4321
 Add an update: add its book paths to `BOOKS` in crawl.py and a link in the render.py nav.
+
+Free downloads and share cards:
+- `python3 scripts/leadmagnets.py` builds `assets/downloads/` (the 26D readiness checklist PDF and the quarterly update calendar .ics). It uses only `data/updates.json`, `data/hcm_redwood.json` and Oracle's published cohort rule. Run it before `build.py`.
+- `scripts/og.py` draws the 1200x627 Open Graph cards into `assets/og/` with headless Chrome during `build.py`. Cards are cached by content hash, so only new or changed ones are redrawn.
+- Each page gets a compact signup box under its H1/intro, with copy written for that page (`cta_for` in render.py), plus the footer form and a sticky "Subscribe" link on mobile. All forms post to the same `fut-subscribe` function.

@@ -5,6 +5,8 @@ BASE='https://fusionupdates.com'
 import os as _os
 CONTACT=_os.environ.get('FUT_CONTACT') or 'hello@fusionupdates.com'  # public contact / reply-to address
 def contact_html(): return f'<a href="mailto:{CONTACT}">{CONTACT}</a>' if CONTACT else '<b>[contact address to be added]</b>'
+# Sponsorship pages and links stay off until there are subscribers (Gus's rule). Set True (or env FUT_SHOW_SPONSORS=1) to turn back on.
+SHOW_SPONSORS=_os.environ.get('FUT_SHOW_SPONSORS')=='1'
 CSS="""
 :root{--ink:#14202b;--mut:#5b6875;--bg:#f6f7f9;--card:#fff;--acc:#c74634;--line:#e3e6ea}
 *{box-sizing:border-box}body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg)}
@@ -42,7 +44,7 @@ def page(title, body, depth=0, desc='', path='', head=''):
 <title>{E(title)} | {SITE}</title><meta name="description" content="{E(desc or 'Plain-English tracker of Oracle Fusion Cloud quarterly updates: what changed, what turns on automatically, what to test.')}">
 <link rel="canonical" href="{BASE}/{path}"><meta property="og:url" content="{BASE}/{path}"><meta property="og:title" content="{E(title)} | {SITE}"><meta property="og:type" content="website"><meta property="og:site_name" content="{SITE}"><meta property="og:description" content="{E(desc or 'Plain-English tracker of Oracle Fusion Cloud quarterly updates.')}"><link rel="stylesheet" href="{p}style.css">{head}</head><body>
 <header><div class="w"><a class="brand" href="{p}index.html">Fusion<span>Updates</span></a><nav>
-{NAV.replace("@",p)}<a href="{p}newsletter.html">Newsletter</a><a href="{p}sponsor.html">Sponsor</a><a href="{p}about.html">About</a></nav></div></header>
+{NAV.replace("@",p)}<a href="{p}newsletter.html">Newsletter</a>{f'<a href="{p}sponsor.html">Sponsor</a>' if SHOW_SPONSORS else ''}<a href="{p}about.html">About</a></nav></div></header>
 <main class="w">{body}</main>
 <footer><div class="w">Independent site, not affiliated with or endorsed by Oracle. Oracle and Oracle Fusion are trademarks of Oracle and/or its affiliates.
 Summaries are condensed from Oracle's public readiness documentation; always confirm details on the linked Oracle page. Impact ratings are editorial drafts. · <a href="{p}privacy.html">Privacy</a> · <a href="{p}about.html">About</a> · Contact: <a href="mailto:{CONTACT}">{CONTACT}</a></div></footer></body></html>"""
@@ -148,11 +150,11 @@ def render(updates, dist, upcoming=None, generated=''):
 <p class="small muted">Fusion Updates is run by PrimeLogic Advisory, Switzerland. Last updated: October 2026.</p></div>'''))
     open(os.path.join(dist,'CNAME'),'w').write('fusionupdates.com\n')
     open(os.path.join(dist,'robots.txt'),'w').write(f'User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n')
-    urls=['','newsletter.html','sponsor.html','about.html','privacy.html']+[f'updates/{k.lower()}/' for k in updates]+[f'updates/{k.lower()}/checklist.html' for k in updates]+extra
+    urls=['','newsletter.html']+(['sponsor.html'] if SHOW_SPONSORS else [])+['about.html','privacy.html']+[f'updates/{k.lower()}/' for k in updates]+[f'updates/{k.lower()}/checklist.html' for k in updates]+extra
     lm=f'<lastmod>{generated}</lastmod>' if generated else ''
     open(os.path.join(dist,'sitemap.xml'),'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>{BASE}/{u}</loc>{lm}</url>\n' for u in urls)+'</urlset>\n')
     open(os.path.join(dist,'newsletter.html'),'w').write(page('Newsletter',desc='Free quarterly briefing on Oracle Fusion Cloud updates: the changes that matter by module, opt-in expirations and a test checklist.',path='newsletter.html',body='<div class="hero"><h1>The quarterly briefing</h1><p class="lead">Before each Oracle Fusion update reaches your test environment: the changes that matter, by module, the opt-ins about to expire, and a ready-to-use test checklist. Free.</p></div>'+nl_form()))
-    open(os.path.join(dist,'sponsor.html'),'w').write(page('Sponsor',desc='Sponsor Fusion Updates to reach people who plan, test and run Oracle Fusion Cloud quarterly updates.',path='sponsor.html',body="""<div class="hero"><h1>Sponsor Fusion Updates</h1><p class="lead">Reach the people who plan, test and run Oracle Fusion Cloud updates: application owners, functional leads, testers and consultants across Financials, Procurement, SCM, Projects and HCM.</p></div>
+    if SHOW_SPONSORS: open(os.path.join(dist,'sponsor.html'),'w').write(page('Sponsor',desc='Sponsor Fusion Updates to reach people who plan, test and run Oracle Fusion Cloud quarterly updates.',path='sponsor.html',body="""<div class="hero"><h1>Sponsor Fusion Updates</h1><p class="lead">Reach the people who plan, test and run Oracle Fusion Cloud updates: application owners, functional leads, testers and consultants across Financials, Procurement, SCM, Projects and HCM.</p></div>
 <div class="cards"><div class="card"><h3>Newsletter sponsor</h3><p class="muted">One sponsor slot per quarterly briefing, sent before each update's test window.</p></div>
 <div class="card"><h3>Update page sponsor</h3><p class="muted">"Presented by" placement on an update's change list and test checklist.</p></div>
 <div class="card"><h3>Module sponsor</h3><p class="muted">Placement on one module family (e.g. Supply Chain or HCM) across updates.</p></div></div>

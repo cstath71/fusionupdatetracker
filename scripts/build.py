@@ -2,7 +2,7 @@
 Usage: python3 scripts/build.py   -> writes ./dist
 Data: scripts/crawl.py writes /workspace/fut-raw/summaries.json (Oracle Feature Summary tables)."""
 import json, re, html, os, sys, shutil, datetime, collections
-# Public contact address (used on privacy, sponsor and footer). Override with env FUT_CONTACT if ever needed.
+# Public contact address (used on privacy page and footer). Override with env FUT_CONTACT if ever needed.
 CONTACT_DEFAULT='hello@fusionupdates.com'
 os.environ['FUT_CONTACT']=os.environ.get('FUT_CONTACT') or CONTACT_DEFAULT
 sys.path.insert(0, os.path.dirname(__file__))

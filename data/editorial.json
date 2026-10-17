@@ -1,0 +1,1091 @@
+{
+ "reviewed": "2026-10-17",
+ "note": "Editorial overrides applied by scripts/build.py after summaries are pulled from Oracle. Keyed by Oracle feature URL.",
+ "items": {
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/fins26c/26C-fin-wn-f49280.htm": {
+   "id": "26C-f49280@fins26c",
+   "summary": "B2B XML invoices imported into Payables through Collaboration Messaging can now carry the supplier's remit-to bank account number and IBAN, and the invoice installment is paid to that account. If the bank details are left out, Payables falls back to the supplier's primary bank account.",
+   "reason": "Summary was Oracle's raw wording with grammar errors; rewritten. High kept: touches supplier payments and an inbound integration."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/fins26c/26C-fin-wn-f47388.htm": {
+   "id": "26C-f47388@fins26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Only applies when importing midlife leases that have exempt payments; nothing changes in existing lease flows."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/fins26c/26C-fin-wn-f47293.htm": {
+   "id": "26C-f47293@fins26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Adds an optional Control Budget parameter to one process; nothing changes unless you use it."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/fins26c/26C-fin-wn-f47385.htm": {
+   "id": "26C-f47385@fins26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Oracle's steps require settings in Manage Lease Accounting Configuration (primary and secondary standards and ledgers) before it does anything."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/fins26c/26C-fin-wn-f47291.htm": {
+   "id": "26C-f47291@fins26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Needs configuration in Joint Venture Management setup before anyone can use it."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/fins26c/26C-fin-wn-f51045.htm": {
+   "id": "26C-f51045@fins26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Brazil only, and only when a carrier is selected on a goods fiscal document; an optional new field."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/fins26c/26C-fin-wn-f50544.htm": {
+   "id": "26C-f50544@fins26c",
+   "summary": "An AI agent that flags receipt and cash application exceptions and suggests matches, building on Document IO's automated reading of bank files and emailed remittances. It's on by default, but users need the agent's security access before they can use it.",
+   "reason": "Summary didn't say users need security access first (Oracle's steps). Medium kept: touches cash application."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/fins26c/26C-fin-wn-f47279.htm": {
+   "id": "26C-f47279@fins26c",
+   "summary": "Revenue Management now handles allowance-based usage plans from Subscription Management (base allowance, top-ups, rollover and overage) and recognizes revenue for each part under ASC 606 and IFRS 15.",
+   "reason": "Summary was cut off mid-sentence."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/fins26c/26C-fin-wn-f47386.htm": {
+   "id": "26C-f47386@fins26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Only applies when importing midlife expense leases (migration); no change to existing leases."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/fins26c/26C-fin-wn-f49371.htm": {
+   "id": "26C-f49371@fins26c",
+   "summary": "A bundle of small usability, resiliency, performance and security fixes across Financials, for example a new Subledger Accounting source (Prepayment Line Type Code) for prepayment lines. Check Oracle's page for the full list.",
+   "reason": "Summary was Oracle boilerplate that said nothing about what changed."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/risk26c/26C-risk-wn-f49529.htm": {
+   "id": "26C-f49529@risk26c",
+   "summary": "A new dashboard for reviewing intra-role access violations: counts of affected roles and users, with drill-down to entitlements, incident paths and violations by algorithm.",
+   "reason": "Summary ended in a colon (cut off before Oracle's list)."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/fins26c/26C-fin-wn-f43609.htm": {
+   "id": "26C-f43609@fins26c",
+   "summary": "The addAsset service of the ERP Integration REST API now accepts impairment reserve and year-to-date impairment values when you add assets.",
+   "reason": "Summary ended in a colon and named a column header instead of the change."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/fins26c/26C-fin-wn-f49403.htm": {
+   "id": "26C-f49403@fins26c",
+   "summary": "An AI assistant that helps budget office users create budget entries in plain language for control budgets sourced from EPM, fix errors before submitting, and check budgetary control balances. Users need the Budget Adjustment Assistant role.",
+   "reason": "Clarified that a role is needed (Oracle: Setup Required)."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/fins26c/26C-fin-wn-f50616.htm": {
+   "id": "26C-f50616@fins26c",
+   "summary": "An AI agent that gives cash managers a conversational view of daily liquidity: cash position, bank balances, intraday movements and accounts short of cash. Users need security access set up first.",
+   "reason": "Summary started with a stray heading ('Cash Processing Agent The ...')."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/hure-26c/26C-hr-wn-f46532.htm": {
+   "id": "26C-f46532@hure-26c",
+   "impact": "medium",
+   "impact_was": "high",
+   "summary": "Admins can now apply Connections page properties, such as hiding the Feedback card, conditionally: by the viewer's role, whether they're viewing their own profile, or the profile's business unit, department, country, legal employer or location.",
+   "reason": "Nothing changes until an admin sets up conditional rules, so not a large change for users. Summary ended in a colon."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/hure-26c/26C-hr-wn-f50016.htm": {
+   "id": "26C-f50016@hure-26c",
+   "summary": "From 26D, the Redwood versions of the employment pages (Add Assignment, Add Contingent Worker, Add Nonworker, Add Pending Worker and more) are switched on by default through their profile options. Nothing changes in 26C, so plan your testing for 26D.",
+   "reason": "Summary said 'enhance the user experience' without saying what happens or when; made clear it's a 26D change."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/hure-26c/26C-hr-wn-f50060.htm": {
+   "id": "26C-f50060@hure-26c",
+   "summary": "From 27A, the Redwood Resign from Employment, Terminate Employment and Mass Assignment Change pages are switched on by default. Nothing changes in 26C.",
+   "reason": "Summary didn't name the pages; made clear it's a 27A change."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/hure-26c/26C-hr-wn-f47440.htm": {
+   "id": "26C-f47440@hure-26c",
+   "summary": "The Redwood person pages (Personal Details, Contact Info, Identification Info, Family and Emergency Contacts and more) become the default in 26D, not 26C as Oracle first planned. You can switch back to the older pages by setting their profile options to No.",
+   "reason": "Reworded for clarity; added the pages and how to switch back."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/payr-26c/26C-payroll-wn-f46375.htm": {
+   "id": "26C-f46375@payr-26c",
+   "summary": "When a valid address is created or updated, the affected local tax jurisdictions now sync automatically to the employee's Tax Withholding card: Ohio and Kentucky school districts and Pennsylvania PSD and school districts (Indiana gets component creation only).",
+   "reason": "Summary ended with 'the following regional components' and no list."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/payr-26c/26C-payroll-wn-f49372.htm": {
+   "id": "26C-f49372@payr-26c",
+   "impact": "medium",
+   "impact_was": "high",
+   "summary": "The Element Classifications, Consolidation Group and Payment Methods Preferences setup pages are now Redwood pages, with Oracle Search for HCM built in. They're on by default, and any personalizations of the old pages have to be redone.",
+   "reason": "Setup pages used by payroll admins only, so contained. Summary was garbled ('...user experience: Oracle Search...'); added Oracle's note that personalizations must be redone."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/payr-26c/26C-payroll-wn-f49835.htm": {
+   "id": "26C-f49835@payr-26c",
+   "impact": "medium",
+   "impact_was": "high",
+   "reason": "A new read-only tab on Person Results for Canadian payroll; visible but contained, no process change."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/tila-26c/26C-time-labor-wn-f50592.htm": {
+   "id": "26C-f50592@tila-26c",
+   "summary": "If you use the Entry Level Approval timecard task, compensatory time earned now goes to Absence Management as each time entry is approved, so the balance is usable straight away, not after the whole timecard is approved. Compensatory time also now works for customers using only Projects with a third-party payroll.",
+   "reason": "Summary was cut off after a heading. High kept: automatic change to when absence balances update."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/amg-26c/26C-absence-mgmt-wn-f49554.htm": {
+   "id": "26C-f49554@amg-26c",
+   "impact": "high",
+   "impact_was": "medium",
+   "summary": "If you use the Entry Level Approval timecard task, compensatory time earned now goes to Absence Management as each time entry is approved, so the balance is usable straight away, not after the whole timecard is approved. Compensatory time also now works for customers using only Projects with a third-party payroll.",
+   "reason": "Same Oracle feature as the Time and Labor entry (rated high); aligned the rating and summary. Automatic change to when compensatory balances update."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/amg-26c/26C-absence-mgmt-wn-f49549.htm": {
+   "id": "26C-f49549@amg-26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Needs extension work in Visual Builder Studio; nothing changes by default."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/amg-26c/26C-absence-mgmt-wn-f49551.htm": {
+   "id": "26C-f49551@amg-26c",
+   "summary": "Absences entered on the timecard now also show the unpaid break deducted from the absence duration, in a read-only field on the Redwood absence pages (26B did this for absences entered in Absence Management).",
+   "reason": "Summary only described the 26B feature, not what's new."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/amg-26c/26C-absence-mgmt-wn-f49555.htm": {
+   "id": "26C-f49555@amg-26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Minor UI aid: invalid dates are greyed out in the date picker."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/amg-26c/26C-absence-mgmt-wn-f49553.htm": {
+   "id": "26C-f49553@amg-26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "You can now set up absence plans so users must pick a reason, from the new ORA_ANC_DISBURSEMENT_REASONS lookup, when they enter or upload discretionary disbursements. Nothing changes until you attach reasons to a plan.",
+   "reason": "Only applies after you define reasons and attach them to a plan. Summary didn't make clear it's optional."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/amg-26c/26C-absence-mgmt-wn-f49552.htm": {
+   "id": "26C-f49552@amg-26c",
+   "summary": "Employees can no longer withdraw an approved absence that they've edited and resubmitted while the change is awaiting approval. The manager has to approve the change first, and withdrawing it after that needs approval too.",
+   "reason": "Summary only described the old behavior, not the change."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/amg-26c/26C-absence-mgmt-wn-f49550.htm": {
+   "id": "26C-f49550@amg-26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Needs two new page properties set in Visual Builder Studio; nothing changes by default."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/benf-26c/26C-benefits-wn-f49902.htm": {
+   "id": "26C-f49902@benf-26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Admin capability in Visual Builder Studio; nothing changes until rules are configured."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/benf-26c/26C-benefits-wn-f49782.htm": {
+   "id": "26C-f49782@benf-26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Minor label change in Redwood Benefits, and only with the Redwood Benefits profile options on."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/benf-26c/26C-benefits-wn-f49784.htm": {
+   "id": "26C-f49784@benf-26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Extends an AI agent that has to be set up, plus the Redwood Benefits profile options; nobody gets it by default."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/benf-26c/26C-benefits-wn-f49786.htm": {
+   "id": "26C-f49786@benf-26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Minor UI convenience (inline preview of attachments)."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/benf-26c/26C-benefits-wn-f49787.htm": {
+   "id": "26C-f49787@benf-26c",
+   "summary": "Benefits administrators can now simulate a life event for a person from the Benefits Summary page and see the estimated eligibility and rates it would produce. The simulation is read-only and saves nothing.",
+   "reason": "Summary was garbled ('allows administrators to: The simulation is read-only')."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26c/gtm26c/26C-gtm-wn-f47313.htm": {
+   "id": "26C-f47313@gtm26c",
+   "summary": "More Transportation and Global Trade Management screens are now available in the Redwood UI, along with the Product Map navigation view and Redwood Help and Export. Where both exist the legacy screens remain, but Oracle strongly encourages moving to Redwood.",
+   "reason": "Clarified what's new and that legacy screens remain. High kept (Oracle: larger scale UI change)."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26c/otm26c/26C-otm-wn-f47313.htm": {
+   "id": "26C-f47313@otm26c",
+   "summary": "More Transportation and Global Trade Management screens are now available in the Redwood UI, along with the Product Map navigation view and Redwood Help and Export. Where both exist the legacy screens remain, but Oracle strongly encourages moving to Redwood.",
+   "reason": "Clarified what's new and that legacy screens remain. High kept (Oracle: larger scale UI change)."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26c/gtm26c/26C-gtm-wn-f49755.htm": {
+   "id": "26C-f49755@gtm26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "Thirty ready-made OTM and GTM business objects are now available in AI Agent Studio, so you don't have to map them yourself when building your own AI agents.",
+   "reason": "Only matters to teams building their own AI agents; no change for users. Summary simplified."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26c/otm26c/26C-otm-wn-f49755.htm": {
+   "id": "26C-f49755@otm26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "Thirty ready-made OTM and GTM business objects are now available in AI Agent Studio, so you don't have to map them yourself when building your own AI agents.",
+   "reason": "Only matters to teams building their own AI agents; no change for users. Summary simplified."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26c/gtm26c/26C-gtm-wn-f49634.htm": {
+   "id": "26C-f49634@gtm26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "When you move goods out of a Free Trade Zone, the exit declaration line can now copy dates (such as the entry date) and zone status from inventory, based on a data configuration you define.",
+   "reason": "Needs a data configuration before anything is copied. Summary made clearer."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26c/gtm26c/26C-gtm-wn-f49353.htm": {
+   "id": "26C-f49353@gtm26c",
+   "summary": "In the Restricted Party Screening Workbench, Passed and Failed now show in green and red, and new buttons let you mark a party as Trusted, Requires Screening or Prohibited.",
+   "reason": "Summary was cut off at 'Business Benefit:'."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26c/gtm26c/26C-gtm-wn-f49597.htm": {
+   "id": "26C-f49597@gtm26c",
+   "summary": "License management now copes when a shipment exceeds the reserved license amount: a new Allow Supplement from Balance flag lets the assignment draw the extra from the license balance, and a new Adjust License action updates the reserved balance.",
+   "reason": "Summary was garbled (sentences out of order, dangling 'you can:')."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26c/gtm26c/26C-gtm-wn-f46555.htm": {
+   "id": "26C-f46555@gtm26c",
+   "summary": "Trade Incentive Programs get a new Entry-Exit Configuration section that replaces the Applicable Profile. It supports both customs and physical inventory tracking and sets the sequence, entry-exit profile and movement type for each program.",
+   "reason": "Summary ended in a colon twice."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26c/gtm26c/26C-gtm-wn-f49885.htm": {
+   "id": "26C-f49885@gtm26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "The Enhanced Workbench picks up Redwood styling: a Redwood strip across the top of layouts and Redwood colors on the side navigation bar.",
+   "reason": "Cosmetic. Summary was cut off after a screenshot caption."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26c/otm26c/26C-otm-wn-f49885.htm": {
+   "id": "26C-f49885@otm26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "The Enhanced Workbench picks up Redwood styling: a Redwood strip across the top of layouts and Redwood colors on the side navigation bar.",
+   "reason": "Cosmetic. Summary was cut off after a screenshot caption."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26c/gtm26c/26C-gtm-wn-f49602.htm": {
+   "id": "26C-f49602@gtm26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "The transaction type and declaration type are now shown, and searchable, on Trade Transaction Line and Declaration Line pages.",
+   "reason": "Minor: one extra field on existing pages. Summary contained a stray 'Business Benefit:' label."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26c/otm26c/26C-otm-wn-f46332.htm": {
+   "id": "26C-f46332@otm26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Minor convenience (a new copy action)."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26c/wms26c/26C-wms-wn-f50053.htm": {
+   "id": "26C-f50053@wms26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Only for customers who have set up the Wave Research Advisor agent (26A); nobody gets it by default."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26c/wms26c/26C-wms-wn-f50402.htm": {
+   "id": "26C-f50402@wms26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "New mobile screen parameter; if it's left blank, Pick and Allocate works as before."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26c/wms26c/26C-wms-wn-f50401.htm": {
+   "id": "26C-f50401@wms26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "New mobile screen parameter; if it's left blank, Direct Allocation works as before."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26c/wms26c/26C-wms-wn-f50161.htm": {
+   "id": "26C-f50161@wms26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "Distribute LPN can now use Crossdock Flowthrough Rules to decide which received inventory flows straight to which outbound order, based on inventory details, expiry date range, order criteria and priority.",
+   "reason": "Needs flowthrough rules configured. Summary described the problem, not the change."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26c/wms26c/26C-wms-wn-f50178.htm": {
+   "id": "26C-f50178@wms26c",
+   "summary": "The UPS Standard integration now sends an invoice line total (item unit cost times quantity), so shipments to Canada can be manifested. Item unit cost must be above zero, or manifesting may fail.",
+   "reason": "Summary repeated Oracle's 'You don't need to do anything' line and missed the unit-cost caveat."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26c/wms26c/26C-wms-wn-f50162.htm": {
+   "id": "26C-f50162@wms26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "A new Employee Timeline Metrics tab in the WFM Employee Dashboard shows each employee's day in one place: facility clock-in and clock-out, work area activity and breaks.",
+   "reason": "Reporting-only view. Summary described the need, not the feature."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/proc26c/26C-procurement-wn-f42886.htm": {
+   "id": "26C-f42886@proc26c",
+   "impact": "low",
+   "impact_was": "high",
+   "reason": "An AI agent template that has to be deployed, with a monitored mailbox and Redwood Sourcing on; nobody gets it by default. (Oracle rates it larger scale.)"
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/proc26c/26C-procurement-wn-f47247.htm": {
+   "id": "26C-f47247@proc26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Optional new fields in a REST API and FBDI template; existing integrations keep working."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/ssproc26c/26C-ssproc-wn-f47247.htm": {
+   "id": "26C-f47247@ssproc26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Optional new fields in a REST API and FBDI template; existing integrations keep working."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/demand26c/26C-demand-wn-f47247.htm": {
+   "id": "26C-f47247@demand26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Optional new fields in a REST API and FBDI template; existing integrations keep working."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/proc26c/26C-procurement-wn-f46385.htm": {
+   "id": "26C-f46385@proc26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Minor: extra email recipients when communicating agreements."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/proc26c/26C-procurement-wn-f44482.htm": {
+   "id": "26C-f44482@proc26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Minor: one extra field in the supplier information drawer on Redwood purchasing pages."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/proc26c/26C-procurement-wn-f49334.htm": {
+   "id": "26C-f49334@proc26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Needs Visual Builder Studio extension work; nothing changes by default."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/proc26c/26C-procurement-wn-f46352.htm": {
+   "id": "26C-f46352@proc26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Minor: extra detail drawers on Redwood purchase order and agreement pages."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/proc26c/26C-procurement-wn-f49435.htm": {
+   "id": "26C-f49435@proc26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "External Purchase Prices FBDI templates now work on Mac as well as Windows. Oracle lists this among the 26C bug fixes that change behavior.",
+   "reason": "Minor fix. Summary was boilerplate that didn't say what changed."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/proc26c/26C-procurement-wn-f47268.htm": {
+   "id": "26C-f47268@proc26c",
+   "summary": "Oracle's list of 26C Purchasing fixes that change behavior. The main one: with profile option ORA_PO_CO_BUDGET_DATE_FOR_LIQ set to Y, funds on change orders are now liquidated on the budget date, the change order date or the current date, depending on dates and fulfillment. Others include global DFFs on Approved Supplier List documents and back-arrow navigation on Redwood pages.",
+   "reason": "Summary was boilerplate. Medium kept: one fix changes encumbrance liquidation dates."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/proc26c/26C-procurement-wn-f49711.htm": {
+   "id": "26C-f49711@proc26c",
+   "summary": "Fix: in Redwood, a negotiation created from a template now uses the latest version of its negotiation style, so style changes made after the template was created now apply.",
+   "reason": "Summary was boilerplate that didn't say what changed."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/proc26c/26C-procurement-wn-f43314.htm": {
+   "id": "26C-f43314@proc26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Minor: extra person details behind name links on requisitions and POs."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/ssproc26c/26C-ssproc-wn-f43313.htm": {
+   "id": "26C-f43313@ssproc26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Minor navigation aid (cart item count and link while creating requests)."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/ssproc26c/26C-ssproc-wn-f46356.htm": {
+   "id": "26C-f46356@ssproc26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "After you submit a noncatalog or smart form request, the confirmation message now offers Create another request (starting fresh) alongside Create another request with the same supplier. The View cart link moves to the navigation bar at the bottom of the page.",
+   "reason": "Minor change to a confirmation message. Summary didn't match the feature title (it described only the existing option)."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/ssproc26c/26C-ssproc-wn-f49452.htm": {
+   "id": "26C-f49452@ssproc26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "The note and attachment icons that 26B added to requisition lines now also appear on the My Requisitions page.",
+   "reason": "Minor icon. Summary only described the 26B feature."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/ssproc26c/26C-ssproc-wn-f43317.htm": {
+   "id": "26C-f43317@ssproc26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "The Quote to Purchase Requisition Assistant, which turns emailed supplier quotes into requisitions, can now be started from the Self Service Procurement home page menu, without setting up an email account. You still need to create and publish an instance of the agent in AI Agent Studio.",
+   "reason": "Needs the agent set up in AI Agent Studio. Summary only described the 25D feature."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/ssproc26c/26C-ssproc-wn-f43315.htm": {
+   "id": "26C-f43315@ssproc26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Off by default: needs the Redwood Catalog Setup Pages Enabled profile option, which is set to No."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/ssproc26c/26C-ssproc-wn-f46387.htm": {
+   "id": "26C-f46387@ssproc26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Off by default: needs the Redwood Catalog Setup Pages Enabled profile option, which is set to No."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/ssproc26c/26C-ssproc-wn-f43763.htm": {
+   "id": "26C-f43763@ssproc26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "The enhanced deliver-to location search (by name, code, address, city, postal code or country) now works on the requisition line and summary edit pages, not just in Preferences. It's off by default and switched on with a Visual Builder Studio constant.",
+   "reason": "Off by default (Visual Builder Studio constant). Summary was garbled (two dangling colons)."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/ssproc26c/26C-ssproc-wn-f46538.htm": {
+   "id": "26C-f46538@ssproc26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "Fix: charge account combination details are easier to review in requisitions, from the charge account actions menu in edit mode or the account link in read-only mode.",
+   "reason": "Minor fix. Summary began with a heading."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/ssproc26c/26C-ssproc-wn-f46353.htm": {
+   "id": "26C-f46353@ssproc26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Minor: column sorting; sorting by supplier item needs an extensibility constant."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/ssproc26c/26C-ssproc-wn-f43318.htm": {
+   "id": "26C-f43318@ssproc26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Minor: extra location details behind a link."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/ppm26c/26C-ppm-wn-f49352.htm": {
+   "id": "26C-f49352@ppm26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Reporting-only: new attributes in existing OTBI subject areas."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/ppm26c/26C-ppm-wn-f49302.htm": {
+   "id": "26C-f49302@ppm26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Minor: a read-only approval history for milestones."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/ppm26c/26C-ppm-wn-f49384.htm": {
+   "id": "26C-f49384@ppm26c",
+   "summary": "Two new contract line validations let privileged users make the ship-to account and ship-to site optional on project contract lines, by changing them to Warning or turning them off. By default they're still required.",
+   "reason": "Summary described the reason, not the change."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/ppm26c/26C-ppm-wn-f49249.htm": {
+   "id": "26C-f49249@ppm26c",
+   "summary": "An AI assistant that finds, reviews and summarizes project bill transactions by project, contract, status or date range. Users need the assistant's role in AI Agent Studio.",
+   "reason": "Summary ended in a colon."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/maint26c/26C-maintenance-wn-f46398.htm": {
+   "id": "26C-f46398@maint26c",
+   "summary": "In organizations using advanced scheduling, maintenance technicians can now clock in and out of work order operations in My Maintenance Work. The first clock-in starts the operation automatically, and it's marked complete once every assigned technician has finished.",
+   "reason": "Reworded. High kept: automatically changes how operations start and complete for technicians."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/maint26c/26C-maintenance-wn-f46402.htm": {
+   "id": "26C-f46402@maint26c",
+   "impact": "medium",
+   "impact_was": "high",
+   "reason": "New optional action for technicians, behind a new privilege; visible but contained."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/maint26c/26C-maintenance-wn-f46397.htm": {
+   "id": "26C-f46397@maint26c",
+   "impact": "medium",
+   "impact_was": "high",
+   "reason": "New optional action for technicians, behind existing work order privileges; visible but contained."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/mfg26c/26C-mfg-wn-f44509.htm": {
+   "id": "26C-f44509@mfg26c",
+   "summary": "Discrete manufacturing work orders can now include a separate rework operation. Supervisors move rejected quantities to it and track rework progress and costs in the same work order, without completing into inventory and opening a new work order. Redwood pages only.",
+   "reason": "Summary only described the previous release. High kept: changes work order execution and costing for rework."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/mfg26c/26C-mfg-wn-f44524.htm": {
+   "id": "26C-f44524@mfg26c",
+   "impact": "medium",
+   "impact_was": "high",
+   "summary": "New Kanban plans calculate the right number of Kanban cards or bin size for each pull sequence from an external forecast and pull sequence attributes (average daily demand, lead time, safety stock), and can then update the pull sequences.",
+   "reason": "New planning capability you choose to use; no change to existing Kanban until you run plans and apply them. Summary described the need, not the feature."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/demand26c/26C-demand-wn-f45795.htm": {
+   "id": "26C-f45795@demand26c",
+   "summary": "Demand Management can now forecast at product-family level: it calculates planning percentages from history and splits family forecasts down to items, and Supply Planning can consume the forecast at item or family level. You switch it on per plan.",
+   "reason": "Summary described the need, not the feature."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/demand26c/26C-demand-wn-f45812.htm": {
+   "id": "26C-f45812@demand26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Minor: Redwood version of an existing comparison view."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/demand26c/26C-demand-wn-f45813.htm": {
+   "id": "26C-f45813@demand26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Minor: Redwood version of an existing comparison view."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/demand26c/26C-demand-wn-f46374.htm": {
+   "id": "26C-f46374@demand26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Needs a published AI agent configured to take the data context; nothing changes by default."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/demand26c/26C-demand-wn-f46376.htm": {
+   "id": "26C-f46376@demand26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Needs a published AI agent configured to take the data context; nothing changes by default."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/demand26c/26C-demand-wn-f45842.htm": {
+   "id": "26C-f45842@demand26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Minor navigation aid (deep links)."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/demand26c/26C-demand-wn-f45847.htm": {
+   "id": "26C-f45847@demand26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Minor search improvement."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/demand26c/26C-demand-wn-f45849.htm": {
+   "id": "26C-f45849@demand26c",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Minor search improvement."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/demand26c/26C-demand-wn-f45793.htm": {
+   "id": "26C-f45793@demand26c",
+   "summary": "Waterfall analyses, trend analyses and plan comparisons, previously set up in the classic interface, can now be configured on the Comparison tab of Redwood planning tables and graphs.",
+   "reason": "Summary only described the previous behavior."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/demand26c/26C-demand-wn-f45797.htm": {
+   "id": "26C-f45797@demand26c",
+   "summary": "Waterfall analyses, trend analyses and plan comparisons, previously set up in the classic interface, can now be configured on the Comparison tab of Redwood planning tables and graphs.",
+   "reason": "Summary only described the previous behavior."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26b/fins26b/26B-fin-wn-f43384.htm": {
+   "id": "26B-f43384@fins26b",
+   "impact": "medium",
+   "impact_was": "high",
+   "summary": "The Payables Invoice Import spreadsheet gets a Landed Cost Enabled flag per invoice line. Lines set to Y go to Landed Cost Management for variance calculation and allocation. The column is hidden and blank by default, so existing imports are unchanged.",
+   "reason": "Optional, hidden column; existing imports don't change. Medium rather than low because it touches an import template."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26b/fins26b/26B-fin-wn-f43498.htm": {
+   "id": "26B-f43498@fins26b",
+   "impact": "low",
+   "impact_was": "high",
+   "reason": "Needs encumbrance accounting enabled and configured for the payroll ledger, plus the Calculate Payroll Encumbrances flow; nobody gets it by default. (Oracle rates it larger scale.)"
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26b/fins26b/26B-fin-wn-f43676.htm": {
+   "id": "26B-f43676@fins26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "Joint Venture Management pages (partner contributions, source transactions, JV definitions, ownership assignment rules and overhead methods) now let you pick an account alias instead of typing every account segment.",
+   "reason": "Minor data-entry aid. Summary ended with 'the following ... applications:' and no list."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26b/fins26b/26B-fin-wn-f43286.htm": {
+   "id": "26B-f43286@fins26b",
+   "summary": "When a stakeholder bill includes distributions funded by partner contributions with different accounts, Joint Venture Management now creates a separate accounting entry and invoice line for each partner contribution.",
+   "reason": "Summary included a screenshot caption."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26b/fins26b/26B-fin-wn-f43307.htm": {
+   "id": "26B-f43307@fins26b",
+   "summary": "Sales invoices that include prepayment application lines can now have revenue schedules on their standard lines, using invoicing and revenue scheduling rules. The prepayment application lines themselves now default to the Immediate revenue scheduling rule.",
+   "reason": "Added Oracle's note that prepayment lines now default to Immediate (an automatic change)."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26b/fins26b/26B-fin-wn-f43446.htm": {
+   "id": "26B-f43446@fins26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Minor navigation aid (deep links from reports and dashboards)."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26b/fins26b/26B-fin-wn-f43423.htm": {
+   "id": "26B-f43423@fins26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Optional new parameter on the Expense Lease Payments process; existing scheduling unchanged."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26b/fins26b/26B-fin-wn-f43422.htm": {
+   "id": "26B-f43422@fins26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Reporting-only."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26b/fins26b/26B-fin-wn-f43159.htm": {
+   "id": "26B-f43159@fins26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Optional new REST action; nothing changes for users."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26b/fins26b/26B-fin-wn-f43455.htm": {
+   "id": "26B-f43455@fins26b",
+   "summary": "A bundle of small usability, resiliency, performance and security fixes across Financials, for example an optional control that stops users deleting global intercompany invoices from the Payables Correct Import Errors spreadsheet. Check Oracle's page for the full list.",
+   "reason": "Summary was Oracle boilerplate that said nothing about what changed."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26b/fins26b/26B-fin-wn-f43735.htm": {
+   "id": "26B-f43735@fins26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "U.S. Federal Financials only, and runs through a process you schedule."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26b/fins26b/26B-fin-wn-f43734.htm": {
+   "id": "26B-f43734@fins26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "U.S. federal agencies can now create customer records from imported System for Award Management (SAM) data, not just supplier records.",
+   "reason": "U.S. Federal Financials only. Summary was garbled ('This process involves: Previously...')."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26b/risk26b/26B-risk-wn-f43681.htm": {
+   "id": "26B-f43681@risk26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Reporting-only: a new OTBI subject area."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26b/fins26b/26B-fin-wn-f43543.htm": {
+   "id": "26B-f43543@fins26b",
+   "summary": "The Japanese Corporate Tax Schedule 16 reports follow the National Tax Agency's updated templates: they can show global descriptive flexfields from Add Asset and Adjust Asset, use the revised era name and include asset category descriptions.",
+   "reason": "Summary ended in a colon."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26b/fins26b/26B-fin-wn-f44411.htm": {
+   "id": "26B-f44411@fins26b",
+   "summary": "Receipts can now be created automatically from bank statement lines, and remittance advices in several formats are read and matched to receipts in one flow. In 26B it's for early adopters only, enabled through a service request.",
+   "reason": "Summary was vague; added that it's early-adopter only via a service request."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/hure-26b/26B-hr-wn-f43398.htm": {
+   "id": "26B-f43398@hure-26b",
+   "impact": "low",
+   "impact_was": "high",
+   "summary": "In My, Team and Person Activity Centers, the communications and guided journey banners are combined into one, and guided journeys can now be set up for individual sections (in Visual Builder Studio).",
+   "reason": "Needs guided journey page properties configured in Visual Builder Studio. Summary was garbled ('enhanced in the following ways:' with no list)."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/hure-26b/26B-hr-wn-f44367.htm": {
+   "id": "26B-f44367@hure-26b",
+   "impact": "medium",
+   "impact_was": "high",
+   "summary": "If you've set up a Change Photo approval rule, photo uploads, edits and deletes made from Connections now go through the same approval as Personal Details: the new photo shows as pending until it's approved.",
+   "reason": "Only changes anything if a Change Photo approval rule is configured. Summary reworded."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/hure-26b/26B-hr-wn-f43666.htm": {
+   "id": "26B-f43666@hure-26b",
+   "impact": "medium",
+   "impact_was": "high",
+   "summary": "AI-generated assignment notes in Redwood employment processes get tone (Engaging or Formal), length (Summarize or Expand) and Rewrite controls.",
+   "reason": "Visible to HR users but contained to one optional AI field. Summary trailed off into a caption."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/hure-26b/26B-hr-wn-f43664.htm": {
+   "id": "26B-f43664@hure-26b",
+   "impact": "low",
+   "impact_was": "high",
+   "reason": "Only matters if you configure guided journey tasks that use the new parameters."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/hure-26b/26B-hr-wn-f43513.htm": {
+   "id": "26B-f43513@hure-26b",
+   "summary": "A new Redwood Change Worker Type process converts a worker from one type to another (for example contingent worker to employee) in a single guided flow, instead of terminating the work relationship and creating a new one.",
+   "reason": "Reworded. High kept: changes how HR handles worker type conversions."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/hure-26b/26B-hr-wn-f43339.htm": {
+   "id": "26B-f43339@hure-26b",
+   "impact": "medium",
+   "impact_was": "high",
+   "summary": "The Action Reasons setup page moves to Redwood: create and edit action reasons, translate text with the Translation Editor, and control the page with new Visual Builder Studio properties.",
+   "reason": "Setup page for HR admins only, so contained. Summary was marketing text that didn't say what changed."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/hure-26b/26B-hr-wn-f43340.htm": {
+   "id": "26B-f43340@hure-26b",
+   "impact": "medium",
+   "impact_was": "high",
+   "summary": "The Assignment Statuses setup page moves to Redwood: create assignment statuses and translate text with the Translation Editor.",
+   "reason": "Setup page for HR admins only, so contained. Summary was marketing text that didn't say what changed."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/hure-26b/26B-hr-wn-f43338.htm": {
+   "id": "26B-f43338@hure-26b",
+   "impact": "medium",
+   "impact_was": "high",
+   "summary": "The Configure Actions setup page moves to Redwood: create actions, link existing reasons, translate text with the Translation Editor, and use new Visual Builder Studio page properties.",
+   "reason": "Setup page for HR admins only, so contained. Summary was marketing text that didn't say what changed."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/hure-26b/26B-hr-wn-f43341.htm": {
+   "id": "26B-f43341@hure-26b",
+   "impact": "medium",
+   "impact_was": "high",
+   "summary": "The Configure Seniority Dates setup page moves to Redwood: create and edit seniority date rules, with new Visual Builder Studio properties to hide the Add and Delete buttons.",
+   "reason": "Setup page for HR admins only, so contained. Summary was marketing text that didn't say what changed."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/hure-26b/26B-hr-wn-f43396.htm": {
+   "id": "26B-f43396@hure-26b",
+   "impact": "low",
+   "impact_was": "high",
+   "summary": "In the Talent view of Team Activity Center, the last check-in date now opens that check-in for updating, and if there's no check-in you can create one.",
+   "reason": "Minor navigation change. Summary reworded."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/payr-26b/26B-payroll-wn-f43906.htm": {
+   "id": "26B-f43906@payr-26b",
+   "summary": "French payroll can now produce the monthly DSN (Déclaration Sociale Nominative), the payroll report French employers must file every month. Setup is described in Oracle's France payroll technical brief (KB183664).",
+   "reason": "Summary was cut off at 'see:'. High kept: statutory payroll reporting."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/payr-26b/26B-payroll-wn-f43498.htm": {
+   "id": "26B-f43498@payr-26b",
+   "impact": "low",
+   "impact_was": "high",
+   "reason": "Needs encumbrance accounting enabled and configured for the payroll ledger, plus the Calculate Payroll Encumbrances flow; nobody gets it by default. (Oracle rates it larger scale.)"
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/payr-26b/26B-payroll-wn-f43648.htm": {
+   "id": "26B-f43648@payr-26b",
+   "summary": "Employees and admins can now reorder personal payment methods that have different start dates, and employees can see payment methods that start in the future.",
+   "reason": "Summary ran a heading into the text. High kept: touches how employees are paid."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/payr-26b/26B-payroll-wn-f43509.htm": {
+   "id": "26B-f43509@payr-26b",
+   "summary": "UK payroll now supports Statutory Neonatal Care leave and pay (legislation from April 2025): a new Neonatal Care absence type, accrual of up to 12 weeks' leave, and statutory payments for employees who qualify on average weekly earnings.",
+   "reason": "Summary grammar was garbled."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/payr-26b/26B-payroll-wn-f46411.htm": {
+   "id": "26B-f46411@payr-26b",
+   "summary": "A new tax group level between the payroll statutory unit and its tax reporting units tracks state and federal limit taxes, so balances don't need transferring when an employee moves between TRUs that share wage and tax limits.",
+   "reason": "Reworded and spelled out the acronyms."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/wohs-26b/26B-workforce-health-wn-f43768.htm": {
+   "id": "26B-f43768@wohs-26b",
+   "impact": "low",
+   "impact_was": "high",
+   "reason": "Reporting-only: new metrics in an OTBI subject area. (Oracle rates it larger scale.)"
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/amg-26b/26B-absence-mgmt-wn-f43865.htm": {
+   "id": "26B-f43865@amg-26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "On the Redwood Absence Categories and Absence Reasons setup pages, Change Details now appears only for updated records, not newly created ones.",
+   "reason": "Minor. Summary only described the old behavior."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/amg-26b/26B-absence-mgmt-wn-f43855.htm": {
+   "id": "26B-f43855@amg-26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Optional: the primary assignment is still checked first, so nothing changes unless you put workday definitions on work patterns."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/amg-26b/26B-absence-mgmt-wn-f43857.htm": {
+   "id": "26B-f43857@amg-26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Only applies if you associate HCM events with a front-loaded accrual plan."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/amg-26b/26B-absence-mgmt-wn-f43859.htm": {
+   "id": "26B-f43859@amg-26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Minor fast formula option."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/amg-26b/26B-absence-mgmt-wn-f43856.htm": {
+   "id": "26B-f43856@amg-26b",
+   "summary": "Redwood absence entry and calendar pages now show the unpaid break deducted from an absence. For example, a full 12-hour shift with a 30-minute unpaid break counts as 11.5 hours, and the break is shown.",
+   "reason": "Reworded."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/comp-26b/26B-compensation-wn-f42727.htm": {
+   "id": "26B-f42727@comp-26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "Salary basis records with the Simple Component calculation type can now be loaded with HCM Data Loader, and simple components work on Redwood offer pages and in Line Manager Change Salary and Salary History.",
+   "reason": "Optional additions; nothing changes for existing salary bases. Summary started with '1.' and was cut off."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/comp-26b/26B-compensation-wn-f42379.htm": {
+   "id": "26B-f42379@comp-26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Configured through business rules; nothing changes by default."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/hcom-26b/26B-hcm-common-wn-f43878.htm": {
+   "id": "26B-f43878@hcom-26b",
+   "summary": "HCM Data Loader business objects gain new components and attributes, for example simple components on Salary Basis and an unpaid break duration on Absence Entry. Check Oracle's list against your HDL files.",
+   "reason": "Summary ended in two colons with no content."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26b/gtm26b/26B-gtm-wn-f42915.htm": {
+   "id": "26B-f42915@gtm26b",
+   "summary": "AES filing follows the latest CBP export shipment (X12.601) changes: the SPP license exception for Syria (code C78, for EAR99 items) is added to GTM's default AES code mapping.",
+   "reason": "Added the actual change."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26b/otm26b/26B-otm-wn-f43365.htm": {
+   "id": "26B-f43365@otm26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "New optional Process Management action; the existing UI action is unchanged."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26b/otm26b/26B-otm-wn-f43360.htm": {
+   "id": "26B-f43360@otm26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "Shipment Ship Units now support documents: add, upload, link, copy, generate and view documents, plus matching agent actions to automate document handling (for example packing lists and labels).",
+   "reason": "New optional actions. Summary had a double full stop."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26b/otm26b/26B-otm-wn-f43866.htm": {
+   "id": "26B-f43866@otm26b",
+   "summary": "Changes to the Supply Chain Planning to OTM integration in Logistics Network Modeling: a new property caps the orders pulled per plan (default 10,000, with an error above it), only one SCP plan can be pulled at a time, and a running pull can be terminated and rerun.",
+   "reason": "Summary was garbled. Medium kept: the new 10,000-order cap can cause errors on large plans."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26b/otm26b/26B-otm-wn-f43557.htm": {
+   "id": "26B-f43557@otm26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "New optional planning action for one multi-leg scenario."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26b/otm26b/26B-otm-wn-f43828.htm": {
+   "id": "26B-f43828@otm26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Needs mobile layout configuration."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26b/otm26b/26B-otm-wn-f43829.htm": {
+   "id": "26B-f43829@otm26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Hidden by default; needs mobile layout changes to switch on."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26b/otm26b/26B-otm-wn-f43713.htm": {
+   "id": "26B-f43713@otm26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Minor convenience (multi-select calendar override action)."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26b/otm26b/26B-otm-wn-f43832.htm": {
+   "id": "26B-f43832@otm26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Reporting-only: new fields in an OTBI subject area."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26b/otm26b/26B-otm-wn-f44038.htm": {
+   "id": "26B-f44038@otm26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Minor display setting."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26b/wms26b/26B-wms-wn-f44028.htm": {
+   "id": "26B-f44028@wms26b",
+   "summary": "The WMS purge script now also deletes older history records, for example shipped serial number history after 3 years and pallet history after 6 months. Check any reports or integrations that rely on that history.",
+   "reason": "Summary described purging in general, not what's new. Medium kept: automatic data deletion."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26b/wms26b/26B-wms-wn-f45826.htm": {
+   "id": "26B-f45826@wms26b",
+   "summary": "The Cancel Cartons action on the OBLPN screen can now cancel picked and packed OBLPNs in bulk, not just those in Outbound Created status.",
+   "reason": "Summary described the old behavior."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26b/wms26b/26B-wms-wn-f46283.htm": {
+   "id": "26B-f46283@wms26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "A new LPN Type Attachments column on the Item Inventory by LPN screen shows how many attachments an LPN's type has, with a link to view them. It's hidden until you add it in grid settings.",
+   "reason": "Hidden by default. Summary described the problem, not the feature."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26b/wms26b/26B-wms-wn-f44434.htm": {
+   "id": "26B-f44434@wms26b",
+   "summary": "The mobile Outbound Audit transaction can now audit OBLPNs that hold allocations in mixed units of measure (cases, packs and units). Before, those OBLPNs couldn't be audited.",
+   "reason": "Summary was background only."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26b/wms26b/26B-wms-wn-f44435.htm": {
+   "id": "26B-f44435@wms26b",
+   "summary": "When you reject a cycle count that came from automated material handling equipment (MHE) through the Cycle Count List API, the recount task is now sent back to that MHE so it can do the recount.",
+   "reason": "Summary was background only."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26b/wms26b/26B-wms-wn-f44430.htm": {
+   "id": "26B-f44430@wms26b",
+   "summary": "The Ctrl-F Alternate Location option during picking now lists all eligible locations with available inventory, and keeps the allocation when no eligible alternate is available.",
+   "reason": "Summary described the problem, not the change."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/proc26b/26B-procurement-wn-f43892.htm": {
+   "id": "26B-f43892@proc26b",
+   "summary": "In Redwood Purchasing, you can now add ad hoc approvers at more points in the approval hierarchy when submitting POs and agreements: at the start of the task, or the start or end of a stage.",
+   "reason": "Summary ran two sentences together ('positions.With')."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/proc26b/26B-procurement-wn-f42903.htm": {
+   "id": "26B-f42903@proc26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "In Redwood Purchasing, you can duplicate a purchase order or its lines while editing it, and duplicate change order lines, including all their schedules and distributions.",
+   "reason": "Minor convenience. Summary referred to screenshots."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/proc26b/26B-procurement-wn-f42782.htm": {
+   "id": "26B-f42782@proc26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Minor: the source agreement becomes a link."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/proc26b/26B-procurement-wn-f42957.htm": {
+   "id": "26B-f42957@proc26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Minor: search within large POs while editing."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/proc26b/26B-procurement-wn-f42859.htm": {
+   "id": "26B-f42859@proc26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "Visual Builder Studio business rules now cover the Business Classifications page of supplier registration, so you can make fields required, read-only or hidden by criteria such as country or industry.",
+   "reason": "Needs business rules configured. Summary described the need, not the feature."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/proc26b/26B-procurement-wn-f42962.htm": {
+   "id": "26B-f42962@proc26b",
+   "summary": "More Sourcing features in the Redwood pages: export and import requirements by spreadsheet for draft negotiations, view requirement details from scoring and analysis pages, response revision settings, and a minimum decrement per line in auctions.",
+   "reason": "Summary's sentences were out of order."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/proc26b/26B-procurement-wn-f42902.htm": {
+   "id": "26B-f42902@proc26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "Redwood Purchasing extensibility now covers defaulting PO and agreement attributes with business rules, personalizing attachments and default attachment categories, project DFFs on distributions, and the View PDF action.",
+   "reason": "Needs Visual Builder Studio work. Summary was cut off."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/proc26b/26B-procurement-wn-f42836.htm": {
+   "id": "26B-f42836@proc26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Minor: an extra Budget view in funds check results."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/proc26b/26B-procurement-wn-f43469.htm": {
+   "id": "26B-f43469@proc26b",
+   "summary": "Oracle's list of 26B Procurement Contracts and Enterprise Contracts fixes that change behavior. For example, purchasing documents for large contracts can now be created with a scheduled process instead of only in real time.",
+   "reason": "Summary was boilerplate that didn't say what changed."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/proc26b/26B-procurement-wn-f43144.htm": {
+   "id": "26B-f43144@proc26b",
+   "summary": "Oracle's list of 26B Purchasing fixes that change behavior, for example document history is now shown for withdrawn and rejected POs on Redwood pages, and the expiring, overutilized and underutilized agreement filters no longer return draft agreements.",
+   "reason": "Summary was boilerplate that didn't say what changed."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/proc26b/26B-procurement-wn-f43178.htm": {
+   "id": "26B-f43178@proc26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Only applies if you set up contract manufacturing for process manufacturing; no change to existing flows."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26b/ppm26b/26B-ppm-wn-f43231.htm": {
+   "id": "26B-f43231@ppm26b",
+   "impact": "medium",
+   "impact_was": "high",
+   "summary": "Labor commitments can now be imported from a third-party payroll's encumbrance data and distributed to projects through the existing labor distribution flow, reserving budget for expected payroll costs and liquidating it as actuals post. Pay elements and labor schedules must be set up first.",
+   "reason": "Nothing happens until you set up pay elements and labor schedules and import data. Medium rather than low because it feeds project costs and budgetary control."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26b/ppm26b/26B-ppm-wn-f43229.htm": {
+   "id": "26B-f43229@ppm26b",
+   "impact": "medium",
+   "impact_was": "high",
+   "reason": "Applies only once you define project role cost rate schedules and assign them to business units and cost organizations. Medium because it then changes labor costing."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26b/ppm26b/26B-ppm-wn-f43309.htm": {
+   "id": "26B-f43309@ppm26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Minor: a read-only audit trail of bill transaction actions."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/inv26b/26B-inventory-wn-f43593.htm": {
+   "id": "26B-f43593@inv26b",
+   "impact": "medium",
+   "impact_was": "high",
+   "reason": "Optional: applies when you run a configured-item cost scenario with rollup scope All Items. Medium because it changes published standard costs."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/inv26b/26B-inventory-wn-f43062.htm": {
+   "id": "26B-f43062@inv26b",
+   "impact": "medium",
+   "impact_was": "high",
+   "summary": "Lot split, merge and translate transactions can now be done on a Redwood page, for example splitting off the damaged part of a lot under a new lot number, or merging several lots into one.",
+   "reason": "New Redwood page for one transaction type; contained. Summary was background only."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/inv26b/26B-inventory-wn-f43065.htm": {
+   "id": "26B-f43065@inv26b",
+   "summary": "When you receive lot- or serial-controlled goods against an ASN or transfer order, you can now review and pick the specific lot and serial numbers you're receiving, instead of accepting every number on the document.",
+   "reason": "Summary described the need. High kept: changes the receiving flow."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/inv26b/26B-inventory-wn-f43071.htm": {
+   "id": "26B-f43071@inv26b",
+   "impact": "medium",
+   "impact_was": "high",
+   "summary": "Many Inventory Management pages now offer an All organizations option in the organization chooser, so managers can see data across every organization they have access to.",
+   "reason": "Visible convenience, no process change. Summary was background only."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/inv26b/26B-inventory-wn-f43586.htm": {
+   "id": "26B-f43586@inv26b",
+   "impact": "low",
+   "impact_was": "high",
+   "reason": "Needs its parent opt-in feature (Operation Yield for process manufacturing work definitions) enabled first."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/order26b/26B-order-mgmt-wn-f43291.htm": {
+   "id": "26B-f43291@order26b",
+   "summary": "A new Redwood Customer Pricing page in Pricing Administration lets you set prices and pricing rules for a customer, account or group of customers, with effective dates. It's an opt-in in 26B and, per Oracle's opt-in expiration list, becomes standard (switched on) in 26D.",
+   "enablement": "Opt-in, expires 26D",
+   "reason": "Added the opt-in status from Oracle's page and expiration list. High kept: pricing, and becomes standard in 26D."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/plm26b/26B-plm-wn-f43397.htm": {
+   "id": "26B-f43397@plm26b",
+   "summary": "Oracle's list of 26B Product Lifecycle Management fixes that change behavior. For example, item revision attachments created or updated by import or REST now honor the needs-approval rule and create a change order.",
+   "reason": "Summary was boilerplate. High kept: changes how imports and REST updates behave."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/sop26b/26B-sales-ops-wn-f42994.htm": {
+   "id": "26B-f42994@sop26b",
+   "impact": "medium",
+   "impact_was": "high",
+   "summary": "A Redwood Levels and Attributes page for planning dimension hierarchies: rename levels for tables and graphs, choose which member identifier to show, add or delete item and organization attributes, and search by dimension, hierarchy and level.",
+   "reason": "Configuration page for planning admins; contained. Summary was garbled ('you can: Using this page')."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/sop26b/26B-sales-ops-wn-f42989.htm": {
+   "id": "26B-f42989@sop26b",
+   "impact": "medium",
+   "impact_was": "high",
+   "reason": "Enhancement to an existing Redwood configuration page for planning admins; contained."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/scp26b/26B-sc-planning-wn-f42994.htm": {
+   "id": "26B-f42994@scp26b",
+   "impact": "medium",
+   "impact_was": "high",
+   "summary": "A Redwood Levels and Attributes page for planning dimension hierarchies: rename levels for tables and graphs, choose which member identifier to show, add or delete item and organization attributes, and search by dimension, hierarchy and level.",
+   "reason": "Configuration page for planning admins; contained. Summary was garbled ('you can: Using this page')."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/scp26b/26B-sc-planning-wn-f42989.htm": {
+   "id": "26B-f42989@scp26b",
+   "impact": "medium",
+   "impact_was": "high",
+   "reason": "Enhancement to an existing Redwood configuration page for planning admins; contained."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/demand26b/26B-demand-wn-f42994.htm": {
+   "id": "26B-f42994@demand26b",
+   "impact": "medium",
+   "impact_was": "high",
+   "summary": "A Redwood Levels and Attributes page for planning dimension hierarchies: rename levels for tables and graphs, choose which member identifier to show, add or delete item and organization attributes, and search by dimension, hierarchy and level.",
+   "reason": "Configuration page for planning admins; contained. Summary was garbled ('you can: Using this page')."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/demand26b/26B-demand-wn-f42989.htm": {
+   "id": "26B-f42989@demand26b",
+   "impact": "medium",
+   "impact_was": "high",
+   "reason": "Enhancement to an existing Redwood configuration page for planning admins; contained."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/demand26b/26B-demand-wn-f42980.htm": {
+   "id": "26B-f42980@demand26b",
+   "impact": "medium",
+   "impact_was": "high",
+   "reason": "New tabs in an existing simulation drawer; visible but contained."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/mfg26b/26B-mfg-wn-f43079.htm": {
+   "id": "26B-f43079@mfg26b",
+   "summary": "More options when executing work order operations on Redwood pages: inspect rejected quantities, see transactional item attributes, and upload attachments during execution. An opt-in in 26B that becomes standard in 26C.",
+   "reason": "Added the opt-in status."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/mfg26b/26B-mfg-wn-f43095.htm": {
+   "id": "26B-f43095@mfg26b",
+   "summary": "Operators can now start, pause (with a reason) and resume work order operations in flows without workstations, and run and stop times are tracked accurately. An opt-in in 26B that becomes standard in 26C.",
+   "reason": "Summary described the need, not the feature."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/inv26b/26B-inventory-wn-f43599.htm": {
+   "id": "26B-f43599@inv26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "Receivables and Payables accounts for external trade events in Supply Chain Financial Orchestration can now be derived with a Transaction Account Definition, not only from the control accounts on the financial agreement.",
+   "reason": "Optional extra setup choice. Summary described the old setup."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/inv26b/26B-inventory-wn-f43594.htm": {
+   "id": "26B-f43594@inv26b",
+   "summary": "In Brazil, a new Prepayment fiscal flow for purchase orders lets you record, tax and track supplier prepayments before goods arrive, and applies them to the final invoice.",
+   "reason": "Summary ended in a colon."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/inv26b/26B-inventory-wn-f43598.htm": {
+   "id": "26B-f43598@inv26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "Supply Chain Financial Orchestration now publishes a Transfer Pricing business event for shipment-driven flows, including customer drop shipments, that other systems such as OTM and GTM can subscribe to.",
+   "reason": "Optional: only matters if you subscribe to the event. Summary described the existing REST resource."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26b/inv26b/26B-inventory-wn-f49705.htm": {
+   "id": "26B-f49705@inv26b",
+   "impact": "low",
+   "impact_was": "medium",
+   "summary": "The Completed Transactions page has a new Export All button that downloads every search result, not just the rows on screen.",
+   "reason": "Minor. Summary was background only."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/maint26c/26C-maintenance-wn-f46394.htm": {
+   "id": "26C-f46394@maint26c",
+   "impact": "medium",
+   "impact_was": "high",
+   "reason": "Opt-in that becomes standard in 26D, but Oracle's expiration list shows it won't be switched on automatically, and it only affects FBDI loads of global work definitions."
+  }
+ }
+}

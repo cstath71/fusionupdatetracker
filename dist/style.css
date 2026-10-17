@@ -8,7 +8,7 @@ header a{color:#fff;text-decoration:none;opacity:.9}header a.brand{font-weight:7
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:20px 0}
 .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px}
 .card h3{margin:0 0 6px}.muted{color:var(--mut)}.small{font-size:13px}
-.draft{display:inline-block;background:#fff4d6;border:1px solid #f0d27a;color:#7a5a00;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:600}
+.note{color:var(--mut);font-size:13px}
 .filters{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0;position:sticky;top:0;background:var(--bg);padding:10px 0;z-index:2}
 select,input{padding:8px 10px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff}
 .item{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:10px 0}

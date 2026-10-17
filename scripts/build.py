@@ -40,7 +40,7 @@ def enablement(r):
     if a=='Potential Setup': return 'Automatically on (setup may apply)'
     if a=='Setup Required': return 'Off until set up'
     return 'Off until set up ('+a+')'
-def draft_impact(r,en):
+def auto_impact(r,en):  # automatic first pass; editorial.json overrides after review
     oi=r['oracle_impact']
     if oi=='Larger scale': return 'high'
     if en.startswith('Opt-in, expires'): return 'high' if (en.endswith(r['_rel']) or en.endswith(r['_relnext'])) else 'medium'
@@ -63,6 +63,8 @@ def prodname(title,path):
     if '$' in prod or not prod: prod={'risk':'Risk Management','ssfin':'Financials (Shared)','hcom':'HCM Common','wohs':'Workforce Health and Safety','woli':'Work Life'}.get(re.sub(r'-?2\d[a-d]$','',path.split('/')[-1]),path.split('/')[-1])
     return prod
 raw=json.load(open(os.path.join(RAW,'summaries.json')))
+_ed=os.path.join(DATA,'editorial.json')
+EDITORIAL=json.load(open(_ed))['items'] if os.path.exists(_ed) else {}
 nextrel={'26b':'26C','26c':'26D'}
 updates={}
 for rel,books in raw.items():
@@ -72,7 +74,7 @@ for rel,books in raw.items():
         if b.get('important'): important.append(dict(product=prod,family=fam,url=b['important']))
         for r in b['rows']:
             r=dict(r); r['family']=fam; r['product']=prod; r['_rel']=rel.upper(); r['_relnext']=nextrel[rel]
-            r['enablement']=enablement(r); r['impact']=draft_impact(r,r['enablement']); items.append(r)
+            r['enablement']=enablement(r); r['impact']=auto_impact(r,r['enablement']); items.append(r)
     sel=[]
     for fam in sorted(set(i['family'] for i in items)):
         fi=[i for i in items if i['family']==fam]
@@ -81,7 +83,12 @@ for rel,books in raw.items():
     import concurrent.futures as cf
     with cf.ThreadPoolExecutor(8) as ex:
         for r,s in zip(sel,ex.map(lambda r:summary(r['url']),sel)): r['summary']=s
-    for r in sel: r.pop('_relnext',None)
+    for r in sel:
+        r.pop('_relnext',None)
+        ov=EDITORIAL.get(r['url'])
+        if ov:  # reviewed editorial rating/summary (data/editorial.json) replaces the automatic first pass
+            for k in ('impact','summary','enablement'):
+                if ov.get(k): r[k]=ov[k]
     books=[dict(product=prodname(b['title'],b['path']),family=family(b['path']),url=f"https://docs.oracle.com/en/cloud/saas/readiness/{b['path']}/index.html",features=len(b['rows'])) for b in books if b['rows']]
     updates[rel.upper()]=dict(release=rel.upper(),items=sel,total_features=len(items),important=important,
         family_totals=dict(collections.Counter(i['family'] for i in items)),books=books,

@@ -2,6 +2,9 @@ import os, html, json, shutil, collections
 E=html.escape
 SITE='Fusion Updates'
 BASE='https://fusionupdates.com'
+import os as _os
+CONTACT=_os.environ.get('FUT_CONTACT','')  # set FUT_CONTACT=hello@fusionupdates.com once forwarding works
+def contact_html(): return f'<a href="mailto:{CONTACT}">{CONTACT}</a>' if CONTACT else '<b>[contact address to be added]</b>'
 CSS="""
 :root{--ink:#14202b;--mut:#5b6875;--bg:#f6f7f9;--card:#fff;--acc:#c74634;--line:#e3e6ea}
 *{box-sizing:border-box}body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg)}
@@ -123,7 +126,7 @@ def render(updates, dist):
 <div class="box"><h3 style="margin-top:0">What we store when you subscribe</h3><ul><li>Your email address</li><li>The module area you picked (e.g. Supply Chain or HCM)</li><li>When you signed up</li><li>A one-way hash of your IP address, kept only to limit spam signups (we never store the IP address itself)</li></ul>
 <h3>How we use it</h3><p>Only to send the Fusion Updates newsletter (about one email per Oracle quarterly update, plus occasional short alerts about opt-in expirations). We don't sell or share your data, and we don't add you to other lists.</p>
 <h3>Where it's kept</h3><p>Subscriber data is stored with Supabase (EU region, Frankfurt), and newsletters are sent with Resend (EU region). Both act as processors for us.</p>
-<h3>Unsubscribe and deletion</h3><p>Every email has a one-click unsubscribe link. To have your data deleted, or for any question, write to <b>[contact address to be added]</b>.</p>
+<h3>Unsubscribe and deletion</h3><p>Every email has a one-click unsubscribe link. To have your data deleted, or for any question, write to '''+contact_html()+'''.</p>
 <h3>Analytics</h3><p>This site uses no tracking cookies, and newsletter open and click tracking is turned off.</p>
 <p class="small muted">Fusion Updates is run by PrimeLogic Advisory, Switzerland. Last updated: October 2026.</p></div>'''))
     open(os.path.join(dist,'CNAME'),'w').write('fusionupdates.com\n')
@@ -135,7 +138,7 @@ def render(updates, dist):
 <div class="cards"><div class="card"><h3>Newsletter sponsor</h3><p class="muted">One sponsor slot per quarterly briefing, sent before each update's test window.</p></div>
 <div class="card"><h3>Update page sponsor</h3><p class="muted">"Presented by" placement on an update's change list and test checklist.</p></div>
 <div class="card"><h3>Module sponsor</h3><p class="muted">Placement on one module family (e.g. Supply Chain or HCM) across updates.</p></div></div>
-<div class="box"><p>Good fits: test automation, data loading and migration tools, Oracle partners and add-on vendors. Sponsors never influence summaries or ratings, and sponsored placements are always labeled.</p><p><b>Rates and audience numbers:</b> available on request. <span class="muted small">(Contact address to be added.)</span></p></div>"""))
+<div class="box"><p>Good fits: test automation, data loading and migration tools, Oracle partners and add-on vendors. Sponsors never influence summaries or ratings, and sponsored placements are always labeled.</p><p><b>Rates and audience numbers:</b> available on request. """+(f"Write to {contact_html()}." if CONTACT else '<span class="muted small">(Contact address to be added.)</span>')+"""</p></div>"""))
     open(os.path.join(dist,'about.html'),'w').write(page('About',path='about.html',body="""<div class="hero"><h1>About</h1><p class="lead">Fusion Updates (fusionupdates.com) turns Oracle's quarterly readiness documentation into a filterable, plain-English list of changes across Oracle Fusion Cloud, with draft impact ratings and a what-to-test checklist for every update.</p></div>
 <div class="box"><p>It is run by an Oracle supply chain and ERP consultant based in Switzerland (PrimeLogic Advisory). Every entry links back to its Oracle source page. Summaries are condensed from Oracle's text, and impact ratings are editorial judgment, so always check the Oracle page and your own configuration.</p>
 <p>This is an independent site, not affiliated with or endorsed by Oracle.</p><p class="small muted">Method: features come from the "Feature Summary" tables in Oracle's What's New documents. Enablement comes from Oracle's "Action to Enable" column plus the Current Opt-In Expirations list. Impact draft: Oracle's "Larger scale" maps to high; opt-ins expiring this update or next are high; "Small scale" or automatically enabled Redwood changes are medium; everything else is low.</p></div>"""))

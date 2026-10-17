@@ -1,4 +1,4 @@
-"""Build FusionUpdateTracker static site from Oracle readiness data.
+"""Build Fusion Updates (fusionupdates.com) static site from Oracle readiness data.
 Usage: python3 scripts/build.py   -> writes ./dist
 Data: scripts/crawl.py writes /workspace/fut-raw/summaries.json (Oracle Feature Summary tables)."""
 import json, re, html, os, sys, shutil, datetime

@@ -1,4 +1,4 @@
-# FusionUpdateTracker (MVP)
+# Fusion Updates (fusionupdates.com), repo: fusionupdatetracker
 
 A static site that tracks Oracle Fusion Cloud quarterly updates (26B, 26C) across Financials, Procurement, SCM, Logistics, Project Management and HCM.
 

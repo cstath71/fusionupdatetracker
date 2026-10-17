@@ -1,6 +1,7 @@
 import os, html, json, shutil, collections
 E=html.escape
-SITE='FusionUpdateTracker'
+SITE='Fusion Updates'
+BASE='https://fusionupdates.com'
 CSS="""
 :root{--ink:#14202b;--mut:#5b6875;--bg:#f6f7f9;--card:#fff;--acc:#c74634;--line:#e3e6ea}
 *{box-sizing:border-box}body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg)}
@@ -31,12 +32,12 @@ ul.check li{margin:6px 0}
 .btn{display:inline-block;background:var(--acc);color:#fff;text-decoration:none;font-weight:600;padding:10px 16px;border-radius:8px;margin:4px 6px 4px 0}.btn.alt{background:#fff;color:#14202b}
 """
 NAV=''
-def page(title, body, depth=0, desc=''):
+def page(title, body, depth=0, desc='', path=''):
     p='../'*depth
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{E(title)} | {SITE}</title><meta name="description" content="{E(desc or 'Plain-English tracker of Oracle Fusion Cloud quarterly updates: what changed, what turns on automatically, what to test.')}">
-<link rel="stylesheet" href="{p}style.css"></head><body>
-<header><div class="w"><a class="brand" href="{p}index.html">Fusion<span>Update</span>Tracker</a><nav>
+<link rel="canonical" href="{BASE}/{path}"><meta property="og:url" content="{BASE}/{path}"><meta property="og:title" content="{E(title)} | {SITE}"><link rel="stylesheet" href="{p}style.css"></head><body>
+<header><div class="w"><a class="brand" href="{p}index.html">Fusion<span>Updates</span></a><nav>
 {NAV.replace("@",p)}<a href="{p}newsletter.html">Newsletter</a><a href="{p}sponsor.html">Sponsor</a><a href="{p}about.html">About</a></nav></div></header>
 <main class="w">{body}</main>
 <footer><div class="w">Independent site, not affiliated with or endorsed by Oracle. Oracle and Oracle Fusion are trademarks of Oracle and/or its affiliates.
@@ -75,7 +76,7 @@ def update_page(u):
 <script>
 const $=id=>document.getElementById(id);function f(){{let n=0;document.querySelectorAll('.item').forEach(e=>{{const ok=(!$('fam').value||e.dataset.family==$('fam').value)&&(!$('prod').value||e.dataset.product==$('prod').value)&&(!$('imp').value||e.dataset.impact==$('imp').value)&&(!$('en').value||e.dataset.en.includes($('en').value))&&(!$('q').value||e.dataset.text.includes($('q').value.toLowerCase()));e.style.display=ok?'':'none';if(ok)n++}});$('n').textContent=n+' shown'}}
 ['fam','prod','imp','en','q'].forEach(i=>$(i).addEventListener('input',f));f();</script>{nl_form()}"""
-    return page(f"Oracle Fusion {u['release']} changes", body, 2, f"What changed in Oracle Fusion Cloud {u['release']}: plain-English summaries, impact, and enablement across Financials, Procurement, SCM, Projects and HCM.")
+    return page(f"Oracle Fusion {u['release']} changes", body, 2, f"What changed in Oracle Fusion Cloud {u['release']}: plain-English summaries, impact, and enablement across Financials, Procurement, SCM, Projects and HCM.", f"updates/{u['release'].lower()}/")
 def checklist_page(u):
     items=u['items']
     auto_hi=[i for i in items if i['enablement'].startswith('Automatically') and i['impact'] in('high','medium')]
@@ -91,7 +92,7 @@ def checklist_page(u):
 <div class="box"><h2>3. Opt-ins that expire in {u['release']} (become mandatory)</h2><p class="small muted">From Oracle's <a href="https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features/optincurrent.html" target=_blank>Current Opt-In Expirations</a> list (all pillars, including non-ERP).</p>
 <table><tr><th>Product</th><th>Module</th><th>Feature</th><th>Impact</th><th>Action</th><th>Introduced</th></tr>{exp or '<tr><td colspan=6>None listed.</td></tr>'}</table></div>
 <div class="box"><h2>4. Read Oracle's "IMPORTANT Actions and Considerations" per product</h2><ul>{imp}</ul></div>{nl_form()}"""
-    return page(f"{u['release']} what-to-test checklist", body, 2)
+    return page(f"{u['release']} what-to-test checklist", body, 2, path=f"updates/{u['release'].lower()}/checklist.html")
 def render(updates, dist):
     global NAV
     NAV=''.join(f'<a href="@updates/{k.lower()}/index.html">{k}{" (current)" if n==0 else ""}</a>' for n,k in enumerate(sorted(updates,reverse=True)))
@@ -116,12 +117,16 @@ def render(updates, dist):
 <p class="lead">What changed in Financials, Procurement, Supply Chain, Logistics, Project Management and HCM, what switches on automatically, which opt-ins are about to become mandatory, and what to test before it hits production.</p></div>
 {hero}{prevsec}<div class="box"><h3 style="margin-top:0">Covered module families</h3><p>{' · '.join(E(f) for f in fams)}</p></div>{nl_form()}"""
     open(os.path.join(dist,'index.html'),'w').write(page('Oracle Fusion Cloud quarterly update tracker',home))
-    open(os.path.join(dist,'newsletter.html'),'w').write(page('Newsletter','<div class="hero"><h1>The quarterly briefing</h1><p class="lead">Before each Oracle Fusion update reaches your test environment: the changes that matter, by module, the opt-ins about to expire, and a ready-to-use test checklist. Free.</p></div>'+nl_form()))
-    open(os.path.join(dist,'sponsor.html'),'w').write(page('Sponsor',"""<div class="hero"><h1>Sponsor FusionUpdateTracker</h1><p class="lead">Reach the people who plan, test and run Oracle Fusion Cloud updates: application owners, functional leads, testers and consultants across Financials, Procurement, SCM, Projects and HCM.</p></div>
+    open(os.path.join(dist,'CNAME'),'w').write('fusionupdates.com\n')
+    open(os.path.join(dist,'robots.txt'),'w').write(f'User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n')
+    urls=['','newsletter.html','sponsor.html','about.html']+[f'updates/{k.lower()}/' for k in updates]+[f'updates/{k.lower()}/checklist.html' for k in updates]
+    open(os.path.join(dist,'sitemap.xml'),'w').write('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join(f'<url><loc>{BASE}/{u}</loc></url>' for u in urls)+'</urlset>')
+    open(os.path.join(dist,'newsletter.html'),'w').write(page('Newsletter',path='newsletter.html',body='<div class="hero"><h1>The quarterly briefing</h1><p class="lead">Before each Oracle Fusion update reaches your test environment: the changes that matter, by module, the opt-ins about to expire, and a ready-to-use test checklist. Free.</p></div>'+nl_form()))
+    open(os.path.join(dist,'sponsor.html'),'w').write(page('Sponsor',path='sponsor.html',body="""<div class="hero"><h1>Sponsor Fusion Updates</h1><p class="lead">Reach the people who plan, test and run Oracle Fusion Cloud updates: application owners, functional leads, testers and consultants across Financials, Procurement, SCM, Projects and HCM.</p></div>
 <div class="cards"><div class="card"><h3>Newsletter sponsor</h3><p class="muted">One sponsor slot per quarterly briefing, sent before each update's test window.</p></div>
 <div class="card"><h3>Update page sponsor</h3><p class="muted">"Presented by" placement on an update's change list and test checklist.</p></div>
 <div class="card"><h3>Module sponsor</h3><p class="muted">Placement on one module family (e.g. Supply Chain or HCM) across updates.</p></div></div>
 <div class="box"><p>Good fits: test automation, data loading and migration tools, Oracle partners and add-on vendors. Sponsors never influence summaries or ratings, and sponsored placements are always labeled.</p><p><b>Rates and audience numbers:</b> available on request. <span class="muted small">(Contact address to be added.)</span></p></div>"""))
-    open(os.path.join(dist,'about.html'),'w').write(page('About',"""<div class="hero"><h1>About</h1><p class="lead">FusionUpdateTracker turns Oracle's quarterly readiness documentation into a filterable, plain-English list of changes across Oracle Fusion Cloud, with draft impact ratings and a what-to-test checklist for every update.</p></div>
+    open(os.path.join(dist,'about.html'),'w').write(page('About',path='about.html',body="""<div class="hero"><h1>About</h1><p class="lead">Fusion Updates (fusionupdates.com) turns Oracle's quarterly readiness documentation into a filterable, plain-English list of changes across Oracle Fusion Cloud, with draft impact ratings and a what-to-test checklist for every update.</p></div>
 <div class="box"><p>It is run by an Oracle supply chain and ERP consultant based in Switzerland (PrimeLogic Advisory). Every entry links back to its Oracle source page. Summaries are condensed from Oracle's text, and impact ratings are editorial judgment, so always check the Oracle page and your own configuration.</p>
 <p>This is an independent site, not affiliated with or endorsed by Oracle.</p><p class="small muted">Method: features come from the "Feature Summary" tables in Oracle's What's New documents. Enablement comes from Oracle's "Action to Enable" column plus the Current Opt-In Expirations list. Impact draft: Oracle's "Larger scale" maps to high; opt-ins expiring this update or next are high; "Small scale" or automatically enabled Redwood changes are medium; everything else is low.</p></div>"""))

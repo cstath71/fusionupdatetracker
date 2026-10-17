@@ -2080,7 +2080,7 @@
      "impact": "Small Scale",
      "action": "None",
      "introduced": "25D",
-     "url": "https://www.oracle.com/webfolder/technetwork/tutorials/tutorial/cloud/r13/wn/sccv/releases/25D/25D-sccv-wn.htm#F40588"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=sccv25d-f40588"
     }
    ]
   },
@@ -4652,7 +4652,7 @@
      "impact": "Small Scale",
      "action": "None",
      "introduced": "26A",
-     "url": "https://www.oracle.com/webfolder/technetwork/tutorials/tutorial/cloud/r13/wn/sccv/releases/26A/26A-sccv-wn.htm#F42448"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=sccv26a-f42448"
     },
     {
      "expires": "26C",
@@ -4664,7 +4664,7 @@
      "impact": "Small Scale",
      "action": "None",
      "introduced": "26A",
-     "url": "https://www.oracle.com/webfolder/technetwork/tutorials/tutorial/cloud/r13/wn/sccv/releases/26A/26A-sccv-wn.htm#F42447"
+     "url": "https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=sccv26a-f42447"
     }
    ]
   }

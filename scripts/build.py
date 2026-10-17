@@ -23,6 +23,8 @@ for tr in re.findall(r'<tr>(.*?)</tr>',oh,re.S):
     m=re.search(r'href="([^"]+)"',td[4]); link=html.unescape(m.group(1)) if m else ''
     if link.startswith('/'): link='https://docs.oracle.com'+link
     elif link and not link.startswith('http'): link='https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features/'+link
+    mm=re.search(r'/wn/([a-z]+)/releases/(\d\d[A-D])/.*#F(\d+)',link)  # old webfolder links now 404: use Oracle's lookup service
+    if mm: link=f'https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id={mm.group(1)}{mm.group(2).lower()}-f{mm.group(3)}'
     r=dict(expires=txt(td[0]),pillar=txt(td[1]),product=txt(td[2]),module=txt(td[3]),title=txt(td[4]),now_enabled=txt(td[5]),impact=txt(td[6]),action=txt(td[7]),introduced=txt(td[8]),url=link)
     EXP.append(r); EXPMAP[r['title'].lower()]=r['expires']
 def norm(s): return re.sub(r'\s+',' ',s).strip().lower()

@@ -3,7 +3,7 @@ E=html.escape
 SITE='Fusion Updates'
 BASE='https://fusionupdates.com'
 import os as _os
-CONTACT=_os.environ.get('FUT_CONTACT','')  # set FUT_CONTACT=hello@fusionupdates.com once forwarding works
+CONTACT=_os.environ.get('FUT_CONTACT') or 'hello@fusionupdates.com'  # public contact / reply-to address
 def contact_html(): return f'<a href="mailto:{CONTACT}">{CONTACT}</a>' if CONTACT else '<b>[contact address to be added]</b>'
 CSS="""
 :root{--ink:#14202b;--mut:#5b6875;--bg:#f6f7f9;--card:#fff;--acc:#c74634;--line:#e3e6ea}

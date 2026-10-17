@@ -90,7 +90,7 @@ def checklist_page(u):
 <div class="box" id="baseline"><h2>1. Baseline regression (every update)</h2><p class="small muted">Based on Oracle's published guidance: <a href="https://docs.oracle.com/en/cloud/saas/transportation/26b/otmpt/what-should-i-test-after-a-quarterly-update.html" target=_blank>What Should I Test After a Quarterly Update?</a></p><ul class="check">
 {''.join(f'<li><label><input type=checkbox> {x}</label></li>' for x in ["Validate your <b>current</b> configuration first; don't enable new features yet","Key end-to-end business flows for each role (e.g. procure-to-pay, order-to-cash, plan-to-produce, hire-to-retire)","Integrations: REST/SOAP APIs, FBDI/HDL imports, and third-party systems","Critical custom reports and analytics (BI Publisher, OTBI)","Custom workflows, approvals, extensions, and personalizations","Security: roles and privileges for new or changed pages","Features delivered automatically on (section 2) and former opt-ins that are now standard (section 3)","Performance of key flows with production-like volumes"])}</ul></div>
 <div class="box" id="auto"><h2>2. Changes that switch on automatically (rated medium or high impact)</h2>{fams or '<p class=muted>None in this selection.</p>'}</div>
-<div class="box" id="expiring"><h2>3. Former opt-ins that are standard from {u['release']}</h2><p class="small muted">From Oracle's <a href="https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features/optincurrent.html" target=_blank>Current Opt-In Expirations</a> list (all pillars, including non-ERP).</p>
+<div class="box" id="expiring"><h2>3. Former opt-ins that are standard from {u['release']}</h2><p class="small muted">From Oracle's <a href="https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features/optincurrent.html" target=_blank>Current Opt-In Expirations</a> list. It covers all Fusion modules: {E(exp_scope(u['expiring']))}.</p>
 <table><tr><th>Product</th><th>Module</th><th>Feature</th><th>Now enabled</th><th>Impact</th><th>Action</th><th>Introduced</th></tr>{exp or '<tr><td colspan=7>None listed.</td></tr>'}</table></div>
 <div class="box"><h2>4. Read Oracle's "IMPORTANT Actions and Considerations" per product</h2><ul>{imp}</ul></div>{nl_form()}"""
     return page(f"{u['release']} what-to-test checklist", body, 2, desc=f"Oracle Fusion {u['release']} what-to-test checklist: baseline regression, changes delivered switched on, former opt-ins now standard, and Oracle's IMPORTANT actions per product.", path=f"updates/{u['release'].lower()}/checklist.html")
@@ -107,8 +107,8 @@ def render(updates, dist, upcoming=None, generated=''):
     hi=sum(1 for i in cur['items'] if i['impact']=='high'); auto=sum(1 for i in cur['items'] if i['enablement'].startswith('Automatically'))
     hero=f"""<section class="current"><span class="tag">Current update</span><h2>Oracle Fusion Cloud {cur['release']}</h2>
 <p class="lead">The current quarterly update. Start here: what changed, what switches on automatically, and which former opt-ins are now standard.</p>
-<div class="stats"><div><b>{len(cur['items'])}</b><span>changes we track</span></div><div><b>{len(cur['expiring'])}</b><span>former opt-ins now standard (Oracle's opt-in expiration list, all pillars)</span></div><div><b>{hi}</b><span>tracked changes rated high impact</span></div><div><b>{auto}</b><span>tracked changes delivered switched on</span></div></div>
-<p class="small">We track up to 25 changes per module family, out of {cur['total_features']} features (our count) in the {cur['release']} What's New documents for these modules. The opt-in figure is Oracle's own Current Opt-In Expirations list.</p>
+<div class="stats"><div><b>{len(cur['items'])}</b><span>changes we track</span></div><div><b>{len(cur['expiring'])}</b><span>former opt-ins now standard across all Fusion modules ({E(exp_scope(cur['expiring']))})</span></div><div><b>{hi}</b><span>tracked changes rated high impact</span></div><div><b>{auto}</b><span>tracked changes delivered switched on</span></div></div>
+<p class="small">We track up to 25 changes per module family, out of {cur['total_features']} features (our count) in the {cur['release']} What's New documents for these modules. The opt-in figure is Oracle's own Current Opt-In Expirations list, which covers all Fusion modules, not only the ones we track.</p>
 <p><a class="btn" href="updates/{ck}/index.html">Browse {cur['release']} changes →</a> <a class="btn alt" href="updates/{ck}/checklist.html">{cur['release']} what-to-test checklist →</a> <a class="btn alt" href="{ck}/former-opt-ins-now-standard/">{cur['release']} former opt-ins now standard →</a></p></section>"""
     prev=''.join(f"""<div class="card"><h3>Update {k}</h3><p class="muted">{len(updates[k]['items'])} changes we track · {updates[k]['total_features']} features in the What's New documents (our count) · {len(updates[k]['expiring'])} opt-ins expiring</p>
 <p><a href="updates/{k.lower()}/index.html">Browse changes →</a><br><a href="updates/{k.lower()}/checklist.html">What to test →</a></p></div>""" for k in order[1:])
@@ -176,6 +176,23 @@ def exp_family(e):
     if pl.startswith('Human Capital') or pl=='HCM': return 'HCM'
     if 'Logistics' in pl: return 'Logistics (OTM/GTM/WMS)'
     return None
+CORE_SHORT={'Financials':'ERP','Project Management':'ERP','Supply Chain & Manufacturing':'Supply Chain','Procurement':'Supply Chain','HCM':'HCM','Logistics (OTM/GTM/WMS)':'Supply Chain'}
+def exp_other_label(e):
+    return e['product'] if e['pillar']=='Industry' else e['pillar']
+def exp_scope(es):
+    """Plain-English split of Oracle's opt-in expiration list: modules we track vs the rest."""
+    core=[e for e in es if exp_family(e)]
+    areas=[]
+    for e in core:
+        a=CORE_SHORT.get(exp_family(e),exp_family(e))
+        if a not in areas: areas.append(a)
+    cl=' and '.join(areas)
+    oth=collections.OrderedDict()
+    for e in es:
+        if not exp_family(e): oth.setdefault(exp_other_label(e),[]).append(e)
+    if not oth: return f"all {len(es)} in {cl}" if core else ''
+    parts=([f"{len(core)} in {cl}"] if core else [])+[f"{len(x)} in {k}" for k,x in oth.items()]
+    return ', '.join(parts)
 ACT={'None':'Nothing to do: on for everyone','Setup':'Set up if you want to use it'}
 def exp_table(es):
     if not es: return '<p class="muted">None in Oracle\'s list.</p>'
@@ -213,13 +230,13 @@ def standard_page(u):
         x=[e for e in es if exp_family(e)==f]
         if x: grp[FNAME[f]]=x
     oth=[e for e in es if exp_family(e) is None]
-    if oth: grp['Other Oracle pillars (outside the modules we track)']=oth
+    for e in oth: grp.setdefault(f"{exp_other_label(e)} (outside the modules we track)",[]).append(e)
     core=len(es)-len(oth)
     title=f"Oracle Fusion {rel}: former opt-ins now standard"
-    desc=f"The {len(es)} Oracle Fusion features whose opt-in period ended with {rel}, from Oracle's opt-in expiration list: {on} switched on automatically, {st} need setup if you want them. Plain English, with Oracle links."
+    desc=f"The {len(es)} Oracle Fusion features, across all modules, whose opt-in period ended with {rel}, from Oracle's opt-in expiration list: {on} switched on automatically, {st} need setup if you want them. Plain English, with Oracle links."
     path=f"{rk}/former-opt-ins-now-standard/"; cl=[('Home',''),(rel,f'updates/{rk}/'),('Former opt-ins now standard',path)]
     body=f"""{crumbs_html(cl,'../../')}<div class="hero"><h1>{E(title)}</h1>
-<p class="lead">Oracle's <a href="https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features/optincurrent.html" target=_blank rel=noopener>Current Opt-In Expirations</a> list names {len(es)} features whose opt-in period ended with {rel}. They are now standard: {on} are switched on automatically, and {st} need setup if you want to use them.{f' {core} of them are in the module families we track.' if oth else ''}</p>
+<p class="lead">Oracle's <a href="https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features/optincurrent.html" target=_blank rel=noopener>Current Opt-In Expirations</a> list names {len(es)} features whose opt-in period ended with {rel}. They are now standard: {on} are switched on automatically, and {st} need setup if you want to use them.{f' By area: {E(exp_scope(es))}.' if oth else ''}</p>
 <p class="small muted">Oracle's note: if you already opted in and finished the setup, nothing changes for you. "Now enabled" and "Oracle's impact" are Oracle's own columns.</p></div>
 {''.join(f'<div class="box"><h2 style="margin-top:0">{E(g)} ({len(x)})</h2>{exp_table(x)}</div>' for g,x in grp.items())}
 <div class="box"><p><b>More {rel}:</b> <a href="../../updates/{rk}/">All tracked {rel} changes</a> · <a href="../../updates/{rk}/checklist.html">{rel} what-to-test checklist</a> · {' · '.join(f'<a href="../{FSLUG[f]}/">{E(FNAME[f])} {rel}</a>' for f in sorted(set(i['family'] for i in u['items'])))}</p></div>{nl_form()}"""
@@ -240,6 +257,6 @@ def upcoming_page(up,updates):
 <div class="box"><h2 style="margin-top:0">When it arrives</h2><p>Oracle updates environments in cohorts. Per Oracle, Cohort A gets quarterly updates in February, May, August and November, Cohort B in March, June, September and December, and Cohort C in April, July, October and January. Test environments update on the first Friday of the update month and production two weeks later, on the third Friday. Your cohort is shown in the Oracle Cloud Console. <span class="small muted">Source: <a href="https://blogs.oracle.com/fusioninsider/quarterly-updates-made-easy" target=_blank rel=noopener>Oracle Fusion Insider, "Quarterly updates made easy"</a></span></p></div>
 <div class="box"><h2 style="margin-top:0">Oracle's {rel} What's New documents</h2>{''.join(f'<p><b>{E(g)}:</b> '+' · '.join(f'<a href="{E(b["url"])}" target=_blank rel=noopener>{E(b["product"])}</a>' for b in bs)+'</p>' for g,bs in byf.items())}</div>
 {f'<div class="box"><h2 style="margin-top:0">Already announced for {rel} in earlier What&#39;s New documents</h2><ul>'+''.join(f'<li><a href="{E(i["url"])}" target=_blank rel=noopener>{E(i["title"])}</a> <span class="small muted">({E(i["product"])}, from the {i["_rel"]} What&#39;s New)</span></li>' for i in ann)+'</ul></div>' if ann else ''}
-<div class="box"><h2 style="margin-top:0">Opt-ins Oracle lists as ending with {rel} ({len(es)})</h2><p class="small muted">From Oracle's <a href="https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features/optincurrent.html" target=_blank rel=noopener>Current Opt-In Expirations</a> list. With {rel} they become standard features. Oracle's "Now enabled" column shows Yes for {on} of them; the rest need setup if you want to use them. Oracle can update this list.</p>{exp_table(es)}</div>{nl_form()}"""
+<div class="box"><h2 style="margin-top:0">Opt-ins Oracle lists as ending with {rel} ({len(es)})</h2><p class="small muted">From Oracle's <a href="https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features/optincurrent.html" target=_blank rel=noopener>Current Opt-In Expirations</a> list. With {rel} they become standard features. Oracle's "Now enabled" column shows Yes for {on} of them; the rest need setup if you want to use them. By area: {E(exp_scope(es))}. Oracle can update this list.</p>{exp_table(es)}</div>{nl_form()}"""
     ld=jsonld({"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":BASE+'/'+path,"url":BASE+'/'+path,"name":title,"description":desc,"inLanguage":"en","isPartOf":{"@type":"WebSite","@id":BASE+"/#website","name":SITE,"url":BASE+"/"}},crumbs(cl)]})
     return page(title,body,1,desc,path,ld)

@@ -48,9 +48,11 @@ def page(title, body, depth=0, desc='', path='', head=''):
 <main class="w">{body}</main>
 <footer><div class="w">Independent site, not affiliated with or endorsed by Oracle. Oracle and Oracle Fusion are trademarks of Oracle and/or its affiliates.
 Summaries are condensed from Oracle's public readiness documentation. Impact ratings are our editorial view of how much a change affects day-to-day users and testing. Always confirm details on the linked Oracle page. · <a href="{p}privacy.html">Privacy</a> · <a href="{p}about.html">About</a> · Contact: <a href="mailto:{CONTACT}">{CONTACT}</a></div></footer></body></html>"""
-def nl_form(p=''):
+def nl_form(p='',latest=False):
     p=P_CUR
-    return f"""<div class="box"><h3 style="margin-top:0">Get the quarterly briefing</h3><p class="muted">One email per update (plus short alerts before opt-in expirations): the changes that matter, by module, and what to test.</p>
+    li=ISSUES[0] if (latest and ISSUES) else None
+    lk=f' <a href="{p}newsletter/{li["slug"]}/">Read issue #{li["number"]} →</a>' if li else ''
+    return f"""<div class="box"><h3 style="margin-top:0">Get the quarterly briefing</h3><p class="muted">One email per update (plus short alerts before opt-in expirations): the changes that matter, by module, and what to test.{lk}</p>
 <form class="nl" action="https://uufmlmwgvoqhhtqgrclu.supabase.co/functions/v1/fut-subscribe" method="post" onsubmit="return futSub(this)"><input type="email" name="email" placeholder="you@company.com" required maxlength="254">
 <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
 <select name="area"><option>All modules</option><option>Financials</option><option>Procurement</option><option>Supply Chain &amp; Manufacturing</option><option>Logistics</option><option>Project Management</option><option>HCM</option></select><button type="submit">Subscribe</button></form>
@@ -119,7 +121,7 @@ def render(updates, dist, upcoming=None, generated=''):
     upsec=f'<div class="box"><h3 style="margin-top:0">Coming next: {upcoming["release"]}</h3><p>Oracle has published its {upcoming["release"]} What\'s New documents. <a href="{upcoming["release"].lower()}/">Oracle Fusion {upcoming["release"]}: what to expect →</a></p></div>' if upcoming else ''
     home=f"""<div class="hero"><h1>Every Oracle Fusion quarterly update, in plain English.</h1>
 <p class="lead">What changed in Financials, Procurement, Supply Chain, Logistics, Project Management and HCM, what switches on automatically, which opt-ins are becoming standard features, and what to test before it hits production.</p></div>
-{hero}{upsec}{prevsec}<div class="box"><h3 style="margin-top:0">Covered module families</h3>{famlinks}</div>{nl_form()}"""
+{hero}{upsec}{prevsec}<div class="box"><h3 style="margin-top:0">Covered module families</h3>{famlinks}</div>{nl_form(latest=True)}"""
     open(os.path.join(dist,'index.html'),'w').write(page('Oracle Fusion Cloud quarterly update tracker',home,desc='Every Oracle Fusion Cloud quarterly update in plain English: what changed by module, what switches on automatically, former opt-ins now standard, and what to test.',path='',head=jsonld({"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":BASE+"/#website","url":BASE+"/","name":SITE,"description":"Plain-English tracker of Oracle Fusion Cloud quarterly updates.","publisher":{"@id":BASE+"/#org"}},{"@type":"Organization","@id":BASE+"/#org","name":SITE,"url":BASE+"/","logo":BASE+"/logo.png","email":CONTACT}]})))
     # SEO pages
     extra=[]
@@ -133,6 +135,12 @@ def render(updates, dist, upcoming=None, generated=''):
     if upcoming:
         d=os.path.join(dist,upcoming['release'].lower()); os.makedirs(d,exist_ok=True)
         open(os.path.join(d,'index.html'),'w').write(upcoming_page(upcoming,updates)); extra.append(f"{upcoming['release'].lower()}/")
+    if ISSUES:
+        os.makedirs(os.path.join(dist,'newsletter'),exist_ok=True)
+        open(os.path.join(dist,'newsletter','index.html'),'w').write(issues_index_page()); extra.append('newsletter/')
+        for it in ISSUES:
+            d=os.path.join(dist,'newsletter',it['slug']); os.makedirs(d,exist_ok=True)
+            open(os.path.join(d,'index.html'),'w').write(issue_page(it)); extra.append(f"newsletter/{it['slug']}/")
     if HCMR['items']:
         d=os.path.join(dist,'hcm-redwood'); os.makedirs(d,exist_ok=True)
         open(os.path.join(d,'index.html'),'w').write(hcm_redwood_page(cur['release'])); extra.append(HCMR_PATH)
@@ -151,7 +159,7 @@ def render(updates, dist, upcoming=None, generated=''):
     urls=['','newsletter.html']+(['sponsor.html'] if SHOW_SPONSORS else [])+['about.html','privacy.html']+[f'updates/{k.lower()}/' for k in updates]+[f'updates/{k.lower()}/checklist.html' for k in updates]+extra
     lm=f'<lastmod>{generated}</lastmod>' if generated else ''
     open(os.path.join(dist,'sitemap.xml'),'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>{BASE}/{u}</loc>{lm}</url>\n' for u in urls)+'</urlset>\n')
-    open(os.path.join(dist,'newsletter.html'),'w').write(page('Newsletter',desc='Free quarterly briefing on Oracle Fusion Cloud updates: the changes that matter by module, opt-in expirations and a test checklist.',path='newsletter.html',body='<div class="hero"><h1>The quarterly briefing</h1><p class="lead">Before each Oracle Fusion update reaches your test environment: the changes that matter, by module, the opt-ins about to expire, and a ready-to-use test checklist. Free.</p></div>'+nl_form()))
+    open(os.path.join(dist,'newsletter.html'),'w').write(page('Newsletter',desc='Free quarterly briefing on Oracle Fusion Cloud updates: the changes that matter by module, opt-in expirations and a test checklist.',path='newsletter.html',body='<div class="hero"><h1>The quarterly briefing</h1><p class="lead">Before each Oracle Fusion update reaches your test environment: the changes that matter, by module, the opt-ins about to expire, and a ready-to-use test checklist. Free.</p>'+(f'<p><a class="btn alt" style="border:1px solid var(--line)" href="newsletter/{ISSUES[0]["slug"]}/">Read issue #{ISSUES[0]["number"]} →</a> <a href="newsletter/">All issues</a></p>' if ISSUES else '')+'</div>'+nl_form()))
     if SHOW_SPONSORS: open(os.path.join(dist,'sponsor.html'),'w').write(page('Sponsor',desc='Sponsor Fusion Updates to reach people who plan, test and run Oracle Fusion Cloud quarterly updates.',path='sponsor.html',body="""<div class="hero"><h1>Sponsor Fusion Updates</h1><p class="lead">Reach the people who plan, test and run Oracle Fusion Cloud updates: application owners, functional leads, testers and consultants across Financials, Procurement, SCM, Projects and HCM.</p></div>
 <div class="cards"><div class="card"><h3>Newsletter sponsor</h3><p class="muted">One sponsor slot per quarterly briefing, sent before each update's test window.</p></div>
 <div class="card"><h3>Update page sponsor</h3><p class="muted">"Presented by" placement on an update's change list and test checklist.</p></div>
@@ -311,3 +319,24 @@ def hr_box(rel,depth_prefix,check=False):
     lst=''.join(hr_item_html(i,check) for i in its) or '<p class="muted">None announced for this release.</p>'
     return (f'<div class="box" id="hcm-redwood"><h2 style="margin-top:0">HCM: pages switching to Redwood in {rel} ({len(its)})</h2>'
             f'<p class="small muted">{E(HR_NOTE)}{more} <a href="{depth_prefix}{HCMR_PATH}#r{rel.lower()}">All HCM pages switching to Redwood →</a></p>{lst}</div>')
+
+# ---------------- Newsletter archive (web copies written by the newsletter build) ----------------
+_ID=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'newsletter','issues')
+ISSUES=sorted([json.load(open(os.path.join(_ID,f))) for f in os.listdir(_ID) if f.endswith('.json')],key=lambda i:-i['number']) if os.path.isdir(_ID) else []
+def issue_page(it):
+    path=f"newsletter/{it['slug']}/"; title=it['subject']
+    cl=[('Home',''),('Newsletter','newsletter/'),(f"Issue #{it['number']}",path)]
+    body=f"""{crumbs_html(cl,'../../')}<p class="small muted" style="margin-top:24px">Fusion Updates newsletter · Issue #{it['number']} · {E(it['date_label'])} · <a href="../">All issues</a></p>
+{nl_form()}
+<div class="box" style="padding:0;max-width:760px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="color:#14202b">{it['body_html']}<tr><td style="padding:0 28px 24px"></td></tr></table></div>
+<p class="note">Summaries are condensed from Oracle's public readiness documentation. Always confirm details on the linked Oracle page. Questions or a change we missed: <a href="mailto:{CONTACT}">{CONTACT}</a></p>
+{nl_form()}"""
+    ld=jsonld({"@context":"https://schema.org","@graph":[{"@type":"Article","@id":BASE+'/'+path,"url":BASE+'/'+path,"headline":title,"description":it['preheader'],"datePublished":it['date'],"inLanguage":"en","publisher":{"@id":BASE+"/#org"},"isPartOf":{"@type":"WebSite","@id":BASE+"/#website","name":SITE,"url":BASE+"/"}},crumbs(cl)]})
+    return page(title,body,2,it['preheader'],path,ld)
+def issues_index_page():
+    path='newsletter/'; title='Fusion Updates newsletter: all issues'
+    cl=[('Home',''),('Newsletter',path)]
+    lst=''.join(f'<div class="item"><h4><a href="{it["slug"]}/">Issue #{it["number"]}: {E(it["subject"])}</a></h4><p class="small muted" style="margin:2px 0">{E(it["date_label"])} · Oracle Fusion {E(it["release"])}</p><p style="margin:4px 0">{E(it["preheader"])}</p></div>' for it in ISSUES)
+    body=f"""{crumbs_html(cl,'../')}<div class="hero"><h1>{E(title)}</h1><p class="lead">Past issues of the quarterly briefing on Oracle Fusion Cloud updates. Subscribe to get the next one by email.</p></div>{lst}{nl_form()}"""
+    ld=jsonld({"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":BASE+'/'+path,"url":BASE+'/'+path,"name":title,"inLanguage":"en","isPartOf":{"@type":"WebSite","@id":BASE+"/#website","name":SITE,"url":BASE+"/"}},crumbs(cl)]})
+    return page(title,body,1,'Archive of the Fusion Updates quarterly newsletter on Oracle Fusion Cloud updates.',path,ld)

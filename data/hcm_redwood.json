@@ -1,0 +1,435 @@
+{
+ "checked": "2026-10-17",
+ "note": "HCM changes Oracle announces as Redwood default switches, end of support, migrations or removals. Not part of Oracle's Current Opt-In Expirations list and not counted as former opt-ins.",
+ "items": [
+  {
+   "release": "26B",
+   "area": "Global HR",
+   "title": "Redwood Extended Lookup Codes page by default",
+   "pages": [
+    "Extended Lookup Codes"
+   ],
+   "type": "Redwood by default",
+   "revert": "Profile option can be set back to No",
+   "summary": "The Extended Lookup Codes page switches to Redwood by default from 26B; Oracle no longer fixes or enhances the classic page.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/hure-26b/26B-hr-wn-f43657.htm"
+   ]
+  },
+  {
+   "release": "26B",
+   "area": "Global HR",
+   "title": "Redwood Document Type Security Profiles page by default",
+   "pages": [
+    "Document Type Security Profiles"
+   ],
+   "type": "Redwood by default",
+   "revert": "Profile option can be set back to No",
+   "summary": "The Document Type Security Profiles page switches to Redwood by default from 26B; Oracle no longer fixes or enhances the classic page.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/hure-26b/26B-hr-wn-f43349.htm"
+   ]
+  },
+  {
+   "release": "26B",
+   "area": "Payroll (UK)",
+   "title": "Redwood UK Payroll pages by default",
+   "pages": [
+    "Court Orders and Student Loans",
+    "Taxable Benefits",
+    "Pensions Automatic Enrolment",
+    "Statutory Deductions"
+   ],
+   "type": "Redwood by default",
+   "revert": "Profile option can be set back to No",
+   "summary": "Four UK Payroll pages switch to Redwood by default in 26B.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/payr-26b/26B-payroll-wn-f49824.htm"
+   ]
+  },
+  {
+   "release": "26B",
+   "area": "Employee Experience",
+   "title": "Redwood Oracle Communicate by default",
+   "pages": [
+    "Oracle Communicate"
+   ],
+   "type": "Redwood by default",
+   "revert": "None stated: Oracle deprecates the profile option",
+   "summary": "Oracle Communicate switches to Redwood by default from 26B, and its Redwood profile option is deprecated.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/meex-26b/26B-employee-experience-wn-f43747.htm"
+   ]
+  },
+  {
+   "release": "26B",
+   "area": "Dynamic Skills",
+   "title": "Legacy Dynamic Skills no longer supported",
+   "pages": [
+    "Skill sections subscribed to Skills Center"
+   ],
+   "type": "Mandatory migration",
+   "oracle_title": "IMPORTANT: Mandatory Migration to Enhanced Dynamic Skills",
+   "revert": "None stated",
+   "summary": "Skill sections that subscribe to Skills Center must move to Enhanced Dynamic Skills; Oracle stops supporting legacy Dynamic Skills from 26B.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26a/dyns-26a/26A-dynamic-skills-wn-t72668.htm"
+   ]
+  },
+  {
+   "release": "26B",
+   "area": "Dynamic Skills",
+   "title": "Predictive-AI skill suggestions no longer supported",
+   "pages": [
+    "Skill suggestions in Skills Center, job and position profiles, role guides, requisitions, gigs and learning items"
+   ],
+   "type": "Mandatory migration",
+   "oracle_title": "IMPORTANT: Mandatory Migration to Enhanced Skills Suggestions Using Generative AI",
+   "revert": "None stated",
+   "summary": "Skill suggestions based on predictive AI are no longer supported from 26B; Oracle replaces them with generative-AI suggestions.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26a/dyns-26a/26A-dynamic-skills-wn-t74721.htm"
+   ]
+  },
+  {
+   "release": "26C",
+   "area": "Global HR",
+   "title": "Redwood workforce structures pages by default (first set)",
+   "pages": [
+    "Grades",
+    "Grade Rates",
+    "Legal Entity HCM Information",
+    "Legal Reporting Unit HCM Information",
+    "Reporting Establishments"
+   ],
+   "type": "Redwood by default",
+   "revert": "Profile option can be set back to No",
+   "summary": "Five workforce structures pages switch to Redwood by default from 26C.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/hure-26c/26C-hr-wn-f49852.htm"
+   ]
+  },
+  {
+   "release": "26C",
+   "area": "Benefits",
+   "title": "Redwood Benefits pages by default",
+   "pages": [
+    "Benefits Employee Self-Service",
+    "Benefits Administration"
+   ],
+   "type": "Redwood by default",
+   "revert": "None stated on this page",
+   "summary": "Benefits self-service and administration pages default to Redwood from 26C; Oracle delivers new Benefits enhancements in Redwood only.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/benf-26b/26B-benefits-wn-t73816.htm"
+   ]
+  },
+  {
+   "release": "26C",
+   "area": "Payroll (UK)",
+   "title": "Redwood UK self-service payroll pages by default",
+   "pages": [
+    "Pension Enrollment",
+    "New Starter Declaration"
+   ],
+   "type": "Redwood by default",
+   "revert": "Profile option can be set back to No",
+   "summary": "The UK Pension Enrollment and New Starter Declaration self-service pages switch to Redwood by default from 26C.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/payr-26c/26C-payroll-wn-f49820.htm"
+   ]
+  },
+  {
+   "release": "26C",
+   "area": "Learning",
+   "title": "Suggested Career feature no longer supported",
+   "pages": [
+    "Career role suggestions (Grow, Opportunity Marketplace)"
+   ],
+   "type": "Mandatory migration",
+   "oracle_title": "Mandatory migration to enhanced career role suggestions using generative AI",
+   "revert": "None stated",
+   "summary": "Oracle stops supporting the predictive-AI Suggested Career feature from 26C and replaces it with generative-AI career role suggestions.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/lear-26c/26C-learning-wn-t77588.htm"
+   ]
+  },
+  {
+   "release": "26C",
+   "area": "Recruiting",
+   "title": "Hybrid skill-suggestion logic retired",
+   "pages": [
+    "Suggested Skills in job requisitions"
+   ],
+   "type": "End of support",
+   "revert": "None stated",
+   "summary": "Oracle retires the Hybrid skill-suggestion logic after 26B; requisitions not on the Redwood creation flow and details page no longer show suggested skills.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/recr-26b/26B-recruiting-wn-f43491.htm"
+   ]
+  },
+  {
+   "release": "26D",
+   "area": "Global HR",
+   "title": "Redwood person pages by default (moved from 26C)",
+   "pages": [
+    "Personal Details",
+    "Contact Info",
+    "Identification Info",
+    "Family and Emergency Contacts",
+    "Additional Person Info",
+    "Person Identifiers for External Applications"
+   ],
+   "type": "Redwood by default",
+   "revert": "Profile option can be set back to No",
+   "summary": "Six person pages switch to Redwood by default in 26D; Oracle had planned this for 26C.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/hure-26c/26C-hr-wn-f47440.htm",
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/hure-26d/26D-hr-wn-f50873.htm"
+   ]
+  },
+  {
+   "release": "26D",
+   "area": "Global HR",
+   "title": "Redwood employment pages by default",
+   "pages": [
+    "Add Assignment",
+    "Add Contingent Worker",
+    "Add Nonworker",
+    "Add Pending Worker",
+    "Additional Assignment Info",
+    "Cancel Work Relationship",
+    "Change Assignment",
+    "Change Legal Employer Dashboard",
+    "Change Location",
+    "Change Manager",
+    "Change Working Hours",
+    "Create Work Relationship",
+    "Direct Reports",
+    "Employment Contracts",
+    "Employment Info",
+    "Hire an Employee",
+    "Local and Global Transfer",
+    "Mass Legal Employer Change",
+    "Promote",
+    "Transfer",
+    "Work Relationship"
+   ],
+   "type": "Redwood by default",
+   "revert": "Profile option can be set back to No",
+   "summary": "21 employment pages, from Hire an Employee to Promote and Transfer, switch to Redwood by default in 26D.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/hure-26c/26C-hr-wn-f50016.htm"
+   ]
+  },
+  {
+   "release": "26D",
+   "area": "Global HR",
+   "title": "Redwood workforce structures pages by default (second set)",
+   "pages": [
+    "Departments",
+    "Enterprise HCM Information",
+    "Grade Ladders",
+    "Jobs",
+    "Locations"
+   ],
+   "type": "Redwood by default",
+   "revert": "Profile option can be set back to No",
+   "summary": "Jobs, Locations, Departments, Enterprise HCM Information and Grade Ladders switch to Redwood by default in 26D.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/hure-26c/26C-hr-wn-f49853.htm",
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/hure-26d/26D-hr-wn-f49856.htm"
+   ]
+  },
+  {
+   "release": "26D",
+   "area": "Compensation",
+   "title": "Redwood My Compensation and Compensation Info by default",
+   "pages": [
+    "My Compensation",
+    "Compensation Info"
+   ],
+   "type": "Redwood by default",
+   "revert": "Site-level profile option ORA_CMP_SPOTLIGHT_REDWOOD_ENABLED can be set to No",
+   "summary": "My Compensation and Compensation Info open in Redwood by default from 26D.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/comp-26c/26C-compensation-wn-f43755.htm"
+   ]
+  },
+  {
+   "release": "26D",
+   "area": "Learning",
+   "title": "Responsive Career Development pages no longer supported",
+   "pages": [
+    "Me > Career > Career Development",
+    "My Team > Career Overview > Performance"
+   ],
+   "type": "Mandatory migration",
+   "oracle_title": "Mandatory migration to Redwood Career Development",
+   "revert": "None stated: automatic move to Redwood in 27A",
+   "summary": "Responsive Career Development pages are no longer supported after 26D; anyone still on them moves to Redwood automatically in 27A.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/lear-26c/26C-learning-wn-t77588.htm"
+   ]
+  },
+  {
+   "release": "26D",
+   "area": "Learning",
+   "title": "Old recommendations framework stops",
+   "pages": [
+    "Recommendations in Oracle Learning"
+   ],
+   "type": "Removal",
+   "revert": "None stated",
+   "summary": "If the new Recommendations framework (available since 25A) is not enabled before 26D, recommendations no longer appear in Oracle Learning.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/lear-26d/26D-learning-wn-t78037.htm"
+   ]
+  },
+  {
+   "release": "26D",
+   "area": "Journeys",
+   "title": "Process Automation task type removed from journey setup",
+   "pages": [
+    "Journey templates, task groups and task library"
+   ],
+   "type": "Removal",
+   "revert": "None stated",
+   "summary": "From 26D you can no longer create journey tasks with the Process Automation task type; Oracle Process Automation reaches end of life on 31 October 2026.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/hure-26d/26D-hr-wn-f50005.htm"
+   ]
+  },
+  {
+   "release": "26D",
+   "area": "Payroll",
+   "title": "Create Time Card Calculation Component process disabled",
+   "pages": [
+    "Time elements upgraded with Create Time Card Calculation Component"
+   ],
+   "type": "Removal",
+   "revert": "None stated",
+   "summary": "From 26D the Create Time Card Calculation Component process is disabled; Oracle asks you to reimplement upgraded time elements by 27D.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/payr-26d/26D-payroll-wn-f51295.htm"
+   ]
+  },
+  {
+   "release": "26D",
+   "area": "Recruiting",
+   "title": "Digital Assistant on recruiting sites phased out",
+   "pages": [
+    "Recruiting career sites using Digital Assistant"
+   ],
+   "type": "End of support",
+   "revert": "None stated",
+   "summary": "From November 2026 Oracle no longer supports Digital Assistant Fusion Apps templates; only sites that already use it keep it for now.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/recr-26d/26D-recruiting-wn-f50942.htm"
+   ]
+  },
+  {
+   "release": "27A",
+   "area": "Global HR",
+   "title": "Redwood Resign, Terminate and Mass Assignment Change by default",
+   "pages": [
+    "Resign From Employment",
+    "Terminate Employment",
+    "Mass Assignment Change"
+   ],
+   "type": "Redwood by default",
+   "revert": "Profile option can be set back to No",
+   "summary": "Resign, Terminate and Mass Assignment Change switch to Redwood by default in 27A (the Redwood Mass Assignment Change page arrives in 26D).",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/hure-26c/26C-hr-wn-f50060.htm"
+   ]
+  },
+  {
+   "release": "27A",
+   "area": "Global HR",
+   "title": "Redwood Positions pages and guided processes by default",
+   "pages": [
+    "Positions pages",
+    "Request a New Position",
+    "Request a Position Change"
+   ],
+   "type": "Redwood by default",
+   "revert": "Profile option can be set back to No",
+   "summary": "Positions pages and the Request a New Position and Request a Position Change guided processes switch to Redwood by default in 27A.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/hure-26d/26D-hr-wn-f51227.htm"
+   ]
+  },
+  {
+   "release": "27A",
+   "area": "Payroll (Canada)",
+   "title": "Only Redwood calculation cards supported (Canada)",
+   "pages": [
+    "Tax Credit Information (professional users)",
+    "Reporting Information"
+   ],
+   "type": "End of support",
+   "revert": "None stated",
+   "summary": "From 27A Oracle supports only the Redwood versions of these Canadian calculation cards.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/payr-26c/26C-payroll-wn-f49491.htm"
+   ]
+  },
+  {
+   "release": "27A",
+   "area": "Payroll (Mexico)",
+   "title": "Only Redwood Employee Tax Card supported (Mexico)",
+   "pages": [
+    "Employee Tax Card (professional users)"
+   ],
+   "type": "End of support",
+   "revert": "None stated",
+   "summary": "From 27A Oracle supports only the Redwood version of the Mexican Employee Tax Card.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/payr-26c/26C-payroll-wn-f49838.htm"
+   ]
+  },
+  {
+   "release": "27A",
+   "area": "Recruiting",
+   "title": "Apply with Indeed discontinued",
+   "pages": [
+    "Apply with Indeed on Oracle career sites"
+   ],
+   "type": "Removal",
+   "revert": "None stated: Oracle points to Direct Apply with Indeed (since 25D)",
+   "summary": "Apply with Indeed is phased out from 27A; Oracle points to Direct Apply with Indeed, available since 25D.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/recr-26c/26C-recruiting-wn-f46330.htm"
+   ]
+  },
+  {
+   "release": "27A",
+   "area": "Learning",
+   "title": "Learning BI Cloud Connector extracts replaced",
+   "pages": [
+    "Learning BI Cloud Connector (BICC)"
+   ],
+   "type": "End of support",
+   "revert": "None stated",
+   "summary": "Learning BICC is no longer supported from 27A; Oracle replaces it with Learning Catalog and Assignments Data Extraction (26C).",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/lear-26d/26D-learning-wn-t78037.htm"
+   ]
+  },
+  {
+   "release": "27C",
+   "area": "Learning",
+   "title": "Calendar event template switched on",
+   "pages": [
+    "Configure Calendar Event Body"
+   ],
+   "type": "Switched on automatically",
+   "revert": "None stated",
+   "summary": "If you have not enabled Configure Calendar Event Body (available since 25D) before 27C, that update switches it on.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/lear-26d/26D-learning-wn-t78037.htm"
+   ]
+  }
+ ]
+}

@@ -91,7 +91,7 @@ def checklist_page(u):
 {''.join(f'<li><label><input type=checkbox> {x}</label></li>' for x in ["Validate your <b>current</b> configuration first; don't enable new features yet","Key end-to-end business flows for each role (e.g. procure-to-pay, order-to-cash, plan-to-produce, hire-to-retire)","Integrations: REST/SOAP APIs, FBDI/HDL imports, and third-party systems","Critical custom reports and analytics (BI Publisher, OTBI)","Custom workflows, approvals, extensions, and personalizations","Security: roles and privileges for new or changed pages","Features delivered automatically on (section 2) and former opt-ins that are now standard (section 3)","Performance of key flows with production-like volumes"])}</ul></div>
 <div class="box" id="auto"><h2>2. Changes that switch on automatically (rated medium or high impact)</h2>{fams or '<p class=muted>None in this selection.</p>'}</div>
 <div class="box" id="expiring"><h2>3. Former opt-ins that are standard from {u['release']}</h2><p class="small muted">From Oracle's <a href="https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features/optincurrent.html" target=_blank>Current Opt-In Expirations</a> list. It covers all Fusion modules: {E(exp_scope(u['expiring'],u['release']))}.</p>
-<table><tr><th>Product</th><th>Module</th><th>Feature</th><th>Now enabled</th><th>Impact</th><th>Action</th><th>Introduced</th></tr>{exp or '<tr><td colspan=7>None listed.</td></tr>'}</table></div>
+<table><tr><th>Product</th><th>Module</th><th>Feature</th><th>Now enabled</th><th>Impact</th><th>Action</th><th>Introduced</th></tr>{exp or '<tr><td colspan=7>None listed.</td></tr>'}</table></div>{hr_box(u['release'],'../../',check=True)}
 <div class="box"><h2>4. Read Oracle's "IMPORTANT Actions and Considerations" per product</h2><ul>{imp}</ul></div>{nl_form()}"""
     return page(f"{u['release']} what-to-test checklist", body, 2, desc=f"Oracle Fusion {u['release']} what-to-test checklist: baseline regression, changes delivered switched on, former opt-ins now standard, and Oracle's IMPORTANT actions per product.", path=f"updates/{u['release'].lower()}/checklist.html")
 def render(updates, dist, upcoming=None, generated=''):
@@ -109,6 +109,7 @@ def render(updates, dist, upcoming=None, generated=''):
 <p class="lead">The current quarterly update. Start here: what changed, what switches on automatically, and which former opt-ins are now standard.</p>
 <div class="stats"><div><b>{len(cur['items'])}</b><span>changes we track</span></div><div><b>{len(cur['expiring'])}</b><span>former opt-ins now standard across all Fusion modules: {E(exp_scope(cur['expiring'],cur['release']))}.</span></div><div><b>{hi}</b><span>tracked changes rated high impact</span></div><div><b>{auto}</b><span>tracked changes delivered switched on</span></div></div>
 <p class="small">We track up to 25 changes per module family, out of {cur['total_features']} features (our count) in the {cur['release']} What's New documents for these modules. The opt-in figure is Oracle's own Current Opt-In Expirations list, which covers all Fusion modules, not only the ones we track.</p>
+<p class="small">HCM is listed separately: Oracle announces HCM changes as Redwood default switches, not opt-in expirations. <a style="color:#ff8a70" href="{HCMR_PATH}">HCM pages switching to Redwood ({len(hr_items(cur['release']))} in {cur['release']}, {len([i for i in HCMR['items'] if hr_group(i['release'])=='26d'])} announced for 26D) →</a></p>
 <p><a class="btn" href="updates/{ck}/index.html">Browse {cur['release']} changes →</a> <a class="btn alt" href="updates/{ck}/checklist.html">{cur['release']} what-to-test checklist →</a> <a class="btn alt" href="{ck}/former-opt-ins-now-standard/">{cur['release']} former opt-ins now standard →</a></p></section>"""
     prev=''.join(f"""<div class="card"><h3>Update {k}</h3><p class="muted">{len(updates[k]['items'])} changes we track · {updates[k]['total_features']} features in the What's New documents (our count) · {len(updates[k]['expiring'])} opt-ins expiring</p>
 <p><a href="updates/{k.lower()}/index.html">Browse changes →</a><br><a href="updates/{k.lower()}/checklist.html">What to test →</a></p></div>""" for k in order[1:])
@@ -132,6 +133,9 @@ def render(updates, dist, upcoming=None, generated=''):
     if upcoming:
         d=os.path.join(dist,upcoming['release'].lower()); os.makedirs(d,exist_ok=True)
         open(os.path.join(d,'index.html'),'w').write(upcoming_page(upcoming,updates)); extra.append(f"{upcoming['release'].lower()}/")
+    if HCMR['items']:
+        d=os.path.join(dist,'hcm-redwood'); os.makedirs(d,exist_ok=True)
+        open(os.path.join(d,'index.html'),'w').write(hcm_redwood_page(cur['release'])); extra.append(HCMR_PATH)
     lp=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'static')
     if os.path.isdir(lp):
         for fn in os.listdir(lp): shutil.copy(os.path.join(lp,fn),os.path.join(dist,fn))
@@ -214,7 +218,7 @@ def family_page(u,f,updates):
 <p class="lead">We track {len(its)} {E(fn)} changes in {rel}{f', out of {tot} features (our count) in Oracle&#39;s {rel} What&#39;s New documents for this area' if tot else ''}. {len(auto)} of them are delivered switched on; {len(rest)} need setup or an opt-in before anyone can use them.</p>
 <p class="small muted">Oracle sources: {booklinks}</p><p class="note">Impact ratings are our editorial view of how much a change affects day-to-day users and testing. Always confirm details on the linked Oracle page.</p></div>
 <div class="box"><h2 style="margin-top:0">Former opt-ins now standard in {rel}</h2><p class="small muted">From Oracle's <a href="https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features/optincurrent.html" target=_blank rel=noopener>Current Opt-In Expirations</a> list: features whose opt-in period ended with {rel}. If you already opted in and finished setup, nothing changes. <a href="../former-opt-ins-now-standard/">All former opt-ins now standard in {rel} →</a></p>{exp_table(exps)}</div>
-<h2>Delivered switched on ({len(auto)})</h2>{''.join(item_html(i) for i in auto) or '<p class="muted">None among the changes we track.</p>'}
+{hr_box(rel,'../../') if f=='HCM' else ''}<h2>Delivered switched on ({len(auto)})</h2>{''.join(item_html(i) for i in auto) or '<p class="muted">None among the changes we track.</p>'}
 <h2>Needs setup or opt-in ({len(rest)})</h2>{''.join(item_html(i) for i in rest) or '<p class="muted">None among the changes we track.</p>'}
 <div class="box"><p><b>More {rel}:</b> <a href="../../updates/{rk}/">All {len(u['items'])} tracked {rel} changes</a> · <a href="../../updates/{rk}/checklist.html">{rel} what-to-test checklist</a> · <a href="../former-opt-ins-now-standard/">{rel} former opt-ins now standard</a></p><p><b>Other module families in {rel}:</b> {others}</p>{f'<p><b>Other releases:</b> {otherrel}</p>' if otherrel else ''}</div>{nl_form()}"""
     ld=jsonld({"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":BASE+'/'+path,"url":BASE+'/'+path,"name":title,"description":desc,"inLanguage":"en","isPartOf":{"@type":"WebSite","@id":BASE+"/#website","name":SITE,"url":BASE+"/"},"about":{"@type":"SoftwareApplication","name":f"Oracle Fusion Cloud {fn}","softwareVersion":rel,"applicationCategory":"BusinessApplication"},"dateModified":None},
@@ -236,6 +240,7 @@ def standard_page(u):
     path=f"{rk}/former-opt-ins-now-standard/"; cl=[('Home',''),(rel,f'updates/{rk}/'),('Former opt-ins now standard',path)]
     body=f"""{crumbs_html(cl,'../../')}<div class="hero"><h1>{E(title)}</h1>
 <p class="lead">Oracle's <a href="https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features/optincurrent.html" target=_blank rel=noopener>Current Opt-In Expirations</a> list names {len(es)} features whose opt-in period ended with {rel}. They are now standard: {on} are switched on automatically, and {st} need setup if you want to use them.{f' By area: {E(exp_scope(es,rel))}.' if es else ''}</p>
+<p class="small muted">HCM changes are not on this list: Oracle announces them as Redwood default switches. See <a href="../../{HCMR_PATH}">HCM pages switching to Redwood</a>.</p>
 <p class="small muted">Oracle's note: if you already opted in and finished the setup, nothing changes for you. "Now enabled" and "Oracle's impact" are Oracle's own columns.</p></div>
 {''.join(f'<div class="box"><h2 style="margin-top:0">{E(g)} ({len(x)})</h2>{exp_table(x)}</div>' for g,x in grp.items())}
 <div class="box"><p><b>More {rel}:</b> <a href="../../updates/{rk}/">All tracked {rel} changes</a> · <a href="../../updates/{rk}/checklist.html">{rel} what-to-test checklist</a> · {' · '.join(f'<a href="../{FSLUG[f]}/">{E(FNAME[f])} {rel}</a>' for f in sorted(set(i['family'] for i in u['items'])))}</p></div>{nl_form()}"""
@@ -259,3 +264,50 @@ def upcoming_page(up,updates):
 <div class="box"><h2 style="margin-top:0">Opt-ins Oracle lists as ending with {rel} ({len(es)})</h2><p class="small muted">From Oracle's <a href="https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features/optincurrent.html" target=_blank rel=noopener>Current Opt-In Expirations</a> list. With {rel} they become standard features. Oracle's "Now enabled" column shows Yes for {on} of them; the rest need setup if you want to use them. By area: {E(exp_scope(es,rel))}. Oracle can update this list.</p>{exp_table(es)}</div>{nl_form()}"""
     ld=jsonld({"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":BASE+'/'+path,"url":BASE+'/'+path,"name":title,"description":desc,"inLanguage":"en","isPartOf":{"@type":"WebSite","@id":BASE+"/#website","name":SITE,"url":BASE+"/"}},crumbs(cl)]})
     return page(title,body,1,desc,path,ld)
+
+# ---------------- HCM pages switching to Redwood ----------------
+_HR=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'data','hcm_redwood.json')
+HCMR=json.load(open(_HR)) if os.path.exists(_HR) else {'items':[],'checked':''}
+HCMR_PATH='hcm-redwood/'
+HR_TYPE={'Redwood by default':'Switches to Redwood by default','End of support':'End of support','Mandatory migration':'Migration','Removal':'Removal','Switched on automatically':'Switches on automatically'}
+def hr_group(rel):
+    return 'later' if rel>='27A' else rel.lower()
+def hr_items(rel): return [i for i in HCMR['items'] if hr_group(i['release'])==hr_group(rel)]
+HR_NOTE="Oracle announces these HCM changes in its HCM What's New documents as Redwood default switches (and a few end-of-support, migration or removal notices), not as opt-in expirations. They are not on Oracle's Current Opt-In Expirations list and are not part of the former opt-ins counts on this site."
+def hr_item_html(i,check=False):
+    src=' · '.join(f'<a href="{E(u)}" target=_blank rel=noopener>Oracle source{(" "+str(n+1)) if len(i["urls"])>1 else ""}</a>' for n,u in enumerate(i['urls']))
+    ot=f'<p class="small muted">Oracle&#39;s title: &ldquo;{E(i["oracle_title"])}&rdquo;</p>' if i.get('oracle_title') else ''
+    pg=', '.join(i['pages'])
+    head=f'<label><input type=checkbox> {E(i["title"])}</label>' if check else E(i['title'])
+    return (f'<div class="item"><h4>{head}</h4><div class="meta"><span class="pill">{E(i["area"])}</span><span class="pill e-auto">{E(HR_TYPE.get(i["type"],i["type"]))}</span>'
+            f'<span class="pill">From {E(i["release"])}</span><span class="pill">Revert: {E(i["revert"])}</span></div>'
+            f'<p style="margin:4px 0">{E(i["summary"])}</p><p class="small muted">Pages affected: {E(pg)}</p>{ot}<p class="small">{src}</p></div>')
+def hr_counts():
+    c=collections.Counter(hr_group(i['release']) for i in HCMR['items']); return c
+def hcm_redwood_page(cur_rel):
+    c=hr_counts()
+    groups=[('26b','26B'),('26c','26C'),('26d','26D'),('later','27A and later')]
+    groups=[(g,lbl) for g,lbl in groups if c.get(g)]
+    lab=lambda g,lbl: lbl+(' (current update)' if lbl==cur_rel else (' (next update, already announced)' if g=='26d' and cur_rel=='26C' else ''))
+    title='Oracle Fusion HCM: pages switching to Redwood'
+    desc=f"Oracle Fusion HCM pages that switch to Redwood by default in 26B, 26C, 26D and 27A, plus related end-of-support notices, in plain English with Oracle links: {len(HCMR['items'])} changes."
+    cl=[('Home',''),('HCM pages switching to Redwood',HCMR_PATH)]
+    jump=' · '.join(f'<a href="#r{g}">{E(lbl)} ({c[g]})</a>' for g,lbl in groups)
+    secs=''.join(f'<h2 id="r{g}">{E(lab(g,lbl))} <span class="muted small">({c[g]})</span></h2>'+''.join(hr_item_html(i) for i in HCMR['items'] if hr_group(i['release'])==g) for g,lbl in groups)
+    body=f"""{crumbs_html(cl,'../')}<div class="hero"><h1>{E(title)}</h1>
+<p class="lead">HCM pages that switch to Redwood by default, by release, with the other HCM end-of-support and removal notices Oracle has published. Where Oracle says so, you can still set the profile option back to No.</p>
+<p class="small muted">{E(HR_NOTE)} Checked against each Oracle page on {E(HCMR.get('checked',''))}.</p>
+<p class="note">Impact ratings are our editorial view of how much a change affects day-to-day users and testing. Always confirm details on the linked Oracle page.</p>
+<p><b>Jump to:</b> {jump}</p></div>{secs}
+<div class="box"><p><b>More HCM:</b> {' · '.join(f'<a href="../{k}/hcm/">HCM {k.upper()} changes we track</a>' for k in ('26c','26b'))} · <a href="../updates/{cur_rel.lower()}/checklist.html">{cur_rel} what-to-test checklist</a></p></div>{nl_form()}"""
+    ld=jsonld({"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":BASE+'/'+HCMR_PATH,"url":BASE+'/'+HCMR_PATH,"name":title,"description":desc,"inLanguage":"en","isPartOf":{"@type":"WebSite","@id":BASE+"/#website","name":SITE,"url":BASE+"/"}},crumbs(cl),
+        {"@type":"ItemList","name":title,"numberOfItems":len(HCMR['items']),"itemListElement":[{"@type":"ListItem","position":n+1,"name":i['title'],"url":i['urls'][0]} for n,i in enumerate(HCMR['items'])]}]})
+    return page(title,body,1,desc,HCMR_PATH,ld)
+def hr_box(rel,depth_prefix,check=False):
+    its=hr_items(rel)
+    nxt={'26C':'26d'}.get(rel); nn=len([i for i in HCMR['items'] if hr_group(i['release'])==nxt]) if nxt else 0
+    if not its and not nn: return ''
+    more=f' {nn} more are already announced for {nxt.upper()}.' if nn else ''
+    lst=''.join(hr_item_html(i,check) for i in its) or '<p class="muted">None announced for this release.</p>'
+    return (f'<div class="box" id="hcm-redwood"><h2 style="margin-top:0">HCM: pages switching to Redwood in {rel} ({len(its)})</h2>'
+            f'<p class="small muted">{E(HR_NOTE)}{more} <a href="{depth_prefix}{HCMR_PATH}#r{rel.lower()}">All HCM pages switching to Redwood →</a></p>{lst}</div>')

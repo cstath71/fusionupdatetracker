@@ -147,7 +147,7 @@ def render(updates, dist, upcoming=None, generated=''):
 <h3>Where it's kept</h3><p>Subscriber data is stored with Supabase (EU region, Frankfurt), and newsletters are sent with Resend (EU region). Both act as processors for us.</p>
 <h3>Unsubscribe and deletion</h3><p>Every email has a one-click unsubscribe link. To have your data deleted, or for any question, write to '''+contact_html()+'''.</p>
 <h3>Analytics</h3><p>This site uses no tracking cookies, and newsletter open and click tracking is turned off.</p>
-<p class="small muted">Fusion Updates is run by PrimeLogic Advisory, Switzerland. Last updated: October 2026.</p></div>'''))
+<p class="small muted">Fusion Updates is an independent publication. Questions about your data: hello@fusionupdates.com. Last updated: October 2026.</p></div>'''))
     open(os.path.join(dist,'CNAME'),'w').write('fusionupdates.com\n')
     open(os.path.join(dist,'robots.txt'),'w').write(f'User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n')
     urls=['','newsletter.html']+(['sponsor.html'] if SHOW_SPONSORS else [])+['about.html','privacy.html']+[f'updates/{k.lower()}/' for k in updates]+[f'updates/{k.lower()}/checklist.html' for k in updates]+extra
@@ -160,7 +160,7 @@ def render(updates, dist, upcoming=None, generated=''):
 <div class="card"><h3>Module sponsor</h3><p class="muted">Placement on one module family (e.g. Supply Chain or HCM) across updates.</p></div></div>
 <div class="box"><p>Good fits: test automation, data loading and migration tools, Oracle partners and add-on vendors. Sponsors never influence summaries or ratings, and sponsored placements are always labeled.</p><p><b>Rates and audience numbers:</b> available on request. """+(f"Write to {contact_html()}." if CONTACT else '<span class="muted small">(Contact address to be added.)</span>')+"""</p></div>"""))
     open(os.path.join(dist,'about.html'),'w').write(page('About',desc='About Fusion Updates: an independent, plain-English tracker of Oracle Fusion Cloud quarterly updates, and how it is built.',path='about.html',body="""<div class="hero"><h1>About</h1><p class="lead">Fusion Updates (fusionupdates.com) turns Oracle's quarterly readiness documentation into a filterable, plain-English list of changes across Oracle Fusion Cloud, with draft impact ratings and a what-to-test checklist for every update.</p></div>
-<div class="box"><p>It is run by an Oracle supply chain and ERP consultant based in Switzerland (PrimeLogic Advisory). Every entry links back to its Oracle source page. Summaries are condensed from Oracle's text, and impact ratings are editorial judgment, so always check the Oracle page and your own configuration.</p>
+<div class="box"><p>It is run by an experienced Oracle consultant. Every entry links back to its Oracle source page. Summaries are condensed from Oracle's text, and impact ratings are editorial judgment, so always check the Oracle page and your own configuration.</p>
 <p>This is an independent site, not affiliated with or endorsed by Oracle.</p><p class="small muted">Method: features come from the "Feature Summary" tables in Oracle's What's New documents. Enablement comes from Oracle's "Action to Enable" column plus the Current Opt-In Expirations list. Impact draft: Oracle's "Larger scale" maps to high; opt-ins expiring this update or next are high; "Small scale" or automatically enabled Redwood changes are medium; everything else is low.</p></div>"""))
 
 # ---------------- SEO pages ----------------

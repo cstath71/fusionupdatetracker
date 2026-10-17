@@ -69,7 +69,7 @@ def update_page(u):
 <div class="small muted">Oracle's own impact label: {E(i['oracle_impact'])} · Action to enable: {E(i['action'])} · <a href="{E(i['url'])}" target="_blank" rel="noopener">Oracle source</a></div></div>""")
     opt=lambda xs:''.join(f'<option>{E(x)}</option>' for x in xs)
     body=f"""<div class="hero"><h1>Oracle Fusion Cloud {u['release']}: what changed</h1>
-<p class="lead">{len(items)} of the most impactful changes (out of {u['total_features']} features in Oracle's {u['release']} readiness documents), across all module families. <a href="checklist.html">See the {u['release']} what-to-test checklist →</a></p>
+<p class="lead">{len(items)} changes we track: the most relevant ones, up to 25 per module family (out of {u['total_features']} features, by our count, in the {u['release']} What's New documents for Financials, Procurement, SCM, Logistics, Projects and HCM). <a href="checklist.html">See the {u['release']} what-to-test checklist →</a></p>
 <p><span class="draft">DRAFT impact ratings, pending editorial review</span></p>
 <p class="small muted">{' · '.join(f'{E(f)}: {cnt[f]}' for f in fams)}</p></div>
 <div class="filters"><select id="fam"><option value="">All module families</option>{opt(fams)}</select>
@@ -87,7 +87,7 @@ def checklist_page(u):
     auto_hi=[i for i in items if i['enablement'].startswith('Automatically') and i['impact'] in('high','medium')]
     byfam=collections.defaultdict(list)
     for i in auto_hi: byfam[i['family']].append(i)
-    exp=''.join(f"<tr><td>{E(e['product'])}</td><td>{E(e['module'])}</td><td>{'<a href=\"'+E(e['url'])+'\" target=_blank>' if e['url'] else ''}{E(e['title'])}{'</a>' if e['url'] else ''}</td><td>{E(e['impact'])}</td><td>{E(e['action'])}</td><td>{E(e['introduced'])}</td></tr>" for e in u['expiring'])
+    exp=''.join(f"<tr><td>{E(e['product'])}</td><td>{E(e['module'])}</td><td>{'<a href=\"'+E(e['url'])+'\" target=_blank>' if e['url'] else ''}{E(e['title'])}{'</a>' if e['url'] else ''}</td><td>{E(e.get('now_enabled',''))}</td><td>{E(e['impact'])}</td><td>{E(e['action'])}</td><td>{E(e['introduced'])}</td></tr>" for e in u['expiring'])
     fams=''.join(f"<h3>{E(f)}</h3><ul class='check'>"+''.join(f"<li><label><input type=checkbox> <a href='{E(i['url'])}' target=_blank>{E(i['title'])}</a> <span class='small muted'>({E(i['product'])} · {E(i['module'])}, {i['impact']})</span></label></li>" for i in v)+"</ul>" for f,v in sorted(byfam.items()))
     imp=''.join(f"<li><a href='{E(x['url'])}' target=_blank>{E(x['product'])}</a> <span class='small muted'>{E(x['family'])}</span></li>" for x in sorted(u['important'],key=lambda x:(x['family'],x['product'])))
     body=f"""<div class="hero"><h1>{u['release']} what-to-test checklist</h1><p class="lead">A starting point for regression testing the {u['release']} quarterly update in your test environment. Tick items as you go (ticks are not saved).</p><p><span class="draft">DRAFT, pending editorial review</span></p></div>
@@ -95,7 +95,7 @@ def checklist_page(u):
 {''.join(f'<li><label><input type=checkbox> {x}</label></li>' for x in ["Validate your <b>current</b> configuration first; don't enable new features yet","Key end-to-end business flows for each role (e.g. procure-to-pay, order-to-cash, plan-to-produce, hire-to-retire)","Integrations: REST/SOAP APIs, FBDI/HDL imports, and third-party systems","Critical custom reports and analytics (BI Publisher, OTBI)","Custom workflows, approvals, extensions, and personalizations","Security: roles and privileges for new or changed pages","Features delivered automatically on (section 2) and opt-ins expiring this update (section 3)","Performance of key flows with production-like volumes"])}</ul></div>
 <div class="box" id="auto"><h2>2. Changes that switch on automatically (medium/high draft impact)</h2>{fams or '<p class=muted>None in this selection.</p>'}</div>
 <div class="box" id="expiring"><h2>3. Opt-ins that expire in {u['release']} (become mandatory)</h2><p class="small muted">From Oracle's <a href="https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features/optincurrent.html" target=_blank>Current Opt-In Expirations</a> list (all pillars, including non-ERP).</p>
-<table><tr><th>Product</th><th>Module</th><th>Feature</th><th>Impact</th><th>Action</th><th>Introduced</th></tr>{exp or '<tr><td colspan=6>None listed.</td></tr>'}</table></div>
+<table><tr><th>Product</th><th>Module</th><th>Feature</th><th>Now enabled</th><th>Impact</th><th>Action</th><th>Introduced</th></tr>{exp or '<tr><td colspan=7>None listed.</td></tr>'}</table></div>
 <div class="box"><h2>4. Read Oracle's "IMPORTANT Actions and Considerations" per product</h2><ul>{imp}</ul></div>{nl_form()}"""
     return page(f"{u['release']} what-to-test checklist", body, 2, path=f"updates/{u['release'].lower()}/checklist.html")
 def render(updates, dist):
@@ -110,11 +110,11 @@ def render(updates, dist):
     cur=updates[order[0]]; ck=order[0].lower()
     hi=sum(1 for i in cur['items'] if i['impact']=='high'); auto=sum(1 for i in cur['items'] if i['enablement'].startswith('Automatically'))
     hero=f"""<section class="current"><span class="tag">Current update</span><h2>Oracle Fusion Cloud {cur['release']}</h2>
-<p class="lead">The update now rolling out. Start here: what changed, what switches on automatically, and which opt-ins are becoming mandatory.</p>
-<div class="stats"><div><b>{len(cur['items'])}</b><span>key changes tracked</span></div><div><b>{len(cur['expiring'])}</b><span>opt-ins becoming mandatory</span></div><div><b>{hi}</b><span>high-impact changes (draft)</span></div><div><b>{auto}</b><span>automatically on</span></div></div>
-<p class="small">Out of {cur['total_features']} features in Oracle's {cur['release']} readiness documents.</p>
+<p class="lead">The current quarterly update. Start here: what changed, what switches on automatically, and which opt-ins are becoming mandatory.</p>
+<div class="stats"><div><b>{len(cur['items'])}</b><span>changes we track</span></div><div><b>{len(cur['expiring'])}</b><span>opt-ins becoming mandatory (Oracle's list, all pillars)</span></div><div><b>{hi}</b><span>tracked changes rated high impact (draft)</span></div><div><b>{auto}</b><span>tracked changes delivered switched on</span></div></div>
+<p class="small">We track up to 25 changes per module family, out of {cur['total_features']} features (our count) in the {cur['release']} What's New documents for these modules. The opt-in figure is Oracle's own Current Opt-In Expirations list.</p>
 <p><a class="btn" href="updates/{ck}/index.html">Browse {cur['release']} changes →</a> <a class="btn alt" href="updates/{ck}/checklist.html">{cur['release']} what-to-test checklist →</a></p></section>"""
-    prev=''.join(f"""<div class="card"><h3>Update {k}</h3><p class="muted">{len(updates[k]['items'])} key changes tracked · {updates[k]['total_features']} features in Oracle docs · {len(updates[k]['expiring'])} opt-ins expiring</p>
+    prev=''.join(f"""<div class="card"><h3>Update {k}</h3><p class="muted">{len(updates[k]['items'])} changes we track · {updates[k]['total_features']} features in the What's New documents (our count) · {len(updates[k]['expiring'])} opt-ins expiring</p>
 <p><a href="updates/{k.lower()}/index.html">Browse changes →</a><br><a href="updates/{k.lower()}/checklist.html">What to test →</a></p></div>""" for k in order[1:])
     prevsec=f'<h2>Previous updates</h2><div class="cards">{prev}</div>' if prev else ''
     fams=sorted(set(i['family'] for u in updates.values() for i in u['items']))

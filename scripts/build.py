@@ -17,6 +17,11 @@ def family(path):
     if path.startswith('hcm/'): return 'HCM'
     return FAM.get(b,'Supply Chain & Manufacturing')
 def product(title): return re.sub(r"^Oracle Fusion Cloud |\s*26[A-D] What's New$|\s*What's New.*$","",title).strip()
+def oracle_scale(v):
+    """Oracle's own size rating, verbatim from its "Impact to Existing Processes" column (e.g. "Larger scale", "Small scale").
+    Oracle's column also uses "Report" and "None" (None = not delivered enabled); those are not a scale, so no scale tag."""
+    v=(v or '').strip()
+    return v if re.search(r'\bscale$',v,re.I) else None
 # opt-in expirations (Oracle "Current Opt-In Expirations" table)
 oh=get('https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features/optincurrent.html')
 EXP=[]; EXPMAP={}
@@ -29,6 +34,7 @@ for tr in re.findall(r'<tr>(.*?)</tr>',oh,re.S):
     mm=re.search(r'/wn/([a-z]+)/releases/(\d\d[A-D])/.*#F(\d+)',link)  # old webfolder links now 404: use Oracle's lookup service
     if mm: link=f'https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id={mm.group(1)}{mm.group(2).lower()}-f{mm.group(3)}'
     r=dict(expires=txt(td[0]),pillar=txt(td[1]),product=txt(td[2]),module=txt(td[3]),title=txt(td[4]),now_enabled=txt(td[5]),impact=txt(td[6]),action=txt(td[7]),introduced=txt(td[8]),url=link)
+    r['oracle_scale']=oracle_scale(r['impact'])
     EXP.append(r); EXPMAP[r['title'].lower()]=r['expires']
 def norm(s): return re.sub(r'\s+',' ',s).strip().lower()
 def enablement(r):
@@ -74,7 +80,7 @@ for rel,books in raw.items():
         if b.get('important'): important.append(dict(product=prod,family=fam,url=b['important']))
         for r in b['rows']:
             r=dict(r); r['family']=fam; r['product']=prod; r['_rel']=rel.upper(); r['_relnext']=nextrel[rel]
-            r['enablement']=enablement(r); r['impact']=auto_impact(r,r['enablement']); items.append(r)
+            r['enablement']=enablement(r); r['impact']=auto_impact(r,r['enablement']); r['oracle_scale']=oracle_scale(r['oracle_impact']); items.append(r)
     sel=[]
     for fam in sorted(set(i['family'] for i in items)):
         fi=[i for i in items if i['family']==fam]
@@ -93,7 +99,7 @@ for rel,books in raw.items():
     unpublished=[dict(family=family(b['path']),product=UNPUB.get(re.sub(r'-?2\d[a-d]$','',b['path'].split('/')[-1]),b['path'])) for b in books if not b['rows']]
     books=[dict(product=prodname(b['title'],b['path']),family=family(b['path']),url=f"https://docs.oracle.com/en/cloud/saas/readiness/{b['path']}/index.html",features=len(b['rows'])) for b in books if b['rows']]
     # every row of Oracle's Feature Summary tables, as Oracle states it (shown in full on the module family pages)
-    allrows=[dict(family=i['family'],product=i['product'],module=i['module'],title=i['title'],oracle_impact=i['oracle_impact'],action=i['action'],url=i['url']) for i in items]
+    allrows=[dict(family=i['family'],product=i['product'],module=i['module'],title=i['title'],oracle_impact=i['oracle_impact'],oracle_scale=i['oracle_scale'],action=i['action'],url=i['url']) for i in items]
     updates[rel.upper()]=dict(release=rel.upper(),items=sel,all=allrows,unpublished=unpublished,total_features=len(items),important=important,
         family_totals=dict(collections.Counter(i['family'] for i in items)),books=books,
         expiring=[e for e in EXP if e['expires']==rel.upper()])

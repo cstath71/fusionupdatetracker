@@ -4,6 +4,7 @@ A static site that tracks Oracle Fusion Cloud quarterly updates (26B, 26C, 26D) 
 
 - `scripts/crawl.py` reads the Feature Summary tables from Oracle readiness docs into `/workspace/fut-raw/summaries.json` (HTTP responses are cached in `/workspace/fut-raw/cache`).
 - `scripts/build.py` picks the top changes per module family (`PER_FAMILY=25`), pulls 1-2 sentence summaries from each Oracle feature page, sets an automatic first-pass impact and enablement, applies the reviewed ratings and summaries in `data/editorial.json`, and writes `data/updates.json` and `dist/`.
+- Each feature card shows two labels: "Impact on upgrade" (our rating, `impact`) and "Oracle scale" (`oracle_scale`, copied verbatim by `build.py` from Oracle's "Impact to Existing Processes" column when it is a scale value such as "Larger scale" or "Small scale"; rows Oracle marks "Report" or "None" get no scale tag).
 - `scripts/render.py` holds the HTML templates (home, update pages, checklists, newsletter, sponsor, about).
 
 Rebuild: `python3 scripts/crawl.py && python3 scripts/build.py`

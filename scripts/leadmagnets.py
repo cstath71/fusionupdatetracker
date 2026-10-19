@@ -9,7 +9,10 @@ import render as R
 E=html.escape
 ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT=os.path.join(ROOT,'assets','downloads'); os.makedirs(OUT,exist_ok=True)
-U=json.load(open(os.path.join(ROOT,'data','updates.json'))); UP=U['upcoming']; REL=UP['release']
+U=json.load(open(os.path.join(ROOT,'data','updates.json'))); UP=U['upcoming']
+if not UP or UP['release']!=R.LEAD['rel']:  # e.g. once 26D is the current update and 27A isn't published yet
+    _u=U['updates'].get(R.LEAD['rel']); UP=dict(release=_u['release'],books=_u['books'],expiring=_u['expiring']) if _u else UP
+REL=UP['release']
 assert REL==R.LEAD['rel'], (REL, R.LEAD['rel'])
 TODAY=datetime.date.today()
 FI='https://blogs.oracle.com/fusioninsider/quarterly-updates-made-easy'
@@ -30,14 +33,8 @@ def windows(rel):
 HOL={datetime.date(2027,1,1):"This date is New Year's Day. Oracle may schedule this cohort differently, so check your own date."}
 
 # ---- PDF ----
-def bygroup(es):
-    g=collections.OrderedDict()
-    for f in R.FSLUG:
-        x=[e for e in es if R.exp_family(e)==f]
-        if x: g[R.FNAME[f]]=x
-    for e in es:
-        if R.exp_family(e) is None: g.setdefault(f"{R.exp_other_label(e)} (outside the modules we track)",[]).append(e)
-    return g
+def bygroup(es):  # Oracle's own Pillar column
+    return collections.OrderedDict((f"Oracle pillar: {k}",x) for k,x in R.pillar_groups(es).items())
 ACT={'None':'Nothing to do: on for everyone','Setup':'Set up if you want to use it'}
 hr=[i for i in R.HCMR['items'] if i['release']==REL]
 later=[i for i in R.HCMR['items'] if i['release']>REL]

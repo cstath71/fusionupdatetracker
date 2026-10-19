@@ -22,7 +22,7 @@ POD_NOTE='<p>Per Oracle, if you set a profile option to Yes in a test pod and th
 def related(cur,depth='../../'):
     lk=' · '.join(f'<a href="{depth}{p}">{E(n)}</a>' for p,n in PAGES.items() if p!=cur)
     return (f'<div class="box"><p><b>Related:</b> {lk} · <a href="{depth}{R.HCMR_PATH}">All HCM pages switching to Redwood</a> · '
-            f'<a href="{depth}26d/">26D opt-in expiration list</a></p></div>')
+            f'<a href="{depth}26d/">26D what&#39;s new and opt-in expiration list</a></p></div>')
 def ld(path,title,desc,cl,extra=None):
     g=[{"@type":"WebPage","@id":R.BASE+'/'+path,"url":R.BASE+'/'+path,"name":title,"description":desc,"inLanguage":"en","dateModified":LT['checked'],
         "isPartOf":{"@type":"WebSite","@id":R.BASE+"/#website","name":R.SITE,"url":R.BASE+"/"}},R.crumbs(cl)]

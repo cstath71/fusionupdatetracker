@@ -10,7 +10,7 @@ from crawl import get, txt
 ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RAW='/workspace/fut-raw'; DIST=os.path.join(ROOT,'dist'); DATA=os.path.join(ROOT,'data')
 PER_FAMILY=int(os.environ.get('PER_FAMILY','25'))
-FAM={'fins':'Financials','risk':'Financials','ssfin':'Financials','ppm':'Project Management','proc':'Procurement','ssproc':'Procurement',
+FAM={'fins':'Financials','risk':'Financials','rrsk':'Financials','ssfin':'Financials','ppm':'Project Management','proc':'Procurement','ssproc':'Procurement',
      'gtm':'Logistics (OTM/GTM/WMS)','otm':'Logistics (OTM/GTM/WMS)','wms':'Logistics (OTM/GTM/WMS)'}
 def family(path):
     b=re.sub(r'-?26[a-d]$','',path.split('/')[-1])
@@ -60,12 +60,12 @@ def summary(url):
     return out[:420].rstrip()+('…' if len(out)>420 else '')
 def prodname(title,path):
     prod=product(title)
-    if '$' in prod or not prod: prod={'risk':'Risk Management','ssfin':'Financials (Shared)','hcom':'HCM Common','wohs':'Workforce Health and Safety','woli':'Work Life'}.get(re.sub(r'-?2\d[a-d]$','',path.split('/')[-1]),path.split('/')[-1])
+    if '$' in prod or not prod: prod={'risk':'Risk Management','rrsk':'Risk Management (Redwood)','ssfin':'Financials (Shared)','hcom':'HCM Common','wohs':'Workforce Health and Safety','woli':'Work Life'}.get(re.sub(r'-?2\d[a-d]$','',path.split('/')[-1]),path.split('/')[-1])
     return prod
 raw=json.load(open(os.path.join(RAW,'summaries.json')))
 _ed=os.path.join(DATA,'editorial.json')
 EDITORIAL=json.load(open(_ed))['items'] if os.path.exists(_ed) else {}
-nextrel={'26b':'26C','26c':'26D'}
+nextrel={'26b':'26C','26c':'26D','26d':'27A','27a':'27B'}
 updates={}
 for rel,books in raw.items():
     items=[]; important=[]
@@ -89,14 +89,31 @@ for rel,books in raw.items():
         if ov:  # reviewed editorial rating/summary (data/editorial.json) replaces the automatic first pass
             for k in ('impact','summary','enablement'):
                 if ov.get(k): r[k]=ov[k]
+    UNPUB={'otm':'Transportation Management (OTM)','gtm':'Global Trade Management (GTM)','woli':'Work Life'}
+    unpublished=[dict(family=family(b['path']),product=UNPUB.get(re.sub(r'-?2\d[a-d]$','',b['path'].split('/')[-1]),b['path'])) for b in books if not b['rows']]
     books=[dict(product=prodname(b['title'],b['path']),family=family(b['path']),url=f"https://docs.oracle.com/en/cloud/saas/readiness/{b['path']}/index.html",features=len(b['rows'])) for b in books if b['rows']]
-    updates[rel.upper()]=dict(release=rel.upper(),items=sel,total_features=len(items),important=important,
+    # every row of Oracle's Feature Summary tables, as Oracle states it (shown in full on the module family pages)
+    allrows=[dict(family=i['family'],product=i['product'],module=i['module'],title=i['title'],oracle_impact=i['oracle_impact'],action=i['action'],url=i['url']) for i in items]
+    updates[rel.upper()]=dict(release=rel.upper(),items=sel,all=allrows,unpublished=unpublished,total_features=len(items),important=important,
         family_totals=dict(collections.Counter(i['family'] for i in items)),books=books,
         expiring=[e for e in EXP if e['expires']==rel.upper()])
+# Current update: the newest tracked release whose Cohort A test update (first Friday of Feb/May/Aug/Nov, Oracle's
+# published cohort rule) has started. A tracked release newer than that is the next update ("upcoming").
+import calendar
+def _cohort_a_test(rel):
+    y=2000+int(rel[:2]); m={'A':2,'B':5,'C':8,'D':11}[rel[2]]
+    return next(datetime.date(y,m,d) for d in range(1,8) if datetime.date(y,m,d).weekday()==4)
+TODAY=datetime.date.fromisoformat(os.environ['FUT_TODAY']) if os.environ.get('FUT_TODAY') else datetime.date.today()
+_started=[k for k in sorted(updates) if _cohort_a_test(k)<=TODAY]
+CURRENT=_started[-1] if _started else sorted(updates)[0]
+_later=[k for k in sorted(updates) if k>CURRENT]
 # Next release: only listed if Oracle has published its What's New documents (checked via each book's toc.htm)
 from crawl import BOOKS
-_last=sorted(raw)[-1]; _nxt=nextrel[_last] if _last in nextrel else None
+_last=CURRENT.lower(); _nxt=nextrel[_last] if (_last in nextrel and not _later) else None
 upcoming=None
+if _later:  # next release already tracked from Oracle's Feature Summary tables
+    nu=updates[_later[0]]
+    upcoming=dict(release=nu['release'],tracked=True,books=[dict(product=b['product'],family=b['family'],url=b['url']) for b in nu['books']],expiring=nu['expiring'])
 if _nxt:
     nb=[]
     for path in BOOKS[_last].split():
@@ -108,7 +125,7 @@ if _nxt:
             nb.append(dict(product=prodname(t,np_),family=family(np_),url=f'https://docs.oracle.com/en/cloud/saas/readiness/{np_}/index.html'))
     if nb: upcoming=dict(release=_nxt,books=nb,expiring=[e for e in EXP if e['expires']==_nxt])
 os.makedirs(DATA,exist_ok=True)
-json.dump(dict(generated=datetime.date.today().isoformat(),updates=updates,upcoming=upcoming),open(os.path.join(DATA,'updates.json'),'w'),indent=1)
-import render; render.render(updates, DIST, upcoming=upcoming, generated=datetime.date.today().isoformat())
+json.dump(dict(generated=datetime.date.today().isoformat(),current=CURRENT,updates=updates,upcoming=upcoming),open(os.path.join(DATA,'updates.json'),'w'),indent=1)
+import render; render.render(updates, DIST, upcoming=upcoming, generated=datetime.date.today().isoformat(), current=CURRENT)
 for k,u in updates.items():
     import collections; print(k,'total in Oracle docs:',u['total_features'],'selected:',dict(collections.Counter(i['family'] for i in u['items'])),'expiring:',len(u['expiring']))

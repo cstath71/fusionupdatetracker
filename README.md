@@ -1,6 +1,6 @@
 # Fusion Updates (fusionupdates.com), repo: fusionupdatetracker
 
-A static site that tracks Oracle Fusion Cloud quarterly updates (26B, 26C) across Financials, Procurement, SCM, Logistics, Project Management and HCM.
+A static site that tracks Oracle Fusion Cloud quarterly updates (26B, 26C, 26D) across Financials, Procurement, SCM, Logistics, Project Management and HCM.
 
 - `scripts/crawl.py` reads the Feature Summary tables from Oracle readiness docs into `/workspace/fut-raw/summaries.json` (HTTP responses are cached in `/workspace/fut-raw/cache`).
 - `scripts/build.py` picks the top changes per module family (`PER_FAMILY=25`), pulls 1-2 sentence summaries from each Oracle feature page, sets an automatic first-pass impact and enablement, applies the reviewed ratings and summaries in `data/editorial.json`, and writes `data/updates.json` and `dist/`.
@@ -8,7 +8,9 @@ A static site that tracks Oracle Fusion Cloud quarterly updates (26B, 26C) acros
 
 Rebuild: `python3 scripts/crawl.py && python3 scripts/build.py`
 Preview: `cd dist && python3 -m http.server 4321`, then open http://localhost:4321
-Add an update: add its book paths to `BOOKS` in crawl.py and a link in the render.py nav.
+Add an update: add its book paths to `BOOKS` in crawl.py (the nav, home page, module pages and sitemap follow automatically).
+
+Current and next update: `build.py` treats as current the newest tracked release whose Cohort A test update (first Friday of Feb, May, Aug or Nov, Oracle's cohort rule) has started; a newer tracked release is the next update. On 19 Oct 2026 that is 26C current and 26D next, and 26D becomes current on Fri 6 Nov 2026 with no code change (override for testing with `FUT_TODAY=YYYY-MM-DD`). While a tracked release is next, `/26d/` is its hub: what's new by module (counts of every Feature Summary row by Oracle's "Action to Enable" column), links to the module pages, and the opt-in expiration list (anchor `#opt-ins`). Every module page lists all rows of Oracle's Feature Summary tables for that area (`all` in `data/updates.json`) with Oracle's own Impact and Action to Enable columns. Books with no Feature Summary yet (26D OTM, GTM and Work Life on 19 Oct 2026) are left out and named on the page; the weekly refresh adds them once Oracle publishes. Opt-in expiration tables are grouped by Oracle's own Pillar column.
 
 Long-tail search pages (`scripts/longtail.py`, called from `render.py`): /26d/redwood-person-pages/, /26d/redwood-employment-pages/, /26d/redwood-workforce-structures-pages/ and /27a/redwood-defaults/. Their page names, profile option codes and first-release values live in `data/longtail.json`, copied from the Oracle pages listed there; update that file when Oracle revises a page. /26d/ is titled as the 26D opt-in expiration list, and the former-opt-ins pages carry an FAQ with FAQPage schema.
 

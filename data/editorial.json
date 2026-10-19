@@ -1087,6 +1087,21 @@
    "impact": "medium",
    "impact_was": "high",
    "reason": "Opt-in that becomes standard in 26D, but Oracle's expiration list shows it won't be switched on automatically, and it only affects FBDI loads of global work definitions."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26d/risk26d/26D-risk-wn-f51315.htm": {
+   "id": "26D-f51315@risk26d",
+   "summary": "Two pre-built reports, the Access Global Conditions Report and the Access Entitlements Report, list all access global conditions and all access entitlements with their access points. Oracle says you can open them from the Oracle Transactional Business Intelligence (OTBI) catalog under /Shared Folders/Risk Management/Advanced Access Controls/Administration/Report Components.",
+   "reason": "26D automatic summary joined text around a bulleted list and read garbled; rewritten from Oracle's page (19 Oct 2026). Rating unchanged."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/lear-26d/26D-learning-wn-f50703.htm": {
+   "id": "26D-f50703@lear-26d",
+   "summary": "My Learning Assistant now helps you complete common learning tasks from a single conversational experience: ask about active, overdue, due soon, required, self-enrolled and completed learning, get recommendations from the learning catalog, and start enrollment from recommended learning when enrollment conditions allow.",
+   "reason": "26D automatic summary joined text around a bulleted list and read garbled; rewritten from Oracle's page (19 Oct 2026). Rating unchanged."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/payr-26d/26D-payroll-wn-f50612.htm": {
+   "id": "26D-f50612@payr-26d",
+   "summary": "Manage organization calculation cards in the Redwood experience. Where the legislation supports it, the Legal Entity Calculation Card manages a Payroll Statutory Unit (PSU) card, and the Legal Reporting Unit Calculation Card manages a Tax Reporting Unit (TRU) card, whose values override the PSU card.",
+   "reason": "26D automatic summary joined text around a bulleted list and read garbled; rewritten from Oracle's page (19 Oct 2026). Rating unchanged."
   }
  }
 }

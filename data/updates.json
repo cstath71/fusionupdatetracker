@@ -19760,7 +19760,7 @@
      "product": "Financials",
      "_rel": "26D",
      "enablement": "Automatically on",
-     "impact": "high",
+     "impact": "medium",
      "summary": "Use the Payables Period Close Workspace to achieve a timely, controlled, and explainable Payables close. For the selected ledger and accounting period, the workspace brings together invoice, payment, and period status to establish the current close posture, identify what is preventing progress, and direct attention to the work that matters most."
     },
     {
@@ -19774,7 +19774,7 @@
      "product": "Risk Management (Redwood)",
      "_rel": "26D",
      "enablement": "Automatically on (setup may apply)",
-     "impact": "high",
+     "impact": "low",
      "summary": "Algorithm Filters are reusable definitions that specify the data an algorithm keeps or removes during evaluation. They support Sensitive Access Monitor, Segregation of Duties (SoD) Access Monitor, Transaction Monitor, and Change Tracking algorithm types."
     },
     {
@@ -19788,7 +19788,7 @@
      "product": "Risk Management (Redwood)",
      "_rel": "26D",
      "enablement": "Automatically on (setup may apply)",
-     "impact": "high",
+     "impact": "low",
      "summary": "Define User-Defined Access Paths (UDAPs) for a selected data source and reuse them in access algorithms, entitlements, and filters. Reusing UDAPs eliminates the need to define the same access paths repeatedly."
     },
     {
@@ -19802,7 +19802,7 @@
      "product": "Risk Management (Redwood)",
      "_rel": "26D",
      "enablement": "Automatically on (setup may apply)",
-     "impact": "high",
+     "impact": "low",
      "summary": "Use Risk and Security Snapshot Reports to view the snapshot definitions available to you and generate reports from their configured scope. Each snapshot definition groups one or more business processes and the Oracle-managed or customer-defined algorithms to analyze."
     },
     {
@@ -19816,7 +19816,7 @@
      "product": "Risk Management (Redwood)",
      "_rel": "26D",
      "enablement": "Automatically on (setup may apply)",
-     "impact": "high",
+     "impact": "low",
      "summary": "Internal Controls provides a central repository for documented internal controls. Each control record includes a control definition, related processes, risks, categories, stakeholders, comments, attachments, activities, related algorithms, and related internal controls."
     },
     {
@@ -19830,7 +19830,7 @@
      "product": "Risk Management (Redwood)",
      "_rel": "26D",
      "enablement": "Automatically on (setup may apply)",
-     "impact": "high",
+     "impact": "low",
      "summary": "Define and manage access entitlements used by access algorithms, such as Sensitive Access Monitors and Segregation of Duties (SoD) Access Monitors. An entitlement defines access points and supports flexible logical evaluation."
     },
     {
@@ -19844,7 +19844,7 @@
      "product": "Risk Management (Redwood)",
      "_rel": "26D",
      "enablement": "Automatically on (setup may apply)",
-     "impact": "high",
+     "impact": "low",
      "summary": "Use the Monitor Jobs page to find and follow jobs that run in Risk Management. Search and filter jobs by status, run by, submission date, and job type, and sort the list by submission date."
     },
     {
@@ -19858,7 +19858,7 @@
      "product": "Risk Management (Redwood)",
      "_rel": "26D",
      "enablement": "Automatically on (setup may apply)",
-     "impact": "high",
+     "impact": "low",
      "summary": "Use My Access Certification Tasks to complete work assigned to you during an access certification campaign. Access certifications help organizations review whether users should retain or remove assigned role access."
     },
     {
@@ -19872,7 +19872,7 @@
      "product": "Risk Management (Redwood)",
      "_rel": "26D",
      "enablement": "Automatically on (setup may apply)",
-     "impact": "high",
+     "impact": "low",
      "summary": "My Internal Control Certification Tasks gives assigned certifiers a focused workspace for completing their internal control certification tasks. Internal control certifications help organizations verify that controls and processes are effective, compliant, and adequately mitigate risk."
     },
     {
@@ -19886,7 +19886,7 @@
      "product": "Risk Management (Redwood)",
      "_rel": "26D",
      "enablement": "Automatically on (setup may apply)",
-     "impact": "high",
+     "impact": "low",
      "summary": "Use the Reference Data tab in the Reference Data and Settings module to manage reference-data attributes used by internal controls and other Risk Management capabilities."
     },
     {
@@ -19942,7 +19942,7 @@
      "product": "Risk Management (Redwood)",
      "_rel": "26D",
      "enablement": "Automatically on",
-     "impact": "medium",
+     "impact": "low",
      "summary": "Risk Cloud Daily Digest consolidates relevant Risk Management activity into a daily email. The Risk Cloud Notifications job is scheduled automatically to generate the daily digest email."
     },
     {
@@ -20110,7 +20110,7 @@
      "product": "Human Resources",
      "_rel": "26D",
      "enablement": "Automatically on (setup may apply)",
-     "impact": "high",
+     "impact": "low",
      "summary": "We have enhanced the Assignment Change Assistant introduced in 26C. In addition to requesting a change, managers and HR specialists can ask the assistant for relevant employment and assignment information before deciding what to update."
     },
     {
@@ -20124,7 +20124,7 @@
      "product": "Human Resources",
      "_rel": "26D",
      "enablement": "Automatically on (setup may apply)",
-     "impact": "high",
+     "impact": "medium",
      "summary": "When you correct a termination date, the application prevents changes that could create invalid assignment data when primary assignment indicators have changed across effective-dated records."
     },
     {
@@ -20166,7 +20166,7 @@
      "product": "Learning and Development",
      "_rel": "26D",
      "enablement": "Automatically on",
-     "impact": "high",
+     "impact": "low",
      "summary": "Turn a course request and approved source materials into a self-paced agentic course using Agentic Course Designer in Agentic Learning Course Workspace. When you start authoring, the workspace creates a draft self-paced learning and keeps your course context, generated work, and next recommended action available throughout the process."
     },
     {
@@ -20180,7 +20180,7 @@
      "product": "Learning and Development",
      "_rel": "26D",
      "enablement": "Automatically on",
-     "impact": "high",
+     "impact": "low",
      "summary": "Launch an assigned or self-enrolled self-paced agentic course from the enrollment details page. The course opens in Agentic Course Player, where you're guided through the required course content, practice, and assessments."
     },
     {
@@ -20194,7 +20194,7 @@
      "product": "Learning and Development",
      "_rel": "26D",
      "enablement": "Automatically on (setup may apply)",
-     "impact": "high",
+     "impact": "low",
      "summary": "My Learning Assistant now helps you complete common learning tasks from a single conversational experience: ask about active, overdue, due soon, required, self-enrolled and completed learning, get recommendations from the learning catalog, and start enrollment from recommended learning when enrollment conditions allow."
     },
     {
@@ -20222,7 +20222,7 @@
      "product": "Payroll",
      "_rel": "26D",
      "enablement": "Automatically on",
-     "impact": "high",
+     "impact": "medium",
      "summary": "Use Adjust Individual Balances in Redwood to correct a worker's payroll balances as of a selected date. Start an adjustment by Balance when you know the balance to correct or start by Adjustment Element when you know the eligible element to use."
     },
     {
@@ -20236,7 +20236,7 @@
      "product": "Payroll",
      "_rel": "26D",
      "enablement": "Automatically on (setup may apply)",
-     "impact": "high",
+     "impact": "medium",
      "summary": "Manage organization calculation cards in the Redwood experience. Where the legislation supports it, the Legal Entity Calculation Card manages a Payroll Statutory Unit (PSU) card, and the Legal Reporting Unit Calculation Card manages a Tax Reporting Unit (TRU) card, whose values override the PSU card."
     },
     {
@@ -20250,7 +20250,7 @@
      "product": "Payroll",
      "_rel": "26D",
      "enablement": "Automatically on",
-     "impact": "high",
+     "impact": "medium",
      "summary": "The following Payroll setup pages are now available in the Redwood user experience. Oracle Search for HCM is now integrated within these setup pages."
     },
     {
@@ -20264,7 +20264,7 @@
      "product": "Payroll",
      "_rel": "26D",
      "enablement": "Automatically on",
-     "impact": "high",
+     "impact": "medium",
      "summary": "We have made it easier for you to view detailed, online tax calculation info for specific employees and payroll runs. You can access this content using the new Tax Calculation Statement tab on the Person Results page."
     },
     {
@@ -20278,7 +20278,7 @@
      "product": "Payroll",
      "_rel": "26D",
      "enablement": "Automatically on",
-     "impact": "high",
+     "impact": "medium",
      "summary": "This feature delivers a detailed online tax calculation statement for a specific employee and payroll run. Access the content using the new Tax Calculation Statement tab on the Person Results page."
     },
     {
@@ -20292,7 +20292,7 @@
      "product": "Payroll",
      "_rel": "26D",
      "enablement": "Automatically on (setup may apply)",
-     "impact": "high",
+     "impact": "low",
      "summary": "When a sickness absence is recorded during a Workforce Management published schedule period, UK SSP processing uses the published schedule in effect before the absence to determine scheduled qualifying days."
     },
     {
@@ -20320,7 +20320,7 @@
      "product": "Time and Labor",
      "_rel": "26D",
      "enablement": "Automatically on (setup may apply)",
-     "impact": "high",
+     "impact": "medium",
      "summary": "Create and manage workday definitions in a guided Redwood experience from the Setup and Maintenance work area. Use the Redwood Workday Definitions task to:"
     },
     {
@@ -20334,7 +20334,7 @@
      "product": "Workforce Scheduling",
      "_rel": "26D",
      "enablement": "Automatically on",
-     "impact": "high",
+     "impact": "medium",
      "summary": "When a worker requests part of an open shift and a blocking time-based conflict is at the start or end of the shift, the Request partial shift page shows the claimable time range."
     },
     {
@@ -20460,7 +20460,7 @@
      "product": "Warehouse Management",
      "_rel": "26D",
      "enablement": "Automatically on (setup may apply)",
-     "impact": "medium",
+     "impact": "low",
      "summary": "WMS adds more fields to Label Template Selection Rules so customers can print the right outbound labels based on task, allocation, order, and order detail information."
     },
     {
@@ -20824,7 +20824,7 @@
      "product": "Procurement",
      "_rel": "26D",
      "enablement": "Automatically on (setup may apply)",
-     "impact": "high",
+     "impact": "low",
      "summary": "Manage supplier negotiation templates in the Redwood experience. From the Negotiation Templates search page you can review templates, as well as create, update, and activate draft templates using a guided process."
     },
     {
@@ -20838,7 +20838,7 @@
      "product": "Procurement",
      "_rel": "26D",
      "enablement": "Automatically on (setup may apply)",
-     "impact": "high",
+     "impact": "low",
      "summary": "Use the award simulator in the Sourcing Command Center app to generate award scenarios based on your enterprise sourcing award policies. Apply your preferred scenario to finalize the award and create outcome documents."
     },
     {
@@ -20866,7 +20866,7 @@
      "product": "Procurement",
      "_rel": "26D",
      "enablement": "Automatically on (setup may apply)",
-     "impact": "medium",
+     "impact": "low",
      "summary": "Create intake requests for procurement contracts by configuring intake request templates with the procurement contract outcome. Configure the template controls that are relevant to your contract process, including contract type, primary party, payment terms, commercial terms, and contract dates."
     },
     {
@@ -20964,7 +20964,7 @@
      "product": "Procurement",
      "_rel": "26D",
      "enablement": "Automatically on (setup may apply)",
-     "impact": "medium",
+     "impact": "low",
      "summary": "Search and filter results using descriptive flexfield segments on Process Requisitions, Purchase Orders and Purchase Agreements pages for buyers and suppliers using the new user experience."
     },
     {
@@ -21062,7 +21062,7 @@
      "product": "Self Service Procurement",
      "_rel": "26D",
      "enablement": "Automatically on (setup may apply)",
-     "impact": "medium",
+     "impact": "low",
      "summary": "Create intake requests for procurement contracts by configuring intake request templates with the procurement contract outcome. Configure the template controls that are relevant to your contract process, including contract type, primary party, payment terms, commercial terms, and contract dates."
     },
     {
@@ -21104,7 +21104,7 @@
      "product": "Self Service Procurement",
      "_rel": "26D",
      "enablement": "Automatically on (setup may apply)",
-     "impact": "medium",
+     "impact": "low",
      "summary": "Requesters and preparers can now view the line type, such as Goods and Services, from both the Lines view of the My Requisitions page and the Lines table on the Requisition Details page."
     },
     {
@@ -21132,7 +21132,7 @@
      "product": "Self Service Procurement",
      "_rel": "26D",
      "enablement": "Automatically on (setup may apply)",
-     "impact": "medium",
+     "impact": "low",
      "summary": "As a catalog administrator, you can now manage catalog administration tasks from a centralized Catalog Administration landing page. You can review recently modified catalogs, quickly access frequently used setup tasks, search for catalog objects, and personalize the landing page with KPIs and visualizations."
     },
     {
@@ -21146,7 +21146,7 @@
      "product": "Self Service Procurement",
      "_rel": "26D",
      "enablement": "Automatically on (setup may apply)",
-     "impact": "medium",
+     "impact": "low",
      "summary": "As a catalog administrator, you can now manage local, punchout, and informational catalogs using a new user experience. Access the new user experience to manage catalogs"
     },
     {
@@ -21314,7 +21314,7 @@
      "product": "Demand Management",
      "_rel": "26D",
      "enablement": "Automatically on (setup may apply)",
-     "impact": "high",
+     "impact": "medium",
      "summary": "You can create and manage member introductions for new product, customer, and organization launches by copying selected measures from existing members to target members."
     },
     {
@@ -21328,7 +21328,7 @@
      "product": "Maintenance",
      "_rel": "26D",
      "enablement": "Automatically on",
-     "impact": "high",
+     "impact": "medium",
      "summary": "Define a technician as being qualified for one or more job categories within an organization. Considered throughout the maintenance planning and execution lifecycle, this capability ensures work is assigned to qualified technicians while maintaining accurate labor tracking and reporting."
     },
     {
@@ -21342,7 +21342,7 @@
      "product": "Maintenance",
      "_rel": "26D",
      "enablement": "Automatically on (setup may apply)",
-     "impact": "high",
+     "impact": "low",
      "summary": "Service Logistics supports the capture of Quality events from Work Order Charges and Reverse Logistics workbench pages. This enables users to record inspection results for debrief asset and for asset parts in defective inventory from customer returns."
     },
     {
@@ -21356,7 +21356,7 @@
      "product": "Manufacturing",
      "_rel": "26D",
      "enablement": "Automatically on",
-     "impact": "high",
+     "impact": "low",
      "summary": "In process manufacturing, variability in ingredient composition can cause conformance parameter values for a batch\u2019s primary product to fall outside the acceptable range."
     },
     {
@@ -21370,7 +21370,7 @@
      "product": "Manufacturing",
      "_rel": "26D",
      "enablement": "Automatically on",
-     "impact": "high",
+     "impact": "medium",
      "summary": "Manufacturers need to detect process variation early, before inspection trends become quality failures. With the Quality Assurance Workspace, quality teams can analyze recent inspection results, identify at-risk characteristics, review Statistical Process Control (SPC) charts, interpret statistical signals, and take follow-up action from a single guided workspace."
     },
     {
@@ -21384,7 +21384,7 @@
      "product": "Product Lifecycle Management",
      "_rel": "26D",
      "enablement": "Automatically on",
-     "impact": "high",
+     "impact": "low",
      "summary": "Interact with Redwood Configurator using the Configuration Runtime REST service to create, update, validate, and complete configurations from external applications and integration flows."
     },
     {
@@ -21398,7 +21398,7 @@
      "product": "Product Lifecycle Management",
      "_rel": "26D",
      "enablement": "Automatically on",
-     "impact": "high",
+     "impact": "medium",
      "summary": "Manufacturers need to detect process variation early, before inspection trends become quality failures. With the Quality Assurance Workspace, quality teams can analyze recent inspection results, identify at-risk characteristics, review Statistical Process Control (SPC) charts, interpret statistical signals, and take follow-up action from a single guided workspace."
     },
     {

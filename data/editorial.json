@@ -1,6 +1,6 @@
 {
  "reviewed": "2026-10-17",
- "note": "Editorial overrides applied by scripts/build.py after summaries are pulled from Oracle. Keyed by Oracle feature URL.",
+ "note": "Editorial overrides applied by scripts/build.py after summaries are pulled from Oracle. Keyed by Oracle feature URL. 26D ratings reviewed 19 Oct 2026 (review/2026-10-19-26d-ratings-review.md).",
  "items": {
   "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/fins26c/26C-fin-wn-f49280.htm": {
    "id": "26C-f49280@fins26c",
@@ -1096,12 +1096,264 @@
   "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/lear-26d/26D-learning-wn-f50703.htm": {
    "id": "26D-f50703@lear-26d",
    "summary": "My Learning Assistant now helps you complete common learning tasks from a single conversational experience: ask about active, overdue, due soon, required, self-enrolled and completed learning, get recommendations from the learning catalog, and start enrollment from recommended learning when enrollment conditions allow.",
-   "reason": "26D automatic summary joined text around a bulleted list and read garbled; rewritten from Oracle's page (19 Oct 2026). Rating unchanged."
+   "reason": "26D automatic summary joined text around a bulleted list and read garbled; rewritten from Oracle's page (19 Oct 2026). Rating review 19 Oct 2026: The assistant has to be deployed through a guided journey (or the 25D version replaced with the new template); nobody gets it by default. (Oracle rates it larger scale.)",
+   "impact": "low",
+   "impact_was": "high"
   },
   "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/payr-26d/26D-payroll-wn-f50612.htm": {
    "id": "26D-f50612@payr-26d",
    "summary": "Manage organization calculation cards in the Redwood experience. Where the legislation supports it, the Legal Entity Calculation Card manages a Payroll Statutory Unit (PSU) card, and the Legal Reporting Unit Calculation Card manages a Tax Reporting Unit (TRU) card, whose values override the PSU card.",
-   "reason": "26D automatic summary joined text around a bulleted list and read garbled; rewritten from Oracle's page (19 Oct 2026). Rating unchanged."
+   "reason": "26D automatic summary joined text around a bulleted list and read garbled; rewritten from Oracle's page (19 Oct 2026). Rating review 19 Oct 2026: Redwood versions of the organization calculation card setup tasks, used by payroll implementers only; contained.",
+   "impact": "medium",
+   "impact_was": "high"
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26d/fins26d/26D-fin-wn-f51249.htm": {
+   "id": "26D-f51249@fins26d",
+   "impact": "medium",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: A new agentic workspace for the Payables close; users need its Manage or View Payables Period Close Workspace privilege, and the existing close steps don't change. Visible but contained, as with the 26C Cash Processing Agent."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26d/rrsk26d/26D-rrsk-wn-f51114.htm": {
+   "id": "26D-f51114@rrsk26d",
+   "impact": "low",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: Risk Management (Redwood) needs a service request to Oracle to get set up (Oracle's introduction), and access comes through the Risk Management roles and record stakeholders; nobody gets it by default. (Oracle rates it larger scale.)"
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26d/rrsk26d/26D-rrsk-wn-f51115.htm": {
+   "id": "26D-f51115@rrsk26d",
+   "impact": "low",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: Risk Management (Redwood) needs a service request to Oracle to get set up (Oracle's introduction), and access comes through the Risk Management roles and record stakeholders; nobody gets it by default. (Oracle rates it larger scale.)"
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26d/rrsk26d/26D-rrsk-wn-f51130.htm": {
+   "id": "26D-f51130@rrsk26d",
+   "impact": "low",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: Risk Management (Redwood) needs a service request to Oracle to get set up (Oracle's introduction), and access comes through the Risk Management roles and record stakeholders; nobody gets it by default. (Oracle rates it larger scale.)"
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26d/rrsk26d/26D-rrsk-wn-f51038.htm": {
+   "id": "26D-f51038@rrsk26d",
+   "impact": "low",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: Risk Management (Redwood) needs a service request to Oracle to get set up (Oracle's introduction), and access comes through the Risk Management roles and record stakeholders; nobody gets it by default. (Oracle rates it larger scale.)"
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26d/rrsk26d/26D-rrsk-wn-f51112.htm": {
+   "id": "26D-f51112@rrsk26d",
+   "impact": "low",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: Risk Management (Redwood) needs a service request to Oracle to get set up (Oracle's introduction), and access comes through the Risk Management roles and record stakeholders; nobody gets it by default. (Oracle rates it larger scale.)"
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26d/rrsk26d/26D-rrsk-wn-f51119.htm": {
+   "id": "26D-f51119@rrsk26d",
+   "impact": "low",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: Risk Management (Redwood) needs a service request to Oracle to get set up (Oracle's introduction), and access comes through the Risk Management roles and record stakeholders; nobody gets it by default. (Oracle rates it larger scale.)"
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26d/rrsk26d/26D-rrsk-wn-f51072.htm": {
+   "id": "26D-f51072@rrsk26d",
+   "impact": "low",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: Risk Management (Redwood) needs a service request to Oracle to get set up (Oracle's introduction), and access comes through the Risk Management roles and record stakeholders; nobody gets it by default. (Oracle rates it larger scale.)"
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26d/rrsk26d/26D-rrsk-wn-f51132.htm": {
+   "id": "26D-f51132@rrsk26d",
+   "impact": "low",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: Risk Management (Redwood) needs a service request to Oracle to get set up (Oracle's introduction), and access comes through the Risk Management roles and record stakeholders; nobody gets it by default. (Oracle rates it larger scale.)"
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26d/rrsk26d/26D-rrsk-wn-f51070.htm": {
+   "id": "26D-f51070@rrsk26d",
+   "impact": "low",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: Risk Management (Redwood) needs a service request to Oracle to get set up (Oracle's introduction), and access comes through the Risk Management roles and record stakeholders; nobody gets it by default. (Oracle rates it larger scale.)"
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/hure-26d/26D-hr-wn-f50993.htm": {
+   "id": "26D-f50993@hure-26d",
+   "impact": "low",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: Extends the 26C Assignment Change Assistant AI agent, which needs AI Agent Studio, permission groups and security set up (and an Oracle Support check of the environment); nobody gets it by default. (Oracle rates it larger scale.)"
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/hure-26d/26D-hr-wn-f51748.htm": {
+   "id": "26D-f51748@hure-26d",
+   "impact": "medium",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: Automatic, but contained to one flow: when correcting a termination date, the extensible flexfields section becomes read-only."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/hure-26d/26D-hr-wn-f50016.htm": {
+   "id": "26D-f50016@hure-26d",
+   "reason": "Rating review 19 Oct 2026: High kept: Oracle switches 20 Redwood employment pages on by default in 26D with no action needed; users see new pages unless the profile options are set to No."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/hure-26d/26D-hr-wn-f50060.htm": {
+   "id": "26D-f50060@hure-26d",
+   "reason": "Rating review 19 Oct 2026: High kept: Oracle announces that Resign, Terminate and Mass Assignment Change switch to Redwood by default in 27A (same rating as the 26C notice)."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/lear-26d/26D-learning-wn-f51886.htm": {
+   "id": "26D-f51886@lear-26d",
+   "impact": "low",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: Needs the Learning Connect SKU licensed and the instructional designer privilege; nobody gets it by default. (Oracle rates it larger scale.)"
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/lear-26d/26D-learning-wn-f51885.htm": {
+   "id": "26D-f51885@lear-26d",
+   "impact": "low",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: Only used for agentic courses, which have to be built first with Agentic Course Designer (Learning Connect SKU); nothing changes for existing courses. (Oracle rates it larger scale.)"
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/payr-26d/26D-payroll-wn-f51224.htm": {
+   "id": "26D-f51224@payr-26d",
+   "reason": "Rating review 19 Oct 2026: High kept: automatic statutory pay change for Northern Ireland employees (eligibility for miscarriage-related absences, day-one eligibility, separate balances); touches how employees are paid."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/payr-26d/26D-payroll-wn-f50910.htm": {
+   "id": "26D-f50910@payr-26d",
+   "impact": "medium",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: New Redwood page for one payroll admin task (Adjust Individual Balances), on by default; visible but contained."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/payr-26d/26D-payroll-wn-f50913.htm": {
+   "id": "26D-f50913@payr-26d",
+   "impact": "medium",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: Six Redwood payroll setup pages on by default, used by payroll admins only, so contained (as for the 26C payroll setup pages). Oracle notes custom job roles need updating for the new Organization Payment Method page."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/payr-26d/26D-payroll-wn-f51363.htm": {
+   "id": "26D-f51363@payr-26d",
+   "impact": "medium",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: A new read-only Tax Calculation Statement tab on Person Results for payrolls run after 26D; visible but contained, no process change (as for the 26C Canadian tab)."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/payr-26d/26D-payroll-wn-f51361.htm": {
+   "id": "26D-f51361@payr-26d",
+   "impact": "medium",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: A new read-only Tax Calculation Statement tab on Person Results for payrolls run after 26D; visible but contained, no process change (as for the 26C Canadian tab)."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/payr-26d/26D-payroll-wn-f51226.htm": {
+   "id": "26D-f51226@payr-26d",
+   "impact": "low",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: Needs Schedule Hierarchy Starting Point set to Published Schedule on each absence type; Oracle says customers that don't use Workforce Management published schedules see no change."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/tila-26d/26D-time-labor-wn-f50905.htm": {
+   "id": "26D-f50905@tila-26d",
+   "reason": "Rating review 19 Oct 2026: High kept: automatic change to how absences on Redwood time cards are removed, withdrawn and approved; saving is blocked until the time card is resubmitted."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/tila-26d/26D-time-labor-wn-f50903.htm": {
+   "id": "26D-f50903@tila-26d",
+   "impact": "medium",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: Redwood version of one setup task (Workday Definitions), on by default for Time and Labor admins; contained."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/wosc-26d/26D-workforce-scheduling-wn-f51267.htm": {
+   "id": "26D-f51267@wosc-26d",
+   "impact": "medium",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: Automatic but contained: workers claiming part of an open shift see the claimable range, and fully blocked shifts are hidden."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/proc26d/26D-procurement-wn-f50520.htm": {
+   "id": "26D-f50520@proc26d",
+   "reason": "Rating review 19 Oct 2026: High kept: automatic change to the Import Purchase Agreements from External Purchase Prices process; date changes now update the existing agreement line instead of end-dating it and adding a new one, which affects integrations relying on line references."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/proc26d/26D-procurement-wn-f42877.htm": {
+   "id": "26D-f42877@proc26d",
+   "impact": "low",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: Oracle says you must enable the Redwood Sourcing and Redwood Negotiation Templates profile options to access it; off until set up."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/proc26d/26D-procurement-wn-f51463.htm": {
+   "id": "26D-f51463@proc26d",
+   "impact": "low",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: Needs the Sourcing Command Center profile option, permission groups and an Enterprise Sourcing Award Policy added in AI Agent Studio; nobody gets it by default. (Oracle rates it larger scale.)"
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/demand26d/26D-demand-wn-f50198.htm": {
+   "id": "26D-f50198@demand26d",
+   "impact": "medium",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: A new optional Introductions page for demand plans; nothing changes in plan runs until you create introductions."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/maint26d/26D-maintenance-wn-f46400.htm": {
+   "id": "26D-f46400@maint26d",
+   "impact": "medium",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: Automatic, but only changes scheduling and assignment once you model a technician against more than one labor resource."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/maint26d/26D-maintenance-wn-f50143.htm": {
+   "id": "26D-f50143@maint26d",
+   "impact": "low",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: Needs inspection plans of type Asset defined in Quality Management, plus inspection privileges; nothing shows until then."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/mfg26d/26D-mfg-wn-f50431.htm": {
+   "id": "26D-f50431@mfg26d",
+   "impact": "low",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: Process manufacturing only, and needs the 26C Batch Process Manufacturing Workspace and Redwood Batches profile options enabled; nobody gets it by default."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/mfg26d/26D-mfg-wn-f50528.htm": {
+   "id": "26D-f50528@mfg26d",
+   "impact": "medium",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: A new agentic workspace for quality teams, available with existing inspection privileges; existing processes don't change. Visible but contained."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/plm26d/26D-plm-wn-f50528.htm": {
+   "id": "26D-f50528@plm26d",
+   "impact": "medium",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: A new agentic workspace for quality teams, available with existing inspection privileges; existing processes don't change. Visible but contained."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/plm26d/26D-plm-wn-f50870.htm": {
+   "id": "26D-f50870@plm26d",
+   "impact": "low",
+   "impact_was": "high",
+   "reason": "Rating review 19 Oct 2026: A REST service for developers and integrators; Oracle says it's designed for configurator modelers and system integrators, so nothing changes for users."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/ssproc26d/26D-ssproc-wn-f47406.htm": {
+   "id": "26D-f47406@ssproc26d",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Rating review 19 Oct 2026: Off by default: needs the Redwood Catalog Setup Pages Enabled profile option, which Oracle delivers set to No."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/ssproc26d/26D-ssproc-wn-f47412.htm": {
+   "id": "26D-f47412@ssproc26d",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Rating review 19 Oct 2026: Off by default: needs the Redwood Catalog Setup Pages Enabled profile option, which Oracle delivers set to No."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/ssproc26d/26D-ssproc-wn-f47408.htm": {
+   "id": "26D-f47408@ssproc26d",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Rating review 19 Oct 2026: Minor: the Line Type column is hidden by default and needs a Visual Builder Studio change for the Lines view."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/proc26d/26D-procurement-wn-f49560.htm": {
+   "id": "26D-f49560@proc26d",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Rating review 19 Oct 2026: Needs flexfield segments added to the search indexes and the index jobs run; nothing changes until then."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/proc26d/26D-procurement-wn-f50314.htm": {
+   "id": "26D-f50314@proc26d",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Rating review 19 Oct 2026: Needs the Intake Requests opt-in enabled and Procurement Contracts implemented; nobody gets it by default."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/ssproc26d/26D-ssproc-wn-f50314.htm": {
+   "id": "26D-f50314@ssproc26d",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Rating review 19 Oct 2026: Needs the Intake Requests opt-in enabled and Procurement Contracts implemented; nobody gets it by default."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/logistics/26d/wms26d/26D-wms-wn-f51829.htm": {
+   "id": "26D-f51829@wms26d",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Rating review 19 Oct 2026: Only adds optional criteria to label template selection rules; nothing changes until you add them."
+  },
+  "https://docs.oracle.com/en/cloud/saas/readiness/erp/26d/rrsk26d/26D-rrsk-wn-f51122.htm": {
+   "id": "26D-f51122@rrsk26d",
+   "impact": "low",
+   "impact_was": "medium",
+   "reason": "Rating review 19 Oct 2026: Risk Management (Redwood) needs a service request to Oracle to get set up (Oracle's introduction), and access comes through the Risk Management roles and record stakeholders; nobody gets it by default."
   }
  }
 }

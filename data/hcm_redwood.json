@@ -519,6 +519,22 @@
    "profile_options": []
   },
   {
+   "release": "27B",
+   "area": "Recruiting",
+   "title": "Classic job search decommissioned; Smart Search on by default",
+   "pages": [
+    "Career site job search"
+   ],
+   "type": "Removal",
+   "oracle_title": "Smart Search Enhancements",
+   "revert": "None stated",
+   "summary": "Classic search stays enabled by default for now; in 27B Oracle decommissions classic search and enables Smart Search by default for all customers. If you switch earlier and use custom pages, publish the site, then review and republish the new page drafts.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/recr-26c/26C-recruiting-wn-f44495.htm"
+   ],
+   "profile_options": []
+  },
+  {
    "release": "27C",
    "area": "Learning",
    "title": "Calendar event template switched on",

@@ -10,6 +10,8 @@ Rebuild: `python3 scripts/crawl.py && python3 scripts/build.py`
 Preview: `cd dist && python3 -m http.server 4321`, then open http://localhost:4321
 Add an update: add its book paths to `BOOKS` in crawl.py and a link in the render.py nav.
 
+Long-tail search pages (`scripts/longtail.py`, called from `render.py`): /26d/redwood-person-pages/, /26d/redwood-employment-pages/, /26d/redwood-workforce-structures-pages/ and /27a/redwood-defaults/. Their page names, profile option codes and first-release values live in `data/longtail.json`, copied from the Oracle pages listed there; update that file when Oracle revises a page. /26d/ is titled as the 26D opt-in expiration list, and the former-opt-ins pages carry an FAQ with FAQPage schema.
+
 Free downloads and share cards:
 - `python3 scripts/leadmagnets.py` builds `assets/downloads/` (the 26D readiness checklist PDF and the quarterly update calendar .ics). It uses only `data/updates.json`, `data/hcm_redwood.json` and Oracle's published cohort rule. Run it before `build.py`.
 - `scripts/og.py` draws the 1200x627 Open Graph cards into `assets/og/` with headless Chrome during `build.py`. Cards are cached by content hash, so only new or changed ones are redrawn.

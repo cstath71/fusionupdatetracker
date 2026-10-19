@@ -1,0 +1,97 @@
+{
+ "checked": "2026-10-19",
+ "note": "Tables for the long-tail HCM Redwood pages. Every page name, profile option code and first-release value is copied from the Oracle readiness page listed in sources (checked on the date above). Update when Oracle revises a page.",
+ "person_26d": {
+  "sources": [
+   ["Oracle 26D What's New: Redwood Enabled by Default for Person Pages", "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/hure-26d/26D-hr-wn-f50873.htm"],
+   ["Oracle 26C What's New: Redwood Enabled by Default for Person Pages in Update 26D", "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/hure-26c/26C-hr-wn-f47440.htm"]
+  ],
+  "rows": [
+   ["Personal Details", "ORA_PER_PERSONAL_INFORMATION_REDWOOD_ENABLED", "24A"],
+   ["Contact Info", "ORA_PER_PERSONAL_INFORMATION_REDWOOD_ENABLED", "24A"],
+   ["Identification Info", "ORA_PER_PERSONAL_INFORMATION_REDWOOD_ENABLED", "24A"],
+   ["Family and Emergency Contacts", "ORA_PER_PERSONAL_INFORMATION_REDWOOD_ENABLED", "24A"],
+   ["Additional Person Info", "ORA_PER_ADDITIONAL_PERSONAL_INFO_REDWOOD_ENABLED", "24A"],
+   ["Person Identifiers for External Applications", "ORA_PER_PERSON_IDENTIFIERS_FOR_EXT_APP_REDWOOD_ENABLED", "23B"]
+  ]
+ },
+ "employment_26d": {
+  "sources": [
+   ["Oracle 26D What's New: Redwood Enabled by Default for Employment Pages in Update 26D", "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/hure-26d/26D-hr-wn-f50016.htm"],
+   ["Oracle 26C What's New: Redwood Enabled by Default for Employment Pages in Update 26D", "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/hure-26c/26C-hr-wn-f50016.htm"]
+  ],
+  "rows": [
+   ["Add Assignment", "ORA_PER_EMPL_ADD_ASG_REDWOOD_ENABLED", "24A"],
+   ["Add Contingent Worker", "ORA_PER_ADD_CWK_REDWOOD_ENABLED", "24A"],
+   ["Add Nonworker", "ORA_PER_ADD_NWK_REDWOOD_ENABLED", "24A"],
+   ["Add Pending Worker", "ORA_PER_ADD_PWK_REDWOOD_ENABLED", "24A"],
+   ["Additional Assignment Info", "ORA_PER_ADDITIONAL_ASG_INFO_REDWOOD_ENABLED", "24A"],
+   ["Cancel Work Relationship", "ORA_PER_EMPL_CANCEL_WR_REDWOOD_ENABLED", "24C"],
+   ["Change Assignment", "ORA_PER_EMPL_CHG_ASG_REDWOOD_ENABLED", "24A"],
+   ["Change Legal Employer Dashboard", "ORA_PER_EMPL_CLE_DASHBOARD_REDWOOD_ENABLED", "26A"],
+   ["Change Location", "ORA_PER_EMPL_CHG_LOC_REDWOOD_ENABLED", "24A"],
+   ["Change Manager", "ORA_PER_EMPL_CHG_MGR_REDWOOD_ENABLED", "24A"],
+   ["Change Working Hours", "ORA_PER_EMPL_CHG_WH_REDWOOD_ENABLED", "24A"],
+   ["Create Work Relationship", "ORA_PER_CREATE_WR_REDWOOD_ENABLED", "24A"],
+   ["Direct Reports", "ORA_PER_EMPL_MNG_DIR_REDWOOD_ENABLED", "24A"],
+   ["Employment Contracts", "ORA_PER_EMPLOYMENT_CONTRACTS_REDWOOD_ENABLED", "23B"],
+   ["Employment Info", "ORA_PER_EMPLOYMENT_INFO_REDWOOD_ENABLED", "23B"],
+   ["Hire an Employee", "ORA_PER_HIRE_AN_EMPLOYEE_REDWOOD_ENABLED", "24A"],
+   ["Local and Global Transfer", "ORA_PER_EMPL_LGT_REDWOOD_ENABLED", "24C"],
+   ["Mass Legal Employer Change", "ORA_PER_EMPL_MLEC_REDWOOD_ENABLED", "26C"],
+   ["Promote", "ORA_PER_EMPL_PROMOTE_REDWOOD_ENABLED", "24A"],
+   ["Transfer", "ORA_PER_EMPL_TRANSFER_REDWOOD_ENABLED", "24A"],
+   ["Work Relationship", "ORA_PER_WORK_RELATIONSHIP_REDWOOD_ENABLED", "24D"]
+  ]
+ },
+ "employment_27a": {
+  "sources": [
+   ["Oracle 26D What's New: Redwood Enabled by Default for Employment Pages in Update 27A", "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/hure-26d/26D-hr-wn-f50060.htm"],
+   ["Oracle 26C What's New: Redwood Enabled by Default for Employment Pages in Update 27A", "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/hure-26c/26C-hr-wn-f50060.htm"]
+  ],
+  "rows": [
+   ["Resign From Employment", "ORA_PER_EMPL_RESIGNATION_REDWOOD_ENABLED", "24C"],
+   ["Mass Assignment Change", "ORA_PER_EMPL_MASS_ASG_UPDATE_REDWOOD_ENABLED", "26D"],
+   ["Terminate Employment", "ORA_PER_EMPL_TERMINATE_REDWOOD_ENABLED", "24C"]
+  ]
+ },
+ "positions_27a": {
+  "sources": [
+   ["Oracle 26D What's New: Redwood Enabled by Default for Positions Pages and Guided Processes in Update 27A", "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/hure-26d/26D-hr-wn-f51227.htm"]
+  ],
+  "rows": [
+   ["Positions pages", "ORA_PER_POSITIONS_REDWOOD_ENABLED", "23B"],
+   ["Request a New Position (guided process)", "ORA_PER_POSITIONS_REDWOOD_ENABLED", "24A"],
+   ["Request a Position Change (guided process)", "ORA_PER_POSITIONS_REDWOOD_ENABLED", "24A"]
+  ]
+ },
+ "wfs_26d": {
+  "sources": [
+   ["Oracle 26D What's New: Redwood Enabled by Default for Workforce Structures Pages", "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/hure-26d/26D-hr-wn-f49856.htm"],
+   ["Oracle 26C What's New: Redwood Enabled by Default for Workforce Structures Pages in Update 26D", "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/hure-26c/26C-hr-wn-f49853.htm"]
+  ],
+  "rows": [
+   ["Departments", "ORA_PER_DEPARTMENTS_REDWOOD_ENABLED", "23B"],
+   ["Enterprise HCM Information", "ORA_PER_ENTERPRISE_HCM_INFORMATION_REDWOOD_ENABLED", "24C"],
+   ["Grade Ladders", "ORA_PER_GRADE_LADDERS_REDWOOD_ENABLED", "25A"],
+   ["Jobs", "ORA_PER_JOBS_REDWOOD_ENABLED", "23B"],
+   ["Locations", "ORA_PER_LOCATIONS_REDWOOD_ENABLED", "23B"]
+  ]
+ },
+ "wfs_26c": {
+  "sources": [
+   ["Oracle 26C What's New: Redwood Enabled by Default for Workforce Structures Pages", "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/hure-26c/26C-hr-wn-f49852.htm"]
+  ],
+  "rows": [
+   ["Grades", "ORA_PER_GRADES_REDWOOD_ENABLED", "23D"],
+   ["Grade Rates", "ORA_PER_GRADE_RATES_REDWOOD_ENABLED", "24B"],
+   ["Legal Entity HCM Information", "ORA_PER_LEGAL_ENTITY_HCM_INFO_REDWOOD_ENABLED", "25C"],
+   ["Legal Reporting Unit HCM Information", "ORA_PER_LEGAL_REPORTING_UNIT_HCM_INFO_REDWOOD_ENABLED", "25C"],
+   ["Reporting Establishments", "ORA_PER_REPORTING_ESTABLISHMENTS_REDWOOD_ENABLED", "25A"]
+  ]
+ },
+ "later_27b": [
+  {"title": "Legacy person navigation disabled by default", "summary": "From 27B, the non-Redwood navigation (tiles, quick actions and navigator entries) to the responsive and classic person pages is off by default: My Client Groups, Person Management, Person Spotlight, Me, Directory, My Public Info and My Organization Chart. Oracle says you can still reach them by setting the relevant profile option to No, and that the list of profile options will come in the 27B What's New.", "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/hure-26d/26D-hr-wn-f51628.htm"}
+ ],
+ "mos_doc": "HCM Redwood Pages with Profile Options (Doc ID 2922407.1)"
+}

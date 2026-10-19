@@ -520,6 +520,28 @@
   },
   {
    "release": "27B",
+   "area": "Global HR",
+   "title": "Legacy person navigation disabled by default",
+   "pages": [
+    "My Client Groups",
+    "Person Management",
+    "Person Spotlight",
+    "Me",
+    "Directory",
+    "My Public Info",
+    "My Organization Chart"
+   ],
+   "type": "Redwood by default",
+   "oracle_title": "Upcoming Changes to Legacy Person Navigation in Update 27B",
+   "revert": "Profile option can be set back to No (Oracle will list the profile options in the 27B What's New)",
+   "summary": "From 27B, the non-Redwood navigation to the responsive and classic person pages (related tiles, quick actions and navigator entries) is disabled by default. Oracle says you can still reach those pages after 27B by setting the relevant profile option to No; no action is needed to get the change.",
+   "urls": [
+    "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/hure-26d/26D-hr-wn-f51628.htm"
+   ],
+   "profile_options": []
+  },
+  {
+   "release": "27B",
    "area": "Recruiting",
    "title": "Classic job search decommissioned; Smart Search on by default",
    "pages": [

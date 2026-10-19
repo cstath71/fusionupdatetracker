@@ -101,7 +101,7 @@ def a27_page():
     desc=f"What Oracle has already announced for HCM in 27A: Resign, Terminate and Mass Assignment Change and the Positions pages switch to Redwood by default, Redwood-only payroll calculation cards, and other 27A changes. Profile option codes and Oracle links."
     cl=[('Home',''),('HCM pages switching to Redwood',R.HCMR_PATH),('27A Redwood defaults',path)]
     l27b=''.join(f'<div class="item"><h4>{E(x["title"])}</h4><div class="meta"><span class="pill">From 27B</span></div><p style="margin:4px 0">{E(x["summary"])}</p><p class="small">{ext(x["url"],"Oracle source")}</p></div>' for x in LT['later_27b'])
-    l27b+=''.join(R.hr_item_html(i) for i in R.HCMR['items'] if i['release']=='27B')
+    l27b+=''.join(R.hr_item_html(i) for i in R.HCMR['items'] if i['release']=='27B' and not set(i['urls'])&{x['url'] for x in LT['later_27b']})
     body=f"""{R.crumbs_html(cl,'../../')}<div class="hero"><h1>Oracle Fusion HCM 27A: Redwood defaults announced so far</h1>
 <p class="lead">Oracle hasn't published its 27A What's New documents yet, but its 26C and 26D documents already announce several HCM changes for 27A. Here is everything we've found, with the profile option codes Oracle gives and a link to each Oracle page. We add new 27A announcements as Oracle publishes them.</p>{chk()}</div>
 <div class="box"><h2 style="margin-top:0">Employment pages: Redwood by default in 27A ({len(em['rows'])})</h2><p>Each page has its own profile option, and you can set it back to No to keep the older page. Per Oracle, the Redwood Mass Assignment Change page itself arrives in 26D.</p>{table(em['rows'])}{srcs(em)}</div>

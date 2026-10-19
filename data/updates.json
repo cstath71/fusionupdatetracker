@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-17",
+ "generated": "2026-10-19",
  "updates": {
   "26B": {
    "release": "26B",
@@ -2390,20 +2390,6 @@
      "summary": "Select a carrier for goods fiscal documents created from Receivables transaction and include the carrier\u2019s address, taxpayer ID, and tax registration information in the fiscal document XML."
     },
     {
-     "module": "Cash Processing Agent",
-     "title": "Cash Processing Agent for Receipt Processing and Cash Application",
-     "tags": "AI agent Redwood Platform",
-     "oracle_impact": "Small scale",
-     "action": "None",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/fins26c/26C-fin-wn-f50544.htm",
-     "family": "Financials",
-     "product": "Financials",
-     "_rel": "26C",
-     "enablement": "Automatically on",
-     "impact": "medium",
-     "summary": "An AI agent that flags receipt and cash application exceptions and suggests matches, building on Document IO's automated reading of bank files and emailed remittances. It's on by default, but users need the agent's security access before they can use it."
-    },
-    {
      "module": "Revenue Management",
      "title": "Consumption Allowance Revenue Recognition",
      "tags": "",
@@ -2626,6 +2612,20 @@
      "enablement": "Off until set up",
      "impact": "low",
      "summary": "An AI agent that gives cash managers a conversational view of daily liquidity: cash position, bank balances, intraday movements and accounts short of cash. Users need security access set up first."
+    },
+    {
+     "module": "Cash Processing Agent",
+     "title": "Cash Processing Agent for Receipt Processing and Cash Application",
+     "tags": "AI agent Redwood Platform",
+     "oracle_impact": "None",
+     "action": "Setup Required",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/fins26c/26C-fin-wn-f50544.htm",
+     "family": "Financials",
+     "product": "Financials",
+     "_rel": "26C",
+     "enablement": "Off until set up",
+     "impact": "medium",
+     "summary": "An AI agent that flags receipt and cash application exceptions and suggests matches, building on Document IO's automated reading of bank files and emailed remittances. Oracle switches the agent on, but nobody can use it until you grant its security access, so Oracle now lists it as setup required."
     },
     {
      "module": "Workforce Directory Management",

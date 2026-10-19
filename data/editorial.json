@@ -39,8 +39,9 @@
   },
   "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/fins26c/26C-fin-wn-f50544.htm": {
    "id": "26C-f50544@fins26c",
-   "summary": "An AI agent that flags receipt and cash application exceptions and suggests matches, building on Document IO's automated reading of bank files and emailed remittances. It's on by default, but users need the agent's security access before they can use it.",
-   "reason": "Summary didn't say users need security access first (Oracle's steps). Medium kept: touches cash application."
+   "summary": "An AI agent that flags receipt and cash application exceptions and suggests matches, building on Document IO's automated reading of bank files and emailed remittances. Oracle switches the agent on, but nobody can use it until you grant its security access, so Oracle now lists it as setup required.",
+   "reason": "Summary didn't say users need security access first (Oracle's steps). Medium kept: touches cash application. 19 Oct 2026: Oracle revised the Feature Summary to Setup Required (impact None); summary reworded to match.",
+   "impact": "medium"
   },
   "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/fins26c/26C-fin-wn-f47279.htm": {
    "id": "26C-f47279@fins26c",

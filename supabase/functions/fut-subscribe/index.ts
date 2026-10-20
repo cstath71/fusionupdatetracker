@@ -31,8 +31,15 @@ Deno.serve(async (req) => {
     else body = Object.fromEntries((await req.formData()).entries());
   } catch { return json({ ok: false, error: "bad_request" }, 400, h); }
 
-  // Honeypot: real users never fill the hidden 'website' field. Pretend success.
-  if (String(body.website ?? "").trim() !== "") return json({ ok: true }, 200, h);
+  // Honeypot: real users never fill the hidden 'website' field. Pretend success, and add 1 to today's drop count
+  // (public.fut_honeypot_drops holds a number per day only: no email, IP or field contents).
+  if (String(body.website ?? "").trim() !== "") {
+    try {
+      const sbh = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!, { auth: { persistSession: false } });
+      await sbh.rpc("fut_count_honeypot");
+    } catch { /* counting is best effort */ }
+    return json({ ok: true }, 200, h);
+  }
 
   const email = String(body.email ?? "").trim().toLowerCase();
   if (email.length > 254 || !EMAIL_RE.test(email)) return json({ ok: false, error: "invalid_email" }, 400, h);

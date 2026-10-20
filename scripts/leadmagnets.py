@@ -100,6 +100,12 @@ with tempfile.TemporaryDirectory() as td:
     f=os.path.join(td,'c.html'); open(f,'w').write(doc); open('/workspace/growth/26d-checklist-source.html','w').write(doc)
     subprocess.run([R.__dict__.get('CHROME') or 'google-chrome','--headless=new','--no-sandbox','--disable-gpu','--no-pdf-header-footer',f'--print-to-pdf={pdf}',f'file://{f}'],check=True,capture_output=True,timeout=120)
 print('PDF',pdf,os.path.getsize(pdf))
+# page-1 preview image for the signup boxes (render.LEAD_THUMB); skipped if poppler's pdftoppm isn't installed
+try:
+    th=os.path.join(ROOT,'assets',R.LEAD_THUMB)
+    subprocess.run(['pdftoppm','-png','-f','1','-l','1','-singlefile','-scale-to-x','224','-scale-to-y','-1',pdf,th[:-4]],check=True,capture_output=True,timeout=60)
+    print('THUMB',th,os.path.getsize(th))
+except Exception as e: print('THUMB skipped:',e)
 
 # ---- ICS ----
 def fold(line):

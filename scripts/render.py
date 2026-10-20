@@ -36,9 +36,11 @@ ul.check li{margin:6px 0}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:18px 0}.stats div{background:rgba(255,255,255,.08);border-radius:10px;padding:14px}.stats b{display:block;font-size:30px;color:#ff8a70}.stats span{color:#d6dee6;font-size:14px}
 .nlc{background:#fff;border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:10px;padding:14px 16px;margin:6px 0 18px;max-width:860px}.nlc h3{margin:0 0 2px;font-size:17px}.nlc p{margin:4px 0}
 .nlc form.nl input[type=email]{min-width:220px}
+.nlc.lead-box{display:flex;gap:16px;align-items:flex-start}.nlc .lb-main{flex:1;min-width:0}.nlc .lb-thumb{flex:0 0 112px;display:block;border:1px solid var(--line);border-radius:6px;overflow:hidden;line-height:0;box-shadow:0 2px 8px rgba(20,32,43,.12)}.nlc .lb-thumb img{width:112px;height:auto}
+.nlc ul.lb-prev{margin:6px 0 10px;padding-left:18px;font-size:14px}.nlc ul.lb-prev li{margin:2px 0}
 .sticky-sub{display:none}
 code{word-break:break-all}.item{overflow-wrap:anywhere}
-@media(max-width:700px){table{display:block;overflow-x:auto;max-width:100%}.hero h1{font-size:27px}.sticky-sub{display:block;position:fixed;left:12px;right:12px;bottom:12px;z-index:9;background:var(--acc);color:#fff;text-align:center;font-weight:700;text-decoration:none;padding:12px;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,.25);transition:opacity .2s}.sticky-sub.hide{opacity:0;pointer-events:none}body{padding-bottom:64px}form.nl input[type=email],form.nl select,form.nl button{width:100%;min-width:0}}
+@media(max-width:700px){table{display:block;overflow-x:auto;max-width:100%}.hero h1{font-size:27px}.sticky-sub{display:flex;align-items:center;position:fixed;left:0;right:0;bottom:0;z-index:9;background:#14202b;border-top:2px solid var(--acc);padding:0 0 env(safe-area-inset-bottom);box-shadow:0 -2px 10px rgba(0,0,0,.18)}.sticky-sub.hide{display:none}.sticky-sub a{flex:1;color:#fff;font-weight:700;font-size:15px;text-decoration:none;padding:13px 8px 13px 16px}.sticky-sub a span{color:#ff8a70}.sticky-sub button{background:none;color:#c9d3dc;font-size:22px;line-height:1;padding:10px 16px;border-radius:0}body.has-sticky{padding-bottom:56px}form.nl input[type=email],form.nl select,form.nl button{width:100%;min-width:0}.nlc .lb-thumb{display:none}}
 .btn{display:inline-block;background:var(--acc);color:#fff;text-decoration:none;font-weight:600;padding:10px 16px;border-radius:8px;margin:4px 6px 4px 0}.btn.alt{background:#fff;color:#14202b}
 """
 NAV=''
@@ -49,23 +51,35 @@ UPD_KEYS=[]
 HUB_FROM='26D'   # releases from 26D on get a hub page at /<release>/
 CURRENT=None    # current update (set in render() from build.py)
 LEAD={'rel':'26D','pdf':'downloads/fusion-26d-readiness-checklist.pdf','ics':'downloads/fusion-quarterly-update-calendar.ics'}
+LEAD_THUMB='downloads/fusion-26d-readiness-checklist-p1.png'  # page-1 preview, drawn by scripts/leadmagnets.py
 OG_SPECS={}      # slug -> (tag, headline, sub); images are drawn by scripts/og.py
 def og_slug(path):
     s=path.strip('/').replace('.html','').replace('/','-') or 'home'
     return s+'-archive' if path=='newsletter/' else s
+LEAD_HEAD=f"Get the {LEAD['rel']} checklist now: what switches on by itself, which former opt-ins are now standard, what to test"
+def lead_preview():
+    """What's in the checklist PDF, counted from the same data scripts/leadmagnets.py uses. None if the data isn't loaded."""
+    rel=LEAD['rel']; u=_UPD.get(rel)
+    if not u: return None
+    es=u['expiring']; on=sum(1 for e in es if e['now_enabled']=='Yes'); hr=[i for i in HCMR['items'] if i['release']==rel]
+    li=[f"The {len(es)} opt-ins Oracle lists as ending with {rel}: {on} switch on for everyone, {len(es)-on} need setup",
+        f"{len(hr)} HCM Redwood default switches and other HCM notices for {rel}" if hr else None,
+        f"{len(BASELINE)+1} baseline regression checks, plus typical {rel} test and production dates by cohort"]
+    return [x for x in li if x]
+_UPD={}
 def cta_for(path):
     """Page-specific CTA for the top-of-page signup box: (heading, area preset)."""
     n=NEXT_REL; parts=path.strip('/').split('/')
     fam={v:k for k,v in FSLUG.items()}
     AREA={'Financials':'Financials','Procurement':'Procurement','Supply Chain & Manufacturing':'Supply Chain & Manufacturing','Logistics (OTM/GTM/WMS)':'Logistics','Project Management':'Project Management','HCM':'HCM'}
-    if path.startswith('hcm-redwood') or 'redwood-' in path: return ('Get the next HCM Redwood switches in your inbox','HCM')
+    if path.startswith('hcm-redwood') or 'redwood-' in path: return (LEAD_HEAD,'HCM')
     if len(parts)==2 and parts[1] in fam:
         f=fam[parts[1]]
-        if f=='HCM': return (f'Get the {n} HCM changes and the next Redwood switches before your test pod updates','HCM')
-        return (f'Get the {n} {FNAME[f]} briefing before your test pod updates',AREA[f])
+        return (LEAD_HEAD,AREA[f])
     if path.startswith('newsletter/'): return (f'Get the next issue ({n}) in your inbox','All modules')
     if path.startswith('downloads/'): return ('Get the next checklist by email','All modules')
-    return (f'Get the {n} briefing before your test pod updates','All modules')
+    return (LEAD_HEAD,'All modules')
+TOPFORM='<!--topform-->'
 def _after_hero(body,ins):
     i=body.find('<div class="hero">')
     if i<0: return ins+body
@@ -83,18 +97,27 @@ def page(title, body, depth=0, desc='', path='', head='', og=None, top_form=True
     img=f'{BASE}/og/{slug}.png'; ft=f'{title} | {SITE}'
     ogm=(f'<meta property="og:image" content="{img}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="627"><meta property="og:image:type" content="image/png"><meta property="og:image:alt" content="{E(title)}">'
          f'<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{E(ft)}"><meta name="twitter:description" content="{E(d)}"><meta name="twitter:image" content="{img}"><meta name="twitter:image:alt" content="{E(title)}">')
-    if top_form: body=_after_hero(body,nl_compact(*cta_for(path)))
+    if top_form:
+        f=nl_compact(*cta_for(path))
+        body=body.replace(TOPFORM,f,1) if TOPFORM in body else _after_hero(body,f)
+    body=body.replace(TOPFORM,'')
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{E(title)} | {SITE}</title><meta name="description" content="{E(d)}">
 <link rel="canonical" href="{BASE}/{path}"><meta property="og:url" content="{BASE}/{path}"><meta property="og:title" content="{E(ft)}"><meta property="og:type" content="website"><meta property="og:site_name" content="{SITE}"><meta property="og:description" content="{E(d)}">{ogm}<link rel="stylesheet" href="{p}style.css">{head}</head><body>
 <header><div class="w"><a class="brand" href="{p}index.html">Fusion<span>Updates</span></a><nav>
 {NAV.replace("@",p)}<a href="{p}newsletter.html">Newsletter</a><a href="{p}downloads/">Free downloads</a>{f'<a href="{p}sponsor.html">Sponsor</a>' if SHOW_SPONSORS else ''}<a href="{p}about.html">About</a></nav></div></header>
 <main class="w">{body}</main>
-<a class="sticky-sub hide" href="#subscribe">Subscribe: free {LEAD['rel']} checklist</a>
-<script>(function(){{var s=document.querySelector('.sticky-sub');if(!s)return;if(!('IntersectionObserver' in window)){{s.classList.remove('hide');return;}}var v=new Set();var o=new IntersectionObserver(function(es){{es.forEach(function(e){{e.isIntersecting?v.add(e.target):v.delete(e.target)}});s.classList.toggle('hide',v.size>0)}});document.querySelectorAll('form.nl').forEach(function(f){{o.observe(f)}});}})();</script>
+<div class="sticky-sub hide" role="region" aria-label="Subscribe"><a href="#subscribe">Free {LEAD['rel']} checklist <span>→ Subscribe</span></a><button type="button" aria-label="Close">×</button></div>
+<script>(function(){{var s=document.querySelector('.sticky-sub');if(!s)return;var fs=[].slice.call(document.querySelectorAll('form.nl'));if(!fs.length)return;var closed=false,t=0;
+function upd(){{t=0;var h=innerHeight,past=fs[0].getBoundingClientRect().bottom<0,vis=fs.some(function(f){{var r=f.getBoundingClientRect();return r.bottom>0&&r.top<h}}),show=!closed&&past&&!vis;s.classList.toggle('hide',!show);document.body.classList.toggle('has-sticky',show);}}
+function req(){{if(!t)t=requestAnimationFrame(upd)}}addEventListener('scroll',req,{{passive:true}});addEventListener('resize',req);
+s.querySelector('button').addEventListener('click',function(){{closed=true;upd();}});upd();}})();</script>
+<script>(function(){{try{{var n=navigator,w=window;if(n.doNotTrack=='1'||w.doNotTrack=='1'||n.msDoNotTrack=='1'||n.globalPrivacyControl||n.webdriver)return;if(!/(^|\\.)fusionupdates\\.com$/.test(location.hostname))return;var q=new URLSearchParams(location.search),d=JSON.stringify({{p:location.pathname,r:document.referrer,us:q.get('utm_source'),um:q.get('utm_medium'),uc:q.get('utm_campaign')}}),u='{HIT_URL}';if(n.sendBeacon)n.sendBeacon(u,new Blob([d],{{type:'text/plain'}}));else fetch(u,{{method:'POST',body:d,keepalive:true,mode:'no-cors'}});}}catch(e){{}}}})();</script>
 <footer><div class="w">Independent site, not affiliated with or endorsed by Oracle. Oracle and Oracle Fusion are trademarks of Oracle and/or its affiliates.
 Summaries are condensed from Oracle's public readiness documentation. Impact on upgrade is our editorial rating of how much a change affects existing users and testing; Oracle scale is Oracle&#39;s own rating. Always confirm details on the linked Oracle page. · <a href="{p}privacy.html">Privacy</a> · <a href="{p}about.html">About</a> · Contact: <a href="mailto:{CONTACT}">{CONTACT}</a></div></footer></body></html>"""
 FORM_ACTION='https://uufmlmwgvoqhhtqgrclu.supabase.co/functions/v1/fut-subscribe'
+# Cookie-free visit counter (supabase/functions/fut-hit): sends path, referrer, utm_ tags; skipped with Do Not Track / GPC.
+HIT_URL='https://uufmlmwgvoqhhtqgrclu.supabase.co/functions/v1/fut-hit'
 HONEYPOT='<input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">'
 FINE='Free. 4 emails a year plus short opt-in alerts. Unsubscribe anytime.'
 def nl_script():
@@ -105,6 +128,15 @@ def nl_script():
     "if(j.ok){m.innerHTML='"+ok+"';f.reset();}else{m.textContent=(j.error==='invalid_email'?'Please enter a valid email address.':(s===429?'Too many attempts. Please try again later.':'Something went wrong. Please try again.'));}}).catch(()=>{m.textContent='Network error. Please try again.'}).finally(()=>{b.disabled=false});return false;}}</script>")
 def nl_compact(heading,area='All modules'):
     p=P_CUR
+    pv=lead_preview() if heading==LEAD_HEAD else None
+    if pv:
+        li=ISSUES[-1] if ISSUES else None  # issue #1
+        iss=f' <a href="{p}newsletter/{li["slug"]}/">Read issue #{li["number"]} ({E(li["release"])}) →</a>' if li else ''
+        thumb=f'<a class="lb-thumb" href="{p}{LEAD["pdf"]}" title="Open the {LEAD["rel"]} checklist (PDF)"><img src="{p}{LEAD_THUMB}" alt="First page of the {LEAD["rel"]} readiness checklist" width="112" height="159" loading="lazy"></a>' if os.path.exists(os.path.join(ASSETS,LEAD_THUMB)) else ''
+        return f"""<div class="nlc lead-box" id="subscribe"><div class="lb-main"><h3>{E(heading)}</h3>
+<form class="nl" action="{FORM_ACTION}" method="post" onsubmit="return futSub(this)" style="margin-top:8px"><input type="email" name="email" placeholder="you@company.com" required maxlength="254" aria-label="Email address">{HONEYPOT}<input type="hidden" name="area" value="{E(area)}"><button type="submit">Get the {LEAD['rel']} checklist</button></form>
+<p class="small muted" style="margin:8px 0 0"><b>Inside the free {LEAD['rel']} checklist (PDF):</b></p><ul class="lb-prev">{''.join(f'<li>{E(x)}</li>' for x in pv)}</ul>
+<p class="small muted nl-msg" aria-live="polite">Then one plain-English email per Oracle quarterly update, linked to Oracle's docs. {FINE}{iss} · <a href="{p}privacy.html">Privacy</a></p>{nl_script()}</div>{thumb}</div>"""
     return f"""<div class="nlc" id="subscribe"><h3>{E(heading)}</h3><p class="small muted">Free {LEAD['rel']} checklist PDF when you subscribe. One plain-English email per Oracle quarterly update, linked to Oracle's docs.</p>
 <form class="nl" action="{FORM_ACTION}" method="post" onsubmit="return futSub(this)"><input type="email" name="email" placeholder="you@company.com" required maxlength="254" aria-label="Email address">{HONEYPOT}<input type="hidden" name="area" value="{E(area)}"><button type="submit">Send me the briefing</button></form>
 <p class="small muted nl-msg" aria-live="polite">{FINE} <a href="{p}privacy.html">Privacy</a></p>{nl_script()}</div>"""
@@ -158,7 +190,7 @@ def checklist_page(u):
 def is_next(rel): return bool(UPCOMING and UPCOMING.get('tracked') and UPCOMING['release']==rel)
 def render(updates, dist, upcoming=None, generated='', current=None):
     global NAV, NEXT_REL, UPCOMING, CURRENT
-    UPCOMING=upcoming; CURRENT=current or sorted(updates)[-1]; UPD_KEYS[:]=list(updates)
+    UPCOMING=upcoming; CURRENT=current or sorted(updates)[-1]; UPD_KEYS[:]=list(updates); _UPD.clear(); _UPD.update(updates)
     if upcoming: NEXT_REL=upcoming['release']
     OG_SPECS.clear()
     NAV=''.join((f'<a href="@{k.lower()}/">{k} (next)</a>' if is_next(k) else f'<a href="@updates/{k.lower()}/index.html">{k}{" (current)" if k==CURRENT else ""}</a>') for k in sorted(updates,reverse=True))
@@ -229,7 +261,7 @@ def render(updates, dist, upcoming=None, generated='', current=None):
 <h3>How we use it</h3><p>Only to send the Fusion Updates newsletter (about one email per Oracle quarterly update, plus occasional short alerts about opt-in expirations). We don't sell or share your data, and we don't add you to other lists.</p>
 <h3>Where it's kept</h3><p>Subscriber data is stored with Supabase (EU region, Frankfurt), and newsletters are sent with Resend (EU region). Both act as processors for us.</p>
 <h3>Unsubscribe and deletion</h3><p>Every email has a one-click unsubscribe link. To have your data deleted, or for any question, write to '''+contact_html()+'''.</p>
-<h3>Analytics</h3><p>This site uses no tracking cookies, and newsletter open and click tracking is turned off.</p>
+<h3>Analytics</h3><p>This site uses no cookies, and newsletter open and click tracking is turned off. We count page views without cookies: for each day we keep only totals per page, the domain of the site that linked to it (for example linkedin.com), and any utm_ tags in the link. No IP address, browser details or identifier is stored, so a visit can't be traced back to you. If your browser sends Do Not Track or Global Privacy Control, nothing is counted. The counter data is stored with Supabase (EU region, Frankfurt).</p>
 <p class="small muted">Fusion Updates is an independent publication. Questions about your data: hello@fusionupdates.com. Last updated: October 2026.</p></div>'''))
     open(os.path.join(dist,'CNAME'),'w').write('fusionupdates.com\n')
     open(os.path.join(dist,'robots.txt'),'w').write(f'User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n')
@@ -368,7 +400,7 @@ def family_page(u,f,updates):
     otherrel=' · '.join(f'<a href="../../{k.lower()}/{FSLUG[f]}/">{fn} {k}</a>' for k in sorted(updates,reverse=True) if k!=rel and any(i['family']==f for i in updates[k]['items']))
     booklinks=' · '.join(f'<a href="{E(b["url"])}" target=_blank rel=noopener>{E(b["product"])} {rel} What\'s New</a>' for b in books)
     body=f"""{crumbs_html(cl,'../../')}<div class="hero"><h1>{E(title)}</h1>
-{f'<p class="lead">{rel} is the next Oracle Fusion Cloud quarterly update. Oracle&#39;s {rel} What&#39;s New documents for this area list {len(allf)} features: {bucket_sentence(allf)}, per Oracle&#39;s "Action to Enable" column. <a href="#all-features">See all {len(allf)} →</a></p>' if nxt and allf else ''}<p class="lead">We track {len(its)} {E(fn)} changes in {rel}{f', out of {tot} features (our count) in Oracle&#39;s {rel} What&#39;s New documents for this area' if tot else ''}. {len(auto)} of them are delivered switched on; {len(rest)} need setup or an opt-in before anyone can use them.</p>
+{f'<p class="lead">{rel} is the next Oracle Fusion Cloud quarterly update. Oracle&#39;s {rel} What&#39;s New documents for this area list {len(allf)} features: {bucket_sentence(allf)}, per Oracle&#39;s "Action to Enable" column. <a href="#all-features">See all {len(allf)} →</a></p>'+TOPFORM if nxt and allf else ''}<p class="lead">We track {len(its)} {E(fn)} changes in {rel}{f', out of {tot} features (our count) in Oracle&#39;s {rel} What&#39;s New documents for this area' if tot else ''}. {len(auto)} of them are delivered switched on; {len(rest)} need setup or an opt-in before anyone can use them.</p>{TOPFORM}
 <p class="small muted">Oracle sources: {booklinks}</p>{unpub_note(u,f) if nxt else ''}<p class="note">Impact on upgrade is our editorial rating of how much a change affects existing users and testing; Oracle scale is Oracle&#39;s own rating. Always confirm details on the linked Oracle page.</p></div>
 <div class="box"><h2 style="margin-top:0">Former opt-ins now standard in {rel}</h2><p class="small muted">From Oracle's <a href="https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features/optincurrent.html" target=_blank rel=noopener>Current Opt-In Expirations</a> list: features whose opt-in period {'ends' if nxt else 'ended'} with {rel}. If you already opted in and finished setup, nothing changes.{' Oracle&#39;s list groups these under its own Pillar column; here they are shown by product.' if exps else ''} <a href="../former-opt-ins-now-standard/">All former opt-ins now standard in {rel} →</a></p>{exp_table(exps)}</div>
 {hr_box(rel,'../../') if f=='HCM' else ''}<h2>Delivered switched on ({len(auto)})</h2>{''.join(item_html(i) for i in auto) or '<p class="muted">None among the changes we track.</p>'}

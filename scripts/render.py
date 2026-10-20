@@ -118,7 +118,8 @@ Summaries are condensed from Oracle's public readiness documentation. Impact on 
 FORM_ACTION='https://uufmlmwgvoqhhtqgrclu.supabase.co/functions/v1/fut-subscribe'
 # Cookie-free visit counter (supabase/functions/fut-hit): sends path, referrer, utm_ tags; skipped with Do Not Track / GPC.
 HIT_URL='https://uufmlmwgvoqhhtqgrclu.supabase.co/functions/v1/fut-hit'
-HONEYPOT='<input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">'
+# Anti-spam honeypot. Non-semantic name so browsers don't autofill it (the old name "website" could be autofilled by real people).
+HONEYPOT='<input type="text" name="fu_hp_extra" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">'
 FINE='Free. 4 emails a year plus short opt-in alerts. Unsubscribe anytime.'
 def nl_script():
     p=P_CUR

@@ -31,9 +31,10 @@ Deno.serve(async (req) => {
     else body = Object.fromEntries((await req.formData()).entries());
   } catch { return json({ ok: false, error: "bad_request" }, 400, h); }
 
-  // Honeypot: real users never fill the hidden 'website' field. Pretend success, and add 1 to today's drop count
+  // Honeypot: real users never fill the hidden 'fu_hp_extra' field (renamed from 'website' on 20 Oct 2026 so browsers
+  // don't autofill it). Pretend success, and add 1 to today's drop count
   // (public.fut_honeypot_drops holds a number per day only: no email, IP or field contents).
-  if (String(body.website ?? "").trim() !== "") {
+  if (String(body.fu_hp_extra ?? "").trim() !== "") {
     try {
       const sbh = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!, { auth: { persistSession: false } });
       await sbh.rpc("fut_count_honeypot");

@@ -1,0 +1,158 @@
+# Fusion Updates
+
+> Fusion Updates (fusionupdates.com) is an independent, plain-English tracker of Oracle Fusion Cloud quarterly updates for Financials, Procurement, Supply Chain & Manufacturing, Logistics, Project Management and HCM: what changed, what switches on automatically, which former opt-ins are now standard, and what to test. Not affiliated with or endorsed by Oracle.
+
+Updated 19 October 2026. Fusion Updates turns Oracle's quarterly What's New documents into plain English. The current update is 26C: we track 148 changes, 120 of them delivered switched on, and Oracle lists 36 former opt-ins now standard with 26C. 26D is next: Oracle's 26D What's New lists 768 features across the modules we cover, and 23 opt-ins end with 26D.
+
+How it is built: features come from the Feature Summary tables in Oracle's What's New documents; enablement comes from Oracle's "Action to Enable" column plus Oracle's Current Opt-In Expirations list. "Impact on upgrade" (high, medium, low) is our editorial rating; "Oracle scale" is copied from Oracle's "Impact to Existing Processes" column. Every entry links to its Oracle source page. The site is refreshed every week from Oracle's documents.
+
+## Releases
+
+- [Oracle Fusion 26D changes](https://fusionupdates.com/updates/26d/) (next update) · [26D what-to-test checklist](https://fusionupdates.com/updates/26d/checklist.html) · [Opt-ins ending with 26D](https://fusionupdates.com/26d/former-opt-ins-now-standard/)
+- [Oracle Fusion 26C changes](https://fusionupdates.com/updates/26c/) (current update) · [26C what-to-test checklist](https://fusionupdates.com/updates/26c/checklist.html) · [26C former opt-ins now standard](https://fusionupdates.com/26c/former-opt-ins-now-standard/)
+- [Oracle Fusion 26B changes](https://fusionupdates.com/updates/26b/) (past update) · [26B what-to-test checklist](https://fusionupdates.com/updates/26b/checklist.html) · [26B former opt-ins now standard](https://fusionupdates.com/26b/former-opt-ins-now-standard/)
+- [26D hub: what's new by module and the opt-in expiration list](https://fusionupdates.com/26d/)
+
+## Module pages
+
+- Financials: [26D](https://fusionupdates.com/26d/financials/) · [26C](https://fusionupdates.com/26c/financials/) · [26B](https://fusionupdates.com/26b/financials/)
+- HCM: [26D](https://fusionupdates.com/26d/hcm/) · [26C](https://fusionupdates.com/26c/hcm/) · [26B](https://fusionupdates.com/26b/hcm/)
+- Logistics (OTM, GTM, WMS): [26D](https://fusionupdates.com/26d/logistics/) · [26C](https://fusionupdates.com/26c/logistics/) · [26B](https://fusionupdates.com/26b/logistics/)
+- Procurement: [26D](https://fusionupdates.com/26d/procurement/) · [26C](https://fusionupdates.com/26c/procurement/) · [26B](https://fusionupdates.com/26b/procurement/)
+- Project Management: [26D](https://fusionupdates.com/26d/project-management/) · [26C](https://fusionupdates.com/26c/project-management/) · [26B](https://fusionupdates.com/26b/project-management/)
+- Supply Chain & Manufacturing: [26D](https://fusionupdates.com/26d/supply-chain-manufacturing/) · [26C](https://fusionupdates.com/26c/supply-chain-manufacturing/) · [26B](https://fusionupdates.com/26b/supply-chain-manufacturing/)
+
+## Other key pages
+
+- [Home](https://fusionupdates.com/)
+- [HCM pages switching to Redwood](https://fusionupdates.com/hcm-redwood/)
+- [Free downloads: readiness checklist (PDF) and update calendar (.ics)](https://fusionupdates.com/downloads/)
+- [Newsletter](https://fusionupdates.com/newsletter.html) · [All issues](https://fusionupdates.com/newsletter/)
+- [About and method](https://fusionupdates.com/about.html)
+- Full text of the summaries and FAQs: https://fusionupdates.com/llms-full.txt
+
+## FAQ
+
+- **What is the current Oracle Fusion Cloud quarterly update?** 26C is the current update on this site and 26D is next. Oracle updates environments in cohorts: test environments on the first Friday of the update month and production two weeks later, on the third Friday. Your cohort is shown in the Oracle Cloud Console.
+- **What switches on automatically in 26C?** 120 of the 148 26C changes we track are delivered switched on, so users may see them without anyone acting. [See the ones rated medium or high impact](https://fusionupdates.com/updates/26c/checklist.html#auto).
+- **Which former opt-ins are now standard in 26C?** Oracle's Current Opt-In Expirations list names 36 features whose opt-in period ended with 26C: 14 are switched on for everyone and 22 need setup. [See them](https://fusionupdates.com/26c/former-opt-ins-now-standard/).
+- **What's new in Oracle Fusion 26D?** Oracle's 26D What's New documents list 768 features across the modules we cover: 173 on by default, 124 on by default with potential setup, 361 setup required, 89 opt-in, 21 needing another action, per Oracle's "Action to Enable" column. 23 opt-ins also end with 26D. [26D by module](https://fusionupdates.com/26d/).
+- **What should I test after an Oracle Fusion quarterly update?** Start with a baseline regression: validate your current configuration, key end-to-end business flows, integrations, critical reports, custom workflows and extensions, security for new or changed pages, and the features switched on automatically. Our [26C what-to-test checklist](https://fusionupdates.com/updates/26c/checklist.html) adds the changes and former opt-ins for 26C.
+- **Is Fusion Updates affiliated with Oracle?** No. It's an independent site, not affiliated with or endorsed by Oracle. Summaries are condensed from Oracle's public readiness documentation, and every entry links to its Oracle source page.
+
+## Contact
+
+hello@fusionupdates.com
+
+
+## Oracle Fusion 26D (next update)
+
+26D is the next Oracle Fusion Cloud quarterly update. We track 136 of its changes in plain English, out of 768 features (our count) in Oracle's 26D What's New documents for the modules we cover. 101 of the 136 are delivered switched on and 5 are rated high impact on upgrade. Oracle's opt-in expiration list names 23 features whose opt-in ends with 26D: 9 switched on for everyone, 14 need setup.
+
+- **How many features are in Oracle's 26D What's New?** 768 features by our count, in the 26D What's New documents for Financials, Procurement, Supply Chain, Logistics, Project Management and HCM. We summarise 136 of them in plain English: the most relevant ones, up to 25 per module family.
+- **Which 26D changes switch on automatically?** 101 of the 136 26D changes we track are delivered switched on. 72 of those are rated medium or high impact on upgrade and are listed in section 2 of the [26D what-to-test checklist](https://fusionupdates.com/updates/26d/checklist.html#auto). Use the enablement filter above to see them all.
+- **Which opt-ins end with 26D?** Oracle's Current Opt-In Expirations list names 23 features whose opt-in ends with 26D: 9 are switched on for everyone and 14 need setup if you want to use them. [See the list](https://fusionupdates.com/updates/26d/../../26d/former-opt-ins-now-standard/).
+- **How many 26D changes are rated high impact?** 5 of the 136 changes we track. Impact on upgrade is our editorial rating of how much a change affects existing users and testing; Oracle's own scale rating is shown separately on each change.
+- **What should I test for 26D?** Start with the [26D what-to-test checklist](https://fusionupdates.com/updates/26d/checklist.html): baseline regression checks based on Oracle's guidance, the changes delivered switched on, the former opt-ins now standard, and Oracle's IMPORTANT Actions and Considerations for each product.
+
+Changes we track, by module family: Financials 25, HCM 25, Logistics (OTM, GTM, WMS) 25, Procurement 25, Project Management 11, Supply Chain & Manufacturing 25.
+
+Opt-ins ending with 26D (Oracle's list):
+- Revenue Equipment Leases (Financials: Procure to Pay · Asset Acquisition, Maintenance, and Lease; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=fins26b-f43424
+- Project Change Requests and Consolidation into Change Orders (Project Management · Planning, Scheduling, and Forecasting; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=ppm25d-f39995
+- Assignment Date and Role Updates when Replacing Resources (Project Management · Resource Management; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=ppm26a-f41906
+- Replacement Nomination Approval Workflow (Project Management · Resource Management; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=ppm26b-f43234
+- Redwood Experience for Explore Your City (Permitting and Licensing · Permitting and Licensing Common; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd26c-f49450
+- Redwood Experience for Worklists (Permitting and Licensing · Permitting and Licensing Common; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd26c-f49426
+- Migrating Generative AI features to AI Agents (Sales Force Automation · Redwood User Experience; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=sfau-26c-f47284
+- Migrate Prompt-Based Generative AI Capabilities to Execution-Ready AI Agent (Sales Force Automation · Sales for Outlook; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=sfau-26c-f47283
+- Redwood: View License Plate Number in Electronic Records (Advanced Inventory Management · Advanced Inventory Management; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=adv-iim26a-f41418
+- Redwood: Set up Supplier Registration and Profile Change Request (Procurement Common · Common Procurement; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=proc26a-f41604
+- Redwood: Configure E-Signature Preferences (Inventory Management · E-Signatures and E-Records; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=inv25c-f38710
+- Redwood: Use Redwood Template for ERES Approval Notifications and Approve Using Deferred Mode (Inventory Management · Inventory Management; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=inv25c-f38387
+- Manage Global Maintenance Work Definitions (Maintenance · Maintenance; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=maint26b-f43651
+- Manage Organizations for Global Work Definitions Using File-Based Data Import (Maintenance · Maintenance; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=maint26c-f46394
+- Move Materials from Staging Locations in the Factory Floor to Workstations (Manufacturing · Manufacturing; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26b-f43087
+- Redwood: Complete an Item Multiple Times in a Discrete Manufacturing Work Order (Manufacturing · Manufacturing; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26b-f43078
+- Redwood: Manage Global Work Definitions in an Item Master Organization (Manufacturing · Manufacturing; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26b-f43102
+- Redwood: Plan, Schedule, and Execute Parallel Operations in a Manufacturing Work Order (Manufacturing · Manufacturing; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26b-f43089
+- Redwood: Report Material Scrap in a Discrete Manufacturing Work Order (Manufacturing · Manufacturing; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26b-f43097
+- Redwood: Track Work in Process Between Operations During Production Execution (Manufacturing · Manufacturing; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26b-f43105
+- Stop an Operation and Correct Resource Usage During Production Supervision (Manufacturing · Manufacturing; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26b-f43106
+- Redwood: Set Up Customer Pricing (Order Management · Pricing; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=order26b-f43291
+- Use Source Document as Transfer Price Basis for Orders in Back-to-Back Intercompany Transfers (Inventory Management · Supply Chain Financial Orchestration; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=inv26b-f43600
+
+## Oracle Fusion 26C (current update)
+
+26C is the current Oracle Fusion Cloud quarterly update. We track 148 of its changes in plain English, out of 786 features (our count) in Oracle's 26C What's New documents for the modules we cover. 120 of the 148 are delivered switched on and 16 are rated high impact on upgrade. Oracle's opt-in expiration list names 36 former opt-ins now standard in 26C: 14 switched on for everyone, 22 need setup.
+
+- **How many features are in Oracle's 26C What's New?** 786 features by our count, in the 26C What's New documents for Financials, Procurement, Supply Chain, Logistics, Project Management and HCM. We summarise 148 of them in plain English: the most relevant ones, up to 25 per module family.
+- **Which 26C changes switch on automatically?** 120 of the 148 26C changes we track are delivered switched on. 62 of those are rated medium or high impact on upgrade and are listed in section 2 of the [26C what-to-test checklist](https://fusionupdates.com/updates/26c/checklist.html#auto). Use the enablement filter above to see them all.
+- **Which former opt-ins are now standard in 26C?** Oracle's Current Opt-In Expirations list names 36 features whose opt-in period ended with 26C: 14 are switched on for everyone and 22 need setup if you want to use them. [See the list](https://fusionupdates.com/updates/26c/../../26c/former-opt-ins-now-standard/).
+- **How many 26C changes are rated high impact?** 16 of the 148 changes we track. Impact on upgrade is our editorial rating of how much a change affects existing users and testing; Oracle's own scale rating is shown separately on each change.
+- **What should I test for 26C?** Start with the [26C what-to-test checklist](https://fusionupdates.com/updates/26c/checklist.html): baseline regression checks based on Oracle's guidance, the changes delivered switched on, the former opt-ins now standard, and Oracle's IMPORTANT Actions and Considerations for each product.
+
+Changes we track, by module family: Financials 25, HCM 25, Logistics (OTM, GTM, WMS) 25, Procurement 25, Project Management 23, Supply Chain & Manufacturing 25.
+
+Former opt-ins now standard in 26C (Oracle's list):
+- Accounting Event Exclusion for Adjustment-Only Accounting Method Representation (Accounting Hub · Accounting Hub; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=ah25d-f40016
+- Foreign Currency Lease Right-of-Use Asset Remeasurement (Financials: Procure to Pay · Asset Acquisition, Maintenance, and Lease; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=fins26a-f41927
+- Project-Based Expense Lease Payments (Financials: Procure to Pay · Asset Acquisition, Maintenance, and Lease; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=fins26a-f41926
+- Updated Labor Distribution Management Pages (Project Management · Cost Management and Control; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=ppm26a-f41900
+- Multiple Brazilian Payment Methods When Using Collection Documents (Financials: Regional Compliance & Reporting · Local Compliance & Reporting; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=fins25b-f37094
+- Project Details Capture on Purchase Order Matched Invoices (Financials: Procure to Pay · Payables Invoice Processing; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=fins26a-f41830
+- Redwood Experience for Business List and Details (Permitting and Licensing · Business Licenses; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd26a-f42337
+- Redwood Experience for License List and Details (Permitting and Licensing · Business Licenses; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd26a-f42356
+- Redwood Experience for Code Officer Mobile Application (Permitting and Licensing · Code Enforcement; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd24c-f33639
+- Redwood Experience for Case List and Details (Permitting and Licensing · Code Enforcement; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd25d-f40730
+- Redwood Experience for Incident List and Detail Pages (Permitting and Licensing · Code Enforcement; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd25d-f40600
+- Redwood Experience for Oracle Inspector (Permitting and Licensing · Permits and Inspections; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd24b-f33083
+- Redwood Experience for Permit Application Details (Permitting and Licensing · Permits and Inspections; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd25a-f36009
+- Redwood Experience for Application Intake, Make a Payment, and Transaction Lists (Permitting and Licensing · Permitting and Licensing Common; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd24d-f33632
+- Redwood Experience for Deposit Account List and Details (Permitting and Licensing · Permitting and Licensing Common; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd25a-f36004
+- Redwood Experience Agency Home Page (Permitting and Licensing · Permitting and Licensing Common; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd25b-f37590
+- Redwood Experience for Payments and On Account Payments (Permitting and Licensing · Permitting and Licensing Common; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd25b-f37421
+- Redwood Experience for Public User Landing Page (Permitting and Licensing · Permitting and Licensing Common; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd25b-f37427
+- Redwood Experience for Address and Parcel (Permitting and Licensing · Permitting and Licensing Common; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd25c-f38922
+- Redwood Experience for Global Search (Permitting and Licensing · Permitting and Licensing Common; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd25c-f38919
+- Redwood Experience for Contractor List and Details (Permitting and Licensing · Permitting and Licensing Common; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd26a-f42344
+- Redwood Experience for Projects (Permitting and Licensing · Permitting and Licensing Common; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd26b-f43558
+- Redwood Experience for Planning Application Details (Permitting and Licensing · Planning and Zoning; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=pscd25c-f38925
+- Account for Operation Yield in Process Manufacturing (Inventory Management · Cost Management; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=inv25d-f40557
+- Define the Operation Yield for the Work Definition to Model the Expected Quantity for an Operation in Process Manufacturing (Manufacturing · Manufacturing; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg25d-f39711
+- Monitor Production for Work Centers Without Workstations (Manufacturing · Manufacturing; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26a-f41684
+- Redwood: Report Manufacturing Execution Operations Using a New User Experience (Manufacturing · Manufacturing; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26a-f41735
+- Redwood: Report Supplier Operations During Production Execution (Manufacturing · Manufacturing; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26a-f41734
+- Redwood: Resequence and Execute Work Order Operations During Production Execution (Manufacturing · Manufacturing; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26a-f41727
+- Redwood: Use Rework, Transform, and Nonstandard Work Order Operations During Production Execution (Manufacturing · Manufacturing; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26a-f41718
+- Report a Co-Product or By-Product Across Multiple Operations in a Process Manufacturing Work Order (Manufacturing · Manufacturing; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26a-f41722
+- Sync Work Definition Changes with Unreleased and Released Work Orders (Manufacturing · Manufacturing; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26a-f41683
+- Redwood: Execute Work Order Operations with Enhanced Options (Manufacturing · Manufacturing; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26b-f43079
+- Redwood: Pause and Resume Operations During Production Execution Without Workstations (Manufacturing · Manufacturing; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26b-f43095
+- Use Direct Integrations Between Supply Chain Orchestration and Inventory (Supply Chain Orchestration · Supply Chain Orchestration; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=sccv26a-f42448
+- Use Direct Integrations Between Supply Chain Orchestration and Manufacturing (Supply Chain Orchestration · Supply Chain Orchestration; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=sccv26a-f42447
+
+## Oracle Fusion 26B (past update)
+
+26B is an earlier Oracle Fusion Cloud quarterly update. We track 134 of its changes in plain English, out of 847 features (our count) in Oracle's 26B What's New documents for the modules we cover. 121 of the 134 are delivered switched on and 14 are rated high impact on upgrade. Oracle's opt-in expiration list names 11 former opt-ins now standard in 26B: 6 switched on for everyone, 5 need setup.
+
+- **How many features are in Oracle's 26B What's New?** 847 features by our count, in the 26B What's New documents for Financials, Procurement, Supply Chain, Logistics, Project Management and HCM. We summarise 134 of them in plain English: the most relevant ones, up to 25 per module family.
+- **Which 26B changes switch on automatically?** 121 of the 134 26B changes we track are delivered switched on. 78 of those are rated medium or high impact on upgrade and are listed in section 2 of the [26B what-to-test checklist](https://fusionupdates.com/updates/26b/checklist.html#auto). Use the enablement filter above to see them all.
+- **Which former opt-ins are now standard in 26B?** Oracle's Current Opt-In Expirations list names 11 features whose opt-in period ended with 26B: 6 are switched on for everyone and 5 need setup if you want to use them. [See the list](https://fusionupdates.com/updates/26b/../../26b/former-opt-ins-now-standard/).
+- **How many 26B changes are rated high impact?** 14 of the 134 changes we track. Impact on upgrade is our editorial rating of how much a change affects existing users and testing; Oracle's own scale rating is shown separately on each change.
+- **What should I test for 26B?** Start with the [26B what-to-test checklist](https://fusionupdates.com/updates/26b/checklist.html): baseline regression checks based on Oracle's guidance, the changes delivered switched on, the former opt-ins now standard, and Oracle's IMPORTANT Actions and Considerations for each product.
+
+Changes we track, by module family: Financials 25, HCM 25, Logistics (OTM, GTM, WMS) 25, Procurement 25, Project Management 9, Supply Chain & Manufacturing 25.
+
+Former opt-ins now standard in 26B (Oracle's list):
+- Lease Classification, Party, and Legal Entity Update in Expense Leases (Financials: Procure to Pay · Asset Acquisition, Maintenance, and Lease; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=fins25d-f40146
+- Lease Payments in Arrears (Financials: Procure to Pay · Asset Acquisition, Maintenance, and Lease; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=fins25d-f40147
+- Automatic Adjustment of Total Satisfaction Percentage in Revenue Management for a Contract Line Amount Amendment (Project Management · Billing and Revenue Management; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=ppm25a-f35782
+- Partial Amounts and Upper Limits in Netting Settlements (Financials: Procure to Pay · Payment Processing; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=fins25d-f40524
+- Change Order Automation for Financial Project Plan Amount Adjustments (Project Management · Planning, Scheduling, and Forecasting; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=ppm25b-f37021
+- Change Order Automation for Project Scope Adjustments (Project Management · Planning, Scheduling, and Forecasting; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=ppm25c-f38567
+- Redwood: View and Edit Asset Details (Maintenance · Maintenance; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=maint26a-f39999
+- Enforce Integer Quantities for Materials in Work Orders and Production Transactions (Manufacturing · Manufacturing; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg25d-f39719
+- Execute Production Without Defining Workstations (Manufacturing · Manufacturing; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg25d-f39715
+- Enforce Integer Quantities for Materials in Orderless Transactions and Flow Schedule Execution (Manufacturing · Manufacturing; now enabled: No) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=mfg26a-f41687
+- Redwood: Create Purchase Orders and Work Orders Using Supply Chain Orchestration (Supply Chain Orchestration · Supply Chain Orchestration; now enabled: Yes) https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id=sccv25d-f40588

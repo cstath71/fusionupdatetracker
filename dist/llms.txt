@@ -1,0 +1,45 @@
+# Fusion Updates
+
+> Fusion Updates (fusionupdates.com) is an independent, plain-English tracker of Oracle Fusion Cloud quarterly updates for Financials, Procurement, Supply Chain & Manufacturing, Logistics, Project Management and HCM: what changed, what switches on automatically, which former opt-ins are now standard, and what to test. Not affiliated with or endorsed by Oracle.
+
+Updated 19 October 2026. Fusion Updates turns Oracle's quarterly What's New documents into plain English. The current update is 26C: we track 148 changes, 120 of them delivered switched on, and Oracle lists 36 former opt-ins now standard with 26C. 26D is next: Oracle's 26D What's New lists 768 features across the modules we cover, and 23 opt-ins end with 26D.
+
+How it is built: features come from the Feature Summary tables in Oracle's What's New documents; enablement comes from Oracle's "Action to Enable" column plus Oracle's Current Opt-In Expirations list. "Impact on upgrade" (high, medium, low) is our editorial rating; "Oracle scale" is copied from Oracle's "Impact to Existing Processes" column. Every entry links to its Oracle source page. The site is refreshed every week from Oracle's documents.
+
+## Releases
+
+- [Oracle Fusion 26D changes](https://fusionupdates.com/updates/26d/) (next update) · [26D what-to-test checklist](https://fusionupdates.com/updates/26d/checklist.html) · [Opt-ins ending with 26D](https://fusionupdates.com/26d/former-opt-ins-now-standard/)
+- [Oracle Fusion 26C changes](https://fusionupdates.com/updates/26c/) (current update) · [26C what-to-test checklist](https://fusionupdates.com/updates/26c/checklist.html) · [26C former opt-ins now standard](https://fusionupdates.com/26c/former-opt-ins-now-standard/)
+- [Oracle Fusion 26B changes](https://fusionupdates.com/updates/26b/) (past update) · [26B what-to-test checklist](https://fusionupdates.com/updates/26b/checklist.html) · [26B former opt-ins now standard](https://fusionupdates.com/26b/former-opt-ins-now-standard/)
+- [26D hub: what's new by module and the opt-in expiration list](https://fusionupdates.com/26d/)
+
+## Module pages
+
+- Financials: [26D](https://fusionupdates.com/26d/financials/) · [26C](https://fusionupdates.com/26c/financials/) · [26B](https://fusionupdates.com/26b/financials/)
+- HCM: [26D](https://fusionupdates.com/26d/hcm/) · [26C](https://fusionupdates.com/26c/hcm/) · [26B](https://fusionupdates.com/26b/hcm/)
+- Logistics (OTM, GTM, WMS): [26D](https://fusionupdates.com/26d/logistics/) · [26C](https://fusionupdates.com/26c/logistics/) · [26B](https://fusionupdates.com/26b/logistics/)
+- Procurement: [26D](https://fusionupdates.com/26d/procurement/) · [26C](https://fusionupdates.com/26c/procurement/) · [26B](https://fusionupdates.com/26b/procurement/)
+- Project Management: [26D](https://fusionupdates.com/26d/project-management/) · [26C](https://fusionupdates.com/26c/project-management/) · [26B](https://fusionupdates.com/26b/project-management/)
+- Supply Chain & Manufacturing: [26D](https://fusionupdates.com/26d/supply-chain-manufacturing/) · [26C](https://fusionupdates.com/26c/supply-chain-manufacturing/) · [26B](https://fusionupdates.com/26b/supply-chain-manufacturing/)
+
+## Other key pages
+
+- [Home](https://fusionupdates.com/)
+- [HCM pages switching to Redwood](https://fusionupdates.com/hcm-redwood/)
+- [Free downloads: readiness checklist (PDF) and update calendar (.ics)](https://fusionupdates.com/downloads/)
+- [Newsletter](https://fusionupdates.com/newsletter.html) · [All issues](https://fusionupdates.com/newsletter/)
+- [About and method](https://fusionupdates.com/about.html)
+- Full text of the summaries and FAQs: https://fusionupdates.com/llms-full.txt
+
+## FAQ
+
+- **What is the current Oracle Fusion Cloud quarterly update?** 26C is the current update on this site and 26D is next. Oracle updates environments in cohorts: test environments on the first Friday of the update month and production two weeks later, on the third Friday. Your cohort is shown in the Oracle Cloud Console.
+- **What switches on automatically in 26C?** 120 of the 148 26C changes we track are delivered switched on, so users may see them without anyone acting. [See the ones rated medium or high impact](https://fusionupdates.com/updates/26c/checklist.html#auto).
+- **Which former opt-ins are now standard in 26C?** Oracle's Current Opt-In Expirations list names 36 features whose opt-in period ended with 26C: 14 are switched on for everyone and 22 need setup. [See them](https://fusionupdates.com/26c/former-opt-ins-now-standard/).
+- **What's new in Oracle Fusion 26D?** Oracle's 26D What's New documents list 768 features across the modules we cover: 173 on by default, 124 on by default with potential setup, 361 setup required, 89 opt-in, 21 needing another action, per Oracle's "Action to Enable" column. 23 opt-ins also end with 26D. [26D by module](https://fusionupdates.com/26d/).
+- **What should I test after an Oracle Fusion quarterly update?** Start with a baseline regression: validate your current configuration, key end-to-end business flows, integrations, critical reports, custom workflows and extensions, security for new or changed pages, and the features switched on automatically. Our [26C what-to-test checklist](https://fusionupdates.com/updates/26c/checklist.html) adds the changes and former opt-ins for 26C.
+- **Is Fusion Updates affiliated with Oracle?** No. It's an independent site, not affiliated with or endorsed by Oracle. Summaries are condensed from Oracle's public readiness documentation, and every entry links to its Oracle source page.
+
+## Contact
+
+hello@fusionupdates.com

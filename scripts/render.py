@@ -34,13 +34,14 @@ ul.check li{margin:6px 0}
 .current{background:linear-gradient(135deg,#14202b,#2a3d50);color:#fff;border-radius:14px;padding:28px;margin:22px 0}.current h2{font-size:30px;margin:8px 0}.current .lead{color:#d6dee6}
 .current .tag{background:#ff8a70;color:#14202b;font-weight:700;border-radius:999px;padding:3px 12px;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:18px 0}.stats div{background:rgba(255,255,255,.08);border-radius:10px;padding:14px}.stats b{display:block;font-size:30px;color:#ff8a70}.stats span{color:#d6dee6;font-size:14px}
-.nlc{background:#fff;border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:10px;padding:14px 16px;margin:6px 0 18px;max-width:860px}.nlc h3{margin:0 0 2px;font-size:17px}.nlc p{margin:4px 0}
+.nlc{background:#fff;border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:10px;padding:14px 16px;margin:6px 0 18px;max-width:860px}.nlc h3,.nlc h2.nlh{margin:0 0 2px;font-size:17px}.nlc p{margin:4px 0}
 .nlc form.nl input[type=email]{min-width:220px}
 .nlc.lead-box{display:flex;gap:16px;align-items:flex-start}.nlc .lb-main{flex:1;min-width:0}.nlc .lb-thumb{flex:0 0 112px;display:block;border:1px solid var(--line);border-radius:6px;overflow:hidden;line-height:0;box-shadow:0 2px 8px rgba(20,32,43,.12)}.nlc .lb-thumb img{width:112px;height:auto}
 .nlc ul.lb-prev{margin:6px 0 10px;padding-left:18px;font-size:14px}.nlc ul.lb-prev li{margin:2px 0}
 .sticky-sub{display:none}
 code{word-break:break-all}.item{overflow-wrap:anywhere}
 @media(max-width:700px){table{display:block;overflow-x:auto;max-width:100%}.hero h1{font-size:27px}.sticky-sub{display:flex;align-items:center;position:fixed;left:0;right:0;bottom:0;z-index:9;background:#14202b;border-top:2px solid var(--acc);padding:0 0 env(safe-area-inset-bottom);box-shadow:0 -2px 10px rgba(0,0,0,.18)}.sticky-sub.hide{display:none}.sticky-sub a{flex:1;color:#fff;font-weight:700;font-size:15px;text-decoration:none;padding:13px 8px 13px 16px}.sticky-sub a span{color:#ff8a70}.sticky-sub button{background:none;color:#c9d3dc;font-size:22px;line-height:1;padding:10px 16px;border-radius:0}body.has-sticky{padding-bottom:56px}form.nl input[type=email],form.nl select,form.nl button{width:100%;min-width:0}.nlc .lb-thumb{display:none}}
+.answer{background:#fff;border:1px solid var(--line);border-left:4px solid #1f5fa8;border-radius:10px;padding:12px 16px;margin:6px 0 18px;max-width:860px}.answer p{margin:0}
 .btn{display:inline-block;background:var(--acc);color:#fff;text-decoration:none;font-weight:600;padding:10px 16px;border-radius:8px;margin:4px 6px 4px 0}.btn.alt{background:#fff;color:#14202b}
 """
 NAV=''
@@ -50,6 +51,7 @@ UPCOMING=None
 UPD_KEYS=[]
 HUB_FROM='26D'   # releases from 26D on get a hub page at /<release>/
 CURRENT=None    # current update (set in render() from build.py)
+GENERATED=''    # date the site data was last rebuilt from Oracle's documents (render(generated=...)); shown in the footer and used as dateModified
 LEAD={'rel':'26D','pdf':'downloads/fusion-26d-readiness-checklist.pdf','ics':'downloads/fusion-quarterly-update-calendar.ics'}
 LEAD_THUMB='downloads/fusion-26d-readiness-checklist-p1.png'  # page-1 preview, drawn by scripts/leadmagnets.py
 OG_SPECS={}      # slug -> (tag, headline, sub); images are drawn by scripts/og.py
@@ -101,6 +103,7 @@ def page(title, body, depth=0, desc='', path='', head='', og=None, top_form=True
         f=nl_compact(*cta_for(path))
         body=body.replace(TOPFORM,f,1) if TOPFORM in body else _after_hero(body,f)
     body=body.replace(TOPFORM,'')
+    head=_date_ld(head)
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{E(title)} | {SITE}</title><meta name="description" content="{E(d)}">
 <link rel="canonical" href="{BASE}/{path}"><meta property="og:url" content="{BASE}/{path}"><meta property="og:title" content="{E(ft)}"><meta property="og:type" content="website"><meta property="og:site_name" content="{SITE}"><meta property="og:description" content="{E(d)}">{ogm}<link rel="stylesheet" href="{p}style.css">{head}</head><body>
@@ -114,7 +117,7 @@ function req(){{if(!t)t=requestAnimationFrame(upd)}}addEventListener('scroll',re
 s.querySelector('button').addEventListener('click',function(){{closed=true;upd();}});upd();}})();</script>
 <script>(function(){{try{{var n=navigator,w=window;if(n.doNotTrack=='1'||w.doNotTrack=='1'||n.msDoNotTrack=='1'||n.globalPrivacyControl||n.webdriver)return;if(!/(^|\\.)fusionupdates\\.com$/.test(location.hostname))return;var q=new URLSearchParams(location.search),d=JSON.stringify({{p:location.pathname,r:document.referrer,us:q.get('utm_source'),um:q.get('utm_medium'),uc:q.get('utm_campaign')}}),u='{HIT_URL}';if(n.sendBeacon)n.sendBeacon(u,new Blob([d],{{type:'text/plain'}}));else fetch(u,{{method:'POST',body:d,keepalive:true,mode:'no-cors'}});}}catch(e){{}}}})();</script>
 <footer><div class="w">Independent site, not affiliated with or endorsed by Oracle. Oracle and Oracle Fusion are trademarks of Oracle and/or its affiliates.
-Summaries are condensed from Oracle's public readiness documentation. Impact on upgrade is our editorial rating of how much a change affects existing users and testing; Oracle scale is Oracle&#39;s own rating. Always confirm details on the linked Oracle page. · <a href="{p}privacy.html">Privacy</a> · <a href="{p}about.html">About</a> · Contact: <a href="mailto:{CONTACT}">{CONTACT}</a></div></footer></body></html>"""
+Summaries are condensed from Oracle's public readiness documentation. Impact on upgrade is our editorial rating of how much a change affects existing users and testing; Oracle scale is Oracle&#39;s own rating. Always confirm details on the linked Oracle page. · <a href="{p}privacy.html">Privacy</a> · <a href="{p}about.html">About</a> · Contact: <a href="mailto:{CONTACT}">{CONTACT}</a>{f' · Updated <time datetime="{GENERATED}">{nice_date(GENERATED)}</time>' if GENERATED else ''}</div></footer></body></html>"""
 FORM_ACTION='https://uufmlmwgvoqhhtqgrclu.supabase.co/functions/v1/fut-subscribe'
 # Cookie-free visit counter (supabase/functions/fut-hit): sends path, referrer, utm_ tags; skipped with Do Not Track / GPC.
 HIT_URL='https://uufmlmwgvoqhhtqgrclu.supabase.co/functions/v1/fut-hit'
@@ -134,11 +137,11 @@ def nl_compact(heading,area='All modules'):
         li=ISSUES[-1] if ISSUES else None  # issue #1
         iss=f' <a href="{p}newsletter/{li["slug"]}/">Read issue #{li["number"]} ({E(li["release"])}) →</a>' if li else ''
         thumb=f'<a class="lb-thumb" href="{p}{LEAD["pdf"]}" title="Open the {LEAD["rel"]} checklist (PDF)"><img src="{p}{LEAD_THUMB}" alt="First page of the {LEAD["rel"]} readiness checklist" width="112" height="159" loading="lazy"></a>' if os.path.exists(os.path.join(ASSETS,LEAD_THUMB)) else ''
-        return f"""<div class="nlc lead-box" id="subscribe"><div class="lb-main"><h3>{E(heading)}</h3>
+        return f"""<div class="nlc lead-box" id="subscribe"><div class="lb-main"><h2 class="nlh">{E(heading)}</h2>
 <form class="nl" action="{FORM_ACTION}" method="post" onsubmit="return futSub(this)" style="margin-top:8px"><input type="email" name="email" placeholder="you@company.com" required maxlength="254" aria-label="Email address">{HONEYPOT}<input type="hidden" name="area" value="{E(area)}"><button type="submit">Get the {LEAD['rel']} checklist</button></form>
 <p class="small muted" style="margin:8px 0 0"><b>Inside the free {LEAD['rel']} checklist (PDF):</b></p><ul class="lb-prev">{''.join(f'<li>{E(x)}</li>' for x in pv)}</ul>
 <p class="small muted nl-msg" aria-live="polite">Then one plain-English email per Oracle quarterly update, linked to Oracle's docs. {FINE}{iss} · <a href="{p}privacy.html">Privacy</a></p>{nl_script()}</div>{thumb}</div>"""
-    return f"""<div class="nlc" id="subscribe"><h3>{E(heading)}</h3><p class="small muted">Free {LEAD['rel']} checklist PDF when you subscribe. One plain-English email per Oracle quarterly update, linked to Oracle's docs.</p>
+    return f"""<div class="nlc" id="subscribe"><h2 class="nlh">{E(heading)}</h2><p class="small muted">Free {LEAD['rel']} checklist PDF when you subscribe. One plain-English email per Oracle quarterly update, linked to Oracle's docs.</p>
 <form class="nl" action="{FORM_ACTION}" method="post" onsubmit="return futSub(this)"><input type="email" name="email" placeholder="you@company.com" required maxlength="254" aria-label="Email address">{HONEYPOT}<input type="hidden" name="area" value="{E(area)}"><button type="submit">Send me the briefing</button></form>
 <p class="small muted nl-msg" aria-live="polite">{FINE} <a href="{p}privacy.html">Privacy</a></p>{nl_script()}</div>"""
 def nl_form(p='',latest=False,top=False):
@@ -158,11 +161,12 @@ def update_page(u):
     cnt=collections.Counter(i['family'] for i in items)
     rows=[item_html(i) for i in items]
     opt=lambda xs:''.join(f'<option>{E(x)}</option>' for x in xs)
-    body=f"""<div class="hero"><h1>Oracle Fusion Cloud {u['release']}: what changed</h1>
+    rk=u['release'].lower(); cl=[('Home',''),(u['release'],f'updates/{rk}/')]; faq=release_faq(u)
+    body=f"""{crumbs_html(cl,'../../')}<div class="hero"><h1>Oracle Fusion Cloud {u['release']}: what changed</h1>
 <p class="lead">{len(items)} changes we track: the most relevant ones, up to 25 per module family (out of {u['total_features']} features, by our count, in the {u['release']} What's New documents for Financials, Procurement, SCM, Logistics, Projects and HCM). <a href="checklist.html">See the {u['release']} what-to-test checklist →</a></p>
 <p class="note">Impact on upgrade is our editorial rating of how much a change affects existing users and testing; Oracle scale is Oracle&#39;s own rating. Always confirm details on the linked Oracle page.</p>
 <p class="small muted">By module family: {' · '.join(f'<a href="../../{u["release"].lower()}/{FSLUG[f]}/">{E(FNAME[f])}</a> ({cnt[f]})' for f in fams)} · <a href="../../{u['release'].lower()}/former-opt-ins-now-standard/">Former opt-ins now standard in {u['release']} ({len(u['expiring'])})</a></p></div>
-<div class="filters"><select id="fam"><option value="">All module families</option>{opt(fams)}</select>
+{summary_html(release_summary(u))}<div class="filters"><select id="fam"><option value="">All module families</option>{opt(fams)}</select>
 <select id="prod"><option value="">All products</option>{opt(prods)}</select>
 <select id="imp"><option value="">Any impact on upgrade</option><option>high</option><option>medium</option><option>low</option></select>
 <select id="en"><option value="">Any enablement</option><option value="Automatically">Automatically on</option><option value="Opt-in">Opt-in</option><option value="expires">Opt-in expiring</option><option value="Off until">Off until set up</option></select>
@@ -170,8 +174,10 @@ def update_page(u):
 <div id="list">{''.join(rows)}</div>
 <script>
 const $=id=>document.getElementById(id);function f(){{let n=0;document.querySelectorAll('.item').forEach(e=>{{const ok=(!$('fam').value||e.dataset.family==$('fam').value)&&(!$('prod').value||e.dataset.product==$('prod').value)&&(!$('imp').value||e.dataset.impact==$('imp').value)&&(!$('en').value||e.dataset.en.includes($('en').value))&&(!$('q').value||e.dataset.text.includes($('q').value.toLowerCase()));e.style.display=ok?'':'none';if(ok)n++}});$('n').textContent=n+' shown'}}
-['fam','prod','imp','en','q'].forEach(i=>$(i).addEventListener('input',f));f();</script>{nl_form()}"""
-    return page(f"Oracle Fusion {u['release']} changes", body, 2, f"What changed in Oracle Fusion Cloud {u['release']}: plain-English summaries, impact, and enablement across Financials, Procurement, SCM, Projects and HCM.", f"updates/{u['release'].lower()}/",og=(f"Oracle Fusion Cloud {u['release']}",f"{len(items)} changes we track · {len(u['expiring'])} former opt-ins now standard"))
+['fam','prod','imp','en','q'].forEach(i=>$(i).addEventListener('input',f));f();</script>{faq_html(faq)}{nl_form()}"""
+    t=f"Oracle Fusion {u['release']} changes"; d=f"What changed in Oracle Fusion Cloud {u['release']}: plain-English summaries, impact, and enablement across Financials, Procurement, SCM, Projects and HCM."
+    ld=jsonld({"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":BASE+f"/updates/{rk}/","url":BASE+f"/updates/{rk}/","name":t,"description":d,"inLanguage":"en","isPartOf":{"@type":"WebSite","@id":BASE+"/#website","name":SITE,"url":BASE+"/"},"about":{"@type":"SoftwareApplication","name":"Oracle Fusion Cloud Applications","softwareVersion":u['release'],"applicationCategory":"BusinessApplication"}},crumbs(cl),faq_ld(faq)]})
+    return page(t, body, 2, d, f"updates/{rk}/",ld,og=(f"Oracle Fusion Cloud {u['release']}",f"{len(items)} changes we track · {len(u['expiring'])} former opt-ins now standard"))
 def checklist_page(u):
     items=u['items']
     auto_hi=[i for i in items if i['enablement'].startswith('Automatically') and i['impact'] in('high','medium')]
@@ -180,17 +186,21 @@ def checklist_page(u):
     exp=''.join(f"<tr><td>{E(e['product'])}</td><td>{E(e['module'])}</td><td>{'<a href=\"'+E(e['url'])+'\" target=_blank>' if e['url'] else ''}{E(e['title'])}{'</a>' if e['url'] else ''}</td><td>{E(e.get('now_enabled',''))}</td><td>{E(e['impact'])}</td><td>{E(e['action'])}</td><td>{E(e['introduced'])}</td></tr>" for e in u['expiring'])
     fams=''.join(f"<h3>{E(f)}</h3><ul class='check'>"+''.join(f"<li><label><input type=checkbox> <a href='{E(i['url'])}' target=_blank>{E(i['title'])}</a> <span class='small muted'>({E(i['product'])} · {E(i['module'])}, impact on upgrade: {i['impact']}{', Oracle scale: '+E(i['oracle_scale']) if i.get('oracle_scale') else ''})</span></label></li>" for i in v)+"</ul>" for f,v in sorted(byfam.items()))
     imp=''.join(f"<li><a href='{E(x['url'])}' target=_blank>{E(x['product'])}</a> <span class='small muted'>{E(x['family'])}</span></li>" for x in sorted(u['important'],key=lambda x:(x['family'],x['product'])))
-    body=f"""<div class="hero"><h1>{u['release']} what-to-test checklist</h1><p class="lead">A starting point for checking the {u['release']} quarterly update: in your test environment before it reaches production, or in production if you're already on it. Tick items as you go (ticks are not saved).</p><p class="note">Impact on upgrade is our editorial rating of how much a change affects existing users and testing; Oracle scale is Oracle&#39;s own rating. Always confirm details on the linked Oracle page.</p></div>
+    rk=u['release'].lower(); cl=[('Home',''),(u['release'],f'updates/{rk}/'),('What-to-test checklist',f'updates/{rk}/checklist.html')]
+    body=f"""{crumbs_html(cl,'../../')}<div class="hero"><h1>{u['release']} what-to-test checklist</h1><p class="lead">A starting point for checking the {u['release']} quarterly update: in your test environment before it reaches production, or in production if you're already on it. Tick items as you go (ticks are not saved).</p><p class="note">Impact on upgrade is our editorial rating of how much a change affects existing users and testing; Oracle scale is Oracle&#39;s own rating. Always confirm details on the linked Oracle page.</p></div>
 <div class="box" id="baseline"><h2>1. Baseline regression (every update)</h2><p class="small muted">Based on Oracle's published guidance: <a href="https://docs.oracle.com/en/cloud/saas/transportation/26b/otmpt/what-should-i-test-after-a-quarterly-update.html" target=_blank>What Should I Test After a Quarterly Update?</a></p><ul class="check">
 {''.join(f'<li><label><input type=checkbox> {x}</label></li>' for x in BASELINE)}</ul></div>
 <div class="box" id="auto"><h2>2. Changes that switch on automatically (rated medium or high impact on upgrade)</h2>{fams or '<p class=muted>None in this selection.</p>'}</div>
 <div class="box" id="expiring"><h2>3. Former opt-ins that are standard from {u['release']}</h2><p class="small muted">From Oracle's <a href="https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features/optincurrent.html" target=_blank>Current Opt-In Expirations</a> list. It covers all Fusion modules: {E(exp_scope(u['expiring'],u['release']))}.</p>
 <table><tr><th>Product</th><th>Module</th><th>Feature</th><th>Now enabled</th><th>Oracle scale (Impact to Existing Processes)</th><th>Action</th><th>Introduced</th></tr>{exp or '<tr><td colspan=7>None listed.</td></tr>'}</table></div>{hr_box(u['release'],'../../',check=True)}
 <div class="box"><h2>4. Read Oracle's "IMPORTANT Actions and Considerations" per product</h2><ul>{imp}</ul></div>{nl_form()}"""
-    return page(f"{u['release']} what-to-test checklist", body, 2, desc=f"Oracle Fusion {u['release']} what-to-test checklist: baseline regression, changes delivered switched on, former opt-ins now standard, and Oracle's IMPORTANT actions per product.", path=f"updates/{u['release'].lower()}/checklist.html",og=(f"Oracle Fusion Cloud {u['release']} · what to test","Baseline regression, switched-on changes, former opt-ins"))
+    t=f"{u['release']} what-to-test checklist"; d=f"Oracle Fusion {u['release']} what-to-test checklist: baseline regression, changes delivered switched on, former opt-ins now standard, and Oracle's IMPORTANT actions per product."
+    ld=jsonld({"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":BASE+f"/updates/{rk}/checklist.html","url":BASE+f"/updates/{rk}/checklist.html","name":t,"description":d,"inLanguage":"en","isPartOf":{"@type":"WebSite","@id":BASE+"/#website","name":SITE,"url":BASE+"/"}},crumbs(cl)]})
+    return page(t, body, 2, desc=d, path=f"updates/{rk}/checklist.html",head=ld,og=(f"Oracle Fusion Cloud {u['release']} · what to test","Baseline regression, switched-on changes, former opt-ins"))
 def is_next(rel): return bool(UPCOMING and UPCOMING.get('tracked') and UPCOMING['release']==rel)
 def render(updates, dist, upcoming=None, generated='', current=None):
-    global NAV, NEXT_REL, UPCOMING, CURRENT
+    global NAV, NEXT_REL, UPCOMING, CURRENT, GENERATED
+    GENERATED=generated or ''
     UPCOMING=upcoming; CURRENT=current or sorted(updates)[-1]; UPD_KEYS[:]=list(updates); _UPD.clear(); _UPD.update(updates)
     if upcoming: NEXT_REL=upcoming['release']
     OG_SPECS.clear()
@@ -222,8 +232,8 @@ def render(updates, dist, upcoming=None, generated='', current=None):
                f'<p><a class="btn" href="{nk}/">{nu["release"]}: what&#39;s new and the opt-in list →</a> <a class="btn alt" style="border:1px solid var(--line)" href="updates/{nk}/index.html">{nu["release"]} changes we track ({len(nu["items"])}) →</a> <a class="btn alt" style="border:1px solid var(--line)" href="updates/{nk}/checklist.html">{nu["release"]} what-to-test checklist →</a></p></div>')
     home=f"""<div class="hero"><h1>Every Oracle Fusion quarterly update, in plain English.</h1>
 <p class="lead">What changed in Financials, Procurement, Supply Chain, Logistics, Project Management and HCM, what switches on automatically, which opt-ins are becoming standard features, and what to test before it hits production.</p></div>
-{hero}{upsec}{prevsec}<div class="box"><h3 style="margin-top:0">Covered module families</h3>{famlinks}</div>{nl_form(latest=True)}"""
-    open(os.path.join(dist,'index.html'),'w').write(page('Oracle Fusion Cloud quarterly update tracker',home,desc='Every Oracle Fusion Cloud quarterly update in plain English: what changed by module, what switches on automatically, former opt-ins now standard, and what to test.',path='',og=('Oracle Fusion Cloud quarterly updates',f"{cur['release']} now, {NEXT_REL} next: what changed and what to test"),head=jsonld({"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":BASE+"/#website","url":BASE+"/","name":SITE,"description":"Plain-English tracker of Oracle Fusion Cloud quarterly updates.","publisher":{"@id":BASE+"/#org"}},{"@type":"Organization","@id":BASE+"/#org","name":SITE,"url":BASE+"/","logo":BASE+"/logo.png","email":CONTACT}]})))
+{summary_html(home_summary(updates,cur))}{hero}{upsec}{prevsec}<div class="box"><h3 style="margin-top:0">Covered module families</h3>{famlinks}</div>{faq_html(home_faq(updates,cur))}{nl_form(latest=True)}"""
+    open(os.path.join(dist,'index.html'),'w').write(page('Oracle Fusion Cloud quarterly update tracker',home,desc='Every Oracle Fusion Cloud quarterly update in plain English: what changed by module, what switches on automatically, former opt-ins now standard, and what to test.',path='',og=('Oracle Fusion Cloud quarterly updates',f"{cur['release']} now, {NEXT_REL} next: what changed and what to test"),head=jsonld({"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":BASE+"/#website","url":BASE+"/","name":SITE,"description":"Plain-English tracker of Oracle Fusion Cloud quarterly updates.","publisher":{"@id":BASE+"/#org"}},{"@type":"Organization","@id":BASE+"/#org","name":SITE,"url":BASE+"/","logo":BASE+"/logo.png","email":CONTACT},faq_ld(home_faq(updates,cur))]})))
     # SEO pages
     extra=[]
     for k,u in updates.items():
@@ -265,7 +275,7 @@ def render(updates, dist, upcoming=None, generated='', current=None):
 <h3>Analytics</h3><p>This site uses no cookies, and newsletter open and click tracking is turned off. We count page views without cookies: for each day we keep only totals per page, the domain of the site that linked to it (for example linkedin.com), and any utm_ tags in the link. No IP address, browser details or identifier is stored, so a visit can't be traced back to you. If your browser sends Do Not Track or Global Privacy Control, nothing is counted. The counter data is stored with Supabase (EU region, Frankfurt).</p>
 <p class="small muted">Fusion Updates is an independent publication. Questions about your data: hello@fusionupdates.com. Last updated: October 2026.</p></div>'''))
     open(os.path.join(dist,'CNAME'),'w').write('fusionupdates.com\n')
-    open(os.path.join(dist,'robots.txt'),'w').write(f'User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n')
+    open(os.path.join(dist,'robots.txt'),'w').write(robots_txt())
     urls=['','newsletter.html']+(['sponsor.html'] if SHOW_SPONSORS else [])+['about.html','privacy.html']+[f'updates/{k.lower()}/' for k in updates]+[f'updates/{k.lower()}/checklist.html' for k in updates]+extra
     lm=f'<lastmod>{generated}</lastmod>' if generated else ''
     open(os.path.join(dist,'sitemap.xml'),'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>{BASE}/{u}</loc>{lm}</url>\n' for u in urls)+'</urlset>\n')
@@ -279,6 +289,7 @@ def render(updates, dist, upcoming=None, generated='', current=None):
 <div class="box"><p>It is run by an experienced Oracle consultant. Every entry links back to its Oracle source page. Summaries are condensed from Oracle's text, and impact-on-upgrade ratings are editorial judgment, so always check the Oracle page and your own configuration.</p>
 <p>This is an independent site, not affiliated with or endorsed by Oracle.</p><p><b>Two labels per feature:</b> <b>Impact on upgrade</b> is our rating of what changes for existing users on update day, with nobody acting. <b>Oracle scale</b> is Oracle's own size rating ("Larger scale" or "Small scale", from its "Impact to Existing Processes" column), shown only when Oracle gives one.</p><p class="small muted">Method: features come from the "Feature Summary" tables in Oracle's What's New documents. Enablement comes from Oracle's "Action to Enable" column plus the Current Opt-In Expirations list. Impact on upgrade: high means users have to change how they work, or it's a large UI or process change, a former opt-in that becomes standard and affects users, or it touches payments, accounting, integrations or security. Medium means visible but contained, or switched on automatically and noticeable. Low means minor, cosmetic, reporting-only, or it needs setup before anyone gets it. Each rating is checked against Oracle's feature page (description, action to enable, scale and opt-in status).</p></div>"""))
 
+    write_llms(dist,updates,cur,urls)
     finish_assets(dist)
 
 ASSETS=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'assets')
@@ -578,3 +589,117 @@ def issues_index_page():
     body=f"""{crumbs_html(cl,'../')}<div class="hero"><h1>{E(title)}</h1><p class="lead">Past issues of the quarterly briefing on Oracle Fusion Cloud updates. Subscribe to get the next one by email.</p></div>{lst}{nl_form()}"""
     ld=jsonld({"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":BASE+'/'+path,"url":BASE+'/'+path,"name":title,"inLanguage":"en","isPartOf":{"@type":"WebSite","@id":BASE+"/#website","name":SITE,"url":BASE+"/"}},crumbs(cl)]})
     return page(title,body,1,'Archive of the Fusion Updates quarterly newsletter on Oracle Fusion Cloud updates.',path,ld,og=('Newsletter','All issues of the quarterly briefing'))
+
+# ---------------- SEO + answer engines: summaries, FAQs, dates, robots.txt, llms.txt ----------------
+# Every number below is counted from the same data the page shows (data/updates.json, data/hcm_redwood.json); nothing is typed in.
+def nice_date(d):
+    import datetime as _dt
+    try: x=_dt.date.fromisoformat(d); return f"{x.day} {x.strftime('%B')} {x.year}"
+    except Exception: return d
+def _date_ld(head):
+    """Add dateModified (= the date shown in the footer) to page-level JSON-LD nodes that don't have one."""
+    if not GENERATED or 'application/ld+json' not in head: return head
+    import re as _re
+    def fix(m):
+        o=json.loads(m.group(1)); nodes=o.get('@graph',[o])
+        for n in nodes:
+            if n.get('@type') in ('WebPage','CollectionPage','Article','TechArticle') and 'dateModified' not in n: n['dateModified']=GENERATED
+        return jsonld(o)
+    return _re.sub(r'<script type="application/ld\+json">(.*?)</script>',fix,head,flags=_re.S)
+def summary_html(s): return f'<div class="answer" id="summary"><p><b>In short:</b> {s}</p></div>'
+def _tense(rel): return 'next' if is_next(rel) else ('current' if rel==CURRENT else 'past')
+def _rel_counts(u):
+    its=u['items']; es=u['expiring']
+    return dict(n=len(its),total=u['total_features'],auto=sum(1 for i in its if i['enablement'].startswith('Automatically')),
+                autohm=sum(1 for i in its if i['enablement'].startswith('Automatically') and i['impact'] in ('high','medium')),
+                hi=sum(1 for i in its if i['impact']=='high'),exp=len(es),on=sum(1 for e in es if e['now_enabled']=='Yes'))
+def release_summary(u):
+    rel=u['release']; c=_rel_counts(u); t=_tense(rel)
+    what={'next':f'{rel} is the next Oracle Fusion Cloud quarterly update.','current':f'{rel} is the current Oracle Fusion Cloud quarterly update.','past':f'{rel} is an earlier Oracle Fusion Cloud quarterly update.'}[t]
+    opt=(f"Oracle's opt-in expiration list names {c['exp']} features whose opt-in ends with {rel}" if t=='next' else f"Oracle's opt-in expiration list names {c['exp']} former opt-ins now standard in {rel}")
+    return (f"{what} We track {c['n']} of its changes in plain English, out of {c['total']} features (our count) in Oracle's {rel} What's New documents for the modules we cover. "
+            f"{c['auto']} of the {c['n']} are delivered switched on and {c['hi']} are rated high impact on upgrade. {opt}: {c['on']} switched on for everyone, {c['exp']-c['on']} need setup.")
+def release_faq(u):
+    rel=u['release']; rk=rel.lower(); c=_rel_counts(u); t=_tense(rel); st=c['exp']-c['on']
+    q=[(f"How many features are in Oracle's {rel} What's New?",f"{c['total']} features by our count, in the {rel} What's New documents for Financials, Procurement, Supply Chain, Logistics, Project Management and HCM. We summarise {c['n']} of them in plain English: the most relevant ones, up to 25 per module family."),
+       (f"Which {rel} changes switch on automatically?",f"{c['auto']} of the {c['n']} {rel} changes we track are delivered switched on. {c['autohm']} of those are rated medium or high impact on upgrade and are listed in section 2 of the <a href=\"checklist.html#auto\">{rel} what-to-test checklist</a>. Use the enablement filter above to see them all."),
+       ((f"Which opt-ins end with {rel}?" if t=='next' else f"Which former opt-ins are now standard in {rel}?"),f"Oracle's Current Opt-In Expirations list names {c['exp']} features {'whose opt-in ends with' if t=='next' else 'whose opt-in period ended with'} {rel}: {c['on']} are switched on for everyone and {st} need setup if you want to use them. <a href=\"../../{rk}/former-opt-ins-now-standard/\">See the list</a>."),
+       (f"How many {rel} changes are rated high impact?",f"{c['hi']} of the {c['n']} changes we track. Impact on upgrade is our editorial rating of how much a change affects existing users and testing; Oracle's own scale rating is shown separately on each change."),
+       (f"What should I test for {rel}?",f"Start with the <a href=\"checklist.html\">{rel} what-to-test checklist</a>: baseline regression checks based on Oracle's guidance, the changes delivered switched on, the former opt-ins now standard, and Oracle's IMPORTANT Actions and Considerations for each product.")]
+    return q
+def home_summary(updates,cur):
+    rel=cur['release']; c=_rel_counts(cur)
+    s=(f"Fusion Updates turns Oracle's quarterly What's New documents into plain English. The current update is {rel}: we track {c['n']} changes, {c['auto']} of them delivered switched on, "
+       f"and Oracle lists {c['exp']} former opt-ins now standard with {rel}.")
+    if UPCOMING and is_next(UPCOMING['release']):
+        nu=updates[UPCOMING['release']]; s+=f" {nu['release']} is next: Oracle's {nu['release']} What's New lists {len(nu['all'])} features across the modules we cover, and {len(nu['expiring'])} opt-ins end with {nu['release']}."
+    return s
+def home_faq(updates,cur):
+    rel=cur['release']; rk=rel.lower(); c=_rel_counts(cur)
+    q=[("What is the current Oracle Fusion Cloud quarterly update?",f"{rel} is the current update on this site{(' and '+UPCOMING['release']+' is next') if UPCOMING else ''}. Oracle updates environments in cohorts: test environments on the first Friday of the update month and production two weeks later, on the third Friday. Your cohort is shown in the Oracle Cloud Console."),
+       (f"What switches on automatically in {rel}?",f"{c['auto']} of the {c['n']} {rel} changes we track are delivered switched on, so users may see them without anyone acting. <a href=\"updates/{rk}/checklist.html#auto\">See the ones rated medium or high impact</a>."),
+       (f"Which former opt-ins are now standard in {rel}?",f"Oracle's Current Opt-In Expirations list names {c['exp']} features whose opt-in period ended with {rel}: {c['on']} are switched on for everyone and {c['exp']-c['on']} need setup. <a href=\"{rk}/former-opt-ins-now-standard/\">See them</a>.")]
+    if UPCOMING and is_next(UPCOMING['release']):
+        nu=updates[UPCOMING['release']]; nk=nu['release'].lower()
+        q.append((f"What's new in Oracle Fusion {nu['release']}?",f"Oracle's {nu['release']} What's New documents list {len(nu['all'])} features across the modules we cover: {bucket_sentence(nu['all'])}, per Oracle's \"Action to Enable\" column. {len(nu['expiring'])} opt-ins also end with {nu['release']}. <a href=\"{nk}/\">{nu['release']} by module</a>."))
+    q+=[("What should I test after an Oracle Fusion quarterly update?",f"Start with a baseline regression: validate your current configuration, key end-to-end business flows, integrations, critical reports, custom workflows and extensions, security for new or changed pages, and the features switched on automatically. Our <a href=\"updates/{rk}/checklist.html\">{rel} what-to-test checklist</a> adds the changes and former opt-ins for {rel}."),
+        ("Is Fusion Updates affiliated with Oracle?","No. It's an independent site, not affiliated with or endorsed by Oracle. Summaries are condensed from Oracle's public readiness documentation, and every entry links to its Oracle source page.")]
+    return q
+AI_BOTS=('GPTBot','OAI-SearchBot','ChatGPT-User','PerplexityBot','Perplexity-User','ClaudeBot','Claude-SearchBot','Claude-User','Google-Extended','Applebot','Applebot-Extended','Bingbot','Googlebot','DuckDuckBot')
+def robots_txt():
+    return ('User-agent: *\nAllow: /\n\n# Search engines and AI assistants are welcome to crawl and cite this site.\n'+''.join(f'User-agent: {b}\n' for b in AI_BOTS)+'Allow: /\n\n'+f'Sitemap: {BASE}/sitemap.xml\n')
+def _md(a):
+    import re as _re
+    a=_re.sub(r'<a href="([^"]+)"[^>]*>(.*?)</a>',lambda m:f'[{m.group(2)}]({m.group(1)})',a); return html.unescape(_re.sub(r'<[^>]+>','',a))
+def write_llms(dist,updates,cur,urls):
+    import re as _re
+    rel=cur['release']; rk=rel.lower()
+    absu=lambda t,base: _re.sub(r'\]\((?!https?:|mailto:)([^)]*)\)',lambda m:f']({base}{m.group(1)})',t)
+    faq=lambda f,base:'\n'.join(f'- **{q}** '+absu(_md(a),base) for q,a in f)
+    order=sorted(updates,reverse=True)
+    rels='\n'.join(f"- [Oracle Fusion {k} changes]({BASE}/updates/{k.lower()}/) ({_tense(k)} update) · [{k} what-to-test checklist]({BASE}/updates/{k.lower()}/checklist.html) · [{('Opt-ins ending with '+k) if _tense(k)=='next' else (k+' former opt-ins now standard')}]({BASE}/{k.lower()}/former-opt-ins-now-standard/)" for k in order)
+    hubs='\n'.join(f"- [{u.strip('/').upper()} hub: what's new by module and the opt-in expiration list]({BASE}/{u})" for u in urls if _re.fullmatch(r'\d\d[a-d]/',u))
+    fams=sorted(set(i['family'] for u in updates.values() for i in u['items']))
+    mods='\n'.join(f"- {FNAME[f]}: "+' · '.join(f"[{k}]({BASE}/{k.lower()}/{FSLUG[f]}/)" for k in order) for f in fams)
+    txt=f"""# {SITE}
+
+> {SITE} (fusionupdates.com) is an independent, plain-English tracker of Oracle Fusion Cloud quarterly updates for Financials, Procurement, Supply Chain & Manufacturing, Logistics, Project Management and HCM: what changed, what switches on automatically, which former opt-ins are now standard, and what to test. Not affiliated with or endorsed by Oracle.
+
+Updated {nice_date(GENERATED) if GENERATED else ''}. {_md(home_summary(updates,cur))}
+
+How it is built: features come from the Feature Summary tables in Oracle's What's New documents; enablement comes from Oracle's "Action to Enable" column plus Oracle's Current Opt-In Expirations list. "Impact on upgrade" (high, medium, low) is our editorial rating; "Oracle scale" is copied from Oracle's "Impact to Existing Processes" column. Every entry links to its Oracle source page. The site is refreshed every week from Oracle's documents.
+
+## Releases
+
+{rels}
+{hubs}
+
+## Module pages
+
+{mods}
+
+## Other key pages
+
+- [Home]({BASE}/)
+- [HCM pages switching to Redwood]({BASE}/{HCMR_PATH})
+- [Free downloads: readiness checklist (PDF) and update calendar (.ics)]({BASE}/downloads/)
+- [Newsletter]({BASE}/newsletter.html) · [All issues]({BASE}/newsletter/)
+- [About and method]({BASE}/about.html)
+- Full text of the summaries and FAQs: {BASE}/llms-full.txt
+
+## FAQ
+
+{faq(home_faq(updates,cur),BASE+'/')}
+
+## Contact
+
+{CONTACT}
+"""
+    open(os.path.join(dist,'llms.txt'),'w').write(txt)
+    full=[txt]
+    for k in order:
+        u=updates[k]; full.append(f"\n## Oracle Fusion {k} ({_tense(k)} update)\n\n{_md(release_summary(u))}\n\n"+faq(release_faq(u),f'{BASE}/updates/{k.lower()}/'))
+        byf=collections.Counter(i['family'] for i in u['items'])
+        full.append('\nChanges we track, by module family: '+', '.join(f"{FNAME[f]} {n}" for f,n in sorted(byf.items()))+'.')
+        if u['expiring']: full.append(f"\n{('Opt-ins ending with' if _tense(k)=='next' else 'Former opt-ins now standard in')} {k} (Oracle's list):\n"+'\n'.join(f"- {e['title']} ({e['product']} · {e['module']}; now enabled: {e['now_enabled']})"+(f" {e['url']}" if e['url'] else '') for e in u['expiring']))
+    open(os.path.join(dist,'llms-full.txt'),'w').write('\n'.join(full)+'\n')

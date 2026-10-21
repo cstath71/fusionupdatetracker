@@ -603,7 +603,7 @@ def _date_ld(head):
     def fix(m):
         o=json.loads(m.group(1)); nodes=o.get('@graph',[o])
         for n in nodes:
-            if n.get('@type') in ('WebPage','CollectionPage','Article','TechArticle') and 'dateModified' not in n: n['dateModified']=GENERATED
+            if n.get('@type') in ('WebPage','CollectionPage','Article','TechArticle') and not n.get('dateModified'): n['dateModified']=GENERATED
         return jsonld(o)
     return _re.sub(r'<script type="application/ld\+json">(.*?)</script>',fix,head,flags=_re.S)
 def summary_html(s): return f'<div class="answer" id="summary"><p><b>In short:</b> {s}</p></div>'

@@ -27,7 +27,7 @@ How it is built: features come from the Feature Summary tables in Oracle's What'
 - [Home](https://fusionupdates.com/)
 - [HCM pages switching to Redwood](https://fusionupdates.com/hcm-redwood/)
 - [Free downloads: readiness checklist (PDF) and update calendar (.ics)](https://fusionupdates.com/downloads/)
-- [Newsletter](https://fusionupdates.com/newsletter.html) · [All issues](https://fusionupdates.com/newsletter/)
+- [Newsletter: subscribe and all issues](https://fusionupdates.com/newsletter/)
 - [About and method](https://fusionupdates.com/about.html)
 - Full text of the summaries and FAQs: https://fusionupdates.com/llms-full.txt
 

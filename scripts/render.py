@@ -74,7 +74,7 @@ def cta_for(path):
     n=NEXT_REL; parts=path.strip('/').split('/')
     fam={v:k for k,v in FSLUG.items()}
     AREA={'Financials':'Financials','Procurement':'Procurement','Supply Chain & Manufacturing':'Supply Chain & Manufacturing','Logistics (OTM/GTM/WMS)':'Logistics','Project Management':'Project Management','HCM':'HCM'}
-    if path.startswith('hcm-redwood') or 'redwood-' in path: return (LEAD_HEAD,'HCM')
+    if path.startswith('hcm-redwood') or ('redwood-' in path and 'redwood-erp-scm' not in path): return (LEAD_HEAD,'HCM')
     if len(parts)==2 and parts[1] in fam:
         f=fam[parts[1]]
         return (LEAD_HEAD,AREA[f])
@@ -262,6 +262,7 @@ def render(updates, dist, upcoming=None, generated='', current=None):
         d=os.path.join(dist,'hcm-redwood'); os.makedirs(d,exist_ok=True)
         open(os.path.join(d,'index.html'),'w').write(hcm_redwood_page(cur['release'])); extra.append(HCMR_PATH)
     import longtail; extra+=longtail.build(dist)  # long-tail SEO pages (growth plan tactic #3)
+    import readiness; extra+=readiness.build(dist,updates)  # cross-module readiness lists (opt-in, on by default, Redwood outside HCM)
     d=os.path.join(dist,'downloads'); os.makedirs(d,exist_ok=True)
     open(os.path.join(d,'index.html'),'w').write(downloads_page()); extra.append('downloads/')
     if os.path.exists(os.path.join(ASSETS,LEAD['pdf'])): extra.append(LEAD['pdf'])
@@ -514,6 +515,7 @@ def upcoming_page(up,updates):
 <li><b>Grouping:</b> the groups below follow Oracle&#39;s own Pillar column. For example, Oracle lists Supplier Registration (product: Procurement Common) under Supply Chain &amp; Manufacturing.</li></ul></div>
 {''.join(f'<div class="box"><h2 style="margin-top:0">{E(g)} ({len(x)})</h2>{exp_table(x)}</div>' for g,x in grp.items()) or '<p class="muted">None in Oracle&#39;s list.</p>'}
 {hcm}
+{__import__('readiness').links(rel,'../') if tu and rel>=HUB_FROM else ''}
 <h2>What else to expect in {rel}</h2>
 <div class="box"><h3 style="margin-top:0">When it arrives</h3><p>Oracle updates environments in cohorts. Per Oracle, Cohort A gets quarterly updates in February, May, August and November, Cohort B in March, June, September and December, and Cohort C in April, July, October and January. Test environments update on the first Friday of the update month and production two weeks later, on the third Friday. Your cohort is shown in the Oracle Cloud Console. <span class="small muted">Source: <a href="https://blogs.oracle.com/fusioninsider/quarterly-updates-made-easy" target=_blank rel=noopener>Oracle Fusion Insider, "Quarterly updates made easy"</a></span></p></div>
 <div class="box"><h3 style="margin-top:0">Oracle's {rel} What's New documents</h3><p class="small muted">{'Oracle has published them. Every feature in their Feature Summary tables is listed on our module pages above.' if tu else f"Oracle has published them. We haven't added {rel} to the tracker yet; plain-English summaries follow."}</p>{''.join(f'<p><b>{E(g)}:</b> '+' · '.join(f'<a href="{E(b["url"])}" target=_blank rel=noopener>{E(b["product"])}</a>' for b in bs)+'</p>' for g,bs in byf.items())}</div>
@@ -683,7 +685,7 @@ How it is built: features come from the Feature Summary tables in Oracle's What'
 
 - [Home]({BASE}/)
 - [HCM pages switching to Redwood]({BASE}/{HCMR_PATH})
-- [Free downloads: readiness checklist (PDF) and update calendar (.ics)]({BASE}/downloads/)
+{''.join(f"- [{t}]({BASE}/{u})\n" for u,t in [(x,x) for x in urls if x.endswith(('opt-in-features/','on-by-default/','redwood-erp-scm/'))] and [(x,{'opt-in-features/':x.split('/')[0].upper()+' opt-in features, all modules','on-by-default/':x.split('/')[0].upper()+' features on by default, all modules','redwood-erp-scm/':x.split('/')[0].upper()+' Redwood changes outside HCM'}[x.split('/',1)[1]]) for x in urls if x.endswith(('opt-in-features/','on-by-default/','redwood-erp-scm/'))])}- [Free downloads: readiness checklist (PDF) and update calendar (.ics)]({BASE}/downloads/)
 - [Newsletter: subscribe and all issues]({BASE}/newsletter/)
 - [About and method]({BASE}/about.html)
 - Full text of the summaries and FAQs: {BASE}/llms-full.txt

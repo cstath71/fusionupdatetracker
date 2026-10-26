@@ -26,6 +26,9 @@ How it is built: features come from the Feature Summary tables in Oracle's What'
 
 - [Home](https://fusionupdates.com/)
 - [HCM pages switching to Redwood](https://fusionupdates.com/hcm-redwood/)
+- [26D opt-in features, all modules](https://fusionupdates.com/26d/opt-in-features/)
+- [26D features on by default, all modules](https://fusionupdates.com/26d/on-by-default/)
+- [26D Redwood changes outside HCM](https://fusionupdates.com/26d/redwood-erp-scm/)
 - [Free downloads: readiness checklist (PDF) and update calendar (.ics)](https://fusionupdates.com/downloads/)
 - [Newsletter: subscribe and all issues](https://fusionupdates.com/newsletter/)
 - [About and method](https://fusionupdates.com/about.html)

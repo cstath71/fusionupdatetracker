@@ -4,7 +4,8 @@ name: Weekly refresh
 # date), then starts the Pages deploy. Refresh only: no newsletter, no posts, no email. GitHub emails the repo owner when
 # a run fails, including when the checks find missing Oracle rows (then nothing is published).
 on:
-  # schedule: added after the workflow_dispatch test run is compared with the box refresh
+  schedule:
+    - cron: '15 5 * * 1'   # Monday 05:15 UTC = 06:15 Zurich in winter (CET), 07:15 in summer (CEST); before the old 08:00 box run
   workflow_dispatch:
     inputs:
       dry_run:

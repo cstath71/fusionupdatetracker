@@ -2,7 +2,7 @@
 
 > Fusion Updates (fusionupdates.com) is an independent, plain-English tracker of Oracle Fusion Cloud quarterly updates for Financials, Procurement, Supply Chain & Manufacturing, Logistics, Project Management and HCM: what changed, what switches on automatically, which former opt-ins are now standard, and what to test. Not affiliated with or endorsed by Oracle.
 
-Updated 19 October 2026. Fusion Updates turns Oracle's quarterly What's New documents into plain English. The current update is 26C: we track 148 changes, 120 of them delivered switched on, and Oracle lists 36 former opt-ins now standard with 26C. 26D is next: Oracle's 26D What's New lists 768 features across the modules we cover, and 23 opt-ins end with 26D.
+Updated 29 October 2026. Fusion Updates turns Oracle's quarterly What's New documents into plain English. The current update is 26C: we track 148 changes, 120 of them delivered switched on, and Oracle lists 36 former opt-ins now standard with 26C. 26D is next: Oracle's 26D What's New lists 768 features across the modules we cover, and 23 opt-ins end with 26D.
 
 How it is built: features come from the Feature Summary tables in Oracle's What's New documents; enablement comes from Oracle's "Action to Enable" column plus Oracle's Current Opt-In Expirations list. "Impact on upgrade" (high, medium, low) is our editorial rating; "Oracle scale" is copied from Oracle's "Impact to Existing Processes" column. Every entry links to its Oracle source page. The site is refreshed every week from Oracle's documents.
 
@@ -21,6 +21,14 @@ How it is built: features come from the Feature Summary tables in Oracle's What'
 - Procurement: [26D](https://fusionupdates.com/26d/procurement/) · [26C](https://fusionupdates.com/26c/procurement/) · [26B](https://fusionupdates.com/26b/procurement/)
 - Project Management: [26D](https://fusionupdates.com/26d/project-management/) · [26C](https://fusionupdates.com/26c/project-management/) · [26B](https://fusionupdates.com/26b/project-management/)
 - Supply Chain & Manufacturing: [26D](https://fusionupdates.com/26d/supply-chain-manufacturing/) · [26C](https://fusionupdates.com/26c/supply-chain-manufacturing/) · [26B](https://fusionupdates.com/26b/supply-chain-manufacturing/)
+
+## Guides
+
+- [26D release dates and cohorts](https://fusionupdates.com/26d/dates/)
+- [How opt-in and enablement work](https://fusionupdates.com/guides/opt-in-and-enablement/)
+- [Prepare for a quarterly update](https://fusionupdates.com/guides/prepare-for-quarterly-update/)
+- [Redwood defaults calendar](https://fusionupdates.com/redwood-defaults/)
+- [AI and agentic features in 26D](https://fusionupdates.com/26d/fusion-claw-ai-agent-studio/)
 
 ## Other key pages
 

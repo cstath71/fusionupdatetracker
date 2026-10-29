@@ -233,7 +233,7 @@ def render(updates, dist, upcoming=None, generated='', current=None):
                f'<p><a class="btn" href="{nk}/">{nu["release"]}: what&#39;s new and the opt-in list →</a> <a class="btn alt" style="border:1px solid var(--line)" href="updates/{nk}/">{nu["release"]} changes we track ({len(nu["items"])}) →</a> <a class="btn alt" style="border:1px solid var(--line)" href="updates/{nk}/checklist.html">{nu["release"]} what-to-test checklist →</a></p></div>')
     home=f"""<div class="hero"><h1>Every Oracle Fusion quarterly update, in plain English.</h1>
 <p class="lead">What changed in Financials, Procurement, Supply Chain, Logistics, Project Management and HCM, what switches on automatically, which opt-ins are becoming standard features, and what to test before it hits production.</p></div>
-{summary_html(home_summary(updates,cur))}{hero}{upsec}{prevsec}<div class="box"><h3 style="margin-top:0">Covered module families</h3>{famlinks}</div>{faq_html(home_faq(updates,cur))}{nl_form(latest=True)}"""
+{summary_html(home_summary(updates,cur))}{hero}{upsec}{prevsec}{__import__("guides").hub_links()}<div class="box"><h3 style="margin-top:0">Covered module families</h3>{famlinks}</div>{faq_html(home_faq(updates,cur))}{nl_form(latest=True)}"""
     open(os.path.join(dist,'index.html'),'w').write(page('Oracle Fusion Cloud quarterly update tracker',home,desc='Every Oracle Fusion Cloud quarterly update in plain English: what changed by module, what switches on automatically, former opt-ins now standard, and what to test.',path='',og=('Oracle Fusion Cloud quarterly updates',f"{cur['release']} now, {NEXT_REL} next: what changed and what to test"),head=jsonld({"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":BASE+"/#website","url":BASE+"/","name":SITE,"description":"Plain-English tracker of Oracle Fusion Cloud quarterly updates.","publisher":{"@id":BASE+"/#org"}},{"@type":"Organization","@id":BASE+"/#org","name":SITE,"url":BASE+"/","logo":BASE+"/logo.png","email":CONTACT},faq_ld(home_faq(updates,cur))]})))
     # SEO pages
     extra=[]
@@ -263,6 +263,7 @@ def render(updates, dist, upcoming=None, generated='', current=None):
         open(os.path.join(d,'index.html'),'w').write(hcm_redwood_page(cur['release'])); extra.append(HCMR_PATH)
     import longtail; extra+=longtail.build(dist)  # long-tail SEO pages (growth plan tactic #3)
     import readiness; extra+=readiness.build(dist,updates)  # cross-module readiness lists (opt-in, on by default, Redwood outside HCM)
+    import guides; extra+=guides.build(dist,updates)  # gap SEO/AEO guides (dates, enablement, prepare, Redwood calendar, AI)
     d=os.path.join(dist,'downloads'); os.makedirs(d,exist_ok=True)
     open(os.path.join(d,'index.html'),'w').write(downloads_page()); extra.append('downloads/')
     if os.path.exists(os.path.join(ASSETS,LEAD['pdf'])): extra.append(LEAD['pdf'])
@@ -312,7 +313,7 @@ def downloads_page():
 <p><a class="btn" href="{pdf}" download>Download the {LEAD['rel']} checklist (PDF)</a> <a href="../{LEAD['rel'].lower()}/">Or read the {LEAD['rel']} page on the site →</a></p></div>
 <div class="box"><h2 style="margin-top:0">Fusion quarterly update calendar (.ics)</h2><p>Calendar entries for the 26D and 27A test and production update windows for cohorts A, B and C. Import it into Outlook, Google Calendar or Apple Calendar and delete the cohorts you're not in.</p>
 <p class="small muted">Oracle publishes the rule rather than a public list of dates: test environments update on the first Friday of the update month and production on the third Friday (in Middle East regions, on the Thursday before). The dates in this file follow that rule and are labelled as typical. Your own dates are in the Oracle Cloud Console. Source: <a href="https://blogs.oracle.com/fusioninsider/quarterly-updates-made-easy" target=_blank rel=noopener>Oracle Fusion Insider, "Quarterly updates made easy"</a>.</p>
-<p><a class="btn" href="{ics}" download>Download the calendar (.ics)</a></p></div>{nl_form()}"""
+<p><a class="btn" href="{ics}" download>Download the calendar (.ics)</a></p><p class="small muted">Also: <a href="../26d/dates/">26D release dates and cohorts</a> · <a href="../guides/prepare-for-quarterly-update/">Prepare for a quarterly update</a> · <a href="../redwood-defaults/">Redwood defaults calendar</a>.</p></div>{nl_form()}"""
     ld=jsonld({"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":BASE+'/'+path,"url":BASE+'/'+path,"name":title,"inLanguage":"en","isPartOf":{"@type":"WebSite","@id":BASE+"/#website","name":SITE,"url":BASE+"/"}},crumbs(cl)]})
     return page(title,body,1,f"Free {LEAD['rel']} readiness checklist (PDF) and a Fusion quarterly update calendar (.ics) for 26D and 27A, built from Oracle's published documents.",path,ld,og=('Free downloads',f"{LEAD['rel']} readiness checklist (PDF) and update calendar (.ics)"))
 
@@ -516,6 +517,7 @@ def upcoming_page(up,updates):
 {''.join(f'<div class="box"><h2 style="margin-top:0">{E(g)} ({len(x)})</h2>{exp_table(x)}</div>' for g,x in grp.items()) or '<p class="muted">None in Oracle&#39;s list.</p>'}
 {hcm}
 {__import__('readiness').links(rel,'../') if tu and rel>=HUB_FROM else ''}
+{__import__('guides').hub_links('../') if tu and rel>=HUB_FROM else ''}
 <h2>What else to expect in {rel}</h2>
 <div class="box"><h3 style="margin-top:0">When it arrives</h3><p>Oracle updates environments in cohorts. Per Oracle, Cohort A gets quarterly updates in February, May, August and November, Cohort B in March, June, September and December, and Cohort C in April, July, October and January. Test environments update on the first Friday of the update month and production two weeks later, on the third Friday. Your cohort is shown in the Oracle Cloud Console. <span class="small muted">Source: <a href="https://blogs.oracle.com/fusioninsider/quarterly-updates-made-easy" target=_blank rel=noopener>Oracle Fusion Insider, "Quarterly updates made easy"</a></span></p></div>
 <div class="box"><h3 style="margin-top:0">Oracle's {rel} What's New documents</h3><p class="small muted">{'Oracle has published them. Every feature in their Feature Summary tables is listed on our module pages above.' if tu else f"Oracle has published them. We haven't added {rel} to the tracker yet; plain-English summaries follow."}</p>{''.join(f'<p><b>{E(g)}:</b> '+' · '.join(f'<a href="{E(b["url"])}" target=_blank rel=noopener>{E(b["product"])}</a>' for b in bs)+'</p>' for g,bs in byf.items())}</div>
@@ -559,7 +561,7 @@ def hcm_redwood_page(cur_rel):
 <p class="small muted">{E(HR_NOTE)} Checked against each Oracle page on {E(HCMR.get('checked',''))}.</p>
 <p class="note">Impact on upgrade is our editorial rating of how much a change affects existing users and testing; Oracle scale is Oracle&#39;s own rating. Always confirm details on the linked Oracle page.</p>
 <p><b>Jump to:</b> {jump}</p></div>{__import__('longtail').hcm_links('../')}{secs}
-<div class="box"><p><b>More HCM:</b> {' · '.join(f'<a href="../{k}/hcm/">HCM {k.upper()} changes we track</a>' for k in [r.lower() for r in sorted(UPD_KEYS,reverse=True)])} · <a href="../updates/{cur_rel.lower()}/checklist.html">{cur_rel} what-to-test checklist</a></p></div>{nl_form()}"""
+<div class="box"><p><b>More HCM:</b> {' · '.join(f'<a href="../{k}/hcm/">HCM {k.upper()} changes we track</a>' for k in [r.lower() for r in sorted(UPD_KEYS,reverse=True)])} · <a href="../redwood-defaults/">Redwood defaults calendar</a> · <a href="../updates/{cur_rel.lower()}/checklist.html">{cur_rel} what-to-test checklist</a></p></div>{nl_form()}"""
     ld=jsonld({"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":BASE+'/'+HCMR_PATH,"url":BASE+'/'+HCMR_PATH,"name":title,"description":desc,"inLanguage":"en","isPartOf":{"@type":"WebSite","@id":BASE+"/#website","name":SITE,"url":BASE+"/"}},crumbs(cl),
         {"@type":"ItemList","name":title,"numberOfItems":len(HCMR['items']),"itemListElement":[{"@type":"ListItem","position":n+1,"name":i['title'],"url":i['urls'][0]} for n,i in enumerate(HCMR['items'])]}]})
     return page(title,body,1,desc,HCMR_PATH,ld,og=('HCM · Redwood',f"{len(HCMR['items'])} HCM changes, 26B to 27A, with Oracle links"))
@@ -680,6 +682,14 @@ How it is built: features come from the Feature Summary tables in Oracle's What'
 ## Module pages
 
 {mods}
+
+## Guides
+
+- [26D release dates and cohorts]({BASE}/26d/dates/)
+- [How opt-in and enablement work]({BASE}/guides/opt-in-and-enablement/)
+- [Prepare for a quarterly update]({BASE}/guides/prepare-for-quarterly-update/)
+- [Redwood defaults calendar]({BASE}/redwood-defaults/)
+- [AI and agentic features in 26D]({BASE}/26d/fusion-claw-ai-agent-studio/)
 
 ## Other key pages
 

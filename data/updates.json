@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-29",
+ "generated": "2026-11-02",
  "current": "26C",
  "updates": {
   "26B": {
@@ -3991,7 +3991,17 @@
      "family": "HCM",
      "product": "Payroll",
      "module": "Global Payroll",
-     "title": "Payroll Administrator Troubleshooting AI Agent Enhancements",
+     "title": "Payroll Encumbrance and Liquidation",
+     "oracle_impact": "Larger scale",
+     "oracle_scale": "Larger scale",
+     "action": "Potential Setup",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/payr-26b/26B-payroll-wn-f43498.htm"
+    },
+    {
+     "family": "HCM",
+     "product": "Payroll",
+     "module": "Global Payroll",
+     "title": "Payroll Run Analyst and Payroll Summary Analyst AI Agent Enhancements",
      "oracle_impact": "None",
      "oracle_scale": null,
      "action": "Setup Required",
@@ -4001,11 +4011,11 @@
      "family": "HCM",
      "product": "Payroll",
      "module": "Global Payroll",
-     "title": "Payroll Encumbrance and Liquidation",
-     "oracle_impact": "Larger scale",
-     "oracle_scale": "Larger scale",
-     "action": "Potential Setup",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/payr-26b/26B-payroll-wn-f43498.htm"
+     "title": "Redwood Calculation Entries Profile Option Enhancement",
+     "oracle_impact": "None",
+     "oracle_scale": null,
+     "action": "Setup Required",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/payr-26b/26B-payroll-wn-f52002.htm"
     },
     {
      "family": "HCM",
@@ -10489,7 +10499,7 @@
     }
    ],
    "unpublished": [],
-   "total_features": 847,
+   "total_features": 848,
    "important": [
     {
      "product": "Financials",
@@ -10560,7 +10570,7 @@
    "family_totals": {
     "Financials": 48,
     "Project Management": 9,
-    "HCM": 308,
+    "HCM": 309,
     "Logistics (OTM/GTM/WMS)": 86,
     "Supply Chain & Manufacturing": 320,
     "Procurement": 76
@@ -10630,7 +10640,7 @@
      "product": "Payroll",
      "family": "HCM",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/payr-26b/index.html",
-     "features": 59
+     "features": 60
     },
     {
      "product": "Recruiting",
@@ -13355,7 +13365,7 @@
      "title": "Expenses Agent for Cost Allocations and Additional Information",
      "oracle_impact": "None",
      "oracle_scale": null,
-     "action": "Opt In",
+     "action": "Setup Required",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/erp/26c/fins26c/26C-fin-wn-f49363.htm"
     },
     {
@@ -14512,6 +14522,16 @@
      "family": "HCM",
      "product": "Human Resources",
      "module": "Global Human Resources",
+     "title": "Reorder Fields in Redwood Employment Processes Using Business Rules",
+     "oracle_impact": "Small scale",
+     "oracle_scale": "Small scale",
+     "action": "Potential Setup",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/hure-26c/26C-hr-wn-f51024.htm"
+    },
+    {
+     "family": "HCM",
+     "product": "Human Resources",
+     "module": "Global Human Resources",
      "title": "End Assignment and Terminate Work Relationship Automatically Based on Projected Dates",
      "oracle_impact": "Small scale",
      "oracle_scale": "Small scale",
@@ -15292,7 +15312,7 @@
      "family": "HCM",
      "product": "Payroll",
      "module": "Global Payroll",
-     "title": "Pay Analyst Enhanced with Payroll Policy Guidance",
+     "title": "Pay Analyst AI Agent Enhancements",
      "oracle_impact": "None",
      "oracle_scale": null,
      "action": "Setup Required",
@@ -15362,7 +15382,7 @@
      "family": "HCM",
      "product": "Payroll",
      "module": "Payroll for Canada",
-     "title": "Payroll Run Analyst AI Agent Enhanced to Support the Tax Calculation Statement",
+     "title": "Payroll Run Analyst AI Agent for Canada",
      "oracle_impact": "None",
      "oracle_scale": null,
      "action": "Setup Required",
@@ -15572,6 +15592,16 @@
      "family": "HCM",
      "product": "Payroll",
      "module": "Payroll for the United Kingdom",
+     "title": "Automatic AWE Calculation for New Hires\u2019 SSP Absences",
+     "oracle_impact": "None",
+     "oracle_scale": null,
+     "action": "Setup Required",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/payr-26c/26C-payroll-wn-f52083.htm"
+    },
+    {
+     "family": "HCM",
+     "product": "Payroll",
+     "module": "Payroll for the United Kingdom",
      "title": "LGPS Stringer Days",
      "oracle_impact": "None",
      "oracle_scale": null,
@@ -15622,7 +15652,7 @@
      "family": "HCM",
      "product": "Payroll",
      "module": "Payroll for the United States",
-     "title": "Court Order Assistant AI Agent Workflow",
+     "title": "Court Order Assistant AI Agent for the US",
      "oracle_impact": "None",
      "oracle_scale": null,
      "action": "Setup Required",
@@ -16127,6 +16157,16 @@
      "oracle_scale": "Small scale",
      "action": "Potential Setup",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/recr-26c/26C-recruiting-wn-f43915.htm"
+    },
+    {
+     "family": "HCM",
+     "product": "Recruiting",
+     "module": "Redwood Experience",
+     "title": "Redwood Experience: Enhanced Job Offer Preview Experience",
+     "oracle_impact": "Small scale",
+     "oracle_scale": "Small scale",
+     "action": "None",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/recr-26c/26C-recruiting-wn-f52346.htm"
     },
     {
      "family": "HCM",
@@ -19195,7 +19235,7 @@
      "title": "Redwood: Manage Configurator Rules in Commercial Change Orders",
      "oracle_impact": "None",
      "oracle_scale": null,
-     "action": "Opt In",
+     "action": "Setup Required",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/order26c/26C-order-mgmt-wn-f43408.htm"
     },
     {
@@ -19527,6 +19567,16 @@
      "oracle_scale": null,
      "action": "Setup Required",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/order26c/26C-order-mgmt-wn-f46584.htm"
+    },
+    {
+     "family": "Supply Chain & Manufacturing",
+     "product": "Order Management",
+     "module": "Pricing",
+     "title": "Use original order's extended amounts for referenced returns",
+     "oracle_impact": "None",
+     "oracle_scale": null,
+     "action": "Opt In",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/order26c/26C-order-mgmt-wn-f46582.htm"
     },
     {
      "family": "Supply Chain & Manufacturing",
@@ -20980,7 +21030,7 @@
     }
    ],
    "unpublished": [],
-   "total_features": 786,
+   "total_features": 790,
    "important": [
     {
      "product": "Financials",
@@ -21056,9 +21106,9 @@
    "family_totals": {
     "Financials": 55,
     "Project Management": 23,
-    "HCM": 292,
+    "HCM": 295,
     "Logistics (OTM/GTM/WMS)": 106,
-    "Supply Chain & Manufacturing": 239,
+    "Supply Chain & Manufacturing": 240,
     "Procurement": 71
    },
    "books": [
@@ -21108,7 +21158,7 @@
      "product": "Human Resources",
      "family": "HCM",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/hure-26c/index.html",
-     "features": 74
+     "features": 75
     },
     {
      "product": "Learning and Development",
@@ -21120,13 +21170,13 @@
      "product": "Payroll",
      "family": "HCM",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/payr-26c/index.html",
-     "features": 42
+     "features": 43
     },
     {
      "product": "Recruiting",
      "family": "HCM",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26c/recr-26c/index.html",
-     "features": 51
+     "features": 52
     },
     {
      "product": "Talent Management",
@@ -21198,7 +21248,7 @@
      "product": "Order Management",
      "family": "Supply Chain & Manufacturing",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26c/order26c/index.html",
-     "features": 46
+     "features": 47
     },
     {
      "product": "Product Lifecycle Management",
@@ -22087,6 +22137,21 @@
      "summary": "Cash Processing Agent for cash positioning and improved liquidity helps cash managers review daily liquidity and manage bank transfers through an insights-driven conversational experience."
     },
     {
+     "module": "Workforce Directory Management",
+     "title": "Announcement - Automatic Upgrade to Connections Waterfall View in 27A",
+     "tags": "",
+     "oracle_impact": "Larger scale",
+     "action": "Potential Setup",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/hure-26d/26D-hr-wn-f51636.htm",
+     "family": "HCM",
+     "product": "Human Resources",
+     "_rel": "26D",
+     "enablement": "Automatically on (setup may apply)",
+     "impact": "high",
+     "oracle_scale": "Larger scale",
+     "summary": "In 27A, customers using the Connections horizontal view are automatically upgraded to the waterfall view. The waterfall view provides additional capabilities and improved performance."
+    },
+    {
      "module": "Employment",
      "title": "Enhancements to Assignment Change Assistant with AI Assistance",
      "tags": "AI agent",
@@ -22175,6 +22240,21 @@
      "impact": "low",
      "oracle_scale": "Larger scale",
      "summary": "Launch an assigned or self-enrolled self-paced agentic course from the enrollment details page. The course opens in Agentic Course Player, where you're guided through the required course content, practice, and assessments."
+    },
+    {
+     "module": "Learning Administrators",
+     "title": "Learning and Development Analyst",
+     "tags": "",
+     "oracle_impact": "Larger scale",
+     "action": "Potential Setup",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/lear-26d/26D-learning-wn-f52108.htm",
+     "family": "HCM",
+     "product": "Learning and Development",
+     "_rel": "26D",
+     "enablement": "Automatically on (setup may apply)",
+     "impact": "high",
+     "oracle_scale": "Larger scale",
+     "summary": "Explore your learning catalog and assignments by asking natural-language questions. Get answers and visual insights into completion status, overdue assignments, compliance progress, learner populations, and assignment outcomes."
     },
     {
      "module": "Learners",
@@ -22388,6 +22468,21 @@
     },
     {
      "module": "Benefits",
+     "title": "Conditional Display of Enrollment Summary Regions Based on Enrollment Data",
+     "tags": "Redwood Platform",
+     "oracle_impact": "Small scale",
+     "action": "None",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/benf-26d/26D-benefits-wn-f52285.htm",
+     "family": "HCM",
+     "product": "Benefits",
+     "_rel": "26D",
+     "enablement": "Automatically on",
+     "impact": "medium",
+     "oracle_scale": "Small scale",
+     "summary": "Benefits administrators can focus on relevant enrollment information when reviewing enrollment details in Benefits Activity Center. The Enrollment Summary automatically hides optional regions without applicable enrollment records, reducing clutter and confusion across different benefits configurations."
+    },
+    {
+     "module": "Benefits",
      "title": "Redwood Experience for Rate and Coverage User Values",
      "tags": "Redwood Platform",
      "oracle_impact": "Small scale",
@@ -22415,51 +22510,6 @@
      "impact": "medium",
      "oracle_scale": "Small scale",
      "summary": "Review payroll-related details from the Redwood Benefits Summary page without navigating to separate payroll pages. Select a linked rate name to view related element entry details in a panel drawer."
-    },
-    {
-     "module": "Compensation",
-     "title": "Additional Database Items Supported for Rates-based Salary Calculations",
-     "tags": "Redwood Platform Idea Lab",
-     "oracle_impact": "Small scale",
-     "action": "None",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/comp-26d/26D-compensation-wn-f49498.htm",
-     "family": "HCM",
-     "product": "Compensation",
-     "_rel": "26D",
-     "enablement": "Automatically on",
-     "impact": "medium",
-     "oracle_scale": "Small scale",
-     "summary": "You can now use additional assignment and work structure database items in rates-based salary calculations. When these are used in value by criteria rate definitions, the proposed values can be detected on Global HR pages, such as Hire an Employee and Change Assignment."
-    },
-    {
-     "module": "Compensation",
-     "title": "Adjust Budgets In Administer Workers",
-     "tags": "Redwood Platform",
-     "oracle_impact": "Small scale",
-     "action": "Potential Setup",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/comp-26d/26D-compensation-wn-f50445.htm",
-     "family": "HCM",
-     "product": "Compensation",
-     "_rel": "26D",
-     "enablement": "Automatically on (setup may apply)",
-     "impact": "medium",
-     "oracle_scale": "Small scale",
-     "summary": "Compensation administrators can adjust manager-level budgets directly from the Budget tab in Administer Workers when budgets are used in a plan. The panel drawer provides the available reason selections and updates budget values after the administrator selects Update."
-    },
-    {
-     "module": "Compensation",
-     "title": "Control Visibility of Adjustment Amount and Percentage Separately in Compensation Spotlight",
-     "tags": "Redwood Platform Idea Lab",
-     "oracle_impact": "Small scale",
-     "action": "None",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/comp-26d/26D-compensation-wn-f49884.htm",
-     "family": "HCM",
-     "product": "Compensation",
-     "_rel": "26D",
-     "enablement": "Automatically on",
-     "impact": "medium",
-     "oracle_scale": "Small scale",
-     "summary": "You can now show or hide Adjustment Amount and Adjustment Percentage separately in Redwood pages, including My Compensation, Compensation Info, Employment Info, and View Compensation History."
     },
     {
      "module": "WMS Common",
@@ -24707,6 +24757,16 @@
      "family": "HCM",
      "product": "Benefits",
      "module": "Benefits",
+     "title": "Conditional Display of Enrollment Summary Regions Based on Enrollment Data",
+     "oracle_impact": "Small scale",
+     "oracle_scale": "Small scale",
+     "action": "None",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/benf-26d/26D-benefits-wn-f52285.htm"
+    },
+    {
+     "family": "HCM",
+     "product": "Benefits",
+     "module": "Benefits",
      "title": "Redwood Experience for Rate and Coverage User Values",
      "oracle_impact": "Small scale",
      "oracle_scale": "Small scale",
@@ -25427,11 +25487,41 @@
      "family": "HCM",
      "product": "Human Resources",
      "module": "Workforce Directory Management",
+     "title": "Announcement - Automatic Upgrade to Connections Waterfall View in 27A",
+     "oracle_impact": "Larger scale",
+     "oracle_scale": "Larger scale",
+     "action": "Potential Setup",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/hure-26d/26D-hr-wn-f51636.htm"
+    },
+    {
+     "family": "HCM",
+     "product": "Human Resources",
+     "module": "Workforce Directory Management",
      "title": "Assign goals and view consolidated actions and page properties in Team Activity Center",
      "oracle_impact": "None",
      "oracle_scale": null,
      "action": "Setup Required",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/hure-26d/26D-hr-wn-f50763.htm"
+    },
+    {
+     "family": "HCM",
+     "product": "Human Resources",
+     "module": "Workforce Directory Management",
+     "title": "Configure Social Network Types in Connections Edit Profile for Waterfall View",
+     "oracle_impact": "None",
+     "oracle_scale": null,
+     "action": "Setup Required",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/hure-26d/26D-hr-wn-f51633.htm"
+    },
+    {
+     "family": "HCM",
+     "product": "Human Resources",
+     "module": "Workforce Directory Management",
+     "title": "Enhanced Org Chart in Connections for Waterfall View",
+     "oracle_impact": "None",
+     "oracle_scale": null,
+     "action": "Setup Required",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/hure-26d/26D-hr-wn-f51634.htm"
     },
     {
      "family": "HCM",
@@ -25687,6 +25777,36 @@
      "family": "HCM",
      "product": "Learning and Development",
      "module": "Learning Administrators",
+     "title": "Learning and Development Analyst",
+     "oracle_impact": "Larger scale",
+     "oracle_scale": "Larger scale",
+     "action": "Potential Setup",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/lear-26d/26D-learning-wn-f52108.htm"
+    },
+    {
+     "family": "HCM",
+     "product": "Learning and Development",
+     "module": "Learning Administrators",
+     "title": "Redwood Categories and Topics Updates",
+     "oracle_impact": "Small scale",
+     "oracle_scale": "Small scale",
+     "action": "Potential Setup",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/lear-26d/26D-learning-wn-f52106.htm"
+    },
+    {
+     "family": "HCM",
+     "product": "Learning and Development",
+     "module": "Learning Administrators",
+     "title": "Redwood Community Management",
+     "oracle_impact": "None",
+     "oracle_scale": null,
+     "action": "Setup Required",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/lear-26d/26D-learning-wn-f52105.htm"
+    },
+    {
+     "family": "HCM",
+     "product": "Learning and Development",
+     "module": "Learning Administrators",
      "title": "Support for Self-Paced Learning in Courses",
      "oracle_impact": "None",
      "oracle_scale": null,
@@ -25727,6 +25847,16 @@
      "family": "HCM",
      "product": "Learning and Development",
      "module": "Learning Administrators",
+     "title": "Redwood Assignment Management Improvements",
+     "oracle_impact": "Small scale",
+     "oracle_scale": "Small scale",
+     "action": "None",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/lear-26d/26D-learning-wn-f52320.htm"
+    },
+    {
+     "family": "HCM",
+     "product": "Learning and Development",
+     "module": "Learning Administrators",
      "title": "Review Participant Selection Filtered Lists",
      "oracle_impact": "Small scale",
      "oracle_scale": "Small scale",
@@ -25757,6 +25887,16 @@
      "family": "HCM",
      "product": "Payroll",
      "module": "Global Payroll",
+     "title": "Create Time Card Calculation Component Flow Retired",
+     "oracle_impact": "None",
+     "oracle_scale": null,
+     "action": "Setup Required",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/payr-26d/26D-payroll-wn-f51295.htm"
+    },
+    {
+     "family": "HCM",
+     "product": "Payroll",
+     "module": "Global Payroll",
      "title": "Redwood Experience for Organization Calculation Cards",
      "oracle_impact": "Larger scale",
      "oracle_scale": "Larger scale",
@@ -25772,16 +25912,6 @@
      "oracle_scale": null,
      "action": "Setup Required",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/payr-26d/26D-payroll-wn-f51046.htm"
-    },
-    {
-     "family": "HCM",
-     "product": "Payroll",
-     "module": "Global Payroll",
-     "title": "Retire Upgraded Time Elements",
-     "oracle_impact": "None",
-     "oracle_scale": null,
-     "action": "Setup Required",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/payr-26d/26D-payroll-wn-f51295.htm"
     },
     {
      "family": "HCM",
@@ -25857,7 +25987,7 @@
      "family": "HCM",
      "product": "Payroll",
      "module": "Payroll for Bahrain",
-     "title": "Payroll Balance Migration Agent",
+     "title": "Payroll Balance Migration AI Agent for Bahrain",
      "oracle_impact": "None",
      "oracle_scale": null,
      "action": "Setup Required",
@@ -25907,7 +26037,7 @@
      "family": "HCM",
      "product": "Payroll",
      "module": "Payroll for France",
-     "title": "Payroll Balance Migration Workflow Agent",
+     "title": "Payroll Balance Migration AI Agent for France",
      "oracle_impact": "None",
      "oracle_scale": null,
      "action": "Setup Required",
@@ -25942,6 +26072,16 @@
      "oracle_scale": "Small scale",
      "action": "None",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/payr-26d/26D-payroll-wn-f51292.htm"
+    },
+    {
+     "family": "HCM",
+     "product": "Payroll",
+     "module": "Payroll for Ireland",
+     "title": "Benefits in Kind - Enhanced Processing Rules",
+     "oracle_impact": "Small scale",
+     "oracle_scale": "Small scale",
+     "action": "Potential Setup",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/payr-26d/26D-payroll-wn-f51891.htm"
     },
     {
      "family": "HCM",
@@ -26017,6 +26157,16 @@
      "family": "HCM",
      "product": "Payroll",
      "module": "Payroll for Ireland",
+     "title": "Payroll Validation Report PPM check",
+     "oracle_impact": "Small scale",
+     "oracle_scale": "Small scale",
+     "action": "None",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/payr-26d/26D-payroll-wn-f52004.htm"
+    },
+    {
+     "family": "HCM",
+     "product": "Payroll",
+     "module": "Payroll for Ireland",
      "title": "Payslip Enhancements",
      "oracle_impact": "Small scale",
      "oracle_scale": "Small scale",
@@ -26057,7 +26207,7 @@
      "family": "HCM",
      "product": "Payroll",
      "module": "Payroll for Oman",
-     "title": "Payroll Balance Migration Agent",
+     "title": "Payroll Balance Migration AI Agent for Oman",
      "oracle_impact": "None",
      "oracle_scale": null,
      "action": "Setup Required",
@@ -26077,7 +26227,7 @@
      "family": "HCM",
      "product": "Payroll",
      "module": "Payroll for Qatar",
-     "title": "Payroll Balance Migration Agent",
+     "title": "Payroll Balance Migration AI Agent for Qatar",
      "oracle_impact": "None",
      "oracle_scale": null,
      "action": "Setup Required",
@@ -26132,6 +26282,16 @@
      "oracle_scale": "Small scale",
      "action": "None",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/payr-26d/26D-payroll-wn-f51335.htm"
+    },
+    {
+     "family": "HCM",
+     "product": "Payroll",
+     "module": "Payroll for the United Kingdom",
+     "title": "Automatic AWE Calculation for New Hires\u2019 SSP Absences",
+     "oracle_impact": "None",
+     "oracle_scale": null,
+     "action": "Setup Required",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/payr-26d/26D-payroll-wn-f52083.htm"
     },
     {
      "family": "HCM",
@@ -26567,16 +26727,6 @@
      "family": "HCM",
      "product": "Recruiting",
      "module": "Candidate Messaging",
-     "title": "Configure Vanity Display Name for User-Initiated Emails",
-     "oracle_impact": "None",
-     "oracle_scale": null,
-     "action": "Setup Required",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/recr-26d/26D-recruiting-wn-f50407.htm"
-    },
-    {
-     "family": "HCM",
-     "product": "Recruiting",
-     "module": "Candidate Messaging",
      "title": "Career Coach Enhancements: Use Text Assistant for WhatsApp Messages",
      "oracle_impact": "None",
      "oracle_scale": null,
@@ -26637,6 +26787,16 @@
      "family": "HCM",
      "product": "Recruiting",
      "module": "Notifications",
+     "title": "Configure Vanity Display Name for User-Initiated Emails",
+     "oracle_impact": "None",
+     "oracle_scale": null,
+     "action": "Setup Required",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/recr-26d/26D-recruiting-wn-f50407.htm"
+    },
+    {
+     "family": "HCM",
+     "product": "Recruiting",
+     "module": "Notifications",
      "title": "Manage Candidate Notification Content in a Dedicated Recruiting Notification Library",
      "oracle_impact": "None",
      "oracle_scale": null,
@@ -26652,6 +26812,26 @@
      "oracle_scale": null,
      "action": "Setup Required",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/recr-26d/26D-recruiting-wn-f50405.htm"
+    },
+    {
+     "family": "HCM",
+     "product": "Recruiting",
+     "module": "Recruiting",
+     "title": "Navigate recruiting lists with horizontal scrolling and sticky headers",
+     "oracle_impact": "None",
+     "oracle_scale": null,
+     "action": "Setup Required",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/recr-26d/26D-recruiting-wn-f52460.htm"
+    },
+    {
+     "family": "HCM",
+     "product": "Recruiting",
+     "module": "Recruiting Controlled Availability",
+     "title": "Identify potentially suspicious candidates using an AI agent",
+     "oracle_impact": "None",
+     "oracle_scale": null,
+     "action": "Setup Required",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/recr-26d/26D-recruiting-wn-f50110.htm"
     },
     {
      "family": "HCM",
@@ -26910,8 +27090,18 @@
      "title": "Calibrate Performance Document Ratings in Talent Review",
      "oracle_impact": "None",
      "oracle_scale": null,
-     "action": "Opt In",
+     "action": "Setup Required",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/tama-26d/26D-talent-mgmt-wn-f51019.htm"
+    },
+    {
+     "family": "HCM",
+     "product": "Talent Management",
+     "module": "Talent Management",
+     "title": "Redwood Enabled by Default for Anytime (Give) Feedback and Requested Feedback Pages",
+     "oracle_impact": "Small scale",
+     "oracle_scale": "Small scale",
+     "action": "Potential Setup",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/tama-26d/26D-talent-mgmt-wn-f51472.htm"
     },
     {
      "family": "HCM",
@@ -27047,26 +27237,6 @@
      "family": "HCM",
      "product": "Time and Labor",
      "module": "Time and Labor",
-     "title": "Transfer Absence Entries on the Timecard to Project Costing",
-     "oracle_impact": "None",
-     "oracle_scale": null,
-     "action": "Setup Required",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/tila-26d/26D-time-labor-wn-f51125.htm"
-    },
-    {
-     "family": "HCM",
-     "product": "Time and Labor",
-     "module": "Time and Labor",
-     "title": "Transfer Calculated Time Entries for Absences to Payroll",
-     "oracle_impact": "None",
-     "oracle_scale": null,
-     "action": "Setup Required",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/tila-26d/26D-time-labor-wn-f51126.htm"
-    },
-    {
-     "family": "HCM",
-     "product": "Time and Labor",
-     "module": "Time and Labor",
      "title": "View Locked Time Cards in Time Activity Center",
      "oracle_impact": "Small scale",
      "oracle_scale": "Small scale",
@@ -27092,6 +27262,16 @@
      "oracle_scale": "Small scale",
      "action": "None",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/tila-26d/26D-time-labor-wn-f51336.htm"
+    },
+    {
+     "family": "HCM",
+     "product": "Workforce Scheduling",
+     "module": "Transactional Business Intelligence for Workforce Scheduling",
+     "title": "Workforce Scheduling - Work Pattern Real Time Subject Area Enhancements",
+     "oracle_impact": "Small scale",
+     "oracle_scale": "Small scale",
+     "action": "None",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/wosc-26d/26D-workforce-scheduling-wn-f52074.htm"
     },
     {
      "family": "HCM",
@@ -27727,6 +27907,16 @@
      "family": "Supply Chain & Manufacturing",
      "product": "Demand Management",
      "module": "Demand Management",
+     "title": "View record audit details",
+     "oracle_impact": "Small scale",
+     "oracle_scale": "Small scale",
+     "action": "None",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/demand26d/26D-demand-wn-f50275.htm"
+    },
+    {
+     "family": "Supply Chain & Manufacturing",
+     "product": "Demand Management",
+     "module": "Demand Management",
      "title": "Work with plans during demand simulation",
      "oracle_impact": "Small scale",
      "oracle_scale": "Small scale",
@@ -27892,6 +28082,16 @@
      "oracle_scale": null,
      "action": "Opt In",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/demand26d/26D-demand-wn-f50232.htm"
+    },
+    {
+     "family": "Supply Chain & Manufacturing",
+     "product": "Demand Management",
+     "module": "Replenishment Planning",
+     "title": "Shipment Load Planning Workspace",
+     "oracle_impact": "None",
+     "oracle_scale": null,
+     "action": "Setup Required",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/demand26d/26D-demand-wn-f50218.htm"
     },
     {
      "family": "Supply Chain & Manufacturing",
@@ -29497,6 +29697,16 @@
      "family": "Supply Chain & Manufacturing",
      "product": "Order Management",
      "module": "Pricing",
+     "title": "Price Administration Assistant - Enhancements for promotions and discounts",
+     "oracle_impact": "None",
+     "oracle_scale": null,
+     "action": "Setup Required",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/order26d/26D-order-mgmt-wn-f50618.htm"
+    },
+    {
+     "family": "Supply Chain & Manufacturing",
+     "product": "Order Management",
+     "module": "Pricing",
      "title": "Price bundles with coverages and subscriptions",
      "oracle_impact": "None",
      "oracle_scale": null,
@@ -29692,6 +29902,16 @@
      "oracle_scale": "Small scale",
      "action": "None",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/plm26d/26D-plm-wn-f50664.htm"
+    },
+    {
+     "family": "Supply Chain & Manufacturing",
+     "product": "Product Lifecycle Management",
+     "module": "Product Management",
+     "title": "Product Readiness Workspace - Analyze BOM risk and grading",
+     "oracle_impact": "Small scale",
+     "oracle_scale": "Small scale",
+     "action": "None",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/plm26d/26D-plm-wn-f51451.htm"
     },
     {
      "family": "Supply Chain & Manufacturing",
@@ -30526,16 +30746,6 @@
     {
      "family": "Supply Chain & Manufacturing",
      "product": "Supply Planning",
-     "module": "Production Scheduling",
-     "title": "View record audit details",
-     "oracle_impact": "None",
-     "oracle_scale": null,
-     "action": "Opt In",
-     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/scp26d/26D-sc-planning-wn-f50278.htm"
-    },
-    {
-     "family": "Supply Chain & Manufacturing",
-     "product": "Supply Planning",
      "module": "SCM Common Components",
      "title": "Support for user-defined queries in data extracts",
      "oracle_impact": "None",
@@ -30707,6 +30917,16 @@
      "family": "Supply Chain & Manufacturing",
      "product": "Supply Planning",
      "module": "Supply Planning",
+     "title": "Shipment Load Planning Workspace",
+     "oracle_impact": "None",
+     "oracle_scale": null,
+     "action": "Setup Required",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/scp26d/26D-sc-planning-wn-f50218.htm"
+    },
+    {
+     "family": "Supply Chain & Manufacturing",
+     "product": "Supply Planning",
+     "module": "Supply Planning",
      "title": "Specify minimum shelf life controls for perishable items",
      "oracle_impact": "None",
      "oracle_scale": null,
@@ -30797,11 +31017,31 @@
      "family": "Supply Chain & Manufacturing",
      "product": "Supply Planning",
      "module": "Supply Planning",
+     "title": "Supply Planning Allocation Workspace",
+     "oracle_impact": "Small scale",
+     "oracle_scale": "Small scale",
+     "action": "None",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/scp26d/26D-sc-planning-wn-f50396.htm"
+    },
+    {
+     "family": "Supply Chain & Manufacturing",
+     "product": "Supply Planning",
+     "module": "Supply Planning",
      "title": "Support date measures during export and import",
      "oracle_impact": "Small scale",
      "oracle_scale": "Small scale",
      "action": "None",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/scp26d/26D-sc-planning-wn-f50226.htm"
+    },
+    {
+     "family": "Supply Chain & Manufacturing",
+     "product": "Supply Planning",
+     "module": "Supply Planning",
+     "title": "View record audit details",
+     "oracle_impact": "Small scale",
+     "oracle_scale": "Small scale",
+     "action": "None",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/scp26d/26D-sc-planning-wn-f50275.htm"
     },
     {
      "family": "Supply Chain & Manufacturing",
@@ -31122,6 +31362,16 @@
      "oracle_scale": "Small scale",
      "action": "None",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/sop26d/26D-sales-ops-wn-f50209.htm"
+    },
+    {
+     "family": "Supply Chain & Manufacturing",
+     "product": "Sales and Operations Planning",
+     "module": "Sales and Operations Planning",
+     "title": "View record audit details",
+     "oracle_impact": "Small scale",
+     "oracle_scale": "Small scale",
+     "action": "None",
+     "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/sop26d/26D-sales-ops-wn-f50275.htm"
     },
     {
      "family": "Procurement",
@@ -31448,7 +31698,7 @@
      "product": "Transportation Management (OTM)"
     }
    ],
-   "total_features": 768,
+   "total_features": 788,
    "important": [
     {
      "product": "Financials",
@@ -31524,9 +31774,9 @@
    "family_totals": {
     "Financials": 73,
     "Project Management": 11,
-    "HCM": 263,
+    "HCM": 276,
     "Logistics (OTM/GTM/WMS)": 31,
-    "Supply Chain & Manufacturing": 299,
+    "Supply Chain & Manufacturing": 306,
     "Procurement": 91
    },
    "books": [
@@ -31570,7 +31820,7 @@
      "product": "Benefits",
      "family": "HCM",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/benf-26d/index.html",
-     "features": 4
+     "features": 5
     },
     {
      "product": "Compensation",
@@ -31582,43 +31832,43 @@
      "product": "Human Resources",
      "family": "HCM",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/hure-26d/index.html",
-     "features": 71
+     "features": 74
     },
     {
      "product": "Learning and Development",
      "family": "HCM",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/lear-26d/index.html",
-     "features": 17
+     "features": 21
     },
     {
      "product": "Payroll",
      "family": "HCM",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/payr-26d/index.html",
-     "features": 49
+     "features": 52
     },
     {
      "product": "Recruiting",
      "family": "HCM",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/recr-26d/index.html",
-     "features": 41
+     "features": 43
     },
     {
      "product": "Talent Management",
      "family": "HCM",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/tama-26d/index.html",
-     "features": 34
+     "features": 35
     },
     {
      "product": "Time and Labor",
      "family": "HCM",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/tila-26d/index.html",
-     "features": 10
+     "features": 8
     },
     {
      "product": "Workforce Scheduling",
      "family": "HCM",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/wosc-26d/index.html",
-     "features": 13
+     "features": 14
     },
     {
      "product": "Warehouse Management",
@@ -31630,7 +31880,7 @@
      "product": "Demand Management",
      "family": "Supply Chain & Manufacturing",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/demand26d/index.html",
-     "features": 47
+     "features": 49
     },
     {
      "product": "Inventory Management",
@@ -31654,13 +31904,13 @@
      "product": "Order Management",
      "family": "Supply Chain & Manufacturing",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/order26d/index.html",
-     "features": 41
+     "features": 42
     },
     {
      "product": "Product Lifecycle Management",
      "family": "Supply Chain & Manufacturing",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/plm26d/index.html",
-     "features": 18
+     "features": 19
     },
     {
      "product": "Procurement",
@@ -31678,13 +31928,13 @@
      "product": "Supply Planning",
      "family": "Supply Chain & Manufacturing",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/scp26d/index.html",
-     "features": 35
+     "features": 37
     },
     {
      "product": "Sales and Operations Planning",
      "family": "Supply Chain & Manufacturing",
      "url": "https://docs.oracle.com/en/cloud/saas/readiness/scm/26d/sop26d/index.html",
-     "features": 31
+     "features": 32
     },
     {
      "product": "Self Service Procurement",

@@ -28,7 +28,7 @@ How it is built: features come from the Feature Summary tables in Oracle's What'
 - [How opt-in and enablement work](https://fusionupdates.com/guides/opt-in-and-enablement/)
 - [Prepare for a quarterly update](https://fusionupdates.com/guides/prepare-for-quarterly-update/)
 - [Redwood defaults calendar](https://fusionupdates.com/redwood-defaults/)
-- [AI and agentic features in 26D](https://fusionupdates.com/26d/fusion-claw-ai-agent-studio/)
+- [Fusion Claw and AI Agent Studio](https://fusionupdates.com/26d/fusion-claw-ai-agent-studio/)
 
 ## Other key pages
 
@@ -37,7 +37,7 @@ How it is built: features come from the Feature Summary tables in Oracle's What'
 - [26D opt-in features, all modules](https://fusionupdates.com/26d/opt-in-features/)
 - [26D features on by default, all modules](https://fusionupdates.com/26d/on-by-default/)
 - [26D Redwood changes outside HCM](https://fusionupdates.com/26d/redwood-erp-scm/)
-- [Free downloads: readiness checklist (PDF) and update calendar (.ics)](https://fusionupdates.com/downloads/)
+- [Free downloads: readiness checklist (PDF)](https://fusionupdates.com/downloads/)
 - [Newsletter: subscribe and all issues](https://fusionupdates.com/newsletter/)
 - [About and method](https://fusionupdates.com/about.html)
 - Full text of the summaries and FAQs: https://fusionupdates.com/llms-full.txt

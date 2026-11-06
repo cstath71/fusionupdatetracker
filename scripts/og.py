@@ -36,7 +36,13 @@ def generate(specs,outdir):
         for k,(tag,h1,sub) in todo.items():
             f=os.path.join(td,k+'.html'); open(f,'w').write(card_html(tag,h1,sub))
             out=os.path.join(outdir,k+'.png')
-            subprocess.run([CHROME,'--headless=new','--no-sandbox','--disable-gpu','--hide-scrollbars','--force-device-scale-factor=1',f'--screenshot={out}','--window-size=1200,627',f'file://{f}'],check=True,capture_output=True,timeout=60)
+            cmd=[CHROME,'--headless=new','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--no-first-run','--hide-scrollbars','--force-device-scale-factor=1',f'--screenshot={out}','--window-size=1200,627',f'file://{f}']
+            try:
+                subprocess.run(cmd,check=True,capture_output=True,timeout=25)
+            except subprocess.TimeoutExpired:
+                # Chrome writes the PNG, then can hang on a missing D-Bus. Keep the file if it landed.
+                if not (os.path.exists(out) and os.path.getsize(out)>10000):
+                    raise
             man[k]=hashlib.sha1(json.dumps([tag,h1,sub]).encode()).hexdigest()
     for k in list(man):
         if k not in specs:

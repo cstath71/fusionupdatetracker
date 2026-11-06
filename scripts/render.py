@@ -535,9 +535,9 @@ def hr_group(rel):
     return 'later' if rel>='27A' else rel.lower()
 def hr_items(rel): return [i for i in HCMR['items'] if hr_group(i['release'])==hr_group(rel)]
 HR_NOTE="Oracle announces these HCM changes in its HCM What's New documents as Redwood default switches (and a few end-of-support, migration or removal notices), not as opt-in expirations. They are not on Oracle's Current Opt-In Expirations list and are not part of the former opt-ins counts on this site."
-def hr_item_html(i,check=False):
+def hr_item_html(i,check=False,show_oracle_title=True):
     src=' · '.join(f'<a href="{E(u)}" target=_blank rel=noopener>Oracle source{(" "+str(n+1)) if len(i["urls"])>1 else ""}</a>' for n,u in enumerate(i['urls']))
-    ot=f'<p class="small muted">Oracle&#39;s title: &ldquo;{E(i["oracle_title"])}&rdquo;</p>' if i.get('oracle_title') else ''
+    ot=f'<p class="small muted">Oracle&#39;s title: &ldquo;{E(i["oracle_title"])}&rdquo;</p>' if show_oracle_title and i.get('oracle_title') else ''
     pg=', '.join(i['pages'])
     po=f'<p class="small muted">Profile options named on Oracle&#39;s page: <code style="font-size:12px">{"</code>, <code style=\"font-size:12px\">".join(E(c) for c in i["profile_options"])}</code></p>' if i.get('profile_options') and i['type']=='Redwood by default' else ''
     head=f'<label><input type=checkbox> {E(i["title"])}</label>' if check else E(i['title'])
@@ -689,7 +689,7 @@ How it is built: features come from the Feature Summary tables in Oracle's What'
 - [How opt-in and enablement work]({BASE}/guides/opt-in-and-enablement/)
 - [Prepare for a quarterly update]({BASE}/guides/prepare-for-quarterly-update/)
 - [Redwood defaults calendar]({BASE}/redwood-defaults/)
-- [AI and agentic features in 26D]({BASE}/26d/fusion-claw-ai-agent-studio/)
+- [Fusion Claw and AI Agent Studio]({BASE}/26d/fusion-claw-ai-agent-studio/)
 
 ## Other key pages
 

@@ -1,40 +1,23 @@
-"""Gap SEO/AEO guide pages (keyword research 29 Oct 2026):
-  /26d/dates/                              26D cohort dates from Oracle's published rule
-  /26d/fusion-claw-ai-agent-studio/        AI/agent rows from our What's New extract only
-  /guides/opt-in-and-enablement/           evergreen enablement explainer (26D figures as examples)
+"""Gap SEO/AEO guide pages (keyword research 29 Oct 2026, rechecked at publish):
+  /26d/dates/                              cohort months and official Oracle links; no calculated day-level dates
+  /26d/fusion-claw-ai-agent-studio/        Fusion Claw and AI Agent Studio rows from our extract only
+  /guides/opt-in-and-enablement/           evergreen enablement explainer (26D figures counted from the dataset)
   /redwood-defaults/                       consolidated Redwood defaults calendar
   /guides/prepare-for-quarterly-update/    prepare / test-window playbook
-Also writes a redirect stub at /guides/how-oracle-fusion-updates-work/ (404 on live; no internal linker found).
+Also writes a redirect stub at /guides/how-oracle-fusion-updates-work/ (404 on the live site).
 Called from render.render(); returns sitemap paths (redirect stub is omitted from sitemap).
 """
-import os, re, calendar, datetime, collections
+import os, re, collections
 import render as R
 E = R.E
 
 FI = 'https://blogs.oracle.com/fusioninsider/quarterly-updates-made-easy'
+CLAW = 'https://blogs.oracle.com/fusioninsider/introducing-fusion-claw-for-complex-autonomous-work'
 OPTIN = 'https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features/optincurrent.html'
-COH = {'A': (2, 5, 8, 11), 'B': (3, 6, 9, 12), 'C': (4, 7, 10, 1)}
-QIDX = {'A': 0, 'B': 1, 'C': 2, 'D': 3}
-HOL = {datetime.date(2027, 1, 1): "This date is New Year's Day. Oracle may schedule this cohort differently, so confirm yours in the Oracle Cloud Console."}
-AI_TITLE = re.compile(r'\b(ai agent|agentic|agent studio|fusion claw|\bclaw\b|assistant)\b', re.I)
-
-def _fridays(y, m):
-    fs = [d for d in range(1, calendar.monthrange(y, m)[1] + 1) if datetime.date(y, m, d).weekday() == 4]
-    return datetime.date(y, m, fs[0]), datetime.date(y, m, fs[2])
-
-def windows(rel):
-    """Typical test/production Fridays from Oracle's published cohort rule (same as leadmagnets.py)."""
-    y = 2000 + int(rel[:2]); q = QIDX[rel[2]]; res = []
-    for c, ms in COH.items():
-        m = ms[q]; yy = y + 1 if (c == 'C' and q == 3) else y
-        t, p = _fridays(yy, m); res.append((c, t, p))
-    return res
-
-def _fmt(d):
-    return f"{d:%a %-d %b %Y}" if os.name != 'nt' else d.strftime('%a %d %b %Y').replace(' 0', ' ')
-
-def _fmt_safe(d):
-    return f"{d.strftime('%a')} {d.day} {d.strftime('%b %Y')}"
+READINESS = 'https://docs.oracle.com/en/cloud/saas/readiness/index.html'
+RELEASE_PLANNING = 'https://docs.oracle.com/en/cloud/customer-success/cloud-success-navigator/navigator-user-guide/release-planning1.html'
+# Oracle title, module, or feature-summary tag. Not a general "assistant" / "agentic" match.
+AI_VERIFIED = re.compile(r'\b(?:fusion claw|ai agent studio|agent studio)\b', re.I)
 
 def _ld(path, title, desc, cl, faq=None, extra=None):
     g = [{"@type": "WebPage", "@id": R.BASE + '/' + path, "url": R.BASE + '/' + path, "name": title,
@@ -50,151 +33,168 @@ def _related_guides(cur, depth='../../'):
         ('guides/opt-in-and-enablement/', 'How opt-in and enablement work'),
         ('redwood-defaults/', 'Redwood defaults calendar'),
         ('guides/prepare-for-quarterly-update/', 'Prepare for a quarterly update'),
-        ('26d/fusion-claw-ai-agent-studio/', 'AI and agentic features in 26D'),
+        ('26d/fusion-claw-ai-agent-studio/', 'Fusion Claw and AI Agent Studio'),
     ]
     lk = ' · '.join(f'<a href="{depth}{p}">{E(n)}</a>' for p, n in pages if p != cur)
     return f'<div class="box"><p><b>Related guides:</b> {lk} · <a href="{depth}26d/">26D hub</a> · <a href="{depth}downloads/">Free downloads</a></p></div>'
 
 def _oracle_rule_note():
-    return (f'<p class="small muted">Source for the cohort rule: <a href="{FI}" target=_blank rel=noopener>Oracle Fusion Insider, '
-            f'"Quarterly updates made easy"</a> (published 10 Dec 2025). Oracle publishes the rule rather than a public '
-            f'list of dates for every environment. Confirm your own dates in the Oracle Cloud Console. Middle East regions '
-            f'update on the Thursday before each Friday.</p>')
+    return (f'<p class="small muted">Official schedule: <a href="{FI}" target=_blank rel=noopener>Oracle Fusion Insider, '
+            f'"Quarterly updates made easy"</a> (10 Dec 2025). That article states the cohort months and the first-Friday / '
+            f'third-Friday rule. It does not list calendar dates for 26D. Per-environment dates are in the '
+            f'<a href="{RELEASE_PLANNING}" target=_blank rel=noopener>Oracle Cloud Success Navigator Release Planning</a> page '
+            f'(sign-in) and in the Oracle Cloud Console. Middle East regions update on the Thursday before each Friday.</p>')
+
+def _cohort_table():
+    """Months Oracle publishes, plus where release D falls in that list. No calculated Fridays."""
+    rows = (
+        ('A', 'February, May, August, November', 'November'),
+        ('B', 'March, June, September, December', 'December'),
+        ('C', 'April, July, October, January', 'January, after the November and December updates'),
+    )
+    body = ''.join(f'<tr><td>Cohort {c}</td><td>{m}</td><td>{d}</td></tr>' for c, m, d in rows)
+    return ('<table><tr><th>Cohort</th><th>Update months Oracle publishes</th>'
+            '<th>Where 26D falls in that list</th></tr>' + body + '</table>'
+            '<p class="small muted">Oracle names 26A, 26B, 26C and 26D as the four 2026 releases, in that order, and lists '
+            'four months for each cohort. The third column is that order applied to 26D. It is not a dated Oracle calendar, '
+            'and this page does not calculate the Friday inside the month.</p>')
 
 # ---------- 1. /26d/dates/ ----------
 def dates_page(updates):
     rel = '26D'; path = '26d/dates/'; u = updates[rel]
-    wins = windows(rel)
     on = sum(1 for e in u['expiring'] if e['now_enabled'] == 'Yes')
     st = len(u['expiring']) - on
-    rows = ''.join(
-        f'<tr><td>Cohort {c}</td><td>{_fmt_safe(t)}</td><td>{_fmt_safe(p)}</td><td>{E(HOL.get(t, "—"))}</td></tr>'
-        for c, t, p in wins)
+    bc = R.bucket_counts(u['all'])
     title = 'Oracle Fusion 26D release dates and cohorts'
-    desc = ('Typical Oracle Fusion Cloud 26D test and production update dates for Cohorts A, B and C, derived from '
-            'Oracle\'s published cohort rule, plus links to what changes in 26D.')
+    desc = ('Oracle Fusion Cloud 26D cohort months and the official schedule links. Oracle publishes the cohort rule, not a public day-by-day 26D calendar, so this page does not print calculated dates.')
     cl = [('Home', ''), ('26D', '26d/'), ('Release dates', path)]
-    summary = (f'Oracle Fusion Cloud <b>26D</b> is the fourth 2026 quarterly update. Per Oracle\'s published rule, '
-               f'test environments take the update on the <b>first Friday</b> of the cohort month and production on the '
-               f'<b>third Friday</b>, two weeks later. Typical dates: Cohort A {_fmt_safe(wins[0][1])} / {_fmt_safe(wins[0][2])}, '
-               f'Cohort B {_fmt_safe(wins[1][1])} / {_fmt_safe(wins[1][2])}, Cohort C {_fmt_safe(wins[2][1])} / {_fmt_safe(wins[2][2])}. '
-               f'These are derived from Oracle\'s rule, not a published per-environment calendar — confirm yours in the Oracle Cloud Console. '
+    summary = (f'Oracle Fusion Cloud <b>26D</b> is the fourth 2026 quarterly update. Oracle publishes which months each cohort updates, '
+               f'and that test environments update on the <b>first Friday</b> of that month and production on the <b>third Friday</b>. '
+               f'Oracle has not published a public list of those Fridays for 26D, so this page does not calculate or print them. '
+               f'Use the official links below and confirm your environment in the Oracle Cloud Console. '
                f'On the content side, Oracle\'s 26D What\'s New lists <b>{len(u["all"])}</b> features across the modules we cover: '
-               f'<b>{sum(1 for r in u["all"] if R.bucket(r["action"])=="on")}</b> on by default, '
-               f'<b>{sum(1 for r in u["all"] if R.bucket(r["action"])=="opt")}</b> opt-in, and '
-               f'<b>{len(u["expiring"])}</b> former opt-ins that are now standard with 26D '
+               f'<b>{bc["on"]}</b> on by default, <b>{bc["pot"]}</b> on by default with potential setup, '
+               f'<b>{bc["opt"]}</b> opt-in, and <b>{len(u["expiring"])}</b> former opt-ins that are now standard with 26D '
                f'(<b>{on}</b> switch on for everyone, <b>{st}</b> need setup).')
     faq = [
         ('When does Oracle Fusion 26D update my environments?',
-         f'It depends on your cohort. Applying Oracle\'s published rule (test on the first Friday of the update month, production on the third) gives Cohort A {_fmt_safe(wins[0][1])} / {_fmt_safe(wins[0][2])}, Cohort B {_fmt_safe(wins[1][1])} / {_fmt_safe(wins[1][2])}, and Cohort C {_fmt_safe(wins[2][1])} / {_fmt_safe(wins[2][2])}. Confirm your cohort and exact dates in the Oracle Cloud Console. Source: <a href="{FI}" target=_blank rel=noopener>Oracle Fusion Insider</a>.'),
+         f'It depends on your cohort. Oracle\'s published rule puts test environments on the first Friday of the cohort\'s update month and production on the third Friday. For 26D, the fourth 2026 release, those months are November (Cohort A), December (Cohort B) and the following January (Cohort C). Oracle has not published the Fridays themselves on a public calendar, so confirm your dates in the Oracle Cloud Console. Source: <a href="{FI}" target=_blank rel=noopener>Oracle Fusion Insider</a>.'),
         ('Which months are Cohorts A, B and C?',
-         'Per Oracle Fusion Insider: Cohort A is February, May, August and November; Cohort B is March, June, September and December; Cohort C is April, July, October and January. 26D is the fourth 2026 release, so those months are November 2026, December 2026 and January 2027.'),
-        ('Are these Oracle-published dates for my pod?',
-         'No. Oracle publishes the cohort rule; it does not publish a public list of every environment\'s date. The table on this page applies that rule. Always confirm your own dates in the Oracle Cloud Console.'),
+         'Per Oracle Fusion Insider: Cohort A is February, May, August and November; Cohort B is March, June, September and December; Cohort C is April, July, October and January.'),
+        ('Why does this page not list a Friday for 26D?',
+         f'We rechecked <a href="{FI}" target=_blank rel=noopener>Oracle\'s quarterly-updates article</a> and the public readiness site. They state the cohort months and the Friday rule. They do not list a dated 26D calendar. Calculated Fridays would be unverified, so they are not on this page. Your dates are in the Oracle Cloud Console and in <a href="{RELEASE_PLANNING}" target=_blank rel=noopener>Release Planning</a>.'),
         ('What should I do in the two-week test window?',
          f'Start with the <a href="../../updates/26d/checklist.html">26D what-to-test checklist</a>, review <a href="../on-by-default/">features on by default</a> and <a href="../opt-in-features/">opt-ins</a>, and decide which of the <a href="../former-opt-ins-now-standard/">{len(u["expiring"])} former opt-ins now standard</a> need setup. See also <a href="../../guides/prepare-for-quarterly-update/">Prepare for a quarterly update</a>.'),
     ]
     body = f"""{R.crumbs_html(cl, '../../')}<div class="hero"><h1>{E(title)}</h1>
-<p class="lead">Typical test and production Fridays for Oracle Fusion Cloud 26D, by cohort, from Oracle&#39;s published update rule. Use them to plan the two-week window; confirm your own dates in the Oracle Cloud Console.</p>
+<p class="lead">Cohort months for Oracle Fusion Cloud 26D, with links to Oracle&#39;s schedule. Day-level dates are not printed here, because Oracle has not published them on a public calendar we could recheck.</p>
 {R.summary_html(summary)}{_oracle_rule_note()}</div>
-<div class="box"><h2 style="margin-top:0">Typical 26D dates by cohort</h2>
-<table><tr><th>Cohort</th><th>Test environments</th><th>Production</th><th>Note</th></tr>{rows}</table>
-<p class="small muted">Cohort months for 26D (fourth 2026 release): A = November 2026, B = December 2026, C = January 2027.</p></div>
+<div class="box"><h2 style="margin-top:0">Cohorts and where 26D falls</h2>
+{_cohort_table()}
+<p>Inside the month, Oracle\'s rule is: test environments on the first Friday, production on the third Friday, two weeks later. Middle East regions use the Thursday before. If that Friday is a holiday, confirm the date Oracle assigned to your environment.</p></div>
+<div class="box"><h2 style="margin-top:0">Official Oracle links</h2>
+<ul class="check">
+<li><a href="{FI}" target=_blank rel=noopener>Quarterly updates made easy</a> (Oracle Fusion Insider) — cohort months and the Friday rule</li>
+<li><a href="{RELEASE_PLANNING}" target=_blank rel=noopener>Release Planning</a> in Oracle Cloud Success Navigator — Oracle&#39;s in-product calendar by cohort (sign-in)</li>
+<li><a href="{READINESS}" target=_blank rel=noopener>Oracle Cloud Readiness</a> — What&#39;s New documents for the update</li>
+<li>Oracle Cloud Console — your environment&#39;s cohort and maintenance dates</li>
+</ul></div>
 <div class="box"><h2 style="margin-top:0">What changes when 26D lands</h2>
-<p>Oracle&#39;s 26D What&#39;s New documents list <b>{len(u['all'])}</b> features across the modules Fusion Updates covers. Use these lists for the content of the update:</p>
+<p>Oracle&#39;s 26D What&#39;s New documents list <b>{len(u['all'])}</b> features across the modules Fusion Updates covers. Counts are taken from our current extract, not from an older research note. Use these lists for the content of the update:</p>
 <ul class="check">
 <li><a href="../">26D hub: what&#39;s new by module and the opt-in expiration list</a></li>
 <li><a href="../on-by-default/">Features on by default</a> · <a href="../opt-in-features/">Opt-in features</a> · <a href="../former-opt-ins-now-standard/">Former opt-ins now standard ({len(u['expiring'])})</a></li>
-<li><a href="../../updates/26d/checklist.html">26D what-to-test checklist</a> · <a href="../../downloads/">Free checklist PDF and calendar (.ics)</a></li>
+<li><a href="../../updates/26d/checklist.html">26D what-to-test checklist</a> · <a href="../../downloads/">Free checklist PDF</a></li>
 </ul></div>
 {R.faq_html(faq)}{_related_guides(path)}{R.nl_form()}"""
     return path, R.page(title, body, 2, desc, path, _ld(path, title, desc, cl, faq),
-                        og=('Oracle Fusion Cloud 26D · dates', 'Typical Cohort A/B/C test and production Fridays'))
+                        og=('Oracle Fusion Cloud 26D · dates', 'Cohort months and official Oracle schedule links'))
 
 # ---------- 2. /26d/fusion-claw-ai-agent-studio/ ----------
-def _ai_rows(u):
-    """Rows whose Oracle title mentions AI agent / agentic / assistant / claw / agent studio. Deduped by title+family."""
-    seen, out = set(), []
-    for r in u['all']:
-        if not AI_TITLE.search(r.get('title', '')): continue
-        k = (r['title'].lower(), r['family'])
-        if k in seen: continue
-        seen.add(k); out.append(r)
+def _ai_blob(r):
+    return ' '.join(r.get(k) or '' for k in ('title', 'module', 'tags'))
+
+def verified_ai(updates):
+    """Rows whose Oracle title, module, or feature-summary tag names Fusion Claw or AI Agent Studio.
+    Curated items are preferred (they carry Oracle's tag). Deduped by Oracle URL. No title-keyword guesses."""
+    out, seen = [], set()
+    for rel in sorted(updates, reverse=True):
+        u = updates[rel]
+        for r in list(u.get('items') or []) + list(u.get('all') or []):
+            if not AI_VERIFIED.search(_ai_blob(r)): continue
+            url = r.get('url') or ''
+            if not url or url in seen: continue
+            seen.add(url); out.append((rel, r))
     return out
 
 def ai_page(updates):
-    rel = '26D'; path = '26d/fusion-claw-ai-agent-studio/'; u = updates[rel]
-    rows = _ai_rows(u)
-    # Agent Studio / Claw specifically
-    claw = [r for r in rows if re.search(r'\bclaw\b|agent studio', r['title'], re.I)]
-    # Cross-release Agent Studio from our extract (honest cross-link, still our data)
-    studio_prior = []
-    for k in ('26C', '26B'):
-        if k not in updates: continue
-        for r in updates[k]['all']:
-            if 'agent studio' in r['title'].lower() or re.search(r'\bclaw\b', r['title'], re.I):
-                studio_prior.append(dict(r, _rel=k))
-    # dedupe prior by title+rel
-    seen, prior = set(), []
-    for r in studio_prior:
-        k = (r['title'].lower(), r['_rel'])
-        if k in seen: continue
-        seen.add(k); prior.append(r)
-
-    byf = collections.OrderedDict()
-    for f in R.FSLUG:
-        x = [r for r in rows if r['family'] == f]
-        if x: byf[f] = x
-    def _tbl(rs):
-        return ('<table><tr><th>Feature (Oracle title)</th><th>Product · module</th><th>Action to Enable</th><th>Oracle scale</th></tr>' +
-                ''.join(f'<tr><td><a href="{E(r["url"])}" target=_blank rel=noopener>{E(r["title"])}</a></td>'
-                        f'<td>{E(r["product"])} · {E(r["module"])}</td>'
-                        f'<td><span class="pill">{E(r["action"])}</span></td><td>{E(r["oracle_impact"])}</td></tr>' for r in rs) + '</table>')
-    groups = ''.join(f'<div class="box" id="f-{R.FSLUG[f]}"><h2 style="margin-top:0">{E(R.FNAME[f])} ({len(x)})</h2>{_tbl(x)}'
-                     f'<p class="small"><a href="../{R.FSLUG[f]}/">All {E(R.FNAME[f])} features in 26D →</a></p></div>'
-                     for f, x in byf.items())
+    path = '26d/fusion-claw-ai-agent-studio/'
+    rows = verified_ai(updates)
+    d26 = [r for rel, r in rows if rel == '26D']
+    claw = [r for r in d26 if re.search(r'\bfusion claw\b', _ai_blob(r), re.I)]
+    prior = [(rel, r) for rel, r in rows if rel != '26D']
+    def _why(r):
+        blob = _ai_blob(r)
+        bits = []
+        if re.search(r'\bfusion claw\b', blob, re.I): bits.append('Fusion Claw')
+        if re.search(r'\bagent studio\b', blob, re.I): bits.append('AI Agent Studio')
+        return ', '.join(bits) or '—'
+    def _tr(rel, r, with_rel=False):
+        relc = f'<td>{E(rel)}</td>' if with_rel else ''
+        tag = r.get('tags') or '—'
+        return (f'<tr>{relc}<td><a href="{E(r["url"])}" target=_blank rel=noopener>{E(r["title"])}</a></td>'
+                f'<td>{E(r.get("product") or "")} · {E(r.get("module") or "")}</td>'
+                f'<td><span class="pill">{E(r.get("action") or "")}</span></td>'
+                f'<td>{E(tag)}</td><td>{E(_why(r))}</td></tr>')
+    d26_html = ('<table><tr><th>Feature (Oracle title)</th><th>Product · module</th><th>Action to Enable</th><th>Oracle tag</th><th>Matched as</th></tr>'
+                + ''.join(_tr('26D', r) for r in d26) + '</table>') if d26 else '<p>No 26D row in the current extract is titled or tagged Fusion Claw or AI Agent Studio.</p>'
     prior_html = ''
     if prior:
-        prior_html = ('<div class="box"><h2 style="margin-top:0">AI Agent Studio in earlier releases we track</h2>'
-                      '<p class="small muted">These rows are in our What\'s New extract for 26B/26C (not 26D). Titles and Action to Enable are Oracle\'s.</p>'
-                      '<table><tr><th>Release</th><th>Feature (Oracle title)</th><th>Action to Enable</th></tr>' +
-                      ''.join(f'<tr><td>{E(r["_rel"])}</td><td><a href="{E(r["url"])}" target=_blank rel=noopener>{E(r["title"])}</a></td>'
-                              f'<td><span class="pill">{E(r["action"])}</span></td></tr>' for r in prior) + '</table></div>')
-
-    honest = ('Oracle\'s 26D What\'s New Feature Summary tables for the modules we cover do <b>not</b> currently include a row titled '
-              '<b>Fusion Claw</b> or <b>AI Agent Studio</b>. Partner writeups often use those names; this page only lists rows that '
-              f'already appear in our extract. We found <b>{len(rows)}</b> 26D features whose Oracle title mentions an AI agent, '
-              f'an agentic app, or an assistant'
-              + (f', and none titled Fusion Claw or AI Agent Studio' if not claw else f', including {len(claw)} titled Fusion Claw or AI Agent Studio')
-              + '.')
-
-    title = 'AI agents and agentic apps in Oracle Fusion 26D'
-    desc = (f'{len(rows)} Oracle Fusion 26D features whose titles mention an AI agent, agentic app or assistant, '
-            f'from the Feature Summary tables for the modules Fusion Updates covers. No invented AI metrics.')
-    cl = [('Home', ''), ('26D', '26d/'), ('AI and agentic features', path)]
-    summary = (f'<b>Honest scope:</b> {honest} Enablement below is Oracle\'s Action to Enable column. '
-               f'Start from the <a href="../../updates/26d/">26D changes list</a> and confirm behaviour in your test pod before production.')
+        prior_html = ('<div class="box"><h2 style="margin-top:0">AI Agent Studio in earlier releases we track (' + str(len(prior)) + ')</h2>'
+                      '<p class="small muted">These rows are in our What\'s New extract for earlier releases. Titles and Action to Enable are Oracle\'s. '
+                      'OTM and GTM publish the same feature as separate books, so both Oracle links are listed.</p>'
+                      '<table><tr><th>Release</th><th>Feature (Oracle title)</th><th>Product · module</th><th>Action to Enable</th><th>Oracle tag</th><th>Matched as</th></tr>'
+                      + ''.join(_tr(rel, r, True) for rel, r in prior) + '</table></div>')
+    title = 'Fusion Claw and AI Agent Studio in Oracle Fusion 26D'
+    desc = (f'{len(d26)} Oracle Fusion 26D row(s) tagged or titled Fusion Claw or AI Agent Studio in the modules Fusion Updates covers, '
+            f'plus {len(prior)} earlier AI Agent Studio rows from the same extract. No other AI rows and no AI-unit counts.')
+    cl = [('Home', ''), ('26D', '26d/'), ('Fusion Claw and AI Agent Studio', path)]
+    summary = (f'Fusion Updates lists only What\'s New rows whose Oracle title, module, or feature-summary tag says <b>Fusion Claw</b> or <b>AI Agent Studio</b>. '
+               f'In the current 26D extract that is <b>{len(d26)}</b> row{"s" if len(d26)!=1 else ""}'
+               + (': ' + '; '.join(E(r['title']) for r in d26) + '. ' if d26 else '. ')
+               + (f'None of those 26D titles is "AI Agent Studio". ' if d26 and not any(re.search(r'agent studio', _ai_blob(r), re.I) for r in d26) else '')
+               + f'Earlier releases we track include <b>{len(prior)}</b> AI Agent Studio rows, linked below. '
+               f'Other AI agents and agentic apps are not listed here. We do not publish AI-unit budgets or guardrail counts; those figures are not fields in our extract. '
+               f'Enablement is Oracle\'s Action to Enable column. Confirm each linked Oracle page in your test pod before production.')
     faq = [
         ('Does Fusion Updates list Fusion Claw in 26D?',
-         'Not under that title. As of our current 26D What\'s New extract for Financials, Procurement, SCM, Logistics, Projects and HCM, no Feature Summary row is titled Fusion Claw. If Oracle publishes one later for a module we cover, the weekly refresh will pick it up.'),
+         (f'The current 26D extract has {len(claw)} row{"s" if len(claw)!=1 else ""} whose feature-summary tag or title says Fusion Claw'
+          + (': ' + '; '.join(E(r['title']) for r in claw) + '. ' if claw else '. ')
+          + 'No 26D row is titled Fusion Claw. If Oracle adds another tagged row for a module we cover, the weekly refresh picks it up.')),
         ('Does Fusion Updates list AI Agent Studio in 26D?',
-         f'Not in the 26D Feature Summary tables for the modules we cover. Our extract does include AI Agent Studio rows in earlier releases ({", ".join(sorted({r["_rel"] for r in prior}) or ["none yet"])}). See the earlier-releases section on this page.'),
-        (f'How many 26D features mention AI agents or assistants?',
-         f'{len(rows)} unique features (by title and module family) in Oracle\'s 26D What\'s New for the modules we cover, matching titles that contain AI agent, agentic, assistant, claw or agent studio.'),
+         'Not as a 26D Feature Summary title or tag in the modules we cover. '
+         + (f'Our extract does include {len(prior)} AI Agent Studio rows in earlier releases ({", ".join(sorted({rel for rel, _ in prior}))}).' if prior else 'Earlier releases we track do not include one either.')
+         + ' Open the linked Oracle page for any 26D Fusion Claw row to see whether that page also describes AI Agent Studio setup.'),
+        ('Why are other AI agents not on this page?',
+         'A title that merely says "assistant" or "agentic app" is not Fusion Claw or AI Agent Studio. Those features stay on the module pages. This page does not invent rows to fill a gap.'),
         ('Where do the enablement labels come from?',
-         'Oracle\'s Action to Enable column on each feature\'s What\'s New row. We copy it; we do not invent AI-unit budgets or guardrail counts.'),
+         'Oracle\'s Action to Enable column, copied from the What\'s New row. We do not add AI-unit budgets or guardrail counts.'),
     ]
+    fam_links = ' · '.join(f'<a href="../{R.FSLUG[f]}/">{E(R.FNAME[f])} in 26D</a>'
+                           for f in R.FSLUG if any(r.get('family') == f for r in d26))
+    more = (' · ' + fam_links) if fam_links else ''
     body = f"""{R.crumbs_html(cl, '../../')}<div class="hero"><h1>{E(title)}</h1>
-<p class="lead">What our 26D What&#39;s New extract actually contains for AI agents, agentic apps and assistants — and what it does not.</p>
+<p class="lead">Only the What&#39;s New rows we can verify as Fusion Claw or AI Agent Studio. Nothing else is added to make the list look complete.</p>
 {R.summary_html(summary)}
-<p class="small muted">Every row below comes from Oracle&#39;s Feature Summary tables in the 26D What&#39;s New documents for the modules we cover. Titles and Action to Enable are Oracle&#39;s. We recheck them every week.</p></div>
-<div class="box"><h2 style="margin-top:0">26D rows we can verify ({len(rows)})</h2>
-<p class="small muted">Matched on Oracle&#39;s feature title containing &quot;AI agent&quot;, &quot;agentic&quot;, &quot;assistant&quot;, &quot;claw&quot; or &quot;agent studio&quot;. Duplicate titles that appear in more than one book of the same family are listed once.</p></div>
-{groups if groups else '<div class="box"><p>No matching rows in the current extract.</p></div>'}
+<p class="small muted">Oracle describes Fusion Claw in <a href="{CLAW}" target=_blank rel=noopener>this Fusion Insider article</a>. This page does not repeat counts from that article. The tables are rows already in our What&#39;s New extract. We recheck them every week.</p></div>
+<div class="box"><h2 style="margin-top:0">26D rows we can verify ({len(d26)})</h2>
+<p class="small muted">A row is included only when Oracle&#39;s feature title, module name, or feature-summary tag contains &quot;Fusion Claw&quot; or &quot;AI Agent Studio&quot;. Assistants and agentic apps that do not say those names are left off.</p>
+{d26_html}
+<p class="small"><a href="../../updates/26d/">26D changes we track</a>{more}</p></div>
 {prior_html}
 {R.faq_html(faq)}{_related_guides(path)}{R.nl_form()}"""
     return path, R.page(title, body, 2, desc, path, _ld(path, title, desc, cl, faq),
-                        og=('Oracle Fusion Cloud 26D · AI', f'{len(rows)} AI agent / agentic / assistant rows from our extract'))
+                        og=('Oracle Fusion Cloud 26D · AI', f'{len(d26)} verified Fusion Claw / AI Agent Studio row(s) in 26D'))
 
 # ---------- 3. /guides/opt-in-and-enablement/ ----------
 def optin_guide(updates):
@@ -264,21 +264,32 @@ def redwood_calendar(updates):
         deep = ('<div class="box"><h2 style="margin-top:0">26D page-level lists with profile option codes</h2><p>' +
                 ' · '.join(f'<a href="../{p}">{E(n)}</a>' for p, n in longtail.PAGES.items()) +
                 f' · <a href="../26d/redwood-erp-scm/">26D Redwood changes outside HCM</a></p></div>')
+    def _src_rels(rows):
+        found = []
+        for i in rows:
+            for u in i.get('urls') or []:
+                m = re.search(r'/(\d\d[a-d])/', u, re.I)
+                if m and m.group(1).upper() not in found:
+                    found.append(m.group(1).upper())
+        return found
+    def _future_note(rel, rows):
+        if rel < '27A': return ''
+        src = _src_rels(rows)
+        src_txt = ' and '.join(src) if src else 'earlier'
+        return ('<p class="small muted">Announced in Oracle\'s ' + E(src_txt) + ' documents. '
+                'Oracle has not published a full ' + E(rel) + ' What\'s New yet. '
+                'Treat these as announced, and re-check when the ' + E(rel) + ' documents appear.</p>')
     def _sec(rel, rows):
         red = [i for i in rows if i['type'] == 'Redwood by default']
         other = [i for i in rows if i not in red]
         bits = []
         if red:
             bits.append(f'<h3 style="margin:12px 0 6px">Redwood by default ({len(red)})</h3>' +
-                        ''.join(R.hr_item_html(i) for i in red))
+                        ''.join(R.hr_item_html(i, show_oracle_title=False) for i in red))
         if other:
             bits.append(f'<h3 style="margin:12px 0 6px">Other HCM notices ({len(other)})</h3>' +
-                        ''.join(R.hr_item_html(i) for i in other))
-        note = ''
-        if rel >= '27A':
-            note = ('<p class="small muted">Announced in Oracle\'s 26C/26D documents; Oracle has not published a full 27A What\'s New yet. '
-                    'Treat these as announced, and re-check when 27A documents appear.</p>')
-        return (f'<div class="box" id="r{rel.lower()}"><h2 style="margin-top:0">{E(rel)} ({len(rows)})</h2>{note}' +
+                        ''.join(R.hr_item_html(i, show_oracle_title=False) for i in other))
+        return (f'<div class="box" id="r{rel.lower()}"><h2 style="margin-top:0">{E(rel)} ({len(rows)})</h2>{_future_note(rel, rows)}' +
                 ''.join(bits) + '</div>')
     secs = ''.join(_sec(rel, rows) for rel, rows in by_rel.items())
     n26d = len(by_rel.get('26D', [])); n27a = len(by_rel.get('27A', []))
@@ -297,8 +308,8 @@ def redwood_calendar(updates):
          'Where Oracle provides a profile option, set it to No in Manage Administrator Profile Values. Oracle\'s feature page for each switch says whether that is available.'),
         ('Is HCM on the opt-in expiration list?',
          'No. Oracle announces HCM Redwood default switches separately. That is why this calendar exists alongside the former-opt-ins pages.'),
-        ('Are 27A items final?',
-         'They are announced in Oracle\'s 26C/26D documents. Oracle has not published full 27A What\'s New books yet, so re-check when those appear.'),
+        ('Are 27A, 27B and 27C items final?',
+         'No. Each future release on this page is marked with the Oracle documents that announced it. Oracle has not published a full What\'s New for that release yet, so re-check when those documents appear. A profile option can still be set back to No where Oracle says so.'),
     ]
     body = f"""{R.crumbs_html(cl, '../')}<div class="hero"><h1>{E(title)}</h1>
 <p class="lead">One place for HCM Redwood default switches and related notices across releases, with links to the detailed profile-option lists.</p>
@@ -313,16 +324,18 @@ def redwood_calendar(updates):
 # ---------- 5. /guides/prepare-for-quarterly-update/ ----------
 def prepare_page(updates):
     path = 'guides/prepare-for-quarterly-update/'
-    u = updates['26D']; wins = windows('26D')
+    u = updates['26D']
     on = sum(1 for e in u['expiring'] if e['now_enabled'] == 'Yes'); st = len(u['expiring']) - on
+    bc = R.bucket_counts(u['all'])
     title = 'Prepare for an Oracle Fusion Cloud quarterly update'
     desc = ('Playbook for the Fusion Cloud quarterly update test window: when your cohort updates, what changed, and what to test, with links to Fusion Updates checklists and lists.')
     cl = [('Home', ''), ('Prepare for a quarterly update', path)]
-    summary = (f'Plan Fusion Cloud quarterly updates in three layers: (1) <b>when</b> your cohort\'s test and production Fridays fall, '
+    summary = (f'Plan Fusion Cloud quarterly updates in three layers: (1) <b>when</b> your cohort\'s test and production windows fall, '
                f'(2) <b>what</b> changed — on by default, opt-in, and opt-ins that are now standard — and '
                f'(3) <b>what to test</b> in the roughly two-week pod window. For <b>26D</b>, start with the '
-               f'<a href="../../26d/dates/">dates page</a> (Cohort A {_fmt_safe(wins[0][1])} / {_fmt_safe(wins[0][2])}), the '
-               f'<a href="../../26d/">26D hub</a> (<b>{len(u["all"])}</b> features in modules we cover), and the '
+               f'<a href="../../26d/dates/">dates and cohorts page</a> (official Oracle links; no calculated calendar dates), the '
+               f'<a href="../../26d/">26D hub</a> (<b>{len(u["all"])}</b> features in modules we cover: '
+               f'{bc["on"]} on by default, {bc["opt"]} opt-in), and the '
                f'<a href="../../updates/26d/checklist.html">what-to-test checklist</a>. '
                f'Tick Financials, HCM, SCM, Procurement, Logistics and Projects pages that match your offerings; '
                f'confirm every opt-in decision before production.')
@@ -332,7 +345,7 @@ def prepare_page(updates):
         ('What should I test first?',
          'Baseline regression (current configuration, key end-to-end flows, integrations, reports, custom workflows, security), then features delivered switched on, then former opt-ins that are now standard. Our checklists follow that order.'),
         ('Where do I get 26D dates?',
-         f'<a href="../../26d/dates/">26D release dates and cohorts</a> applies Oracle\'s published rule. Confirm your own dates in the Oracle Cloud Console.'),
+         f'<a href="../../26d/dates/">26D release dates and cohorts</a> links Oracle\'s published schedule and states the cohort months. It does not print calculated Fridays, because Oracle has not published a public day-by-day 26D calendar. Confirm your own dates in the Oracle Cloud Console.'),
         ('Is this the same as the old /guides/how-oracle-fusion-updates-work/ URL?',
          'That path returned 404. This page is the replacement; requests to the old path redirect here.'),
     ]
@@ -340,14 +353,11 @@ def prepare_page(updates):
     body = f"""{R.crumbs_html(cl, '../../')}<div class="hero"><h1>{E(title)}</h1>
 <p class="lead">A repeatable playbook for each Fusion Cloud quarterly update: when it lands, what changed, and what to test before production.</p>
 {R.summary_html(summary)}{_oracle_rule_note()}</div>
-<div class="box"><h2 style="margin-top:0">1. When: your cohort&#39;s Fridays</h2>
-<p>Find your cohort in the Oracle Cloud Console. Typical 26D Fridays:</p>
-<ul class="check">
-<li>Cohort A — test {_fmt_safe(wins[0][1])}, production {_fmt_safe(wins[0][2])}</li>
-<li>Cohort B — test {_fmt_safe(wins[1][1])}, production {_fmt_safe(wins[1][2])}</li>
-<li>Cohort C — test {_fmt_safe(wins[2][1])}, production {_fmt_safe(wins[2][2])}{(' — ' + HOL[wins[2][1]]) if wins[2][1] in HOL else ''}</li>
-</ul>
-<p><a href="../../26d/dates/">Full 26D dates page →</a> · <a href="../../downloads/">Download the .ics calendar →</a></p></div>
+<div class="box"><h2 style="margin-top:0">1. When: your cohort&#39;s window</h2>
+<p>Find your cohort in the Oracle Cloud Console. Oracle&#39;s published months, and where 26D falls in them:</p>
+{_cohort_table()}
+<p>The test window is the time between the first Friday (test) and the third Friday (production) of that month. This page does not print those Fridays.</p>
+<p><a href="../../26d/dates/">26D dates and official Oracle links →</a> · <a href="../../downloads/">Free 26D checklist PDF →</a></p></div>
 <div class="box"><h2 style="margin-top:0">2. What: on by default, opt-in, now standard</h2>
 <p>For 26D across the modules we cover:</p>
 <ul class="check">
@@ -367,20 +377,28 @@ def prepare_page(updates):
 <a class="btn alt" style="border:1px solid var(--line)" href="../../downloads/">Get the printable PDF →</a></p></div>
 <div class="box"><h2 style="margin-top:0">Module hubs for 26D</h2>
 <p>{' · '.join(f'<a href="../../26d/{R.FSLUG[f]}/">{E(R.FNAME[f])}</a>' for f in R.FSLUG)}</p>
-<p><a href="../../26d/">26D hub</a> · <a href="../../redwood-defaults/">Redwood defaults calendar</a> · <a href="../../26d/fusion-claw-ai-agent-studio/">AI and agentic features in 26D</a></p></div>
+<p><a href="../../26d/">26D hub</a> · <a href="../../redwood-defaults/">Redwood defaults calendar</a> · <a href="../../26d/fusion-claw-ai-agent-studio/">Fusion Claw and AI Agent Studio in 26D</a></p></div>
 {R.faq_html(faq)}{_related_guides(path)}{R.nl_form()}"""
     return path, R.page(title, body, 2, desc, path, _ld(path, title, desc, cl, faq),
                         og=('Oracle Fusion · prepare', 'When, what changed, and what to test each quarter'))
 
 def _redirect_stub(dist, old_path, new_url, label):
-    """Minimal HTML redirect for a retired URL (same pattern as ShopBot Index store stubs). Not added to the sitemap."""
+    """Static redirect for GitHub Pages (no server rewrite). Canonical + refresh, noindex, site stylesheet. Not in the sitemap."""
     d = os.path.join(dist, old_path)
     os.makedirs(d, exist_ok=True)
-    html = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta http-equiv="refresh" content="0;url={new_url}">
+    dest = '/guides/prepare-for-quarterly-update/'
+    html = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="refresh" content="0;url={dest}">
 <link rel="canonical" href="{new_url}">
-<title>Moved: {E(label)}</title></head>
-<body><p>This guide has moved to <a href="{new_url}">{E(new_url)}</a>.</p></body></html>
+<meta name="robots" content="noindex">
+<title>Moved: {E(label)} | {E(R.SITE)}</title>
+<link rel="stylesheet" href="../../style.css">
+<script>location.replace({dest!r});</script></head>
+<body>
+<header><div class="w"><a class="brand" href="../../">Fusion<span>Updates</span></a></div></header>
+<main class="w"><div class="hero"><h1>This guide has moved</h1>
+<p class="lead"><a href="{dest}">{E(label)}</a> is the page that replaced /guides/how-oracle-fusion-updates-work/.</p></div></main>
+</body></html>
 """
     open(os.path.join(d, 'index.html'), 'w').write(html)
 
@@ -408,4 +426,4 @@ def hub_links(depth=''):
             f'<a href="{depth}guides/opt-in-and-enablement/">How opt-in and enablement work</a> · '
             f'<a href="{depth}guides/prepare-for-quarterly-update/">Prepare for a quarterly update</a> · '
             f'<a href="{depth}redwood-defaults/">Redwood defaults calendar</a> · '
-            f'<a href="{depth}26d/fusion-claw-ai-agent-studio/">AI and agentic features in 26D</a></p></div>')
+            f'<a href="{depth}26d/fusion-claw-ai-agent-studio/">Fusion Claw and AI Agent Studio</a></p></div>')

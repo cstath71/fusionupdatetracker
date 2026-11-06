@@ -1,9 +1,10 @@
 """Build the free downloads into assets/downloads/:
  - fusion-26d-readiness-checklist.pdf: only from data we already track (Oracle's 26D What's New book list,
    Oracle's opt-in expiration list, data/hcm_redwood.json), printed with headless Chrome.
- - fusion-quarterly-update-calendar.ics: typical 26D/27A windows from Oracle's published cohort rule.
-Run: python3 scripts/leadmagnets.py  (then python3 scripts/build.py)"""
-import os, sys, json, html, datetime, subprocess, tempfile, collections, calendar
+The quarterly-update .ics is not built. A calendar event needs a day, and Oracle has not published
+day-level 26D dates. The PDF states the cohort months and the first-Friday / third-Friday rule only.
+Run: python3 scripts/leadmagnets.py  (then python3 scripts/build.py or scripts/rerender.py)"""
+import os, sys, json, html, datetime, subprocess, tempfile, collections
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import render as R
 E=html.escape
@@ -17,20 +18,6 @@ assert REL==R.LEAD['rel'], (REL, R.LEAD['rel'])
 TODAY=datetime.date.today()
 FI='https://blogs.oracle.com/fusioninsider/quarterly-updates-made-easy'
 OPTIN='https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features/optincurrent.html'
-
-# ---- Typical update dates from Oracle's published rule (first Friday = test, third Friday = production) ----
-COH={'A':(2,5,8,11),'B':(3,6,9,12),'C':(4,7,10,1)}
-QIDX={'A':0,'B':1,'C':2,'D':3}
-def fridays(y,m):
-    fs=[d for d in range(1,calendar.monthrange(y,m)[1]+1) if datetime.date(y,m,d).weekday()==4]
-    return datetime.date(y,m,fs[0]),datetime.date(y,m,fs[2])
-def windows(rel):
-    y=2000+int(rel[:2]); q=QIDX[rel[2]]; res=[]
-    for c,ms in COH.items():
-        m=ms[q]; yy=y+1 if (c=='C' and q==3) else y
-        t,p=fridays(yy,m); res.append((c,t,p))
-    return res
-HOL={datetime.date(2027,1,1):"This date is New Year's Day. Oracle may schedule this cohort differently, so check your own date."}
 
 # ---- PDF ----
 def bygroup(es):  # Oracle's own Pillar column
@@ -47,7 +34,6 @@ def hr_row(i):
     src=' · '.join(f'<a href="{E(u)}">Oracle source{(" "+str(n+1)) if len(i["urls"])>1 else ""}</a>' for n,u in enumerate(i['urls']))
     return (f'<div class="it">{cb()}<div><b>{E(i["title"])}</b> <span class="pill">{E(i["area"])}</span> <span class="pill">{E(R.HR_TYPE.get(i["type"],i["type"]))}</span><br>{E(i["summary"])}'
             f'<div class="mut">Pages affected ({len(i["pages"])}): {E(", ".join(i["pages"]))} · Revert: {E(i["revert"])} · {src}</div>{po}</div></div>')
-win=''.join(f'<tr><td>Cohort {c}</td><td>{t:%a %d %b %Y}</td><td>{p:%a %d %b %Y}</td><td>{E(HOL.get(t,""))}</td></tr>' for c,t,p in windows(REL))
 byf=collections.OrderedDict()
 for b in UP['books']: byf.setdefault(R.FNAME.get(b['family'],b['family']),[]).append(b)
 books=''.join(f'<p><b>{E(g)}:</b> '+' · '.join(f'<a href="{E(b["url"])}">{E(b["product"])}</a>' for b in bs)+'</p>' for g,bs in byf.items())
@@ -72,9 +58,8 @@ code{{font-family:Menlo,Consolas,monospace;font-size:7.8pt;background:#f1f3f5;pa
 <div class="head"><div class="b">Fusion<span>Updates</span></div><h1>Oracle Fusion {REL} readiness checklist</h1><p>Preliminary · built {TODAY:%d %b %Y} from Oracle's published {REL} What's New documents, Oracle's opt-in expiration list and the HCM Redwood changes tracked at fusionupdates.com</p></div>
 <div class="note"><b>Preliminary.</b> Oracle's {REL} What's New documents are still being revised. Oracle's note on them: "This document will continue to evolve as existing sections change and new information is added." Check each linked Oracle page before you rely on an item. The latest version of this checklist is at {SITE}/{R.LEAD['pdf']}</div>
 
-<h2>When {REL} arrives (typical dates)</h2>
-<p>Oracle's published rule: test environments update on the <b>first Friday</b> of the update month and production on the <b>third Friday</b>, two weeks later. In Middle East regions, updates happen on the Thursday before. The dates below follow that rule. Oracle doesn't publish them as a list, so confirm yours in the Oracle Cloud Console. Source: <a href="{FI}">Oracle Fusion Insider, "Quarterly updates made easy"</a>.</p>
-<table><tr><th>Cohort</th><th>Test environments</th><th>Production</th><th>Note</th></tr>{win}</table>
+<h2>When {REL} arrives</h2>
+<p>Oracle publishes cohort months and a rule, not a public list of calendar dates. This checklist does not print a Friday. Test environments update on the <b>first Friday</b> of the cohort's update month and production on the <b>third Friday</b>, two weeks later. Middle East regions update on the Thursday before. Cohort A is February, May, August and November; Cohort B is March, June, September and December; Cohort C is April, July, October and January. {REL} is the fourth 2026 release, so it falls in November (Cohort A), December (Cohort B) and the following January (Cohort C). Confirm your own dates in the Oracle Cloud Console. Source: <a href="{FI}">Oracle Fusion Insider, "Quarterly updates made easy"</a>.</p>
 
 <h2>1. Before the update: baseline regression</h2>
 <p class="mut">Based on Oracle's guidance: <a href="https://docs.oracle.com/en/cloud/saas/transportation/26b/otmpt/what-should-i-test-after-a-quarterly-update.html">What Should I Test After a Quarterly Update?</a></p>
@@ -97,8 +82,12 @@ code{{font-family:Menlo,Consolas,monospace;font-size:7.8pt;background:#f1f3f5;pa
 </body></html>"""
 pdf=os.path.join(OUT,R.LEAD['pdf'].split('/')[-1])
 with tempfile.TemporaryDirectory() as td:
-    f=os.path.join(td,'c.html'); open(f,'w').write(doc); open('/workspace/growth/26d-checklist-source.html','w').write(doc)
-    subprocess.run([R.__dict__.get('CHROME') or 'google-chrome','--headless=new','--no-sandbox','--disable-gpu','--no-pdf-header-footer',f'--print-to-pdf={pdf}',f'file://{f}'],check=True,capture_output=True,timeout=120)
+    f=os.path.join(td,'c.html'); open(f,'w').write(doc)
+    cmd=[R.__dict__.get('CHROME') or 'google-chrome','--headless=new','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--no-first-run','--no-pdf-header-footer',f'--print-to-pdf={pdf}',f'file://{f}']
+    try:
+        subprocess.run(cmd,check=True,capture_output=True,timeout=25)
+    except subprocess.TimeoutExpired:
+        if not (os.path.exists(pdf) and os.path.getsize(pdf)>10000): raise
 print('PDF',pdf,os.path.getsize(pdf))
 # page-1 preview image for the signup boxes (render.LEAD_THUMB); skipped if poppler's pdftoppm isn't installed
 try:
@@ -107,35 +96,7 @@ try:
     print('THUMB',th,os.path.getsize(th))
 except Exception as e: print('THUMB skipped:',e)
 
-# ---- ICS ----
-def fold(line):
-    b=line.encode('utf-8'); out=[]
-    while len(b)>75:
-        cut=75 if not out else 74
-        while (b[cut] & 0xC0)==0x80: cut-=1
-        out.append(b[:cut]); b=b[cut:]
-    out.append(b); return b'\r\n '.join(out).decode('utf-8')
-def esc(t): return t.replace('\\','\\\\').replace(';','\\;').replace(',','\\,').replace('\n','\\n')
-stamp=datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ')
-L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Fusion Updates//Quarterly update calendar//EN','CALSCALE:GREGORIAN','METHOD:PUBLISH',
-   'X-WR-CALNAME:Oracle Fusion quarterly updates (typical dates)','X-WR-CALDESC:'+esc('Typical Oracle Fusion Cloud test and production update dates for 26D and 27A, from Oracle\'s published cohort rule. Delete the cohorts you are not in. From fusionupdates.com (independent, not affiliated with Oracle).')]
-RULE=("Typical date, not an Oracle-published date for your environment. Oracle's published rule: test environments update on the first Friday of the update month and production on the third Friday "
-      "(Middle East regions: the Thursday before). Confirm your own dates in the Oracle Cloud Console. Source: "+FI)
-n_ev=0
-for rel in ('26D','27A'):
-    link=f'{SITE}/{rel.lower()}/' if rel==REL else f'{SITE}/'
-    for c,t,p in windows(rel):
-        for kind,d in (('test environments',t),('production',p)):
-            extra=''
-            if kind=='production' and rel==REL: extra=f"\n\nWith {rel}, the {len(es)} opt-ins Oracle lists as ending with {rel} become standard. Checklist: {SITE}/{R.LEAD['pdf']}"
-            if kind=='test environments': extra+=("\n\nTwo-week test window until the production update." )
-            if d in HOL: extra+="\n\n"+HOL[d]
-            L+=['BEGIN:VEVENT',f'UID:fut-{rel.lower()}-{c.lower()}-{"test" if kind.startswith("test") else "prod"}@fusionupdates.com',f'DTSTAMP:{stamp}',
-                f'DTSTART;VALUE=DATE:{d:%Y%m%d}',f'DTEND;VALUE=DATE:{d+datetime.timedelta(days=1):%Y%m%d}',
-                'SUMMARY:'+esc(f'Oracle Fusion {rel}: {kind} update, Cohort {c} (typical date)'),
-                'DESCRIPTION:'+esc(RULE+extra+f'\n\nPlain-English briefing: {link}'),f'URL:{link}','TRANSP:TRANSPARENT','END:VEVENT']; n_ev+=1
-L.append('END:VCALENDAR')
-ics=os.path.join(OUT,R.LEAD['ics'].split('/')[-1])
-open(ics,'w',newline='').write('\r\n'.join(fold(x) for x in L)+'\r\n')
-print('ICS',ics,n_ev,'events')
-for rel in ('26D','27A'): print(rel,[(c,str(t),str(p)) for c,t,p in windows(rel)])
+# No .ics. A VEVENT needs a day, and Oracle has not published day-level dates.
+for stale in (os.path.join(OUT,'fusion-quarterly-update-calendar.ics'), os.path.join(ROOT,'dist','downloads','fusion-quarterly-update-calendar.ics')):
+    if os.path.exists(stale):
+        os.remove(stale); print('removed', stale)

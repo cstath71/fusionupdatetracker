@@ -1,5 +1,5 @@
 """Offline checks for the gap SEO/AEO guide pages (scripts/guides.py). Run after python3 scripts/build.py."""
-import os, re, json, html, unittest
+import os, re, json, html, unittest, subprocess
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DIST = os.path.join(ROOT, 'dist')
 R = lambda p: open(os.path.join(DIST, p), encoding='utf-8').read()
@@ -122,6 +122,30 @@ class Guides(unittest.TestCase):
         self.assertIn('Oracle has not published a full 27B', v)
         self.assertIn('Oracle has not published a full 27C', v)
         self.assertNotIn('mandatory', v.lower())
+
+    def test_no_ics_and_dataset_still_labels_26c_current(self):
+        self.assertFalse(os.path.exists(os.path.join(DIST, 'downloads', 'fusion-quarterly-update-calendar.ics')))
+        self.assertFalse(os.path.exists(os.path.join(ROOT, 'assets', 'downloads', 'fusion-quarterly-update-calendar.ics')))
+        dl = T(R('downloads/index.html'))
+        self.assertNotIn('.ics', dl)
+        self.assertIn('does not list calculated calendar dates', dl)
+        self.assertIn('does not offer one', dl)
+        self.assertIn('first Friday', dl)
+        self.assertIn('third Friday', dl)
+        for bad in ('6 Nov', '20 Nov', '4 Dec', '18 Dec', '1 Jan', '15 Jan'):
+            self.assertNotIn(bad, dl)
+        home = R('index.html')
+        self.assertIn('26D (next)', home)
+        self.assertIn('26C (current)', home)
+        self.assertNotIn('typical 26D test and production dates', home)
+        pdf = os.path.join(ROOT, 'assets', 'downloads', 'fusion-26d-readiness-checklist.pdf')
+        self.assertTrue(os.path.exists(pdf))
+        out = subprocess.run(['pdftotext', pdf, '-'], capture_output=True, text=True, check=True)
+        pdf_text = re.sub(r'\s+', ' ', out.stdout)
+        for bad in ('20 Nov', '4 Dec', '18 Dec', '1 Jan', '15 Jan', 'Jan 2027', 'typical dates'):
+            self.assertNotIn(bad, pdf_text, bad)
+        self.assertIn('first Friday', pdf_text)
+        self.assertIn('does not print a Friday', pdf_text)
 
     def test_prepare_does_not_print_calculated_fridays(self):
         v = T(R('guides/prepare-for-quarterly-update/index.html'))

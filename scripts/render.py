@@ -52,7 +52,7 @@ UPD_KEYS=[]
 HUB_FROM='26D'   # releases from 26D on get a hub page at /<release>/
 CURRENT=None    # current update (set in render() from build.py)
 GENERATED=''    # date the site data was last rebuilt from Oracle's documents (render(generated=...)); shown in the footer and used as dateModified
-LEAD={'rel':'26D','pdf':'downloads/fusion-26d-readiness-checklist.pdf','ics':'downloads/fusion-quarterly-update-calendar.ics'}
+LEAD={'rel':'26D','pdf':'downloads/fusion-26d-readiness-checklist.pdf'}
 LEAD_THUMB='downloads/fusion-26d-readiness-checklist-p1.png'  # page-1 preview, drawn by scripts/leadmagnets.py
 OG_SPECS={}      # slug -> (tag, headline, sub); images are drawn by scripts/og.py
 def og_slug(path):
@@ -66,7 +66,7 @@ def lead_preview():
     es=u['expiring']; on=sum(1 for e in es if e['now_enabled']=='Yes'); hr=[i for i in HCMR['items'] if i['release']==rel]
     li=[f"The {len(es)} opt-ins Oracle lists as ending with {rel}: {on} switch on for everyone, {len(es)-on} need setup",
         f"{len(hr)} HCM Redwood default switches and other HCM notices for {rel}" if hr else None,
-        f"{len(BASELINE)+1} baseline regression checks, plus typical {rel} test and production dates by cohort"]
+        f"{len(BASELINE)+1} baseline regression checks. Cohort months and the Friday rule are described, with no calculated calendar dates"]
     return [x for x in li if x]
 _UPD={}
 def cta_for(path):
@@ -304,18 +304,20 @@ def finish_assets(dist):
         src=os.path.join(ASSETS,sub)
         if os.path.isdir(src): shutil.copytree(src,os.path.join(dist,sub),dirs_exist_ok=True,ignore=shutil.ignore_patterns('manifest.json'))
 def downloads_page():
-    path='downloads/'; title='Free downloads: 26D readiness checklist and update calendar'
+    path='downloads/'; title=f"Free downloads: {LEAD['rel']} readiness checklist"
     cl=[('Home',''),('Free downloads',path)]
-    pdf=LEAD['pdf'].split('/')[-1]; ics=LEAD['ics'].split('/')[-1]
-    body=f"""{crumbs_html(cl,'../')}<div class="hero"><h1>Free downloads</h1><p class="lead">Two free files for planning the next Oracle Fusion quarterly update. Both are built from Oracle's published documents and link back to them. No signup needed, though subscribers get the next ones by email.</p></div>
-<div class="box"><h2 style="margin-top:0">{LEAD['rel']} readiness checklist (PDF)</h2><p>A printable checklist for the {LEAD['rel']} update: the baseline regression checks, the opt-ins Oracle lists as ending with {LEAD['rel']}, the HCM pages that switch to Redwood by default in {LEAD['rel']} (with the profile option names Oracle gives), and links to Oracle's {LEAD['rel']} What's New documents.</p>
-<p class="small muted">Oracle's {LEAD['rel']} What's New documents are still being revised, so treat this checklist as preliminary and confirm details on the linked Oracle pages.</p>
+    pdf=LEAD['pdf'].split('/')[-1]
+    body=f"""{crumbs_html(cl,'../')}<div class="hero"><h1>Free downloads</h1><p class="lead">A printable checklist for the next Oracle Fusion quarterly update, built from Oracle's published documents. No signup needed, though subscribers get the next one by email.</p></div>
+<div class="box"><h2 style="margin-top:0">{LEAD['rel']} readiness checklist (PDF)</h2><p>The baseline regression checks, the opt-ins Oracle lists as ending with {LEAD['rel']}, the HCM pages that switch to Redwood by default in {LEAD['rel']} (with the profile option names Oracle gives), and links to Oracle's {LEAD['rel']} What's New documents.</p>
+<p class="small muted">Oracle's {LEAD['rel']} What's New documents are still being revised, so treat this checklist as preliminary and confirm details on the linked Oracle pages. The PDF states Oracle's cohort months and the first-Friday / third-Friday rule. It does not list calculated calendar dates.</p>
 <p><a class="btn" href="{pdf}" download>Download the {LEAD['rel']} checklist (PDF)</a> <a href="../{LEAD['rel'].lower()}/">Or read the {LEAD['rel']} page on the site →</a></p></div>
-<div class="box"><h2 style="margin-top:0">Fusion quarterly update calendar (.ics)</h2><p>Calendar entries for the 26D and 27A test and production update windows for cohorts A, B and C. Import it into Outlook, Google Calendar or Apple Calendar and delete the cohorts you're not in.</p>
-<p class="small muted">Oracle publishes the rule rather than a public list of dates: test environments update on the first Friday of the update month and production on the third Friday (in Middle East regions, on the Thursday before). The dates in this file follow that rule and are labelled as typical. Your own dates are in the Oracle Cloud Console. Source: <a href="https://blogs.oracle.com/fusioninsider/quarterly-updates-made-easy" target=_blank rel=noopener>Oracle Fusion Insider, "Quarterly updates made easy"</a>.</p>
-<p><a class="btn" href="{ics}" download>Download the calendar (.ics)</a></p><p class="small muted">Also: <a href="../26d/dates/">26D release dates and cohorts</a> · <a href="../guides/prepare-for-quarterly-update/">Prepare for a quarterly update</a> · <a href="../redwood-defaults/">Redwood defaults calendar</a>.</p></div>{nl_form()}"""
+<div class="box"><h2 style="margin-top:0">When the update arrives</h2>
+<p>Oracle publishes cohort months and a Friday rule, not a public day-by-day calendar. A calendar file would have to name those days, so this site does not offer one.</p>
+<p>Test environments update on the first Friday of the cohort month and production on the third Friday (Middle East regions: the Thursday before). Cohort A is February, May, August and November; Cohort B is March, June, September and December; Cohort C is April, July, October and January. Confirm your environment in the Oracle Cloud Console.</p>
+<p class="small muted">Source: <a href="https://blogs.oracle.com/fusioninsider/quarterly-updates-made-easy" target=_blank rel=noopener>Oracle Fusion Insider, "Quarterly updates made easy"</a>.</p>
+<p><a href="../26d/dates/">26D release dates and cohorts →</a> · <a href="../guides/prepare-for-quarterly-update/">Prepare for a quarterly update →</a> · <a href="../redwood-defaults/">Redwood defaults calendar →</a></p></div>{nl_form()}"""
     ld=jsonld({"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":BASE+'/'+path,"url":BASE+'/'+path,"name":title,"inLanguage":"en","isPartOf":{"@type":"WebSite","@id":BASE+"/#website","name":SITE,"url":BASE+"/"}},crumbs(cl)]})
-    return page(title,body,1,f"Free {LEAD['rel']} readiness checklist (PDF) and a Fusion quarterly update calendar (.ics) for 26D and 27A, built from Oracle's published documents.",path,ld,og=('Free downloads',f"{LEAD['rel']} readiness checklist (PDF) and update calendar (.ics)"))
+    return page(title,body,1,f"Free {LEAD['rel']} readiness checklist (PDF), built from Oracle's published documents. Cohort months and the Friday rule, with no calculated calendar dates.",path,ld,og=('Free downloads',f"{LEAD['rel']} readiness checklist (PDF). No calculated calendar dates."))
 
 # ---------------- SEO pages ----------------
 FSLUG={'Financials':'financials','Procurement':'procurement','Supply Chain & Manufacturing':'supply-chain-manufacturing','Logistics (OTM/GTM/WMS)':'logistics','Project Management':'project-management','HCM':'hcm'}
@@ -695,7 +697,7 @@ How it is built: features come from the Feature Summary tables in Oracle's What'
 
 - [Home]({BASE}/)
 - [HCM pages switching to Redwood]({BASE}/{HCMR_PATH})
-{''.join(f"- [{t}]({BASE}/{u})\n" for u,t in [(x,x) for x in urls if x.endswith(('opt-in-features/','on-by-default/','redwood-erp-scm/'))] and [(x,{'opt-in-features/':x.split('/')[0].upper()+' opt-in features, all modules','on-by-default/':x.split('/')[0].upper()+' features on by default, all modules','redwood-erp-scm/':x.split('/')[0].upper()+' Redwood changes outside HCM'}[x.split('/',1)[1]]) for x in urls if x.endswith(('opt-in-features/','on-by-default/','redwood-erp-scm/'))])}- [Free downloads: readiness checklist (PDF) and update calendar (.ics)]({BASE}/downloads/)
+{''.join(f"- [{t}]({BASE}/{u})\n" for u,t in [(x,x) for x in urls if x.endswith(('opt-in-features/','on-by-default/','redwood-erp-scm/'))] and [(x,{'opt-in-features/':x.split('/')[0].upper()+' opt-in features, all modules','on-by-default/':x.split('/')[0].upper()+' features on by default, all modules','redwood-erp-scm/':x.split('/')[0].upper()+' Redwood changes outside HCM'}[x.split('/',1)[1]]) for x in urls if x.endswith(('opt-in-features/','on-by-default/','redwood-erp-scm/'))])}- [Free downloads: readiness checklist (PDF)]({BASE}/downloads/)
 - [Newsletter: subscribe and all issues]({BASE}/newsletter/)
 - [About and method]({BASE}/about.html)
 - Full text of the summaries and FAQs: {BASE}/llms-full.txt

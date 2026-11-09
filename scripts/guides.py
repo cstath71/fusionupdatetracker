@@ -384,23 +384,10 @@ def prepare_page(updates):
 
 def _redirect_stub(dist, old_path, new_url, label):
     """Static redirect for GitHub Pages (no server rewrite). Canonical + refresh, noindex, site stylesheet. Not in the sitemap."""
-    d = os.path.join(dist, old_path)
-    os.makedirs(d, exist_ok=True)
     dest = '/guides/prepare-for-quarterly-update/'
-    html = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="refresh" content="0;url={dest}">
-<link rel="canonical" href="{new_url}">
-<meta name="robots" content="noindex">
-<title>Moved: {E(label)} | {E(R.SITE)}</title>
-<link rel="stylesheet" href="../../style.css">
-<script>location.replace({dest!r});</script></head>
-<body>
-<header><div class="w"><a class="brand" href="../../">Fusion<span>Updates</span></a></div></header>
-<main class="w"><div class="hero"><h1>This guide has moved</h1>
-<p class="lead"><a href="{dest}">{E(label)}</a> is the page that replaced /guides/how-oracle-fusion-updates-work/.</p></div></main>
-</body></html>
-"""
-    open(os.path.join(d, 'index.html'), 'w').write(html)
+    R.write_redirect_stub(dist, old_path, dest, new_url, label, 'This guide has moved',
+                          f'<a href="{dest}">{E(label)}</a> is the page that replaced /guides/how-oracle-fusion-updates-work/.',
+                          depth=2)
 
 def build(dist, updates):
     if '26D' not in updates or not updates['26D'].get('all'):

@@ -6,6 +6,7 @@ import os as _os
 CONTACT=_os.environ.get('FUT_CONTACT') or 'hello@fusionupdates.com'  # public contact / reply-to address
 def contact_html(): return f'<a href="mailto:{CONTACT}">{CONTACT}</a>' if CONTACT else '<b>[contact address to be added]</b>'
 # Sponsorship pages and links stay off until there are subscribers (Gus's rule). Set True (or env FUT_SHOW_SPONSORS=1) to turn back on.
+# While off, /sponsor.html is still written as a noindex redirect to the home page so the old URL is not a 404. It stays out of the sitemap and nav.
 SHOW_SPONSORS=_os.environ.get('FUT_SHOW_SPONSORS')=='1'
 CSS="""
 :root{--ink:#14202b;--mut:#5b6875;--bg:#f6f7f9;--card:#fff;--acc:#c74634;--line:#e3e6ea}
@@ -198,6 +199,45 @@ def checklist_page(u):
     t=f"{u['release']} what-to-test checklist"; d=f"Oracle Fusion {u['release']} what-to-test checklist: baseline regression, changes delivered switched on, former opt-ins now standard, and Oracle's IMPORTANT actions per product."
     ld=jsonld({"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":BASE+f"/updates/{rk}/checklist.html","url":BASE+f"/updates/{rk}/checklist.html","name":t,"description":d,"inLanguage":"en","isPartOf":{"@type":"WebSite","@id":BASE+"/#website","name":SITE,"url":BASE+"/"}},crumbs(cl)]})
     return page(t, body, 2, desc=d, path=f"updates/{rk}/checklist.html",head=ld,og=(f"Oracle Fusion Cloud {u['release']} · what to test","Baseline regression, switched-on changes, former opt-ins"))
+def write_redirect_stub(dist, rel, dest, canonical, label, heading, lead, depth=0, as_file=False):
+    """Static redirect for GitHub Pages (no server rewrite). Same pattern as the retired guides URL.
+    Canonical + meta refresh + location.replace + a plain link, noindex, site stylesheet. Not added to the sitemap."""
+    if as_file:
+        parent=os.path.dirname(rel)
+        os.makedirs(os.path.join(dist, parent) if parent else dist, exist_ok=True)
+        out=os.path.join(dist, rel)
+    else:
+        d=os.path.join(dist, rel); os.makedirs(d, exist_ok=True)
+        out=os.path.join(d, 'index.html')
+    prefix='../'*depth
+    brand=prefix or './'
+    css=f'{prefix}style.css' if prefix else 'style.css'
+    html_out=f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="refresh" content="0;url={dest}">
+<link rel="canonical" href="{canonical}">
+<meta name="robots" content="noindex">
+<title>Moved: {E(label)} | {E(SITE)}</title>
+<link rel="stylesheet" href="{css}">
+<script>location.replace({dest!r});</script></head>
+<body>
+<header><div class="w"><a class="brand" href="{brand}">Fusion<span>Updates</span></a></div></header>
+<main class="w"><div class="hero"><h1>{E(heading)}</h1>
+<p class="lead">{lead}</p></div></main>
+</body></html>
+"""
+    open(out,'w').write(html_out)
+def write_sponsor(dist):
+    """Full sponsor page when SHOW_SPONSORS is on. Otherwise a small noindex redirect to the home page (kept out of the sitemap and nav)."""
+    if SHOW_SPONSORS:
+        open(os.path.join(dist,'sponsor.html'),'w').write(page('Sponsor',desc='Sponsor Fusion Updates to reach people who plan, test and run Oracle Fusion Cloud quarterly updates.',path='sponsor.html',body="""<div class="hero"><h1>Sponsor Fusion Updates</h1><p class="lead">Reach the people who plan, test and run Oracle Fusion Cloud updates: application owners, functional leads, testers and consultants across Financials, Procurement, SCM, Projects and HCM.</p></div>
+<div class="cards"><div class="card"><h3>Newsletter sponsor</h3><p class="muted">One sponsor slot per quarterly briefing, sent before each update's test window.</p></div>
+<div class="card"><h3>Update page sponsor</h3><p class="muted">"Presented by" placement on an update's change list and test checklist.</p></div>
+<div class="card"><h3>Module sponsor</h3><p class="muted">Placement on one module family (e.g. Supply Chain or HCM) across updates.</p></div></div>
+<div class="box"><p>Good fits: test automation, data loading and migration tools, Oracle partners and add-on vendors. Sponsors never influence summaries or ratings, and sponsored placements are always labeled.</p><p><b>Rates and audience numbers:</b> available on request. """+(f"Write to {contact_html()}." if CONTACT else '<span class="muted small">(Contact address to be added.)</span>')+"""</p></div>"""))
+        return
+    home=BASE+'/'
+    write_redirect_stub(dist,'sponsor.html',home,home,'Home','This page has moved',
+                        f'<a href="{home}">Fusion Updates home page</a>',depth=0,as_file=True)
 def is_next(rel): return bool(UPCOMING and UPCOMING.get('tracked') and UPCOMING['release']==rel)
 def render(updates, dist, upcoming=None, generated='', current=None):
     global NAV, NEXT_REL, UPCOMING, CURRENT, GENERATED
@@ -283,11 +323,7 @@ def render(updates, dist, upcoming=None, generated='', current=None):
     lm=f'<lastmod>{generated}</lastmod>' if generated else ''
     open(os.path.join(dist,'sitemap.xml'),'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>{BASE}/{u}</loc>{lm}</url>\n' for u in urls)+'</urlset>\n')
     open(os.path.join(dist,'newsletter.html'),'w').write(page('Newsletter',desc='Free quarterly briefing on Oracle Fusion Cloud updates: the changes that matter by module, opt-in expirations and a test checklist.',path='newsletter.html',canonical='newsletter/',og=('Newsletter','One plain-English email per Oracle Fusion quarterly update'),top_form=False,body='<div class="hero"><h1>The quarterly briefing</h1><p class="lead">Before each Oracle Fusion update reaches your test environment: the changes that matter, by module, the opt-ins about to expire, and a ready-to-use test checklist. Free.</p>'+(f'<p><a class="btn alt" style="border:1px solid var(--line)" href="newsletter/{ISSUES[0]["slug"]}/">Read issue #{ISSUES[0]["number"]} →</a> <a href="newsletter/">All issues</a></p>' if ISSUES else '')+'</div>'+nl_form(top=True)))
-    if SHOW_SPONSORS: open(os.path.join(dist,'sponsor.html'),'w').write(page('Sponsor',desc='Sponsor Fusion Updates to reach people who plan, test and run Oracle Fusion Cloud quarterly updates.',path='sponsor.html',body="""<div class="hero"><h1>Sponsor Fusion Updates</h1><p class="lead">Reach the people who plan, test and run Oracle Fusion Cloud updates: application owners, functional leads, testers and consultants across Financials, Procurement, SCM, Projects and HCM.</p></div>
-<div class="cards"><div class="card"><h3>Newsletter sponsor</h3><p class="muted">One sponsor slot per quarterly briefing, sent before each update's test window.</p></div>
-<div class="card"><h3>Update page sponsor</h3><p class="muted">"Presented by" placement on an update's change list and test checklist.</p></div>
-<div class="card"><h3>Module sponsor</h3><p class="muted">Placement on one module family (e.g. Supply Chain or HCM) across updates.</p></div></div>
-<div class="box"><p>Good fits: test automation, data loading and migration tools, Oracle partners and add-on vendors. Sponsors never influence summaries or ratings, and sponsored placements are always labeled.</p><p><b>Rates and audience numbers:</b> available on request. """+(f"Write to {contact_html()}." if CONTACT else '<span class="muted small">(Contact address to be added.)</span>')+"""</p></div>"""))
+    write_sponsor(dist)
     open(os.path.join(dist,'about.html'),'w').write(page('About',desc='About Fusion Updates: an independent, plain-English tracker of Oracle Fusion Cloud quarterly updates, and how it is built.',path='about.html',body="""<div class="hero"><h1>About</h1><p class="lead">Fusion Updates (fusionupdates.com) turns Oracle's quarterly readiness documentation into a filterable, plain-English list of changes across Oracle Fusion Cloud, with impact ratings and a what-to-test checklist for every update.</p></div>
 <div class="box"><p>It is run by an experienced Oracle consultant. Every entry links back to its Oracle source page. Summaries are condensed from Oracle's text, and impact-on-upgrade ratings are editorial judgment, so always check the Oracle page and your own configuration.</p>
 <p>This is an independent site, not affiliated with or endorsed by Oracle.</p><p><b>Two labels per feature:</b> <b>Impact on upgrade</b> is our rating of what changes for existing users on update day, with nobody acting. <b>Oracle scale</b> is Oracle's own size rating ("Larger scale" or "Small scale", from its "Impact to Existing Processes" column), shown only when Oracle gives one.</p><p class="small muted">Method: features come from the "Feature Summary" tables in Oracle's What's New documents. Enablement comes from Oracle's "Action to Enable" column plus the Current Opt-In Expirations list. Impact on upgrade: high means users have to change how they work, or it's a large UI or process change, a former opt-in that becomes standard and affects users, or it touches payments, accounting, integrations or security. Medium means visible but contained, or switched on automatically and noticeable. Low means minor, cosmetic, reporting-only, or it needs setup before anyone gets it. Each rating is checked against Oracle's feature page (description, action to enable, scale and opt-in status).</p></div>"""))

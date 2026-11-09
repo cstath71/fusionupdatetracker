@@ -44,7 +44,7 @@ def person_page():
 <p class="small muted">{len(rows)} pages, {len(codes)} profile option codes. One code, <code style="font-size:12px">{E(rows[0][1])}</code>, covers {len(shared)} pages ({E(R._and(shared))}), so setting it to No keeps all {len(shared)} on the responsive pages. "First delivered" is the update in which Oracle released the Redwood version of the page.</p>
 {table(rows)}</div>
 {revert_box(POD_NOTE)}
-<div class="box"><h2 style="margin-top:0">What to check before 26D reaches your test pod</h2><ul class="check">
+<div class="box"><h2 style="margin-top:0">What to check as 26D reaches your environments</h2><ul class="check">
 <li>Decide, page by page, whether you move to Redwood in 26D or set the profile option to No for now. Because of the shared code, Personal Details, Contact Info, Identification Info and Family and Emergency Contacts move together.</li>
 <li>Access: per Oracle, the roles that could open the responsive pages can open the Redwood pages too.</li>
 <li>Custom roles: Oracle points to a 24D change to the privileges for managing addresses on Redwood pages. Check it if you use custom roles.</li>
@@ -64,7 +64,7 @@ def employment_page():
 <p class="small muted">Each page has its own profile option, so you can move page by page. "First delivered" is the update in which Oracle released the Redwood version of the page.</p>{table(rows)}</div>
 {revert_box()}
 <div class="box"><h2 style="margin-top:0">Next: {len(nx)} more employment pages in 27A</h2><p>Oracle has also announced that these switch to Redwood by default in 27A. Per Oracle, the Redwood Mass Assignment Change page itself only arrives in 26D.</p>{table(nx)}{srcs(LT['employment_27a'])}<p><a href="../../{P_27A}">Everything announced for 27A so far →</a></p></div>
-<div class="box"><h2 style="margin-top:0">What to check before 26D reaches your test pod</h2><ul class="check">
+<div class="box"><h2 style="margin-top:0">What to check as 26D reaches your environments</h2><ul class="check">
 <li>List which of the {len(rows)} pages your HR users and managers use, and run those flows (hire, add assignment, change manager, promote, transfer) on the Redwood pages in your test environment.</li>
 <li>Decide whether any page needs its profile option set to No for now, and in which pods.</li>
 <li>Oracle mentions that users can reach these Redwood pages through the quick action for each page.</li></ul></div>
@@ -83,7 +83,7 @@ def wfs_page():
 <div class="box"><h2 style="margin-top:0">The {len(rows)} pages switching in 26D</h2><p class="small muted">"First delivered" is the update in which Oracle released the Redwood version of the page.</p>{table(rows)}</div>
 {revert_box(POD_NOTE)}
 <div class="box"><h2 style="margin-top:0">Already Redwood by default since 26C ({len(prev)})</h2><p>Oracle switched the first set of workforce structures pages to Redwood by default in 26C. Their profile options work the same way.</p>{table(prev)}{srcs(LT['wfs_26c'])}</div>
-<div class="box"><h2 style="margin-top:0">What to check before 26D reaches your test pod</h2><ul class="check">
+<div class="box"><h2 style="margin-top:0">What to check as 26D reaches your environments</h2><ul class="check">
 <li>Access: per Oracle, the roles that could open the responsive and classic pages can open the Redwood pages too.</li>
 <li>Have the people who maintain jobs, departments and locations run their usual create and update tasks on the Redwood pages in your test environment.</li>
 <li>Decide whether any page needs its profile option set to No for now, in each pod.</li></ul></div>

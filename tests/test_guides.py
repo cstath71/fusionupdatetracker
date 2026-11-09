@@ -123,7 +123,7 @@ class Guides(unittest.TestCase):
         self.assertIn('Oracle has not published a full 27C', v)
         self.assertNotIn('mandatory', v.lower())
 
-    def test_no_ics_and_dataset_still_labels_26c_current(self):
+    def test_no_ics_and_dataset_labels_26d_current(self):
         self.assertFalse(os.path.exists(os.path.join(DIST, 'downloads', 'fusion-quarterly-update-calendar.ics')))
         self.assertFalse(os.path.exists(os.path.join(ROOT, 'assets', 'downloads', 'fusion-quarterly-update-calendar.ics')))
         dl = T(R('downloads/index.html'))
@@ -135,8 +135,9 @@ class Guides(unittest.TestCase):
         for bad in ('6 Nov', '20 Nov', '4 Dec', '18 Dec', '1 Jan', '15 Jan'):
             self.assertNotIn(bad, dl)
         home = R('index.html')
-        self.assertIn('26D (next)', home)
-        self.assertIn('26C (current)', home)
+        self.assertIn('26D (current)', home)
+        self.assertNotIn('26D (next)', home)
+        self.assertNotIn('26C (current)', home)
         self.assertNotIn('typical 26D test and production dates', home)
         pdf = os.path.join(ROOT, 'assets', 'downloads', 'fusion-26d-readiness-checklist.pdf')
         self.assertTrue(os.path.exists(pdf))

@@ -39,6 +39,8 @@ How it is built: features come from the Feature Summary tables in Oracle's What'
 - [26D Redwood changes outside HCM](https://fusionupdates.com/26d/redwood-erp-scm/)
 - [Free downloads: readiness checklist (PDF)](https://fusionupdates.com/downloads/)
 - [Newsletter: subscribe and all issues](https://fusionupdates.com/newsletter/)
+- [Issue #2: 26D: 23 former opt-ins now standard, plus HCM pages switching to Redwood](https://fusionupdates.com/newsletter/issue-02/) (9 Nov 2026, Oracle Fusion 26D)
+- [Issue #1: 26C: 19 former opt-ins now standard, plus HCM pages moving to Redwood](https://fusionupdates.com/newsletter/issue-01/) (17 Oct 2026, Oracle Fusion 26C)
 - [About and method](https://fusionupdates.com/about.html)
 - Full text of the summaries and FAQs: https://fusionupdates.com/llms-full.txt
 

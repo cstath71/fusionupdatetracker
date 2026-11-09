@@ -22,6 +22,16 @@ def oracle_scale(v):
     Oracle's column also uses "Report" and "None" (None = not delivered enabled); those are not a scale, so no scale tag."""
     v=(v or '').strip()
     return v if re.search(r'\bscale$',v,re.I) else None
+# Oracle's Current Opt-In Expirations page links a few features through a lookup id that
+# returns "Page not found". The feature page itself is published. Apply the working URL here
+# so a weekly refresh does not put the broken lookup link back into data/updates.json.
+OPTIN_URL_FIXES={
+    'adv-iim26a-f41418':'https://docs.oracle.com/en/cloud/saas/readiness/scm/26a/inv26a/26A-inventory-wn-f41418.htm',
+}
+def apply_optin_url(link):
+    for key,url in OPTIN_URL_FIXES.items():
+        if key in (link or ''): return url
+    return link
 # opt-in expirations (Oracle "Current Opt-In Expirations" table)
 oh=get('https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features/optincurrent.html')
 EXP=[]; EXPMAP={}
@@ -33,6 +43,7 @@ for tr in re.findall(r'<tr>(.*?)</tr>',oh,re.S):
     elif link and not link.startswith('http'): link='https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features/'+link
     mm=re.search(r'/wn/([a-z]+)/releases/(\d\d[A-D])/.*#F(\d+)',link)  # old webfolder links now 404: use Oracle's lookup service
     if mm: link=f'https://docs.oracle.com/pls/topic/lookup?ctx=saas-readiness&id={mm.group(1)}{mm.group(2).lower()}-f{mm.group(3)}'
+    link=apply_optin_url(link)
     r=dict(expires=txt(td[0]),pillar=txt(td[1]),product=txt(td[2]),module=txt(td[3]),title=txt(td[4]),now_enabled=txt(td[5]),impact=txt(td[6]),action=txt(td[7]),introduced=txt(td[8]),url=link)
     r['oracle_scale']=oracle_scale(r['impact'])
     EXP.append(r); EXPMAP[r['title'].lower()]=r['expires']

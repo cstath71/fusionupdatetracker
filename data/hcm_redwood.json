@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-17",
+ "checked": "2026-11-09",
  "note": "HCM changes Oracle announces as Redwood default switches, end of support, migrations or removals. Not part of Oracle's Current Opt-In Expirations list and not counted as former opt-ins.",
  "items": [
   {
@@ -381,13 +381,13 @@
   {
    "release": "26D",
    "area": "Payroll",
-   "title": "Create Time Card Calculation Component process disabled",
+   "title": "Create Time Card Calculation Component flow retired",
    "pages": [
     "Time elements upgraded with Create Time Card Calculation Component"
    ],
    "type": "Removal",
    "revert": "None stated",
-   "summary": "From 26D the Create Time Card Calculation Component process is disabled; Oracle asks you to reimplement upgraded time elements by 27D.",
+   "summary": "From 26D the Create Time Card Calculation Component flow is retired. Elements already upgraded with it keep working but get no future enhancements; Oracle suggests reimplementing them as Timecard-category elements.",
    "urls": [
     "https://docs.oracle.com/en/cloud/saas/readiness/hcm/26d/payr-26d/26D-payroll-wn-f51295.htm"
    ],

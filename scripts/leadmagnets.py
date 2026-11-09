@@ -16,6 +16,7 @@ if not UP or UP['release']!=R.LEAD['rel']:  # e.g. once 26D is the current updat
 REL=UP['release']
 assert REL==R.LEAD['rel'], (REL, R.LEAD['rel'])
 TODAY=datetime.date.today()
+BUILT=f"{TODAY.day} {TODAY:%b %Y}"
 FI='https://blogs.oracle.com/fusioninsider/quarterly-updates-made-easy'
 OPTIN='https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features/optincurrent.html'
 
@@ -55,10 +56,10 @@ code{{font-family:Menlo,Consolas,monospace;font-size:7.8pt;background:#f1f3f5;pa
 .pill{{font-size:7.8pt;background:#eef1f4;border-radius:99px;padding:1px 7px;color:#33414e}}
 .foot{{color:#5b6875;font-size:8.3pt;border-top:1px solid #e3e6ea;margin-top:16px;padding-top:6px}}
 </style></head><body>
-<div class="head"><div class="b">Fusion<span>Updates</span></div><h1>Oracle Fusion {REL} readiness checklist</h1><p>Preliminary · built {TODAY:%d %b %Y} from Oracle's published {REL} What's New documents, Oracle's opt-in expiration list and the HCM Redwood changes tracked at fusionupdates.com</p></div>
-<div class="note"><b>Preliminary.</b> Oracle's {REL} What's New documents are still being revised. Oracle's note on them: "This document will continue to evolve as existing sections change and new information is added." Check each linked Oracle page before you rely on an item. The latest version of this checklist is at {SITE}/{R.LEAD['pdf']}</div>
+<div class="head"><div class="b">Fusion<span>Updates</span></div><h1>Oracle Fusion {REL} readiness checklist</h1><p>Built {BUILT} from Oracle's published {REL} What's New documents, Oracle's opt-in expiration list and the HCM Redwood changes tracked at fusionupdates.com</p></div>
+<div class="note">Oracle keeps revising its {REL} What's New documents ("This document will continue to evolve as existing sections change and new information is added."), so check each linked Oracle page. The latest version of this checklist is at {SITE}/{R.LEAD['pdf']}</div>
 
-<h2>When {REL} arrives</h2>
+<h2>When {REL} reaches your environments</h2>
 <p>Oracle publishes cohort months and a rule, not a public list of calendar dates. This checklist does not print a Friday. Test environments update on the <b>first Friday</b> of the cohort's update month and production on the <b>third Friday</b>, two weeks later. Middle East regions update on the Thursday before. Cohort A is February, May, August and November; Cohort B is March, June, September and December; Cohort C is April, July, October and January. {REL} is the fourth 2026 release, so it falls in November (Cohort A), December (Cohort B) and the following January (Cohort C). Confirm your own dates in the Oracle Cloud Console. Source: <a href="{FI}">Oracle Fusion Insider, "Quarterly updates made easy"</a>.</p>
 
 <h2>1. Before the update: baseline regression</h2>

@@ -1,5 +1,5 @@
 """Gap SEO/AEO guide pages (keyword research 29 Oct 2026, rechecked at publish):
-  /26d/dates/                              cohort months and official Oracle links; no calculated day-level dates
+  /26d/dates/                              cohort months and Oracle's schedule links; no calculated day-level dates
   /26d/fusion-claw-ai-agent-studio/        Fusion Claw and AI Agent Studio rows from our extract only
   /guides/opt-in-and-enablement/           evergreen enablement explainer (26D figures counted from the dataset)
   /redwood-defaults/                       consolidated Redwood defaults calendar
@@ -39,7 +39,7 @@ def _related_guides(cur, depth='../../'):
     return f'<div class="box"><p><b>Related guides:</b> {lk} · <a href="{depth}26d/">26D hub</a> · <a href="{depth}downloads/">Free downloads</a></p></div>'
 
 def _oracle_rule_note():
-    return (f'<p class="small muted">Official schedule: <a href="{FI}" target=_blank rel=noopener>Oracle Fusion Insider, '
+    return (f'<p class="small muted">Oracle&#39;s schedule: <a href="{FI}" target=_blank rel=noopener>Oracle Fusion Insider, '
             f'"Quarterly updates made easy"</a> (10 Dec 2025). That article states the cohort months and the first-Friday / '
             f'third-Friday rule. It does not list calendar dates for 26D. Per-environment dates are in the '
             f'<a href="{RELEASE_PLANNING}" target=_blank rel=noopener>Oracle Cloud Success Navigator Release Planning</a> page '
@@ -66,12 +66,12 @@ def dates_page(updates):
     st = len(u['expiring']) - on
     bc = R.bucket_counts(u['all'])
     title = 'Oracle Fusion 26D release dates and cohorts'
-    desc = ('Oracle Fusion Cloud 26D cohort months and the official schedule links. Oracle publishes the cohort rule, not a public day-by-day 26D calendar, so this page does not print calculated dates.')
+    desc = ('Oracle Fusion Cloud 26D cohort months and Oracle\'s schedule links. Oracle publishes the cohort rule, not a public day-by-day 26D calendar, so this page does not print calculated dates.')
     cl = [('Home', ''), ('26D', '26d/'), ('Release dates', path)]
     summary = (f'Oracle Fusion Cloud <b>26D</b> is the fourth 2026 quarterly update. Oracle publishes which months each cohort updates, '
                f'and that test environments update on the <b>first Friday</b> of that month and production on the <b>third Friday</b>. '
                f'Oracle has not published a public list of those Fridays for 26D, so this page does not calculate or print them. '
-               f'Use the official links below and confirm your environment in the Oracle Cloud Console. '
+               f'Use Oracle\'s links below and confirm your environment in the Oracle Cloud Console. '
                f'On the content side, Oracle\'s 26D What\'s New lists <b>{len(u["all"])}</b> features across the modules we cover: '
                f'<b>{bc["on"]}</b> on by default, <b>{bc["pot"]}</b> on by default with potential setup, '
                f'<b>{bc["opt"]}</b> opt-in, and <b>{len(u["expiring"])}</b> former opt-ins that are now standard with 26D '
@@ -92,12 +92,12 @@ def dates_page(updates):
 <div class="box"><h2 style="margin-top:0">Cohorts and where 26D falls</h2>
 {_cohort_table()}
 <p>Inside the month, Oracle\'s rule is: test environments on the first Friday, production on the third Friday, two weeks later. Middle East regions use the Thursday before. If that Friday is a holiday, confirm the date Oracle assigned to your environment.</p></div>
-<div class="box"><h2 style="margin-top:0">Official Oracle links</h2>
+<div class="box"><h2 style="margin-top:0">Oracle&#39;s schedule links</h2>
 <ul class="check">
-<li><a href="{FI}" target=_blank rel=noopener>Quarterly updates made easy</a> (Oracle Fusion Insider) — cohort months and the Friday rule</li>
-<li><a href="{RELEASE_PLANNING}" target=_blank rel=noopener>Release Planning</a> in Oracle Cloud Success Navigator — Oracle&#39;s in-product calendar by cohort (sign-in)</li>
-<li><a href="{READINESS}" target=_blank rel=noopener>Oracle Cloud Readiness</a> — What&#39;s New documents for the update</li>
-<li>Oracle Cloud Console — your environment&#39;s cohort and maintenance dates</li>
+<li><a href="{FI}" target=_blank rel=noopener>Quarterly updates made easy</a> (Oracle Fusion Insider): cohort months and the Friday rule</li>
+<li><a href="{RELEASE_PLANNING}" target=_blank rel=noopener>Release Planning</a> in Oracle Cloud Success Navigator: Oracle&#39;s in-product calendar by cohort (sign-in)</li>
+<li><a href="{READINESS}" target=_blank rel=noopener>Oracle Cloud Readiness</a>: What&#39;s New documents for the update</li>
+<li>Oracle Cloud Console: your environment&#39;s cohort and maintenance dates</li>
 </ul></div>
 <div class="box"><h2 style="margin-top:0">What changes when 26D lands</h2>
 <p>Oracle&#39;s 26D What&#39;s New documents list <b>{len(u['all'])}</b> features across the modules Fusion Updates covers. Counts are taken from our current extract, not from an older research note. Use these lists for the content of the update:</p>
@@ -108,7 +108,7 @@ def dates_page(updates):
 </ul></div>
 {R.faq_html(faq)}{_related_guides(path)}{R.nl_form()}"""
     return path, R.page(title, body, 2, desc, path, _ld(path, title, desc, cl, faq),
-                        og=('Oracle Fusion Cloud 26D · dates', 'Cohort months and official Oracle schedule links'))
+                        og=('Oracle Fusion Cloud 26D · dates', "Cohort months and Oracle's schedule links"))
 
 # ---------- 2. /26d/fusion-claw-ai-agent-studio/ ----------
 def _ai_blob(r):
@@ -138,10 +138,10 @@ def ai_page(updates):
         bits = []
         if re.search(r'\bfusion claw\b', blob, re.I): bits.append('Fusion Claw')
         if re.search(r'\bagent studio\b', blob, re.I): bits.append('AI Agent Studio')
-        return ', '.join(bits) or '—'
+        return ', '.join(bits) or 'none'
     def _tr(rel, r, with_rel=False):
         relc = f'<td>{E(rel)}</td>' if with_rel else ''
-        tag = r.get('tags') or '—'
+        tag = r.get('tags') or 'none'
         return (f'<tr>{relc}<td><a href="{E(r["url"])}" target=_blank rel=noopener>{E(r["title"])}</a></td>'
                 f'<td>{E(r.get("product") or "")} · {E(r.get("module") or "")}</td>'
                 f'<td><span class="pill">{E(r.get("action") or "")}</span></td>'
@@ -208,7 +208,7 @@ def optin_guide(updates):
     summary = (f'Each Oracle Fusion Cloud What\'s New row has an <b>Action to Enable</b>. '
                f'<b>On by default</b> (Action: None) means users can meet it when the update lands. '
                f'<b>Opt-in</b> stays off until an admin enables it; <b>Opt-in plus Setup</b> also needs configuration. '
-               f'Some older opt-ins expire and become <b>now standard</b> — a subset switches on for everyone, others need setup if you want them. '
+               f'Some older opt-ins expire and become <b>now standard</b>: a subset switches on for everyone, others need setup if you want them. '
                f'For <b>26D</b>, across the modules we cover, Oracle\'s Feature Summary tables list '
                f'<b>{bc["on"]}</b> on by default, <b>{bc["pot"]}</b> on by default with potential setup, '
                f'<b>{bc["opt"]}</b> opt-in, <b>{bc["setup"]}</b> setup required and <b>{bc["other"]}</b> needing another action '
@@ -216,7 +216,7 @@ def optin_guide(updates):
                f'(<b>{on}</b> automatic, <b>{st}</b> setup).')
     faq = [
         ('What does "on by default" mean?',
-         'Oracle\'s Action to Enable column says None: the feature is delivered ready for users when the update reaches the environment. Some rows are "Potential Setup" — still delivered enabled, but Oracle flags prerequisite or optional configuration.'),
+         'Oracle\'s Action to Enable column says None: the feature is delivered ready for users when the update reaches the environment. Some rows are "Potential Setup": still delivered enabled, but Oracle flags prerequisite or optional configuration.'),
         ('What does "opt-in" mean?',
          'The feature stays off until an administrator opts in. "Opt In plus Setup" also needs configuration before anyone can use it. Nothing changes for end users if you do nothing.'),
         ('What does "now standard" mean?',
@@ -248,7 +248,7 @@ def optin_guide(updates):
 </ul></div>
 {R.faq_html(faq)}{_related_guides(path)}{R.nl_form()}"""
     return path, R.page(title, body, 2, desc, path, _ld(path, title, desc, cl, faq),
-                        og=('Oracle Fusion · enablement', 'On by default, opt-in, and now standard — illustrated with 26D'))
+                        og=('Oracle Fusion · enablement', 'On by default, opt-in, and now standard, illustrated with 26D'))
 
 # ---------- 4. /redwood-defaults/ ----------
 def redwood_calendar(updates):
@@ -294,7 +294,7 @@ def redwood_calendar(updates):
     secs = ''.join(_sec(rel, rows) for rel, rows in by_rel.items())
     n26d = len(by_rel.get('26D', [])); n27a = len(by_rel.get('27A', []))
     title = 'Oracle Fusion Redwood defaults calendar'
-    desc = (f'HCM Redwood default switches and related notices by release (26B–27C), plus links to 26D page-level lists '
+    desc = (f'HCM Redwood default switches and related notices by release (26B to 27C), plus links to 26D page-level lists '
             f'and ERP/SCM Redwood rows. {n26d} items announced for 26D; {n27a} early 27A announcements.')
     cl = [('Home', ''), ('Redwood defaults', path)]
     summary = (f'Oracle is moving selected Fusion pages to <b>Redwood by default</b> on a published schedule. '
@@ -331,9 +331,9 @@ def prepare_page(updates):
     desc = ('Playbook for the Fusion Cloud quarterly update test window: when your cohort updates, what changed, and what to test, with links to Fusion Updates checklists and lists.')
     cl = [('Home', ''), ('Prepare for a quarterly update', path)]
     summary = (f'Plan Fusion Cloud quarterly updates in three layers: (1) <b>when</b> your cohort\'s test and production windows fall, '
-               f'(2) <b>what</b> changed — on by default, opt-in, and opt-ins that are now standard — and '
+               f'(2) <b>what</b> changed (on by default, opt-in, and opt-ins that are now standard) and '
                f'(3) <b>what to test</b> in the roughly two-week pod window. For <b>26D</b>, start with the '
-               f'<a href="../../26d/dates/">dates and cohorts page</a> (official Oracle links; no calculated calendar dates), the '
+               f'<a href="../../26d/dates/">dates and cohorts page</a> (Oracle\'s schedule links; no calculated calendar dates), the '
                f'<a href="../../26d/">26D hub</a> (<b>{len(u["all"])}</b> features in modules we cover: '
                f'{bc["on"]} on by default, {bc["opt"]} opt-in), and the '
                f'<a href="../../updates/26d/checklist.html">what-to-test checklist</a>. '
@@ -357,13 +357,13 @@ def prepare_page(updates):
 <p>Find your cohort in the Oracle Cloud Console. Oracle&#39;s published months, and where 26D falls in them:</p>
 {_cohort_table()}
 <p>The test window is the time between the first Friday (test) and the third Friday (production) of that month. This page does not print those Fridays.</p>
-<p><a href="../../26d/dates/">26D dates and official Oracle links →</a> · <a href="../../downloads/">Free 26D checklist PDF →</a></p></div>
+<p><a href="../../26d/dates/">26D dates and Oracle&#39;s schedule links →</a> · <a href="../../downloads/">Free 26D checklist PDF →</a></p></div>
 <div class="box"><h2 style="margin-top:0">2. What: on by default, opt-in, now standard</h2>
 <p>For 26D across the modules we cover:</p>
 <ul class="check">
-<li><a href="../../26d/on-by-default/">On by default</a> — users may see these when the update lands</li>
-<li><a href="../../26d/opt-in-features/">Opt-in features</a> — stay off until you choose them</li>
-<li><a href="../../26d/former-opt-ins-now-standard/">Former opt-ins now standard ({len(u['expiring'])})</a> — {on} switch on for everyone, {st} need setup</li>
+<li><a href="../../26d/on-by-default/">On by default</a>: users may see these when the update lands</li>
+<li><a href="../../26d/opt-in-features/">Opt-in features</a>: stay off until you choose them</li>
+<li><a href="../../26d/former-opt-ins-now-standard/">Former opt-ins now standard ({len(u['expiring'])})</a>: {on} switch on for everyone, {st} need setup</li>
 <li><a href="../../guides/opt-in-and-enablement/">How opt-in and enablement work</a> (evergreen glossary)</li>
 </ul></div>
 <div class="box"><h2 style="margin-top:0">3. What to test</h2>

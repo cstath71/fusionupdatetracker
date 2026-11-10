@@ -1,8 +1,8 @@
 # Fusion Updates
 
-> Fusion Updates (fusionupdates.com) is an independent, plain-English tracker of Oracle Fusion Cloud quarterly updates for Financials, Procurement, Supply Chain & Manufacturing, Logistics, Project Management and HCM: what changed, what switches on automatically, which former opt-ins are now standard, and what to test. Not affiliated with or endorsed by Oracle.
+> Fusion Updates (fusionupdates.com) is an independent, plain-English tracker of Oracle Fusion Cloud quarterly updates for Financials, Procurement, Supply Chain & Manufacturing, Logistics, Project Management and HCM: what changed, what switches on automatically, which former opt-ins are now standard, and what to test. Not affiliated with or endorsed by Oracle. Published by Fusion Updates.
 
-Updated 9 November 2026. Fusion Updates turns Oracle's quarterly What's New documents into plain English. The current update is 26D: we track 136 changes, 102 of them delivered switched on, and Oracle lists 23 former opt-ins now standard with 26D.
+Updated 9 November 2026. As of 9 November 2026, Fusion Updates turns Oracle's quarterly What's New documents into plain English. The current update is 26D: we track 136 changes, 102 of them delivered switched on, and Oracle lists 23 former opt-ins now standard with 26D.
 
 How it is built: features come from the Feature Summary tables in Oracle's What's New documents; enablement comes from Oracle's "Action to Enable" column plus Oracle's Current Opt-In Expirations list. "Impact on upgrade" (high, medium, low) is our editorial rating; "Oracle scale" is copied from Oracle's "Impact to Existing Processes" column. Every entry links to its Oracle source page. The site is refreshed every week from Oracle's documents.
 
@@ -12,6 +12,15 @@ How it is built: features come from the Feature Summary tables in Oracle's What'
 - [Oracle Fusion 26C changes](https://fusionupdates.com/updates/26c/) (past update) · [26C what-to-test checklist](https://fusionupdates.com/updates/26c/checklist.html) · [26C former opt-ins now standard](https://fusionupdates.com/26c/former-opt-ins-now-standard/)
 - [Oracle Fusion 26B changes](https://fusionupdates.com/updates/26b/) (past update) · [26B what-to-test checklist](https://fusionupdates.com/updates/26b/checklist.html) · [26B former opt-ins now standard](https://fusionupdates.com/26b/former-opt-ins-now-standard/)
 - [26D hub: what's new by module and the opt-in expiration list](https://fusionupdates.com/26d/)
+
+## Key 26D pages
+
+- [26D overview: what's new by module](https://fusionupdates.com/26d/): As of 9 November 2026, Oracle's 26D What's New documents list 789 features across the modules Fusion Updates covers: 182 on by default, 130 on by default with potential setup, 370 setup required, 86 opt-in, 21 needing another action. Oracle's opt-in expiration list names 23 former opt-ins now standard in 26D: 9 switched on for everyone and 14 that need setup. In HCM, 4 Redwood default switches cover 34 pages, and Oracle lists 5 other HCM notices for 26D.
+- [Financials 26D](https://fusionupdates.com/26d/financials/): As of 9 November 2026, Oracle's 26D What's New for Financials lists 73 features: 6 on by default, 10 on by default with potential setup, 47 setup required, 9 opt-in, 1 needing another action, per Oracle's Action to Enable column. We track 25 of those Financials changes in plain English, and 16 of the 25 are delivered switched on. Oracle's opt-in expiration list names 1 Financials former opt-in now standard in 26D: Revenue Equipment Leases, which needs setup (Oracle's Now enabled column says No).
+- [HCM 26D](https://fusionupdates.com/26d/hcm/): As of 9 November 2026, Oracle Fusion HCM 26D switches 34 pages to Redwood by default across 4 notices: 6 person pages (moved from 26C), 21 employment pages, 5 workforce structures pages (second set) and 2 pages (My Compensation and Compensation Info). Oracle names 30 profile option codes for those switches, and where Oracle says so you can set an option back to No. Oracle also lists 5 other HCM notices for 26D: 1 migration notice, 3 removals and 1 end of support notice.
+- [HCM pages switching to Redwood](https://fusionupdates.com/hcm-redwood/): As of 9 November 2026, Oracle Fusion HCM 26D switches 34 pages to Redwood by default across 4 notices: 6 person pages (moved from 26C), 21 employment pages, 5 workforce structures pages (second set) and 2 pages (My Compensation and Compensation Info). Oracle names 30 profile option codes for those switches, and where Oracle says so you can set an option back to No. Oracle also lists 5 other HCM notices for 26D: 1 migration notice, 3 removals and 1 end of support notice.
+- [26D changes we track](https://fusionupdates.com/updates/26d/): As of 9 November 2026, 26D is the current Oracle Fusion Cloud quarterly update. We track 136 of its changes in plain English, out of 789 features (our count) in Oracle's 26D What's New documents for the modules we cover. 102 of the 136 are delivered switched on and 7 are rated high impact on upgrade. Oracle's opt-in expiration list names 23 former opt-ins now standard in 26D: 9 switched on for everyone, 14 need setup. 4 HCM Redwood default switches cover 34 pages.
+
 
 ## Module pages
 

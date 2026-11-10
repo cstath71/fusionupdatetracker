@@ -120,7 +120,7 @@ function upd(){{t=0;var h=innerHeight,past=fs[0].getBoundingClientRect().bottom<
 function req(){{if(!t)t=requestAnimationFrame(upd)}}addEventListener('scroll',req,{{passive:true}});addEventListener('resize',req);
 s.querySelector('button').addEventListener('click',function(){{closed=true;upd();}});upd();}})();</script>
 <script>(function(){{try{{var n=navigator,w=window;if(n.doNotTrack=='1'||w.doNotTrack=='1'||n.msDoNotTrack=='1'||n.globalPrivacyControl||n.webdriver)return;if(!/(^|\\.)fusionupdates\\.com$/.test(location.hostname))return;var q=new URLSearchParams(location.search),d=JSON.stringify({{p:location.pathname,r:document.referrer,us:q.get('utm_source'),um:q.get('utm_medium'),uc:q.get('utm_campaign')}}),u='{HIT_URL}';if(n.sendBeacon)n.sendBeacon(u,new Blob([d],{{type:'text/plain'}}));else fetch(u,{{method:'POST',body:d,keepalive:true,mode:'no-cors'}});}}catch(e){{}}}})();</script>
-<footer><div class="w">Independent site, not affiliated with or endorsed by Oracle. Oracle and Oracle Fusion are trademarks of Oracle and/or its affiliates.
+<footer><div class="w">Published by {SITE}. Independent site, not affiliated with or endorsed by Oracle. Oracle and Oracle Fusion are trademarks of Oracle and/or its affiliates.
 Summaries are condensed from Oracle's public readiness documentation. Impact on upgrade is our editorial rating of how much a change affects existing users and testing; Oracle scale is Oracle&#39;s own rating. Always confirm details on the linked Oracle page. · <a href="{p}privacy.html">Privacy</a> · <a href="{p}about.html">About</a> · Contact: <a href="mailto:{CONTACT}">{CONTACT}</a>{f' · Updated <time datetime="{GENERATED}">{nice_date(GENERATED)}</time>' if GENERATED else ''}</div></footer></body></html>"""
 FORM_ACTION='https://uufmlmwgvoqhhtqgrclu.supabase.co/functions/v1/fut-subscribe'
 # Cookie-free visit counter (supabase/functions/fut-hit): sends path, referrer, utm_ tags; skipped with Do Not Track / GPC.
@@ -167,10 +167,11 @@ def update_page(u):
     opt=lambda xs:''.join(f'<option>{E(x)}</option>' for x in xs)
     rk=u['release'].lower(); cl=[('Home',''),(u['release'],f'updates/{rk}/')]; faq=release_faq(u)
     body=f"""{crumbs_html(cl,'../../')}<div class="hero"><h1>Oracle Fusion Cloud {u['release']}: what changed</h1>
+{summary_html(E(release_summary(u)))}
 <p class="lead">{len(items)} changes we track: the most relevant ones, up to 25 per module family (out of {u['total_features']} features, by our count, in the {u['release']} What's New documents for Financials, Procurement, SCM, Logistics, Projects and HCM). <a href="checklist.html">See the {u['release']} what-to-test checklist →</a></p>
 <p class="note">Impact on upgrade is our editorial rating of how much a change affects existing users and testing; Oracle scale is Oracle&#39;s own rating. Always confirm details on the linked Oracle page.</p>
 <p class="small muted">By module family: {' · '.join(f'<a href="../../{u["release"].lower()}/{FSLUG[f]}/">{E(FNAME[f])}</a> ({cnt[f]})' for f in fams)} · <a href="../../{u['release'].lower()}/former-opt-ins-now-standard/">Former opt-ins now standard in {u['release']} ({len(u['expiring'])})</a></p>{updates_gap_note(u)}</div>
-{summary_html(release_summary(u))}<div class="filters"><select id="fam"><option value="">All module families</option>{opt(fams)}</select>
+<div class="filters"><select id="fam"><option value="">All module families</option>{opt(fams)}</select>
 <select id="prod"><option value="">All products</option>{opt(prods)}</select>
 <select id="imp"><option value="">Any impact on upgrade</option><option>high</option><option>medium</option><option>low</option></select>
 <select id="en"><option value="">Any enablement</option><option value="Automatically">Automatically on</option><option value="Opt-in">Opt-in</option><option value="expires">Opt-in expiring</option><option value="Off until">Off until set up</option></select>
@@ -276,7 +277,13 @@ def render(updates, dist, upcoming=None, generated='', current=None):
     home=f"""<div class="hero"><h1>Every Oracle Fusion quarterly update, in plain English.</h1>
 <p class="lead">What changed in Financials, Procurement, Supply Chain, Logistics, Project Management and HCM, what switches on automatically, which opt-ins are becoming standard features, and what to test before it hits production.</p></div>
 {summary_html(home_summary(updates,cur))}{hero}{upsec}{prevsec}{__import__("guides").hub_links()}<div class="box"><h3 style="margin-top:0">Covered module families</h3>{famlinks}</div>{faq_html(home_faq(updates,cur))}{nl_form(latest=True)}"""
-    open(os.path.join(dist,'index.html'),'w').write(page('Oracle Fusion Cloud quarterly update tracker',home,desc='Every Oracle Fusion Cloud quarterly update in plain English: what changed by module, what switches on automatically, former opt-ins now standard, and what to test.',path='',og=('Oracle Fusion Cloud quarterly updates',f"{cur['release']} now{(', '+NEXT_REL+' next') if NEXT_REL else ''}: what changed and what to test"),head=jsonld({"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":BASE+"/#website","url":BASE+"/","name":SITE,"description":"Plain-English tracker of Oracle Fusion Cloud quarterly updates.","publisher":{"@id":BASE+"/#org"}},{"@type":"Organization","@id":BASE+"/#org","name":SITE,"url":BASE+"/","logo":BASE+"/logo.png","email":CONTACT},faq_ld(home_faq(updates,cur))]})))
+    home_name='Oracle Fusion Cloud quarterly update tracker'
+    home_desc='Every Oracle Fusion Cloud quarterly update in plain English: what changed by module, what switches on automatically, former opt-ins now standard, and what to test.'
+    home_page_ld={"@type":"WebPage","@id":BASE+"/#webpage","url":BASE+"/","name":home_name,"description":home_desc,"inLanguage":"en","isPartOf":{"@id":BASE+"/#website"},"publisher":{"@id":BASE+"/#org"}}
+    if GENERATED: home_page_ld["dateModified"]=GENERATED
+    home_site={"@type":"WebSite","@id":BASE+"/#website","url":BASE+"/","name":SITE,"description":"Plain-English tracker of Oracle Fusion Cloud quarterly updates.","publisher":{"@id":BASE+"/#org"}}
+    if GENERATED: home_site["dateModified"]=GENERATED
+    open(os.path.join(dist,'index.html'),'w').write(page(home_name,home,desc=home_desc,path='',og=('Oracle Fusion Cloud quarterly updates',f"{cur['release']} now{(', '+NEXT_REL+' next') if NEXT_REL else ''}: what changed and what to test"),head=jsonld({"@context":"https://schema.org","@graph":[home_site,home_page_ld,org_node(),faq_ld(home_faq(updates,cur))]})))
     # SEO pages
     extra=[]
     for k,u in updates.items():
@@ -326,8 +333,10 @@ def render(updates, dist, upcoming=None, generated='', current=None):
     open(os.path.join(dist,'sitemap.xml'),'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>{BASE}/{u}</loc>{lm}</url>\n' for u in urls)+'</urlset>\n')
     open(os.path.join(dist,'newsletter.html'),'w').write(page('Newsletter',desc='Free quarterly briefing on Oracle Fusion Cloud updates: the changes that matter by module, opt-in expirations and a test checklist.',path='newsletter.html',canonical='newsletter/',og=('Newsletter','One plain-English email per Oracle Fusion quarterly update'),top_form=False,body='<div class="hero"><h1>The quarterly briefing</h1><p class="lead">As each Oracle Fusion update rolls out: the changes that matter, by module, the opt-ins about to expire, and a ready-to-use test checklist. Free.</p>'+(f'<p><a class="btn alt" style="border:1px solid var(--line)" href="newsletter/{ISSUES[0]["slug"]}/">Read issue #{ISSUES[0]["number"]} →</a> <a href="newsletter/">All issues</a></p>' if ISSUES else '')+'</div>'+nl_form(top=True)))
     write_sponsor(dist)
-    open(os.path.join(dist,'about.html'),'w').write(page('About',desc='About Fusion Updates: an independent, plain-English tracker of Oracle Fusion Cloud quarterly updates, and how it is built.',path='about.html',body="""<div class="hero"><h1>About</h1><p class="lead">Fusion Updates (fusionupdates.com) turns Oracle's quarterly readiness documentation into a filterable, plain-English list of changes across Oracle Fusion Cloud, with impact ratings and a what-to-test checklist for every update.</p></div>
-<div class="box"><p>It is run by an experienced Oracle consultant. Every entry links back to its Oracle source page. Summaries are condensed from Oracle's text, and impact-on-upgrade ratings are editorial judgment, so always check the Oracle page and your own configuration.</p>
+    about_ld={"@type":"WebPage","@id":BASE+"/about.html","url":BASE+"/about.html","name":"About","description":"About Fusion Updates: an independent, plain-English tracker of Oracle Fusion Cloud quarterly updates, and how it is built.","inLanguage":"en","isPartOf":{"@id":BASE+"/#website"},"publisher":{"@id":BASE+"/#org"}}
+    if GENERATED: about_ld["dateModified"]=GENERATED
+    open(os.path.join(dist,'about.html'),'w').write(page('About',desc='About Fusion Updates: an independent, plain-English tracker of Oracle Fusion Cloud quarterly updates, and how it is built.',path='about.html',head=jsonld({"@context":"https://schema.org","@graph":[about_ld,org_node()]}),body="""<div class="hero"><h1>About</h1><p class="lead">Fusion Updates (fusionupdates.com) turns Oracle's quarterly readiness documentation into a filterable, plain-English list of changes across Oracle Fusion Cloud, with impact ratings and a what-to-test checklist for every update.</p></div>
+<div class="box"><p>Published by Fusion Updates.</p><p>It is run by an experienced Oracle consultant. Every entry links back to its Oracle source page. Summaries are condensed from Oracle's text, and impact-on-upgrade ratings are editorial judgment, so always check the Oracle page and your own configuration.</p>
 <p>This is an independent site, not affiliated with or endorsed by Oracle.</p><p><b>Two labels per feature:</b> <b>Impact on upgrade</b> is our rating of what changes for existing users on update day, with nobody acting. <b>Oracle scale</b> is Oracle's own size rating ("Larger scale" or "Small scale", from its "Impact to Existing Processes" column), shown only when Oracle gives one.</p><p class="small muted">Method: features come from the "Feature Summary" tables in Oracle's What's New documents. Enablement comes from Oracle's "Action to Enable" column plus the Current Opt-In Expirations list. Impact on upgrade: high means users have to change how they work, or it's a large UI or process change, a former opt-in that becomes standard and affects users, or it touches payments, accounting, integrations or security. Medium means visible but contained, or switched on automatically and noticeable. Low means minor, cosmetic, reporting-only, or it needs setup before anyone gets it. Each rating is checked against Oracle's feature page (description, action to enable, scale and opt-in status).</p></div>"""))
 
     write_llms(dist,updates,cur,urls)
@@ -468,7 +477,10 @@ def family_page(u,f,updates):
     others=' · '.join(f'<a href="../{FSLUG[g]}/">{E(FNAME[g])}</a>' for g in sorted(set(i['family'] for i in u['items'])) if g!=f)
     otherrel=' · '.join(f'<a href="../../{k.lower()}/{FSLUG[f]}/">{fn} {k}</a>' for k in sorted(updates,reverse=True) if k!=rel and any(i['family']==f for i in updates[k]['items']))
     booklinks=' · '.join(f'<a href="{E(b["url"])}" target=_blank rel=noopener>{E(b["product"])} {rel} What\'s New</a>' for b in books)
+    answer_s, answer_faq = family_answer(u, f)
+    answer=(summary_html(E(answer_s))+faq_html([(q, E(a)) for q,a in answer_faq])) if answer_s else ''
     body=f"""{crumbs_html(cl,'../../')}<div class="hero"><h1>{E(title)}</h1>
+{answer}
 {f'<p class="lead">{rel} is the next Oracle Fusion Cloud quarterly update. Oracle&#39;s {rel} What&#39;s New documents for this area list {len(allf)} features: {bucket_sentence(allf)}, per Oracle&#39;s "Action to Enable" column. <a href="#all-features">See all {len(allf)} →</a></p>'+TOPFORM if nxt and allf else ''}<p class="lead">We track {len(its)} {E(fn)} changes in {rel}{f', out of {tot} features (our count) in Oracle&#39;s {rel} What&#39;s New documents for this area' if tot else ''}. {len(auto)} of them are delivered switched on; {len(rest)} need setup or an opt-in before anyone can use them.</p>{TOPFORM}
 <p class="small muted">Oracle sources: {booklinks}</p>{unpub_note(u,f)}<p class="note">Impact on upgrade is our editorial rating of how much a change affects existing users and testing; Oracle scale is Oracle&#39;s own rating. Always confirm details on the linked Oracle page.</p></div>
 <div class="box"><h2 style="margin-top:0">Former opt-ins now standard in {rel}</h2><p class="small muted">From Oracle's <a href="https://docs.oracle.com/en/cloud/saas/readiness/common/opt-in-features/optincurrent.html" target=_blank rel=noopener>Current Opt-In Expirations</a> list: features whose opt-in period {'ends' if nxt else 'ended'} with {rel}. If you already opted in and finished setup, nothing changes.{' Oracle&#39;s list groups these under its own Pillar column; here they are shown by product.' if exps else ''} <a href="../former-opt-ins-now-standard/">All former opt-ins now standard in {rel} →</a></p>{exp_table(exps)}</div>
@@ -476,9 +488,10 @@ def family_page(u,f,updates):
 <h2>Needs setup or opt-in ({len(rest)})</h2>{''.join(item_html(i) for i in rest) or '<p class="muted">None among the changes we track.</p>'}
 {all_features_html(u,f)}
 <div class="box"><p><b>More {rel}:</b> {f'<a href="../">{rel} hub: what&#39;s new and the opt-in list</a> · ' if nxt else ''}<a href="../../updates/{rk}/">All {len(u['items'])} tracked {rel} changes</a> · <a href="../../updates/{rk}/checklist.html">{rel} what-to-test checklist</a> · <a href="../former-opt-ins-now-standard/">{rel} former opt-ins now standard</a></p><p><b>Other module families in {rel}:</b> {others}</p>{f'<p><b>Other releases:</b> {otherrel}</p>' if otherrel else ''}</div>{nl_form()}"""
-    ld=jsonld({"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":BASE+'/'+path,"url":BASE+'/'+path,"name":title,"description":desc,"inLanguage":"en","isPartOf":{"@type":"WebSite","@id":BASE+"/#website","name":SITE,"url":BASE+"/"},"about":{"@type":"SoftwareApplication","name":f"Oracle Fusion Cloud {fn}","softwareVersion":rel,"applicationCategory":"BusinessApplication"},"dateModified":None},
-        crumbs(cl),{"@type":"ItemList","name":f"{fn} {rel} changes we track","numberOfItems":len(its),"itemListElement":[{"@type":"ListItem","position":n+1,"name":i['title'],"url":i['url']} for n,i in enumerate(its)]}]})
-    ld=ld.replace(',"dateModified":null','')
+    graph=[{"@type":"WebPage","@id":BASE+'/'+path,"url":BASE+'/'+path,"name":title,"description":desc,"inLanguage":"en","isPartOf":{"@type":"WebSite","@id":BASE+"/#website","name":SITE,"url":BASE+"/"},"about":{"@type":"SoftwareApplication","name":f"Oracle Fusion Cloud {fn}","softwareVersion":rel,"applicationCategory":"BusinessApplication"},"publisher":{"@id":BASE+"/#org"}},
+        crumbs(cl),{"@type":"ItemList","name":f"{fn} {rel} changes we track","numberOfItems":len(its),"itemListElement":[{"@type":"ListItem","position":n+1,"name":i['title'],"url":i['url']} for n,i in enumerate(its)]}]
+    if answer_faq: graph.append(faq_ld(answer_faq))
+    ld=jsonld({"@context":"https://schema.org","@graph":graph})
     return page(title,body,2,desc,path,ld,og=(f"Oracle Fusion Cloud {rel} · {fn}",(f"{len(allf)} features in Oracle's {rel} What's New, with Oracle's status" if nxt and allf else f"{len(its)} changes we track · {len(auto)} delivered switched on")))
 def standard_page(u):
     rel=u['release']; rk=rel.lower(); es=u['expiring']
@@ -566,7 +579,10 @@ def upcoming_page(up,updates):
     else:
         hero=f"""<p class="lead">{optlead}</p>
 <p class="small muted">{rel} is the next Oracle Fusion Cloud quarterly update. Oracle can update this list, and we recheck it every week.</p></div>"""
+    answer_s, answer_faq = (overview_answer(tu) if tu else ('', []))
+    answer=(summary_html(E(answer_s))+faq_html([(q, E(a)) for q,a in answer_faq])) if answer_s else ''
     body=f"""{crumbs_html(cl,'../')}<div class="hero"><h1>{E(title)}</h1>
+{answer}
 {hero}
 <div class="box"><h2 style="margin-top:0">What this means, in plain English</h2><ul>
 <li><b>An opt-in expiration</b> means Oracle first delivered the feature as something you had to opt in to. With the update in Oracle&#39;s list, the opt-in step is removed and the feature becomes part of the standard product.</li>
@@ -582,8 +598,10 @@ def upcoming_page(up,updates):
 <div class="box"><h3 style="margin-top:0">When it arrives</h3><p>Oracle updates environments in cohorts. Per Oracle, Cohort A gets quarterly updates in February, May, August and November, Cohort B in March, June, September and December, and Cohort C in April, July, October and January. Test environments update on the first Friday of the update month and production two weeks later, on the third Friday. Your cohort is shown in the Oracle Cloud Console. <span class="small muted">Source: <a href="https://blogs.oracle.com/fusioninsider/quarterly-updates-made-easy" target=_blank rel=noopener>Oracle Fusion Insider, "Quarterly updates made easy"</a></span></p></div>
 <div class="box"><h3 style="margin-top:0">Oracle's {rel} What's New documents</h3><p class="small muted">{'Oracle has published them. Every feature in their Feature Summary tables is listed on our module pages above.' if tu else f"Oracle has published them. We haven't added {rel} to the tracker yet; plain-English summaries follow."}</p>{''.join(f'<p><b>{E(g)}:</b> '+' · '.join(f'<a href="{E(b["url"])}" target=_blank rel=noopener>{E(b["product"])}</a>' for b in bs)+'</p>' for g,bs in byf.items())}</div>
 {f'<div class="box"><h3 style="margin-top:0">Already announced for {rel} in earlier What&#39;s New documents</h3><ul>'+''.join(f'<li><a href="{E(i["url"])}" target=_blank rel=noopener>{E(i["title"])}</a> <span class="small muted">({E(i["product"])}, from the {i["_rel"]} What&#39;s New)</span></li>' for i in ann)+'</ul></div>' if ann else ''}{nl_form()}"""
-    ld=jsonld({"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":BASE+'/'+path,"url":BASE+'/'+path,"name":title,"description":desc,"inLanguage":"en","isPartOf":{"@type":"WebSite","@id":BASE+"/#website","name":SITE,"url":BASE+"/"}},crumbs(cl),
-        {"@type":"ItemList","name":f"Oracle Fusion opt-ins ending with {rel}","numberOfItems":len(es),"itemListElement":[{"@type":"ListItem","position":n+1,"name":e['title'],"url":e['url']} for n,e in enumerate(es) if e['url']]}]})
+    graph=[{"@type":"WebPage","@id":BASE+'/'+path,"url":BASE+'/'+path,"name":title,"description":desc,"inLanguage":"en","isPartOf":{"@type":"WebSite","@id":BASE+"/#website","name":SITE,"url":BASE+"/"},"publisher":{"@id":BASE+"/#org"}},crumbs(cl),
+        {"@type":"ItemList","name":f"Oracle Fusion opt-ins ending with {rel}","numberOfItems":len(es),"itemListElement":[{"@type":"ListItem","position":n+1,"name":e['title'],"url":e['url']} for n,e in enumerate(es) if e['url']]}]
+    if answer_faq: graph.append(faq_ld(answer_faq))
+    ld=jsonld({"@context":"https://schema.org","@graph":graph})
     return page(title,body,1,desc,path,ld,og=((f"Next update · {rel}" if (is_next(rel) or not tu) else f"Oracle Fusion Cloud {rel}"),(f"What's new: {len(tu['all'])} features by module, with Oracle's status · {len(es)} opt-ins end" if tu else f"{len(es)} opt-ins end with {rel}: {on} switched on, {st} need setup")))
 
 # ---------------- HCM pages switching to Redwood ----------------
@@ -642,14 +660,19 @@ def hcm_redwood_page(cur_rel):
     cl=[('Home',''),('HCM pages switching to Redwood',HCMR_PATH)]
     jump=' · '.join(f'<a href="#r{g}">{E(lbl)} ({c[g]})</a>' for g,lbl in groups)
     secs=''.join(f'<h2 id="r{g}">{E(lab(g,lbl))} <span class="muted small">({c[g]})</span></h2>'+''.join(hr_item_html(i) for i in HCMR['items'] if hr_group(i['release'])==g) for g,lbl in groups)
+    answer_s, answer_faq = hcm_redwood_answer(cur_rel)
+    answer=(summary_html(E(answer_s))+faq_html([(q, E(a)) for q,a in answer_faq])) if answer_s else ''
     body=f"""{crumbs_html(cl,'../')}<div class="hero"><h1>{E(title)}</h1>
+{answer}
 <p class="lead">HCM pages that switch to Redwood by default, by release, with the other HCM end-of-support and removal notices Oracle has published. Where Oracle says so, you can still set the profile option back to No.</p>
 <p class="small muted">{E(HR_NOTE)} Checked against each Oracle page on {E(HCMR.get('checked',''))}.</p>
 <p class="note">Impact on upgrade is our editorial rating of how much a change affects existing users and testing; Oracle scale is Oracle&#39;s own rating. Always confirm details on the linked Oracle page.</p>
 <p><b>Jump to:</b> {jump}</p></div>{__import__('longtail').hcm_links('../')}{secs}
 <div class="box"><p><b>More HCM:</b> {' · '.join(f'<a href="../{k}/hcm/">HCM {k.upper()} changes we track</a>' for k in [r.lower() for r in sorted(UPD_KEYS,reverse=True)])} · <a href="../redwood-defaults/">Redwood defaults calendar</a> · <a href="../updates/{cur_rel.lower()}/checklist.html">{cur_rel} what-to-test checklist</a></p></div>{nl_form()}"""
-    ld=jsonld({"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":BASE+'/'+HCMR_PATH,"url":BASE+'/'+HCMR_PATH,"name":title,"description":desc,"inLanguage":"en","isPartOf":{"@type":"WebSite","@id":BASE+"/#website","name":SITE,"url":BASE+"/"}},crumbs(cl),
-        {"@type":"ItemList","name":title,"numberOfItems":len(HCMR['items']),"itemListElement":[{"@type":"ListItem","position":n+1,"name":i['title'],"url":i['urls'][0]} for n,i in enumerate(HCMR['items'])]}]})
+    graph=[{"@type":"WebPage","@id":BASE+'/'+HCMR_PATH,"url":BASE+'/'+HCMR_PATH,"name":title,"description":desc,"inLanguage":"en","isPartOf":{"@type":"WebSite","@id":BASE+"/#website","name":SITE,"url":BASE+"/"},"publisher":{"@id":BASE+"/#org"}},crumbs(cl),
+        {"@type":"ItemList","name":title,"numberOfItems":len(HCMR['items']),"itemListElement":[{"@type":"ListItem","position":n+1,"name":i['title'],"url":i['urls'][0]} for n,i in enumerate(HCMR['items'])]}]
+    if answer_faq: graph.append(faq_ld(answer_faq))
+    ld=jsonld({"@context":"https://schema.org","@graph":graph})
     return page(title,body,1,desc,HCMR_PATH,ld,og=('HCM · Redwood',f"{len(HCMR['items'])} HCM changes, 26B to 27A, with Oracle links"))
 def hr_box(rel,depth_prefix,check=False):
     its=hr_items(rel)
@@ -701,16 +724,184 @@ def nice_date(d):
     import datetime as _dt
     try: x=_dt.date.fromisoformat(d); return f"{x.day} {x.strftime('%B')} {x.year}"
     except Exception: return d
+def org_node():
+    """Publisher is the site brand only. No person is named as author."""
+    o={"@type":"Organization","@id":BASE+"/#org","name":SITE,"url":BASE+"/","logo":BASE+"/logo.png"}
+    if CONTACT: o["email"]=CONTACT
+    return o
 def _date_ld(head):
-    """Add dateModified (= the date shown in the footer) to page-level JSON-LD nodes that don't have one."""
-    if not GENERATED or 'application/ld+json' not in head: return head
+    """Add dateModified (= the date shown in the footer) and the Fusion Updates publisher to page-level JSON-LD."""
+    if 'application/ld+json' not in head: return head
     import re as _re
+    page_types=('WebPage','CollectionPage','Article','TechArticle','WebSite')
     def fix(m):
-        o=json.loads(m.group(1)); nodes=o.get('@graph',[o])
+        o=json.loads(m.group(1)); nodes=o.get('@graph')
+        if nodes is None:
+            nodes=[o]; o={"@context":o.get("@context","https://schema.org"),"@graph":nodes}
+        has_org=any(n.get('@id')==BASE+"/#org" or n.get('@type')=='Organization' for n in nodes)
         for n in nodes:
-            if n.get('@type') in ('WebPage','CollectionPage','Article','TechArticle') and not n.get('dateModified'): n['dateModified']=GENERATED
+            if n.get('@type') in page_types:
+                if GENERATED and not n.get('dateModified'): n['dateModified']=GENERATED
+                pub=n.get('publisher')
+                if not pub:
+                    n['publisher']={"@id":BASE+"/#org"}
+                elif isinstance(pub, dict) and not pub.get('name'):
+                    pub['@type']=pub.get('@type') or 'Organization'
+                    pub['@id']=pub.get('@id') or BASE+"/#org"
+                    pub['name']=SITE
+                    pub.setdefault('url', BASE+'/')
+            if n.get('@type')=='Organization' and n.get('@id')==BASE+"/#org":
+                n.setdefault('name', SITE); n.setdefault('url', BASE+"/")
+        if not has_org: nodes.append(org_node())
+        o['@graph']=nodes
         return jsonld(o)
     return _re.sub(r'<script type="application/ld\+json">(.*?)</script>',fix,head,flags=_re.S)
+def _as_of(d):
+    return f"As of {nice_date(d)}, " if d else ""
+def _hcm_rel_stats(rel):
+    its=[i for i in HCMR['items'] if i['release']==rel]
+    switches=[i for i in its if i['type']=='Redwood by default']
+    other=[i for i in its if i['type']!='Redwood by default']
+    pages=sum(len(i.get('pages') or []) for i in switches)
+    codes=[]
+    for i in switches: codes.extend(i.get('profile_options') or [])
+    return its, switches, other, pages, codes
+# Oracle's type label "Mandatory migration" stays inside quoted Oracle titles only. Prose says "migration notice".
+_HR_OTHER_WORD={'Mandatory migration':'migration notice','Removal':'removal','End of support':'end of support notice','Switched on automatically':'notice that switches on automatically'}
+def _notice_phrase(n, label):
+    if n==1: return f"1 {label}"
+    if label=='removal': return f"{n} removals"
+    if label.endswith(' notice'): return f"{n} {label[:-6]}notices"
+    return f"{n} {label}"
+def _other_notices_phrase(other):
+    seen=[]
+    for i in other:
+        if i['type'] not in seen: seen.append(i['type'])
+    bits=[]
+    for t in seen:
+        n=sum(1 for i in other if i['type']==t)
+        label=_HR_OTHER_WORD.get(t, t)
+        bits.append(_notice_phrase(n, label))
+    return _and(bits) if bits else ''
+def _switch_label(title):
+    t=title
+    if t.startswith('Redwood '): t=t[len('Redwood '):]
+    t=t.replace(' by default', '')
+    return t
+def _switch_phrase(switches):
+    bits=[]
+    for i in switches:
+        n=len(i.get('pages') or [])
+        label=_switch_label(i['title'])
+        bits.append(f"{n} {label}" if 'page' in label.lower() else f"{n} pages ({label})")
+    return _and(bits) if bits else ''
+def _profile_phrase(switches):
+    parts=[]
+    for i in switches:
+        opts=i.get('profile_options') or []
+        pages=i.get('pages') or []
+        if not opts:
+            continue
+        if len(opts)<=4:
+            parts.append(f"{i['title']} uses {len(opts)} code{'s' if len(opts)!=1 else ''}: {_and(opts)}")
+        elif len(opts)==len(pages):
+            parts.append(f"{i['title']} uses {len(opts)} codes, one for each of its pages")
+        else:
+            parts.append(f"{i['title']} uses {len(opts)} codes")
+    return ' '.join(p if p.endswith('.') else p+'.' for p in parts)
+def hcm_redwood_answer(rel):
+    """Dated answer for how many HCM pages switch to Redwood in this release. Empty if the data has no Redwood switches."""
+    its, switches, other, pages, codes = _hcm_rel_stats(rel)
+    if not switches: return '', []
+    checked=HCMR.get('checked') or GENERATED
+    uniq=[]
+    for c in codes:
+        if c not in uniq: uniq.append(c)
+    oth=_other_notices_phrase(other)
+    s1=f"{_as_of(checked)}Oracle Fusion HCM {rel} switches {pages} pages to Redwood by default across {len(switches)} notices: {_switch_phrase(switches)}."
+    s2=f"Oracle names {len(uniq)} profile option codes for those switches, and where Oracle says so you can set an option back to No."
+    s3=(f"Oracle also lists {len(other)} other HCM notices for {rel}: {oth}." if other else '')
+    summary=' '.join(x for x in (s1, s2, s3) if x)
+    u=_UPD.get(rel) or {}
+    hcm_exp=[e for e in u.get('expiring') or [] if exp_family(e)=='HCM']
+    if not hcm_exp:
+        opt_a=f"No. Oracle announces these HCM changes as Redwood default switches, not as opt-in expirations. HCM has no rows on Oracle's opt-in expiration list for {rel}."
+    else:
+        opt_a=f"Oracle's opt-in expiration list names {len(hcm_exp)} HCM features whose opt-in period ended with {rel}. The Redwood page switches are separate notices and are not on that list."
+    faq=[
+        (f"How many Oracle HCM pages switch to Redwood by default in {rel}?",
+         f"{pages} pages, across {len(switches)} Redwood default switches, checked on {nice_date(checked)}: {_switch_phrase(switches)}."),
+        (f"Which profile options control the {rel} HCM Redwood switches?",
+         f"Oracle names {len(uniq)} profile option codes. {_profile_phrase(switches)} Where Oracle says so, set the option to No to keep the older page."),
+        (f"What other HCM notices did Oracle publish for {rel}?",
+         (f"{len(other)} other notices: {oth}. They are listed with the Redwood switches on this page and are not former opt-ins." if other else f"None. The {len(its)} HCM notices for {rel} are all Redwood default switches.")),
+        (f"Are the {rel} HCM Redwood switches former opt-ins that are now standard?", opt_a),
+    ]
+    return summary, faq
+def _exp_state(e):
+    if e.get('now_enabled')=='Yes': return "switched on for everyone (Oracle's Now enabled column says Yes)"
+    if e.get('now_enabled')=='No': return "needs setup (Oracle's Now enabled column says No)"
+    return f"Now enabled: {e.get('now_enabled') or ''}"
+def financials_answer(u):
+    rel=u['release']; f='Financials'; fn=FNAME[f]
+    allf=[r for r in u.get('all') or [] if r['family']==f]
+    its=[i for i in u['items'] if i['family']==f]
+    auto=[i for i in its if i['enablement'].startswith('Automatically')]
+    exps=[e for e in u['expiring'] if exp_family(e)==f]
+    if not allf and not its: return '', []
+    counts=f"Oracle's {rel} What's New for {fn} lists {len(allf)} features: {bucket_sentence(allf)}, per Oracle's Action to Enable column."
+    tracked=f"We track {len(its)} of those {fn} changes in plain English, and {len(auto)} of the {len(its)} are delivered switched on."
+    if len(exps)==0:
+        former=f"Oracle's opt-in expiration list names no {fn} former opt-ins now standard in {rel}."
+    elif len(exps)==1:
+        e=exps[0]
+        former=f"Oracle's opt-in expiration list names 1 {fn} former opt-in now standard in {rel}: {e['title']}, which {_exp_state(e)}."
+    else:
+        on=sum(1 for e in exps if e['now_enabled']=='Yes')
+        former=f"Oracle's opt-in expiration list names {len(exps)} {fn} former opt-ins now standard in {rel}: {on} switched on for everyone and {len(exps)-on} that need setup."
+    summary=f"{_as_of(GENERATED)}{counts} {tracked} {former}"
+    if len(exps)==1:
+        which=f"1 former opt-in: {exps[0]['title']} ({exps[0]['product']}), which {_exp_state(exps[0])}."
+    elif not exps:
+        which=f"None. Oracle's opt-in expiration list has no {fn} rows for {rel}."
+    else:
+        which=former
+    faq=[
+        (f"What are the new features in Oracle Fusion {fn} {rel}?", summary),
+        (f"How many {fn} features are in Oracle Fusion {rel}?",
+         f"{len(allf)}, counted from the Feature Summary tables in Oracle's {rel} What's New for {fn}: {bucket_sentence(allf)}."),
+        (f"Which {fn} former opt-ins are now standard in {rel}?", which),
+        (f"How many {fn} {rel} changes are delivered switched on?",
+         f"{len(auto)} of the {len(its)} {fn} changes we track are delivered switched on. The other {len(its)-len(auto)} are not delivered switched on."),
+    ]
+    return summary, faq
+def overview_answer(u):
+    rel=u['release']
+    allf=u.get('all') or []
+    if not allf: return '', []
+    es=u['expiring']; on=sum(1 for e in es if e['now_enabled']=='Yes'); st=len(es)-on
+    its, switches, other, pages, codes = _hcm_rel_stats(rel)
+    hcm=''
+    if switches:
+        hcm=f" In HCM, {len(switches)} Redwood default switches cover {pages} pages, and Oracle lists {len(other)} other HCM notices for {rel}."
+    summary=(f"{_as_of(GENERATED)}Oracle's {rel} What's New documents list {len(allf)} features across the modules Fusion Updates covers: {bucket_sentence(allf)}. "
+             f"Oracle's opt-in expiration list names {len(es)} former opt-ins now standard in {rel}: {on} switched on for everyone and {st} that need setup.{hcm}")
+    faq=[
+        (f"What changed in Oracle Fusion {rel}?", summary),
+        (f"How many features are in Oracle Fusion {rel}?",
+         f"{len(allf)} features, by our count of the Feature Summary rows in Oracle's {rel} What's New documents for the modules we cover: {bucket_sentence(allf)}."),
+        (f"How many former opt-ins are now standard in Oracle Fusion {rel}?",
+         f"{len(es)}, from Oracle's Current Opt-In Expirations list. {on} are switched on for everyone and {st} need setup."),
+        (f"How many HCM pages switch to Redwood in {rel}?",
+         (f"{pages} pages across {len(switches)} Redwood default switches: {_switch_phrase(switches)}." if switches else f"No Redwood default switches are recorded for {rel}.")),
+    ]
+    return summary, faq
+def family_answer(u, f):
+    """Answer block for the 26D pages the GEO check failed to quote. Other family pages stay as they are."""
+    if u.get('release')!='26D': return '', []
+    if f=='Financials': return financials_answer(u)
+    if f=='HCM': return hcm_redwood_answer(u['release'])
+    return '', []
 def summary_html(s): return f'<div class="answer" id="summary"><p><b>In short:</b> {s}</p></div>'
 def _tense(rel): return 'next' if is_next(rel) else ('current' if rel==CURRENT else 'past')
 def _rel_counts(u):
@@ -721,9 +912,12 @@ def _rel_counts(u):
 def release_summary(u):
     rel=u['release']; c=_rel_counts(u); t=_tense(rel)
     what={'next':f'{rel} is the next Oracle Fusion Cloud quarterly update.','current':f'{rel} is the current Oracle Fusion Cloud quarterly update.','past':f'{rel} is an earlier Oracle Fusion Cloud quarterly update.'}[t]
+    if GENERATED: what=f"As of {nice_date(GENERATED)}, {what}"
     opt=(f"Oracle's opt-in expiration list names {c['exp']} features whose opt-in ends with {rel}" if t=='next' else f"Oracle's opt-in expiration list names {c['exp']} former opt-ins now standard in {rel}")
+    _its, switches, _other, pages, _codes = _hcm_rel_stats(rel)
+    hcm=(f" {len(switches)} HCM Redwood default switches cover {pages} pages." if switches else '')
     return (f"{what} We track {c['n']} of its changes in plain English, out of {c['total']} features (our count) in Oracle's {rel} What's New documents for the modules we cover. "
-            f"{c['auto']} of the {c['n']} are delivered switched on and {c['hi']} are rated high impact on upgrade. {opt}: {c['on']} switched on for everyone, {c['exp']-c['on']} need setup.")
+            f"{c['auto']} of the {c['n']} are delivered switched on and {c['hi']} are rated high impact on upgrade. {opt}: {c['on']} switched on for everyone, {c['exp']-c['on']} need setup.{hcm}")
 def release_faq(u):
     rel=u['release']; rk=rel.lower(); c=_rel_counts(u); t=_tense(rel); st=c['exp']-c['on']
     q=[(f"How many features are in Oracle's {rel} What's New?",f"{c['total']} features by our count, in the {rel} What's New documents for Financials, Procurement, Supply Chain, Logistics, Project Management and HCM. We summarise {c['n']} of them in plain English: the most relevant ones, up to 25 per module family."),
@@ -734,7 +928,7 @@ def release_faq(u):
     return q
 def home_summary(updates,cur):
     rel=cur['release']; c=_rel_counts(cur)
-    s=(f"Fusion Updates turns Oracle's quarterly What's New documents into plain English. The current update is {rel}: we track {c['n']} changes, {c['auto']} of them delivered switched on, "
+    s=(f"{_as_of(GENERATED)}Fusion Updates turns Oracle's quarterly What's New documents into plain English. The current update is {rel}: we track {c['n']} changes, {c['auto']} of them delivered switched on, "
        f"and Oracle lists {c['exp']} former opt-ins now standard with {rel}.")
     if UPCOMING and is_next(UPCOMING['release']):
         nu=updates[UPCOMING['release']]; s+=f" {nu['release']} is next: Oracle's {nu['release']} What's New lists {len(nu['all'])} features across the modules we cover, and {len(nu['expiring'])} opt-ins end with {nu['release']}."
@@ -766,9 +960,27 @@ def write_llms(dist,updates,cur,urls):
     hubs='\n'.join(f"- [{u.strip('/').upper()} hub: what's new by module and the opt-in expiration list]({BASE}/{u})" for u in urls if _re.fullmatch(r'\d\d[a-d]/',u))
     fams=sorted(set(i['family'] for u in updates.values() for i in u['items']))
     mods='\n'.join(f"- {FNAME[f]}: "+' · '.join(f"[{k}]({BASE}/{k.lower()}/{FSLUG[f]}/)" for k in order) for f in fams)
+    key26=''
+    if '26D' in updates:
+        u26=updates['26D']
+        ov, ovf = overview_answer(u26)
+        fin, finf = financials_answer(u26)
+        hcm, hcmf = hcm_redwood_answer('26D')
+        key26=f"""
+## Key 26D pages
+
+- [26D overview: what's new by module]({BASE}/26d/): {ov}
+- [Financials 26D]({BASE}/26d/financials/): {fin}
+- [HCM 26D]({BASE}/26d/hcm/): {hcm}
+- [HCM pages switching to Redwood]({BASE}/{HCMR_PATH}): {hcm}
+- [26D changes we track]({BASE}/updates/26d/): {release_summary(u26)}
+"""
+        key26_full=key26+"\n### 26D overview FAQ\n\n"+faq(ovf, f'{BASE}/26d/')+"\n\n### Financials 26D FAQ\n\n"+faq(finf, f'{BASE}/26d/financials/')+"\n\n### HCM Redwood 26D FAQ\n\n"+faq(hcmf, f'{BASE}/{HCMR_PATH}')+"\n"
+    else:
+        key26_full=''
     txt=f"""# {SITE}
 
-> {SITE} (fusionupdates.com) is an independent, plain-English tracker of Oracle Fusion Cloud quarterly updates for Financials, Procurement, Supply Chain & Manufacturing, Logistics, Project Management and HCM: what changed, what switches on automatically, which former opt-ins are now standard, and what to test. Not affiliated with or endorsed by Oracle.
+> {SITE} (fusionupdates.com) is an independent, plain-English tracker of Oracle Fusion Cloud quarterly updates for Financials, Procurement, Supply Chain & Manufacturing, Logistics, Project Management and HCM: what changed, what switches on automatically, which former opt-ins are now standard, and what to test. Not affiliated with or endorsed by Oracle. Published by {SITE}.
 
 Updated {nice_date(GENERATED) if GENERATED else ''}. {_md(home_summary(updates,cur))}
 
@@ -778,6 +990,7 @@ How it is built: features come from the Feature Summary tables in Oracle's What'
 
 {rels}
 {hubs}
+{key26}
 
 ## Module pages
 
@@ -811,6 +1024,7 @@ How it is built: features come from the Feature Summary tables in Oracle's What'
 """
     open(os.path.join(dist,'llms.txt'),'w').write(txt)
     full=[txt]
+    if key26_full: full.append(key26_full)
     for k in order:
         u=updates[k]; full.append(f"\n## Oracle Fusion {k} ({_tense(k)} update)\n\n{_md(release_summary(u))}\n\n"+faq(release_faq(u),f'{BASE}/updates/{k.lower()}/'))
         byf=collections.Counter(i['family'] for i in u['items'])
